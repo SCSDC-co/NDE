@@ -5,8 +5,6 @@ return {
     "nvim-tree/nvim-web-devicons"
   },
   config = function()
-    vim.api.nvim_set_hl(0, "Directory", { fg = "#00ff00", bg = "#000000", bold = true })
-
     require("bufferline").setup({
       options = {
         mode = "buffers",
@@ -71,15 +69,15 @@ return {
           bg = "#000000",
         },
         separator = {
-          fg = "#f3f3f3",
+          fg = "#008b2b",
           bg = "#000000",
         },
         separator_selected = {
-          fg = "#f3f3f3",
+          fg = "#008b2b",
           bg = "#000000",
         },
         separator_visible = {
-          fg = "#f3f3f3",
+          fg = "#008b2b",
           bg = "#000000",
         },
         diagnostic_selected = {
