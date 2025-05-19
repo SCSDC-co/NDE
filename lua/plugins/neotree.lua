@@ -8,6 +8,15 @@ return {
   },
   lazy = false,
   config = function()
+
+    -- Forza bianco sui nomi e icone di file e cartelle, niente background
+    vim.api.nvim_set_hl(0, "NeoTreeDirectoryName", { fg = "#FFFFFF", bg = "NONE" })
+    vim.api.nvim_set_hl(0, "NeoTreeDirectoryIcon", { fg = "#FFFFFF", bg = "NONE" })
+    vim.api.nvim_set_hl(0, "Directory", { fg = "#FFFFFF", bg = "NONE" })
+    vim.api.nvim_set_hl(0, "NeoTreeFileName", { fg = "#FFFFFF", bg = "NONE" })
+    vim.api.nvim_set_hl(0, "NeoTreeFileNameOpened", { fg = "#FFFFFF", bg = "NONE" })
+    vim.api.nvim_set_hl(0, "NeoTreeIndentMarker", { fg = "#FFFFFF", bg = "NONE" })
+
     require("neo-tree").setup({
       close_if_last_window = true,
       popup_border_style = "rounded",
@@ -26,7 +35,7 @@ return {
         },
         name = {
           trailing_slash = false,
-          use_git_status_colors = true,
+          use_git_status_colors = false,
         },
         git_status = {
           symbols = {
@@ -49,12 +58,12 @@ return {
           hide_gitignored = false,
         },
         follow_current_file = { enabled = true },
-        use_libuv_file_watcher = true, 
+        use_libuv_file_watcher = true,
         hijack_netrw_behavior = "open_default",
         group_empty_dirs = true,
         bind_to_cwd = true,
         cwd_target = {
-          sidebar = "tab", 
+          sidebar = "tab",
           current = "window"
         },
       },
@@ -84,24 +93,6 @@ return {
           end,
         },
       },
-    })
-
-    -- Apri neo-tree all'avvio se apri una cartella
-    vim.api.nvim_create_autocmd("VimEnter", {
-      callback = function()
-        local stats = vim.uv.fs_stat(vim.fn.argv(0))
-        if stats and stats.type == "directory" then
-          require("neo-tree.command").execute({ dir = vim.fn.argv(0), toggle = false })
-        end
-      end
-    })
-
-    -- Imposta root su `/` all’avvio
-    require("neo-tree.command").execute({
-      action = "show",
-      source = "filesystem",
-      position = "left",
-      dir = "/"
     })
   end
 }

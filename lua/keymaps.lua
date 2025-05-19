@@ -28,3 +28,7 @@ vim.keymap.set("n", "<C-n>", function()
     vim.cmd("Neotree toggle")
   end
 end, { desc = "Toggle Neo-tree", noremap = true, silent = true })
+
+vim.keymap.set("n", "<F5>", ":w<CR>:!python3 %<CR>", { desc = "Run Python File" })
+vim.keymap.set("n", "<F6>", ":w<CR>:!g++ % -o %< && ./%<<CR>", { desc = "Compile & Run C++" })
+vim.keymap.set("n", "<F7>", ":w<CR>:!dotnet run<CR>", { desc = "Run C# (dotnet run)" })
