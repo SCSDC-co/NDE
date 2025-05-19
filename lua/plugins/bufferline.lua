@@ -5,7 +5,6 @@ return {
     "nvim-tree/nvim-web-devicons"
   },
   config = function()
-    -- Override del gruppo 'Directory' (usato per il testo di offset)
     vim.api.nvim_set_hl(0, "Directory", { fg = "#00ff00", bg = "#000000", bold = true })
 
     require("bufferline").setup({
