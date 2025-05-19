@@ -44,7 +44,7 @@ Once installed, the configuration will automatically load each time you start Ne
 
 This is the file structure
 
-`
+```
 ~/.config/nvim/
 │
 ├── init.lua
@@ -68,7 +68,7 @@ This is the file structure
                 ├── indent-blankline.lua
                 ├── toggleterm.lua
                 └── treesitter.lua
-`
+```
 
 ## Contributing
 
