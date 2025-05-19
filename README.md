@@ -22,7 +22,7 @@ This repository contains a comprehensive configuration setup for [Neovim (NVIM)]
 
 1. Clone this repository to your local machine:
    
-   - `git clone https://github.com/Sckab/NVIM-configuration.git ~/.config/nvim`
+   - ```git clone https://github.com/Sckab/NVIM-configuration.git ~/.config/nvim```
 
 2. Launch Neovim to automatically install the plugins
 3. Within Neovim, run the following command to sync the plugins:
