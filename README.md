@@ -36,10 +36,39 @@ Once installed, the configuration will automatically load each time you start Ne
 ## Configuration Structure
 
 - `init.vim`: Main entry point for the configuration
-- `plug.vim`: Plugin declarations and setup
-- `settings.vim`: General editor settings
+- `launch.vim`: Load all the needed files
+- `opts.vim`: General editor settings
 - `keymaps.vim`: Custom key mappings
+- `lazy.lua`: PLugin setup
 - Other modular files organizing specific configurations
+
+This is the file structure
+
+`
+~/.config/nvim/
+│
+├── init.lua
+└── lua
+         ├── lazynvim/
+         │      └── lazy.lua 
+         ├── GUI/
+         │      └── theme.lua
+         ├── opts.lua
+         ├── keymaps.lua
+         ├── launch.lua
+         └── plugins/
+                ├── autopairs.lua
+                ├── bufferline.lua
+                ├── cmp.lua
+                ├── lsp.lua
+                ├── lualine.lua
+                ├── neotree.lua
+                ├── telescope.lua
+                ├── dashboard.lua
+                ├── indent-blankline.lua
+                ├── toggleterm.lua
+                └── treesitter.lua
+`
 
 ## Contributing
 

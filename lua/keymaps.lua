@@ -1,4 +1,19 @@
-vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<CR>", { desc = "Toggle Neotree" })
+vim.keymap.set("n", "<leader>e", function()
+  local neotree_win = nil
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(win))
+    if bufname:match("neo%-tree filesystem") then
+      neotree_win = win
+      break
+    end
+  end
+
+  if neotree_win then
+    vim.cmd("Neotree close")
+  else
+    require("neo-tree.command").execute({ source = "filesystem", dir = "/" })
+  end
+end, { desc = "Toggle Neo-tree su /" })
 vim.keymap.set("n", "<C-n>", function()
   local neotree_win = nil
   local current_win = vim.api.nvim_get_current_win()

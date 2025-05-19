@@ -9,7 +9,6 @@ return {
   lazy = false,
   config = function()
 
-    -- Forza bianco sui nomi e icone di file e cartelle, niente background
     vim.api.nvim_set_hl(0, "NeoTreeDirectoryName", { fg = "#FFFFFF", bg = "NONE" })
     vim.api.nvim_set_hl(0, "NeoTreeDirectoryIcon", { fg = "#FFFFFF", bg = "NONE" })
     vim.api.nvim_set_hl(0, "Directory", { fg = "#FFFFFF", bg = "NONE" })
