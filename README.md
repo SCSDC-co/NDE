@@ -49,25 +49,25 @@ This is the file structure
 │
 ├── init.lua
 └── lua
-         ├── lazynvim/
-         │      └── lazy.lua 
-         ├── GUI/
-         │      └── theme.lua
-         ├── opts.lua
-         ├── keymaps.lua
-         ├── launch.lua
-         └── plugins/
-                ├── autopairs.lua
-                ├── bufferline.lua
-                ├── cmp.lua
-                ├── lsp.lua
-                ├── lualine.lua
-                ├── neotree.lua
-                ├── telescope.lua
-                ├── dashboard.lua
-                ├── indent-blankline.lua
-                ├── toggleterm.lua
-                └── treesitter.lua
+     ├── lazynvim/
+     │      └── lazy.lua 
+     ├── GUI/
+     │      └── theme.lua
+     ├── opts.lua
+     ├── keymaps.lua
+     ├── launch.lua
+     └── plugins/
+            ├── autopairs.lua
+            ├── bufferline.lua
+            ├── cmp.lua
+            ├── lsp.lua
+            ├── lualine.lua
+            ├── neotree.lua
+            ├── telescope.lua
+            ├── dashboard.lua
+            ├── indent-blankline.lua
+            ├── toggleterm.lua
+            └── treesitter.lua
 ```
 
 ## Contributing
