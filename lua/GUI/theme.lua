@@ -8,7 +8,12 @@ kanagawa.setup({
   overrides = function(colors)
     return {
       LineNr = { bg = "NONE", fg = "#f3f3f3" },
-      CursorLineNr = { bg = "NONE", fg = "#f3f3f3" }
+      CursorLineNr = { bg = "NONE", fg = "#f3f3f3" },
+      SignColumn = { bg = "NONE" },
+      DiagnosticSignError = { bg = "NONE" },
+      DiagnosticSignWarn = { bg = "NONE" },
+      DiagnosticSignInfo = { bg = "NONE" },
+      DiagnosticSignHint = { bg = "NONE" },
   }
   end,
 })

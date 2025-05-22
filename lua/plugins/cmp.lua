@@ -7,10 +7,12 @@ return {
       "hrsh7th/cmp-path",
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
+      "neovim/nvim-lspconfig",
     },
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
+      local lspconfig = require("lspconfig")
 
       cmp.setup({
         snippet = {
@@ -32,6 +34,23 @@ return {
           { name = "path" },
         }),
       })
+
+      local servers = {
+        "clangd",        
+        "omnisharp",     
+        "pyright",       
+        "ts_ls",      
+        "asm_lsp",       
+        "cssls",         
+        "html",          
+        "lua_ls",        
+      }
+
+      for _, server in ipairs(servers) do
+        lspconfig[server].setup {
+          capabilities = require('cmp_nvim_lsp').default_capabilities(),
+        }
+      end
     end,
   },
 }
