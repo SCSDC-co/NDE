@@ -5,7 +5,7 @@ return {
     local toggleterm = require("toggleterm")
 
     toggleterm.setup({
-      size = 60,
+      size = 70,
       open_mapping = false, 
       direction = "vertical",
       close_on_exit = true,

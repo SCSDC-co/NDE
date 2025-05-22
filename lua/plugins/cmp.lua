@@ -35,15 +35,16 @@ return {
         }),
       })
 
+      local omnisharp_bin = "/usr/bin/omnisharp"
+
       local servers = {
-        "clangd",        
-        "omnisharp",     
-        "pyright",       
-        "ts_ls",      
-        "asm_lsp",       
-        "cssls",         
-        "html",          
-        "lua_ls",        
+        "clangd",
+        "pyright",
+        "ts_ls",
+        "asm_lsp",
+        "cssls",
+        "html",
+        "lua_ls",
       }
 
       for _, server in ipairs(servers) do
@@ -51,6 +52,12 @@ return {
           capabilities = require('cmp_nvim_lsp').default_capabilities(),
         }
       end
+
+      lspconfig.omnisharp.setup {
+        cmd = { omnisharp_bin },
+        capabilities = require('cmp_nvim_lsp').default_capabilities(),
+        root_dir = lspconfig.util.root_pattern("*.sln", "*.csproj", ".git"),
+      }
     end,
   },
 }
