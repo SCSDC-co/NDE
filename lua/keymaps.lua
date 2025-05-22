@@ -1,3 +1,6 @@
+local map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+
 vim.keymap.set("n", "<leader>e", function()
   local neotree_win = nil
   for _, win in ipairs(vim.api.nvim_list_wins()) do
@@ -14,6 +17,7 @@ vim.keymap.set("n", "<leader>e", function()
     require("neo-tree.command").execute({ source = "filesystem", dir = "/" })
   end
 end, { desc = "Toggle Neo-tree su /" })
+
 vim.keymap.set("n", "<C-n>", function()
   local neotree_win = nil
   local current_win = vim.api.nvim_get_current_win()
@@ -32,7 +36,7 @@ vim.keymap.set("n", "<C-n>", function()
       if last_win and vim.api.nvim_win_is_valid(last_win) then
         vim.api.nvim_set_current_win(last_win)
       else
-        vim.cmd("wincmd p") -- fallback
+        vim.cmd("wincmd p") 
       end
     else
       vim.g.neotree_last_win = current_win
