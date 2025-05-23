@@ -48,31 +48,106 @@ vim.keymap.set("n", "<C-n>", function()
   end
 end, { desc = "Toggle Neo-tree", noremap = true, silent = true })
 
-vim.keymap.set("n", "<F5>", ":w<CR>:!python3 %<CR>", { desc = "Run Python File" })
-vim.keymap.set("n", "<F6>", ":w<CR>:!g++ % -o %< && ./%<<CR>", { desc = "Compile & Run C++" })
+-- PYTHON
+vim.keymap.set("n", "<F5>", function()
+  local file = vim.fn.expand("%:p")
+
+  vim.cmd("w")
+
+  require("toggleterm.terminal").Terminal
+    :new({
+      cmd = "clear && python3 \"" .. file .. "\"",
+      direction = "vertical",
+      size = 70,
+      close_on_exit = false,
+      hidden = true,
+    })
+    :toggle()
+end, { desc = "Esegui file Python nel terminale a destra", noremap = true, silent = true })
+
+-- C++
+vim.keymap.set("n", "<F6>", function()
+  local file = vim.fn.expand("%:p")
+  local filename = vim.fn.expand("%:t")
+  local filename_no_ext = vim.fn.expand("%:t:r")
+  local output_path = vim.fn.expand("%:p:h") .. "/" .. filename_no_ext
+
+  if not filename:match("%.cpp$") and not filename:match("%.cc$") then
+    print("Questo non è un file C++ (.cpp o .cc)!")
+    return
+  end
+
+  vim.cmd("w")
+
+  local compile_cmd = string.format("g++ \"%s\" -o \"%s\"", file, output_path)
+  local full_cmd = compile_cmd .. string.format(" && clear && \"%s\"", output_path)
+
+  require("toggleterm.terminal").Terminal
+    :new({
+      cmd = full_cmd,
+      direction = "vertical",
+      size = 70,
+      close_on_exit = false,
+      hidden = true,
+    })
+    :toggle()
+end, { desc = "⚙️ Compila ed esegui C++ (in terminale a destra)", noremap = true, silent = true })
+
+-- C
 vim.keymap.set("n", "<F7>", function()
-  local file = vim.fn.expand("%")
-  local filename_no_ext = file:match("(.+)%.c")
-  if not filename_no_ext then
-    print("Non è un file .c!")
+  local file = vim.fn.expand("%:p")
+  local filename = vim.fn.expand("%:t")
+  local filename_no_ext = vim.fn.expand("%:t:r")
+  local output_path = vim.fn.expand("%:p:h") .. "/" .. filename_no_ext
+
+  if not filename:match("%.c$") then
+    print("Questo non è un file .c!")
     return
   end
 
-  local cmd = string.format("clang %s -o %s && ./%s", file, filename_no_ext, filename_no_ext)
-  vim.cmd("w")  -- salva il file prima di compilare
-  vim.fn.system(cmd)
-  vim.cmd("!./" .. filename_no_ext)
-end, { desc = "Compile & Run C (Clang)", noremap = true, silent = true })
+  vim.cmd("w") 
+
+  local compile_cmd = string.format("clang \"%s\" -o \"%s\"", file, output_path)
+
+  local full_cmd = compile_cmd .. string.format(" && clear && \"%s\"", output_path)
+
+  require("toggleterm.terminal").Terminal
+    :new({
+      cmd = full_cmd,
+      direction = "vertical",
+      size = 70,
+      close_on_exit = false,
+      hidden = true,
+    })
+    :toggle()
+end, { desc = "Compila ed esegui file C con Clang (in terminale a destra)", noremap = true, silent = true })
+
+-- ASM
 vim.keymap.set("n", "<F8>", function()
-  local file = vim.fn.expand("%")
-  local filename_no_ext = file:match("(.+)%.asm")
-  if not filename_no_ext then
-    print("Non è un file .asm!")
+  local file = vim.fn.expand("%:p")
+  local filename = vim.fn.expand("%:t")
+  local filename_no_ext = vim.fn.expand("%:t:r")
+  local output_path = vim.fn.expand("%:p:h") .. "/" .. filename_no_ext
+
+  if not filename:match("%.asm$") then
+    print("Questo non è un file ASM!")
     return
   end
 
-  local cmd = string.format("nasm -f elf64 %s -o %s.o && ld %s.o -o %s && ./%s", file, filename_no_ext, filename_no_ext, filename_no_ext, filename_no_ext)
-  vim.cmd("w")  
-  vim.fn.system(cmd)  
-  vim.cmd("!./" .. filename_no_ext) 
-end, { desc = "Compile & Run ASM (nasm + ld)" })
+  vim.cmd("w")
+
+  local cmd = string.format(
+    "nasm -f elf64 \"%s\" -o \"%s.o\" && ld \"%s.o\" -o \"%s\" && clear && \"%s\"",
+    file, output_path, output_path, output_path, output_path
+  )
+
+  require("toggleterm.terminal").Terminal
+    :new({
+      cmd = cmd,
+      direction = "vertical",
+      size = 70,
+      close_on_exit = false,
+      hidden = true,
+    })
+    :toggle()
+end, { desc = "Compila ed esegui ASM (nasm + ld, terminale a destra)", noremap = true, silent = true })
