@@ -50,6 +50,19 @@ end, { desc = "Toggle Neo-tree", noremap = true, silent = true })
 
 vim.keymap.set("n", "<F5>", ":w<CR>:!python3 %<CR>", { desc = "Run Python File" })
 vim.keymap.set("n", "<F6>", ":w<CR>:!g++ % -o %< && ./%<<CR>", { desc = "Compile & Run C++" })
+vim.keymap.set("n", "<F7>", function()
+  local file = vim.fn.expand("%")
+  local filename_no_ext = file:match("(.+)%.c")
+  if not filename_no_ext then
+    print("Non è un file .c!")
+    return
+  end
+
+  local cmd = string.format("clang %s -o %s && ./%s", file, filename_no_ext, filename_no_ext)
+  vim.cmd("w")  -- salva il file prima di compilare
+  vim.fn.system(cmd)
+  vim.cmd("!./" .. filename_no_ext)
+end, { desc = "Compile & Run C (Clang)", noremap = true, silent = true })
 vim.keymap.set("n", "<F8>", function()
   local file = vim.fn.expand("%")
   local filename_no_ext = file:match("(.+)%.asm")
