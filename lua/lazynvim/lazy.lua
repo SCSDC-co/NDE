@@ -14,5 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
    { "rebelot/kanagawa.nvim", priority = 1000 },
    { import = "plugins" },
+   { "nvim-neotest/nvim-nio" },
    checker = { enabled = true },
 })

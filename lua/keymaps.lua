@@ -1,3 +1,6 @@
+local dap = require("dap")
+local dapui = require("dapui")
+
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
@@ -155,3 +158,11 @@ vim.keymap.set("n", "<F8>", function()
     })
     :toggle()
 end, { desc = "Compila ed esegui ASM (nasm + ld, terminale a destra)", noremap = true, silent = true })
+
+-- debug
+vim.keymap.set("n", "<F1>", dap.toggle_breakpoint, { desc = "Toggle Breakpoint" })
+vim.keymap.set("n", "<F2>", dap.continue, { desc = "Continue" })
+vim.keymap.set("n", "<F3>", dap.step_into, { desc = "Step Into" })
+vim.keymap.set("n", "<F4>", dap.step_over, { desc = "Step Over" })
+
+vim.keymap.set("n", "<leader>du", dapui.toggle, { desc = "Toggle DAP UI" })
