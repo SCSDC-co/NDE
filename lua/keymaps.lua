@@ -1,6 +1,10 @@
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
+vim.keymap.set("n", "<Leader>j", [[:call append(line("."), '')<CR>]], { desc = "Nuova riga sotto", noremap = true })
+
+vim.keymap.set("n", "<Leader>k", [[:call append(line(".") - 1, '')<CR>]], { desc = "Nuova riga sopra", noremap = true })
+
 vim.keymap.set("n", "<leader>e", function()
   local neotree_win = nil
   for _, win in ipairs(vim.api.nvim_list_wins()) do
