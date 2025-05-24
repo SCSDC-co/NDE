@@ -166,3 +166,7 @@ vim.keymap.set("n", "<F3>", dap.step_into, { desc = "Step Into" })
 vim.keymap.set("n", "<F4>", dap.step_over, { desc = "Step Over" })
 
 vim.keymap.set("n", "<leader>du", dapui.toggle, { desc = "Toggle DAP UI" })
+
+vim.keymap.set("v", "<leader>ge", ":GpExplain<CR>", { desc = "Spiega il codice selezionato" })
+vim.keymap.set("v", "<leader>gr", ":GpRewrite<CR>", { desc = "Riscrivi il codice selezionato" })
+vim.keymap.set("n", "<leader>gc", ":GpChatNew<CR>", { desc = "Nuova chat AI" })
