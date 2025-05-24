@@ -170,3 +170,14 @@ vim.keymap.set("n", "<leader>du", dapui.toggle, { desc = "Toggle DAP UI" })
 vim.keymap.set("v", "<leader>ge", ":GpExplain<CR>", { desc = "Spiega il codice selezionato" })
 vim.keymap.set("v", "<leader>gr", ":GpRewrite<CR>", { desc = "Riscrivi il codice selezionato" })
 vim.keymap.set("n", "<leader>gc", ":GpChatNew<CR>", { desc = "Nuova chat AI" })
+
+-- toggleterm
+vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], { desc = "Move to left window" })
+vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], { desc = "Move to right window" })
+vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], { desc = "Move to down window" })
+vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], { desc = "Move to up window" })
+
+vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = "Go to left window" })
+vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = "Go to below window" })
+vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = "Go to above window" })
+vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = "Go to right window" })
