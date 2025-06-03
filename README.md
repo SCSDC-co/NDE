@@ -45,29 +45,37 @@ Once installed, the configuration will automatically load each time you start Ne
 This is the file structure
 
 ```
-~/.config/nvim/
-│
+~/.config/nvim
 ├── init.lua
-└── lua
-     ├── lazynvim/
-     │      └── lazy.lua 
-     ├── GUI/
-     │      └── theme.lua
-     ├── opts.lua
-     ├── keymaps.lua
-     ├── launch.lua
-     └── plugins/
-            ├── autopairs.lua
-            ├── bufferline.lua
-            ├── cmp.lua
-            ├── lsp.lua
-            ├── lualine.lua
-            ├── neotree.lua
-            ├── telescope.lua
-            ├── dashboard.lua
-            ├── indent-blankline.lua
-            ├── toggleterm.lua
-            └── treesitter.lua
+├── lazy-lock.json
+├── LICENSE
+├── lua
+│   ├── GUI
+│   │   └── theme.lua
+│   ├── keymaps.lua
+│   ├── launch.lua
+│   ├── lazynvim
+│   │   └── lazy.lua
+│   ├── opts.lua
+│   └── plugins
+│       ├── autoformat.lua
+│       ├── autopairs.lua
+│       ├── bufferline.lua
+│       ├── cmp.lua
+│       ├── codeium.lua
+│       ├── dap.lua
+│       ├── dashboard.lua
+│       ├── debug.lua
+│       ├── gitsigns.lua
+│       ├── indent-blankline.lua
+│       ├── lualine.lua
+│       ├── mason.lua
+│       ├── neotree.lua
+│       ├── scrollview.lua
+│       ├── telescope.lua
+│       ├── toggleterm.lua
+│       └── treesitter.lua
+└── README.md
 ```
 
 ## Contributing
