@@ -25,7 +25,7 @@ vim.keymap.set("n", "<leader>e", function()
   end
 end, { desc = "Toggle Neo-tree su /" })
 
-vim.keymap.set("n", "<C-n>", function()
+vim.keymap.set("n", "<leader>n", function()
   local neotree_win = nil
   local current_win = vim.api.nvim_get_current_win()
   local last_win = vim.g.neotree_last_win
