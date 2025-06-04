@@ -71,6 +71,7 @@ This is the file structure
 │       ├── lualine.lua
 │       ├── mason.lua
 │       ├── neotree.lua
+│       ├── noice.lua
 │       ├── scrollview.lua
 │       ├── telescope.lua
 │       ├── toggleterm.lua
