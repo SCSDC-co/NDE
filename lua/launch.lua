@@ -1,3 +1,4 @@
+vim.env.PATH = vim.env.PATH .. ":" .. os.getenv("HOME") .. "/.luarocks/bin"
 require "opts"
 require "lazynvim.lazy"
 require "GUI.theme"
