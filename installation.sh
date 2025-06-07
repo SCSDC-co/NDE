@@ -34,7 +34,6 @@ PKG_MANAGER=$(detect_package_manager)
 
 install_package() {
     local bin_check="$1" package="$2" display="$3"
-
     echo
     echo "🔍 Checking: $display"
     if command -v "$bin_check" &>/dev/null; then
@@ -62,27 +61,15 @@ install_nerd_font() {
     echo "  1) FiraCode Nerd Font (Recommended)"
     echo "  2) JetBrainsMono Nerd Font"
     read -rp "Select [1/2]: " FONT_CHOICE
-
     FONT_NAME="FiraCode"
     [[ "$FONT_CHOICE" == "2" ]] && FONT_NAME="JetBrainsMono"
-
     echo
     echo "💾 Downloading $FONT_NAME Nerd Font..."
     mkdir -p ~/.local/share/fonts/"$FONT_NAME"
     FONT_URL_BASE="https://github.com/ryanoasis/nerd-fonts/releases/latest/download"
-    FONT_FILE="/tmp/${FONT_NAME}.zip"
-
-    if ! wget -O "$FONT_FILE" "$FONT_URL_BASE/${FONT_NAME}.zip"; then
-        echo "❌ Failed to download $FONT_NAME. Skipping."
-        return
-    fi
-
+    wget -O "/tmp/${FONT_NAME}.zip" "$FONT_URL_BASE/${FONT_NAME}.zip"
     echo "📂 Extracting fonts..."
-    if ! unzip -qo "$FONT_FILE" -d ~/.local/share/fonts/"$FONT_NAME"; then
-        echo "❌ Failed to unzip $FONT_NAME. Skipping."
-        return
-    fi
-
+    unzip -qo "/tmp/${FONT_NAME}.zip" -d ~/.local/share/fonts/"$FONT_NAME"
     echo "🔄 Refreshing font cache..."
     fc-cache -fv
     echo "✅ $FONT_NAME Nerd Font installed!"
@@ -149,11 +136,19 @@ if pipx list | grep -q python-lsp-server; then
     echo "✅ python-lsp-server is already installed."
 else
     echo "📥 Installing: python-lsp-server (pipx)"
-    if ! pipx install --system-site-packages --break-system-packages python-lsp-server; then
-        echo "❌ pipx install failed for python-lsp-server"
-    else
-        echo "✅ python-lsp-server installation complete."
-    fi
+    pipx install --system-site-packages --break-system-packages python-lsp-server
+    echo "✅ python-lsp-server installation complete."
+fi
+
+# Rust toolchain
+echo
+if command -v rustup &>/dev/null; then
+    echo "✅ rustup is already installed."
+else
+    echo "📥 Installing rustup and Cargo..."
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    export PATH="$HOME/.cargo/bin:$PATH"
+    echo "✅ rustup and Cargo installed."
 fi
 
 clear
