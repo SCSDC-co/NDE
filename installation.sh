@@ -34,10 +34,8 @@ install_package() {
     local bin_check="$1"
     local package="$2"
     local display="$3"
-
     echo
     echo "🔍 Checking: $display"
-
     if command -v "$bin_check" &>/dev/null; then
         echo "✅ $display already installed."
     else
@@ -64,10 +62,8 @@ install_nerd_font() {
     echo "2) JetBrainsMono Nerd Font"
     echo
     read -p "Select [1/2]: " FONT_CHOICE
-
     FONT_NAME="FiraCode"
     [[ "$FONT_CHOICE" == "2" ]] && FONT_NAME="JetBrainsMono"
-
     echo "💾 Downloading $FONT_NAME Nerd Font..."
     mkdir -p ~/.local/share/fonts
     FONT_URL_BASE="https://github.com/ryanoasis/nerd-fonts/releases/latest/download"
@@ -81,25 +77,29 @@ install_nerd_font() {
 if check_nerd_font_installed; then
     echo "✅ Nerd Font already installed!"
 else
-    install_package "wget" "wget" "Wget (required to download fonts)"
-    install_package "unzip" "unzip" "Unzip (required to extract fonts)"
+    install_package "wget" "wget" "Wget"
+    install_package "unzip" "unzip" "Unzip"
     install_nerd_font
 fi
 
-install_package "figlet" "figlet" "Figlet (ASCII banners)"
+install_package "figlet" "figlet" "Figlet"
 install_package "node" "nodejs" "Node.js"
 install_package "npm" "npm" "npm"
 install_package "python3" "python3" "Python 3"
 install_package "pip3" "python3-pip" "pip"
+install_package "clangd" "clangd" "Clangd"
 
-if [[ "$PKG_MANAGER" == "apt" ]]; then
-    echo
-    echo "📦 Skipping .NET SDK (no official dotnet-sdk in APT repo by default)"
-else
+if [[ "$PKG_MANAGER" != "apt" ]]; then
     install_package "dotnet" "dotnet-sdk" ".NET SDK"
 fi
 
-install_package "clangd" "clangd" "Clangd (C/C++)"
+if ! command -v pipx &>/dev/null; then
+    echo
+    echo "📥 Installing pipx..."
+    pip3 install --user pipx
+    python3 -m pipx ensurepath
+    export PATH="$HOME/.local/bin:$PATH"
+fi
 
 npm_install() {
     local package="$1"
@@ -113,23 +113,22 @@ npm_install() {
     fi
 }
 
-npm_install "pyright"
-npm_install "vscode-langservers-extracted"
-npm_install "bash-language-server"
-
-pip_install() {
-    local module="$1"
+pipx_install() {
+    local package="$1"
     echo
-    echo "🔍 Checking: $module (pip)"
-    if python3 -c "import $module" &>/dev/null; then
-        echo "✅ $module already installed"
+    echo "🔍 Checking: $package (pipx)"
+    if pipx list | grep -q "$package"; then
+        echo "✅ $package already installed"
     else
-        echo "📥 Installing $module via pip..."
-        pip3 install "$module"
+        echo "📥 Installing $package via pipx..."
+        pipx install "$package"
     fi
 }
 
-pip_install "pylsp"
+npm_install "pyright"
+npm_install "vscode-langservers-extracted"
+npm_install "bash-language-server"
+pipx_install "python-lsp-server"
 
 echo
 read -p "🌈 Do you want to install icon fonts (Font Awesome, Material Symbols)? [y/N]: " ICONS_YES
