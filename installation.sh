@@ -2,22 +2,13 @@
 
 set -e
 
-# Ensure figlet is installed before doing ANYTHING
 if ! command -v figlet &>/dev/null; then
-    echo "📦 Figlet not found. Installing..."
-    if command -v apt &>/dev/null; then
-        sudo apt update && sudo apt install -y figlet
-    elif command -v pacman &>/dev/null; then
-        sudo pacman -Syu --noconfirm figlet
-    elif command -v dnf &>/dev/null; then
-        sudo dnf install -y figlet
-    elif command -v zypper &>/dev/null; then
-        sudo zypper install -y figlet
-    elif command -v emerge &>/dev/null; then
-        sudo emerge figlet
-    else
-        echo "❌ Could not detect package manager. Install figlet manually."
-        exit 1
+    echo "📦 Installing Figlet..."
+    if command -v apt &>/dev/null; then sudo apt update && sudo apt install -y figlet
+    elif command -v pacman &>/dev/null; then sudo pacman -Syu --noconfirm figlet
+    elif command -v dnf &>/dev/null; then sudo dnf install -y figlet
+    elif command -v zypper &>/dev/null; then sudo zypper install -y figlet
+    elif command -v emerge &>/dev/null; then sudo emerge figlet
     fi
 fi
 
@@ -27,26 +18,18 @@ echo
 echo "🧠 Full Language Toolchain Setup + Nerd Font Check"
 echo
 
-# Detect package manager
 detect_package_manager() {
-    if command -v apt &>/dev/null; then
-        echo "apt"
-    elif command -v pacman &>/dev/null; then
-        echo "pacman"
-    elif command -v dnf &>/dev/null; then
-        echo "dnf"
-    elif command -v zypper &>/dev/null; then
-        echo "zypper"
-    elif command -v emerge &>/dev/null; then
-        echo "emerge"
-    else
-        echo "unknown"
+    if command -v apt &>/dev/null; then echo "apt"
+    elif command -v pacman &>/dev/null; then echo "pacman"
+    elif command -v dnf &>/dev/null; then echo "dnf"
+    elif command -v zypper &>/dev/null; then echo "zypper"
+    elif command -v emerge &>/dev/null; then echo "emerge"
+    else echo "unknown"
     fi
 }
 
 PKG_MANAGER=$(detect_package_manager)
 
-# Helper install
 install_package() {
     local bin_check="$1"
     local package="$2"
@@ -65,12 +48,10 @@ install_package() {
         dnf) sudo dnf install -y "$package" ;;
         zypper) sudo zypper install -y "$package" ;;
         emerge) sudo emerge "$package" ;;
-        *) echo "❌ Unsupported package manager."; exit 1 ;;
         esac
     fi
 }
 
-# Check Nerd Font presence
 check_nerd_font_installed() {
     fc-list | grep -qi "Nerd Font"
 }
@@ -89,18 +70,14 @@ install_nerd_font() {
 
     echo "💾 Downloading $FONT_NAME Nerd Font..."
     mkdir -p ~/.local/share/fonts
-
     FONT_URL_BASE="https://github.com/ryanoasis/nerd-fonts/releases/latest/download"
     FONT_FILE="${FONT_NAME}.zip"
     wget "$FONT_URL_BASE/$FONT_FILE" -O "/tmp/$FONT_FILE"
-
     unzip -o "/tmp/$FONT_FILE" -d ~/.local/share/fonts/"$FONT_NAME"
     fc-cache -fv
-
     echo "✅ $FONT_NAME Nerd Font installed successfully!"
 }
 
-# Check & install Nerd Font
 if check_nerd_font_installed; then
     echo "✅ Nerd Font already installed!"
 else
@@ -109,24 +86,21 @@ else
     install_nerd_font
 fi
 
-# Install CLI tools
 install_package "figlet" "figlet" "Figlet (ASCII banners)"
 install_package "node" "nodejs" "Node.js"
 install_package "npm" "npm" "npm"
 install_package "python3" "python3" "Python 3"
 install_package "pip3" "python3-pip" "pip"
-install_package "dotnet" "dotnet-sdk" ".NET SDK"
 
-# LSP check/install
+if [[ "$PKG_MANAGER" == "apt" ]]; then
+    echo
+    echo "📦 Skipping .NET SDK (no official dotnet-sdk in APT repo by default)"
+else
+    install_package "dotnet" "dotnet-sdk" ".NET SDK"
+fi
+
 install_package "clangd" "clangd" "Clangd (C/C++)"
 
-# OmniSharp non si installa direttamente
-echo "🧠 OmniSharp is included with .NET or should be installed via Neovim (Mason.nvim). Skipping direct install."
-
-# Lua Language Server pure
-echo "🧠 lua-language-server should be installed via Neovim (Mason.nvim). Skipping direct install."
-
-# LSPs via npm
 npm_install() {
     local package="$1"
     echo
@@ -138,12 +112,11 @@ npm_install() {
         sudo npm install -g "$package"
     fi
 }
+
 npm_install "pyright"
-npm_install "asm-lsp"
 npm_install "vscode-langservers-extracted"
 npm_install "bash-language-server"
 
-# Python LSP
 pip_install() {
     local module="$1"
     echo
@@ -155,9 +128,9 @@ pip_install() {
         pip3 install "$module"
     fi
 }
+
 pip_install "pylsp"
 
-# Optional: Font icon support
 echo
 read -p "🌈 Do you want to install icon fonts (Font Awesome, Material Symbols)? [y/N]: " ICONS_YES
 if [[ "$ICONS_YES" == "y" || "$ICONS_YES" == "Y" ]]; then
@@ -171,7 +144,6 @@ else
     echo "⏭️ Skipping icon fonts..."
 fi
 
-# Final banner
 echo
 figlet -f big -w 200 "DONE"
 echo "🎉 Everything is ready."
