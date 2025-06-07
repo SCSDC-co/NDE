@@ -3,6 +3,24 @@
 set -e
 
 clear
+if ! command -v figlet &>/dev/null; then
+    echo "📥 Installing Figlet..."
+    if command -v apt &>/dev/null; then
+        sudo apt update && sudo apt install -y figlet
+    elif command -v pacman &>/dev/null; then
+        sudo pacman -Syu --noconfirm figlet
+    elif command -v dnf &>/dev/null; then
+        sudo dnf install -y figlet
+    elif command -v zypper &>/dev/null; then
+        sudo zypper install -y figlet
+    elif command -v emerge &>/dev/null; then
+        sudo emerge figlet
+    else
+        echo "⚠️ No supported package manager found to install figlet."
+        exit 1
+    fi
+fi
+
 figlet -f big -w 200 "INSTALLATION"
 echo
 echo "🧠 Full Language Toolchain Setup + Nerd Font Check"
@@ -44,11 +62,10 @@ install_package() {
         dnf) sudo dnf install -y "$package" ;;
         zypper) sudo zypper install -y "$package" ;;
         emerge) sudo emerge "$package" ;;
+        *) echo "⚠️ Unsupported package manager, please install $display manually." ;;
         esac
     fi
 }
-
-install_package "figlet" "figlet" "Figlet (ASCII banners)"
 
 check_nerd_font_installed() {
     fc-list | grep -qi "Nerd Font"
@@ -61,7 +78,7 @@ install_nerd_font() {
     echo "1) FiraCode Nerd Font (Recommended)"
     echo "2) JetBrainsMono Nerd Font"
     echo
-    read -p "Select [1/2]: " FONT_CHOICE
+    read -rp "Select [1/2]: " FONT_CHOICE
 
     FONT_NAME="FiraCode"
     [[ "$FONT_CHOICE" == "2" ]] && FONT_NAME="JetBrainsMono"
@@ -87,10 +104,11 @@ else
     install_nerd_font
 fi
 
+install_package "figlet" "figlet" "Figlet (ASCII banners)"
 install_package "node" "nodejs" "Node.js"
 install_package "npm" "npm" "npm"
 install_package "python3" "python3" "Python 3"
-install_package "python3-venv" "python3-venv" "Python3 venv (required for pipx)"
+install_package "pip3" "python3-pip" "pip"
 install_package "dotnet" "dotnet-sdk" ".NET SDK"
 install_package "clangd" "clangd" "Clangd (C/C++)"
 
@@ -105,41 +123,44 @@ npm_install() {
         sudo npm install -g "$package"
     fi
 }
+
 npm_install "pyright"
 npm_install "vscode-langservers-extracted"
 npm_install "bash-language-server"
 
-if ! command -v pipx &>/dev/null; then
-    echo
-    echo "📥 pipx non trovato, lo installo con pip3..."
-    python3 -m pip install --user pipx --break-system-packages
-    export PATH="$HOME/.local/bin:$PATH"
-    echo "✅ pipx installato!"
-else
-    echo
-    echo "✅ pipx già presente"
-fi
-
-pipx_install() {
-    local module="$1"
-    echo
-    echo "🔍 Checking: $module (pipx)"
-    if pipx list | grep -q "$module"; then
-        echo "✅ $module già installato con pipx"
+pipx_check() {
+    if command -v pipx &>/dev/null; then
+        echo "✅ pipx installed"
     else
-        echo "📥 Installazione $module con pipx..."
-        pipx install "$module" --pip-args="--break-system-packages"
+        echo "📥 Installing pipx..."
+        case $PKG_MANAGER in
+        apt) sudo apt update && sudo apt install -y pipx python3-venv ;;
+        pacman) sudo pacman -Syu --noconfirm pipx ;;
+        dnf) sudo dnf install -y pipx ;;
+        zypper) sudo zypper install -y python3-pipx ;;
+        emerge) sudo emerge pipx ;;
+        *) echo "⚠️ Please install pipx manually." ;;
+        esac
     fi
 }
 
-pipx_install "python-lsp-server"
+pipx_check
 
 echo
-read -p "🌈 Do you want to install icon fonts (Font Awesome, Material Symbols)? [y/N]: " ICONS_YES
-if [[ "$ICONS_YES" == "y" || "$ICONS_YES" == "Y" ]]; then
+echo "🔍 Checking: python-lsp-server (pipx)"
+if pipx list | grep -q "python-lsp-server"; then
+    echo "✅ python-lsp-server already installed"
+else
+    echo "📥 Installing python-lsp-server with pipx..."
+    pipx install --system-site-packages --break-system-packages python-lsp-server
+fi
+
+echo
+read -rp "🌈 Do you want to install icon fonts (Font Awesome, Material Symbols)? [y/N]: " ICONS_YES
+if [[ "$ICONS_YES" == [yY] ]]; then
     echo "📥 Installing icon fonts..."
     mkdir -p ~/.local/share/fonts/icons
-    wget https://github.com/google/material-design-icons/releases/download/4.0.0/materialdesignicons-webfont.zip -O /tmp/materialicons.zip
+    wget https://github.com/google/material-design-icons/releases/download/3.0.1/material-design-icons-webfont.zip -O /tmp/materialicons.zip
     unzip -o /tmp/materialicons.zip -d ~/.local/share/fonts/icons
     fc-cache -fv
     echo "✅ Icon fonts installed!"
@@ -149,4 +170,4 @@ fi
 
 echo
 figlet -f big -w 200 "DONE"
-echo "🎉 Everything is ready."
+echo "🎉 All done!"
