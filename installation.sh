@@ -2,6 +2,16 @@
 
 set -e
 
+# Ensure figlet is installed before using it
+if ! command -v figlet &>/dev/null; then
+    echo "📦 Installing figlet (required for ASCII banners)..."
+    if command -v apt &>/dev/null; then
+        sudo apt update && sudo apt install -y figlet
+    elif command -v pacman &>/dev/null; then
+        sudo pacman -Syu --noconfirm figlet
+    fi
+fi
+
 clear
 figlet -f big -w 200 "INSTALLATION"
 echo
@@ -90,12 +100,37 @@ else
 fi
 
 # Install CLI tools
-install_package "figlet" "figlet" "Figlet (ASCII banners)"
 install_package "node" "nodejs" "Node.js"
 install_package "npm" "npm" "npm"
 install_package "python3" "python3" "Python 3"
 install_package "pip3" "python3-pip" "pip"
-install_package "dotnet" "dotnet-sdk" ".NET SDK"
+
+# Install .NET SDK with proper method
+install_dotnet_sdk() {
+    echo
+    echo "🔍 Checking: .NET SDK"
+    if command -v dotnet &>/dev/null; then
+        echo "✅ .NET SDK already installed."
+    else
+        echo "📥 Installing .NET SDK..."
+
+        case $PKG_MANAGER in
+        apt)
+            wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O /tmp/packages-microsoft-prod.deb
+            sudo dpkg -i /tmp/packages-microsoft-prod.deb
+            sudo apt update
+            sudo apt install -y dotnet-sdk-8.0
+            ;;
+        pacman)
+            sudo pacman -Syu --noconfirm dotnet-sdk
+            ;;
+        *)
+            echo "❌ Unsupported package manager for .NET SDK. Install manually from https://dotnet.microsoft.com"
+            ;;
+        esac
+    fi
+}
+install_dotnet_sdk
 
 # LSP check/install
 install_package "clangd" "clangd" "Clangd (C/C++)"
