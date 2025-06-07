@@ -3,7 +3,6 @@ set -e
 
 clear
 
-# Ensure figlet
 if ! command -v figlet &>/dev/null; then
     echo "📥 Installing Figlet..."
     if   command -v apt     &>/dev/null; then sudo apt update && sudo apt install -y figlet
@@ -114,7 +113,7 @@ echo
 echo "🔍 Checking: python-lsp-server (pipx)"
 if ! pipx list | grep -q python-lsp-server; then
     echo "📥 Installing: python-lsp-server (pipx)"
-    pipx install --system-site-packages --break-system-packages python-lsp-server
+    pipx install python-lsp-server --system-site-packages --pip-args="--break-system-packages"
     echo "✅ python-lsp-server installed"
 else
     echo "✅ python-lsp-server already present"
