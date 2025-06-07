@@ -341,6 +341,8 @@ This project is licensed under the [MIT License](LICENSE).
 - [Mason](https://github.com/williamboman/mason.nvim) - Language server installer
 - All the plugin authors who make Neovim amazing
 
+> ⚠️ **Note:** If the installer fails to install certain dependencies or packages, please install them manually using your system's package manager or by following the official documentation for each tool.
+
 ---
 
 <div align="center">

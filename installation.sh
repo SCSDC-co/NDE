@@ -722,15 +722,29 @@ install_dev_tools() {
     declare -A dev_tools
     case "$PLATFORM" in
         linux|wsl)
-            dev_tools=(
-                ["rg"]="ripgrep:Ripgrep (fast search)"
-                ["fd"]="fd-find:fd (fast find)"
-                ["lazygit"]="lazygit:Lazygit (git TUI)"
-                ["git"]="git:Git"
-                ["curl"]="curl:cURL"
-                ["tree"]="tree:Tree (directory listing)"
-                ["jq"]="jq:jq (JSON processor)"
-            )
+            # Package names differ between distributions
+            if [[ "$pkg_manager" == "pacman" ]]; then
+                dev_tools=(
+                    ["rg"]="ripgrep:Ripgrep (fast search)"
+                    ["fd"]="fd:fd (fast find)"
+                    ["lazygit"]="lazygit:Lazygit (git TUI)"
+                    ["git"]="git:Git"
+                    ["curl"]="curl:cURL"
+                    ["tree"]="tree:Tree (directory listing)"
+                    ["jq"]="jq:jq (JSON processor)"
+                )
+            else
+                # For apt, dnf, zypper
+                dev_tools=(
+                    ["rg"]="ripgrep:Ripgrep (fast search)"
+                    ["fd"]="fd-find:fd (fast find)"
+                    ["lazygit"]="lazygit:Lazygit (git TUI)"
+                    ["git"]="git:Git"
+                    ["curl"]="curl:cURL"
+                    ["tree"]="tree:Tree (directory listing)"
+                    ["jq"]="jq:jq (JSON processor)"
+                )
+            fi
             ;;
         macos)
             dev_tools=(
@@ -818,20 +832,17 @@ install_formatters_linters() {
     local npm_formatters=("prettier" "eslint" "stylelint")
     for tool in "${npm_formatters[@]}"; do
         if ! command -v "$tool" &>/dev/null; then
-            install_npm_package "$tool" || true
+            if ! install_npm_package "$tool"; then
+                log_warning "Failed to install $tool via npm"
+            fi
         fi
     done
     
-    # Install Python-based tools via pip
-    if command -v pip3 &>/dev/null; then
-        local python_tools=("black" "flake8")
-        for tool in "${python_tools[@]}"; do
-            if ! command -v "$tool" &>/dev/null; then
-                log_info "Installing $tool via pip3"
-                pip3 install --user "$tool" || true
-            fi
-        done
-    fi
+    # Install Python-based tools via pip and venv
+    install_python_tools_guaranteed
+    
+    # Install luacheck with multiple methods
+    install_luacheck_guaranteed "$pkg_manager"
     
     # Install asmfmt for assembly formatting
     if command -v go &>/dev/null && ! command -v asmfmt &>/dev/null; then
@@ -901,6 +912,163 @@ install_debug_tools() {
             *) log_warning "Go installation not supported for $pkg_manager" ;;
         esac
     fi
+}
+
+# Install Python tools with guaranteed success using venv
+install_python_tools_guaranteed() {
+    log_info "Installing Python tools with guaranteed methods"
+    
+    # Create dedicated venv for Python tools if it doesn't exist
+    local python_tools_venv="$HOME/.local/share/nvim-python-tools"
+    
+    if [[ ! -d "$python_tools_venv" ]]; then
+        log_info "Creating Python virtual environment for tools"
+        python3 -m venv "$python_tools_venv"
+    fi
+    
+    # Install black in venv
+    if ! command -v black &>/dev/null; then
+        log_info "Installing black (Python formatter) in virtual environment"
+        "$python_tools_venv/bin/pip" install --upgrade pip
+        "$python_tools_venv/bin/pip" install black
+        
+        # Create symlink to make black available globally
+        mkdir -p "$HOME/.local/bin"
+        ln -sf "$python_tools_venv/bin/black" "$HOME/.local/bin/black"
+        
+        # Ensure ~/.local/bin is in PATH
+        if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+            export PATH="$HOME/.local/bin:$PATH"
+        fi
+        
+        if command -v black &>/dev/null; then
+            log_success "Black installed successfully in virtual environment"
+        else
+            log_warning "Failed to install black in venv"
+        fi
+    else
+        log_success "Black already installed"
+    fi
+    
+    # Install flake8 in venv
+    if ! command -v flake8 &>/dev/null; then
+        log_info "Installing flake8 (Python linter) in virtual environment"
+        "$python_tools_venv/bin/pip" install flake8
+        ln -sf "$python_tools_venv/bin/flake8" "$HOME/.local/bin/flake8"
+        
+        if command -v flake8 &>/dev/null; then
+            log_success "Flake8 installed successfully in virtual environment"
+        else
+            log_warning "Failed to install flake8 in venv"
+        fi
+    else
+        log_success "Flake8 already installed"
+    fi
+}
+
+# Install luacheck with multiple guaranteed methods
+install_luacheck_guaranteed() {
+    local pkg_manager="$1"
+    
+    if command -v luacheck &>/dev/null; then
+        log_success "Luacheck already installed"
+        return 0
+    fi
+    
+    log_info "Installing luacheck (Lua linter) with multiple methods"
+    
+    # Method 1: Try system package manager
+    case "$pkg_manager" in
+        apt)
+            if sudo apt update && sudo apt install -y luacheck 2>/dev/null; then
+                log_success "Luacheck installed via apt"
+                return 0
+            fi
+            ;;
+        pacman)
+            if sudo pacman -Syu --noconfirm luacheck 2>/dev/null; then
+                log_success "Luacheck installed via pacman"
+                return 0
+            fi
+            # Try AUR if luacheck isn't in main repos
+            if command -v yay &>/dev/null; then
+                if yay -S --noconfirm luacheck-git 2>/dev/null; then
+                    log_success "Luacheck installed via AUR (yay)"
+                    return 0
+                fi
+            fi
+            ;;
+        dnf)
+            if sudo dnf install -y luacheck 2>/dev/null; then
+                log_success "Luacheck installed via dnf"
+                return 0
+            fi
+            ;;
+        brew)
+            if brew install luacheck 2>/dev/null; then
+                log_success "Luacheck installed via brew"
+                return 0
+            fi
+            ;;
+    esac
+    
+    # Method 2: Try luarocks if available
+    if command -v luarocks &>/dev/null; then
+        log_info "Trying to install luacheck via luarocks"
+        if luarocks install --local luacheck 2>/dev/null; then
+            # Add luarocks local bin to PATH
+            local luarocks_bin="$HOME/.luarocks/bin"
+            if [[ -d "$luarocks_bin" ]] && [[ ":$PATH:" != *":$luarocks_bin:"* ]]; then
+                export PATH="$luarocks_bin:$PATH"
+                echo 'export PATH="$HOME/.luarocks/bin:$PATH"' >> "$HOME/.bashrc"
+            fi
+            
+            if command -v luacheck &>/dev/null; then
+                log_success "Luacheck installed via luarocks"
+                return 0
+            fi
+        fi
+    else
+        # Try to install luarocks first
+        log_info "Installing luarocks to install luacheck"
+        case "$pkg_manager" in
+            apt)    sudo apt install -y luarocks 2>/dev/null && luarocks install --local luacheck ;;
+            pacman) sudo pacman -S --noconfirm luarocks 2>/dev/null && luarocks install --local luacheck ;;
+            dnf)    sudo dnf install -y luarocks 2>/dev/null && luarocks install --local luacheck ;;
+            brew)   brew install luarocks 2>/dev/null && luarocks install luacheck ;;
+        esac
+        
+        if command -v luacheck &>/dev/null; then
+            log_success "Luacheck installed via luarocks (after installing luarocks)"
+            return 0
+        fi
+    fi
+    
+    # Method 3: Direct download and install from GitHub (last resort)
+    log_info "Trying direct installation from GitHub"
+    local luacheck_dir="$HOME/.local/share/luacheck"
+    
+    if [[ ! -d "$luacheck_dir" ]]; then
+        git clone https://github.com/mpeterv/luacheck.git "$luacheck_dir" 2>/dev/null
+    fi
+    
+    if [[ -d "$luacheck_dir" ]]; then
+        # Create wrapper script
+        mkdir -p "$HOME/.local/bin"
+        cat > "$HOME/.local/bin/luacheck" << 'EOF'
+#!/bin/bash
+exec lua "$HOME/.local/share/luacheck/bin/luacheck.lua" "$@"
+EOF
+        chmod +x "$HOME/.local/bin/luacheck"
+        
+        if command -v luacheck &>/dev/null; then
+            log_success "Luacheck installed via direct download"
+            return 0
+        fi
+    fi
+    
+    log_warning "Failed to install luacheck with all methods"
+    return 1
 }
 
 # Check Neovim version
