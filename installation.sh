@@ -54,7 +54,7 @@ install_package node            nodejs             "Node.js"
 install_package npm             npm                "npm"
 install_package python3         python3            "Python 3"
 install_package pip3            python3-pip        "pip"
-install_package python3-venv    python3-venv       "python3-venv"
+install_package python3         python3-venv       "python3-venv"
 install_package dotnet          dotnet-sdk         ".NET SDK"
 install_package clangd          clangd             "Clangd (C/C++)"
 
@@ -74,22 +74,25 @@ npm_install pyright
 npm_install vscode-langservers-extracted
 npm_install bash-language-server
 
-if ! command -v pipx &>/dev/null; then
-    echo
-    echo "📥 Installing pipx"
-    case $PKG_MANAGER in
-        apt)    sudo apt update && sudo apt install -y pipx python3-venv ;;
-        pacman) sudo pacman -Syu --noconfirm pipx ;;
-        dnf)    sudo dnf install -y pipx ;;
-        zypper) sudo zypper install -y python3-pipx ;;
-        emerge) sudo emerge pipx ;;
-    esac
-    export PATH="$HOME/.local/bin:$PATH"
-    echo "✅ pipx installed"
-else
-    echo
-    echo "✅ pipx already present"
-fi
+pipx_check() {
+    if command -v pipx &>/dev/null; then
+        echo
+        echo "✅ pipx already present"
+    else
+        echo
+        echo "📥 Installing pipx"
+        case $PKG_MANAGER in
+            apt)    sudo apt update && sudo apt install -y pipx python3-venv ;;
+            pacman) sudo pacman -Syu --noconfirm pipx ;;
+            dnf)    sudo dnf install -y pipx ;;
+            zypper) sudo zypper install -y python3-pipx ;;
+            emerge) sudo emerge pipx ;;
+        esac
+        export PATH="$HOME/.local/bin:$PATH"
+        echo "✅ pipx installed"
+    fi
+}
+pipx_check
 
 echo
 echo "🔍 Checking: python-lsp-server (pipx)"
@@ -114,14 +117,14 @@ if ! command -v rustup &>/dev/null; then
     esac
     echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> "$RC"
     export PATH="$HOME/.cargo/bin:$PATH"
-    echo "✅ rustup and Cargo installed; added to $RC"
+    echo "✅ rustup and Cargo installed; PATH updated in $RC"
 else
     echo "✅ rustup already present"
 fi
 
+figlet -f big -w 200 "DONE"
+echo "🎉 All done!"
+
 echo
 echo "🔄 Reloading shell..."
 exec "$SHELL" -l
-
-figlet -f big -w 200 "DONE"
-echo "🎉 All done!"
