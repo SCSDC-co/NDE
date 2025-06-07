@@ -757,7 +757,9 @@ install_dev_tools() {
     
     for binary in "${!dev_tools[@]}"; do
         IFS=':' read -r package display_name <<<"${dev_tools[$binary]}"
-        install_system_package "$binary" "$package" "$display_name" "$pkg_manager" || true
+        if ! install_system_package "$binary" "$package" "$display_name" "$pkg_manager"; then
+            log_warning "Failed to install $display_name - will be tracked as failed"
+        fi
     done
 }
 
@@ -807,7 +809,9 @@ install_formatters_linters() {
     # Install system packages first
     for binary in "${!system_tools[@]}"; do
         IFS=':' read -r package display_name <<<"${system_tools[$binary]}"
-        install_system_package "$binary" "$package" "$display_name" "$pkg_manager" || true
+        if ! install_system_package "$binary" "$package" "$display_name" "$pkg_manager"; then
+            log_warning "Failed to install $display_name - will try alternative installation"
+        fi
     done
     
     # Install npm-based tools
@@ -876,8 +880,8 @@ install_debug_tools() {
             ;;
     esac
     
-    for binary in "${debug_tools[@]}"; do
-        IFS=':' read -r package display_name <<<"${debug_tools[$binary]}"
+    for binary in "${!debug_tools[@]}"; do
+        IFS=':' read -r package display_name <<< "${debug_tools[$binary]}"
         install_system_package "$binary" "$package" "$display_name" "$pkg_manager" || true
     done
     
