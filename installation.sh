@@ -104,7 +104,6 @@ npm_install() {
         echo "✅ $pkg installation complete."
     fi
 }
-
 npm_install pyright
 npm_install vscode-langservers-extracted
 npm_install bash-language-server
@@ -127,7 +126,6 @@ pipx_check() {
         echo "✅ pipx installation complete."
     fi
 }
-
 pipx_check
 
 echo
@@ -147,8 +145,16 @@ if command -v rustup &>/dev/null; then
 else
     echo "📥 Installing rustup and Cargo..."
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    SHELL_NAME=$(basename "$SHELL")
+    case "$SHELL_NAME" in
+      zsh)  RC_FILE="$HOME/.zshrc" ;;
+      bash) RC_FILE="$HOME/.bashrc" ;;
+      fish) RC_FILE="$HOME/.config/fish/config.fish" ;;
+      *)     RC_FILE="$HOME/.profile" ;;
+    esac
+    echo "export PATH=\"\$HOME/.cargo/bin:\$PATH\"" >> "$RC_FILE"
     export PATH="$HOME/.cargo/bin:$PATH"
-    echo "✅ rustup and Cargo installed."
+    echo "✅ rustup and Cargo installed; PATH updated in $RC_FILE."
 fi
 
 clear
