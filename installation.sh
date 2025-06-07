@@ -2,9 +2,9 @@
 
 set -e
 
-# Check and install figlet if not available
+# Ensure figlet is installed before doing ANYTHING
 if ! command -v figlet &>/dev/null; then
-    echo "📦 Installing figlet for ASCII banners..."
+    echo "📦 Figlet not found. Installing..."
     if command -v apt &>/dev/null; then
         sudo apt update && sudo apt install -y figlet
     elif command -v pacman &>/dev/null; then
@@ -16,7 +16,7 @@ if ! command -v figlet &>/dev/null; then
     elif command -v emerge &>/dev/null; then
         sudo emerge figlet
     else
-        echo "❌ Unknown package manager. Please install figlet manually."
+        echo "❌ Could not detect package manager. Install figlet manually."
         exit 1
     fi
 fi
@@ -65,7 +65,7 @@ install_package() {
         dnf) sudo dnf install -y "$package" ;;
         zypper) sudo zypper install -y "$package" ;;
         emerge) sudo emerge "$package" ;;
-        *) echo "❌ Unknown package manager. Cannot install $display." ;;
+        *) echo "❌ Unsupported package manager."; exit 1 ;;
         esac
     fi
 }
@@ -110,6 +110,7 @@ else
 fi
 
 # Install CLI tools
+install_package "figlet" "figlet" "Figlet (ASCII banners)"
 install_package "node" "nodejs" "Node.js"
 install_package "npm" "npm" "npm"
 install_package "python3" "python3" "Python 3"
@@ -118,9 +119,12 @@ install_package "dotnet" "dotnet-sdk" ".NET SDK"
 
 # LSP check/install
 install_package "clangd" "clangd" "Clangd (C/C++)"
+
 # OmniSharp non si installa direttamente
 echo "🧠 OmniSharp is included with .NET or should be installed via Neovim (Mason.nvim). Skipping direct install."
-install_package "lua-language-server" "lua-language-server" "Lua Language Server"
+
+# Lua Language Server pure
+echo "🧠 lua-language-server should be installed via Neovim (Mason.nvim). Skipping direct install."
 
 # LSPs via npm
 npm_install() {
