@@ -9,7 +9,7 @@ return {
     require("noice").setup({
       cmdline = {
         enabled = true,
-        view = "cmdline",
+        view = "cmdline_popup",
       },
       notify = {
         enabled = true,
@@ -30,6 +30,8 @@ return {
         command_palette       = true,
         long_message_to_split = true,
       },
+      vim.api.nvim_set_hl(0, "NoiceCmdlinePopupBorder", { bg = "#181616", fg = "#626978" }),
+      vim.api.nvim_set_hl(0, "NoiceCmdlineIconCmdline", { bg = "#181616", fg = "#626978" }),
     })
   end,
 }
