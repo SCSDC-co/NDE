@@ -3,6 +3,7 @@ set -e
 
 clear
 
+# Ensure figlet
 if ! command -v figlet &>/dev/null; then
     echo "📥 Installing Figlet..."
     if   command -v apt     &>/dev/null; then sudo apt update && sudo apt install -y figlet
@@ -36,9 +37,24 @@ install_package() {
     if ! command -v "$bin" &>/dev/null; then
         echo "📥 Installing: $name"
         case $PKG_MANAGER in
-            apt)    sudo apt update && sudo apt install -y "$pkg" ;;
+            apt)
+                if [[ "$pkg" == "dotnet-sdk" ]]; then
+                    wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O /tmp/msprod.deb
+                    sudo dpkg -i /tmp/msprod.deb
+                    sudo apt update
+                    sudo apt install -y dotnet-sdk-8.0
+                else
+                    sudo apt update && sudo apt install -y "$pkg"
+                fi
+                ;;
             pacman) sudo pacman -Syu --noconfirm "$pkg" ;;
-            dnf)    sudo dnf install -y "$pkg" ;;
+            dnf)
+                if [[ "$pkg" == "dotnet-sdk" ]]; then
+                    sudo dnf install -y dotnet-sdk-8.0
+                else
+                    sudo dnf install -y "$pkg"
+                fi
+                ;;
             zypper) sudo zypper install -y "$pkg" ;;
             emerge) sudo emerge "$pkg" ;;
         esac
@@ -84,7 +100,7 @@ pipx_check() {
         case $PKG_MANAGER in
             apt)    sudo apt update && sudo apt install -y pipx python3-venv ;;
             pacman) sudo pacman -Syu --noconfirm pipx ;;
-            dnf)    sudo dnf install -y pipx ;;
+            dnf)    sudo dnf install -y python3-pipx ;;
             zypper) sudo zypper install -y python3-pipx ;;
             emerge) sudo emerge pipx ;;
         esac
