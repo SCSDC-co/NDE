@@ -3,20 +3,16 @@ set -e
 
 clear
 
-# Banner
-echo
 if ! command -v figlet &>/dev/null; then
     echo "📥 Installing Figlet..."
-    if command -v apt &>/dev/null; then
-        sudo apt update && sudo apt install -y figlet
-    elif command -v pacman &>/dev/null; then
-        sudo pacman -Syu --noconfirm figlet
-    elif command -v dnf &>/dev/null; then
-        sudo dnf install -y figlet
-    elif command -v zypper &>/dev/null; then
-        sudo zypper install -y figlet
-    elif command -v emerge &>/dev/null; then
-        sudo emerge figlet
+    if   command -v apt     &>/dev/null; then sudo apt update && sudo apt install -y figlet
+    elif command -v pacman  &>/dev/null; then sudo pacman -Syu --noconfirm figlet
+    elif command -v dnf     &>/dev/null; then sudo dnf install -y figlet
+    elif command -v zypper  &>/dev/null; then sudo zypper install -y figlet
+    elif command -v emerge  &>/dev/null; then sudo emerge figlet
+    else
+        echo "⚠️ No supported package manager found for figlet."
+        exit 1
     fi
 fi
 
@@ -25,11 +21,10 @@ echo
 echo "🧠 Full Language Toolchain Setup + Nerd Font Check"
 echo
 
-# Detect package manager
 detect_package_manager() {
-    if command -v apt &>/dev/null;     then echo "apt"
+    if   command -v apt    &>/dev/null; then echo "apt"
     elif command -v pacman &>/dev/null; then echo "pacman"
-    elif command -v dnf &>/dev/null;    then echo "dnf"
+    elif command -v dnf    &>/dev/null; then echo "dnf"
     elif command -v zypper &>/dev/null; then echo "zypper"
     elif command -v emerge &>/dev/null; then echo "emerge"
     else echo "unknown"
@@ -37,11 +32,8 @@ detect_package_manager() {
 }
 PKG_MANAGER=$(detect_package_manager)
 
-# Helper: install a package if missing
 install_package() {
-    local bin_check="$1"
-    local package="$2"
-    local display="$3"
+    local bin_check="$1" package="$2" display="$3"
 
     echo
     echo "🔍 Checking: $display"
@@ -60,10 +52,10 @@ install_package() {
     fi
 }
 
-# Nerd Font
 check_nerd_font_installed() {
     fc-list | grep -qi "Nerd Font"
 }
+
 install_nerd_font() {
     echo
     echo "🎨 Nerd Font not detected. Installing now..."
@@ -74,12 +66,23 @@ install_nerd_font() {
     FONT_NAME="FiraCode"
     [[ "$FONT_CHOICE" == "2" ]] && FONT_NAME="JetBrainsMono"
 
+    echo
     echo "💾 Downloading $FONT_NAME Nerd Font..."
     mkdir -p ~/.local/share/fonts/"$FONT_NAME"
-    wget -qO "/tmp/$FONT_NAME.zip" \
-        "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${FONT_NAME}.zip"
+    FONT_URL_BASE="https://github.com/ryanoasis/nerd-fonts/releases/latest/download"
+    FONT_FILE="/tmp/${FONT_NAME}.zip"
+
+    if ! wget -O "$FONT_FILE" "$FONT_URL_BASE/${FONT_NAME}.zip"; then
+        echo "❌ Failed to download $FONT_NAME. Skipping."
+        return
+    fi
+
     echo "📂 Extracting fonts..."
-    unzip -qo "/tmp/$FONT_NAME.zip" -d ~/.local/share/fonts/"$FONT_NAME"
+    if ! unzip -qo "$FONT_FILE" -d ~/.local/share/fonts/"$FONT_NAME"; then
+        echo "❌ Failed to unzip $FONT_NAME. Skipping."
+        return
+    fi
+
     echo "🔄 Refreshing font cache..."
     fc-cache -fv
     echo "✅ $FONT_NAME Nerd Font installed!"
@@ -89,38 +92,36 @@ if check_nerd_font_installed; then
     echo
     echo "✅ Nerd Font already installed!"
 else
-    install_package "wget" "wget" "Wget"
-    install_package "unzip" "unzip" "Unzip"
+    install_package wget   wget   "Wget"
+    install_package unzip  unzip  "Unzip"
     install_nerd_font
 fi
 
-# Core tools
-install_package "node"     "nodejs"        "Node.js"
-install_package "npm"      "npm"           "npm"
-install_package "python3"  "python3"       "Python 3"
-install_package "pip3"     "python3-pip"   "pip"
-install_package "python3"  "python3-venv"  "python3-venv"
-install_package "dotnet"   "dotnet-sdk"    ".NET SDK"
-install_package "clangd"   "clangd"        "Clangd (C/C++)"
+install_package node    nodejs        "Node.js"
+install_package npm     npm           "npm"
+install_package python3 python3       "Python 3"
+install_package pip3    python3-pip   "pip"
+install_package python3 python3-venv  "python3-venv"
+install_package dotnet  dotnet-sdk    ".NET SDK"
+install_package clangd  clangd        "Clangd (C/C++)"
 
-# npm-based LSPs
 npm_install() {
-    local package="$1"
+    local pkg="$1"
     echo
-    echo "🔍 Checking: $package (npm)"
-    if npm list -g "$package" &>/dev/null; then
-        echo "✅ $package is already installed."
+    echo "🔍 Checking: $pkg (npm)"
+    if npm list -g "$pkg" &>/dev/null; then
+        echo "✅ $pkg is already installed."
     else
-        echo "📥 Installing: $package (npm)"
-        sudo npm install -g "$package"
-        echo "✅ $package installation complete."
+        echo "📥 Installing: $pkg (npm)"
+        sudo npm install -g "$pkg"
+        echo "✅ $pkg installation complete."
     fi
 }
-npm_install "pyright"
-npm_install "vscode-langservers-extracted"
-npm_install "bash-language-server"
 
-# pipx and python LSP
+npm_install pyright
+npm_install vscode-langservers-extracted
+npm_install bash-language-server
+
 pipx_check() {
     if command -v pipx &>/dev/null; then
         echo
@@ -139,45 +140,22 @@ pipx_check() {
         echo "✅ pipx installation complete."
     fi
 }
+
 pipx_check
 
 echo
 echo "🔍 Checking: python-lsp-server (pipx)"
-if pipx list | grep -q "python-lsp-server"; then
+if pipx list | grep -q python-lsp-server; then
     echo "✅ python-lsp-server is already installed."
 else
     echo "📥 Installing: python-lsp-server (pipx)"
-    pipx install --system-site-packages --break-system-packages python-lsp-server
-    echo "✅ python-lsp-server installation complete."
+    if ! pipx install --system-site-packages --break-system-packages python-lsp-server; then
+        echo "❌ pipx install failed for python-lsp-server"
+    else
+        echo "✅ python-lsp-server installation complete."
+    fi
 fi
 
-# Icon fonts
-echo
-read -rp "🌈 Do you want to install icon fonts? [y/N]: " ICONS_YES
-if [[ "$ICONS_YES" =~ ^[Yy]$ ]]; then
-    echo
-    echo "📥 Installing icon fonts..."
-    mkdir -p ~/.local/share/fonts/icons
-
-    echo "  • Downloading Font Awesome Free..."
-    wget -qO /tmp/fontawesome.zip \
-        https://github.com/FortAwesome/Font-Awesome/releases/latest/download/fontawesome-free-6.5.2-desktop.zip
-    unzip -qo /tmp/fontawesome.zip -d ~/.local/share/fonts/icons
-
-    echo "  • Downloading Material Design Icons..."
-    wget -qO /tmp/material-icons.zip \
-        https://github.com/google/material-design-icons/releases/download/3.0.1/material-design-icons-3.0.1.zip
-    unzip -qo /tmp/material-icons.zip -d ~/.local/share/fonts/icons
-
-    echo "🔄 Refreshing font cache..."
-    fc-cache -fv
-    echo "✅ Icon fonts installed!"
-else
-    echo
-    echo "⏭️  Skipping icon fonts."
-fi
-
-# Final banner
 clear
 figlet -f big -w 200 "DONE"
 echo "🎉 All done!"
