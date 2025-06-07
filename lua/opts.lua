@@ -30,3 +30,9 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
     vim.opt.foldlevel = 99
   end,
 })
+
+vim.opt.cursorline = true
+
+-- Custom highlights
+vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#e6c384", bold = true })  
+vim.api.nvim_set_hl(0, "LineNr", { fg = "#5e5c64" })                    
