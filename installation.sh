@@ -63,6 +63,42 @@ install_package() {
     fi
 }
 
+# Nerd Font selection/install
+check_nerd_font_installed() {
+    fc-list | grep -qi "Nerd Font"
+}
+install_nerd_font() {
+    echo
+    echo "🎨 Nerd Font not detected. Installing one now..."
+    echo "  1) FiraCode Nerd Font (Recommended)"
+    echo "  2) JetBrainsMono Nerd Font"
+    read -rp "Select [1/2]: " FONT_CHOICE
+
+    FONT_NAME="FiraCode"
+    [[ "$FONT_CHOICE" == "2" ]] && FONT_NAME="JetBrainsMono"
+
+    echo
+    echo "💾 Downloading $FONT_NAME..."
+    mkdir -p ~/.local/share/fonts/"$FONT_NAME"
+    wget -O "/tmp/${FONT_NAME}.zip" \
+        "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${FONT_NAME}.zip"
+    echo "📂 Extracting..."
+    unzip -qo "/tmp/${FONT_NAME}.zip" -d ~/.local/share/fonts/"$FONT_NAME"
+    echo "🔄 Updating font cache..."
+    fc-cache -fv
+    echo "✅ $FONT_NAME Nerd Font installed!"
+}
+
+if check_nerd_font_installed; then
+    echo
+    echo "✅ Nerd Font already installed!"
+else
+    install_package wget   wget   "Wget"
+    install_package unzip  unzip  "Unzip"
+    install_nerd_font
+fi
+
+# Core tools
 install_package wget            wget               "Wget"
 install_package unzip           unzip              "Unzip"
 install_package node            nodejs             "Node.js"
@@ -73,12 +109,13 @@ install_package python3         python3-venv       "python3-venv"
 install_package dotnet          dotnet-sdk         ".NET SDK"
 install_package clangd          clangd             "Clangd (C/C++)"
 
+# npm LSPs
 npm_install() {
     local pkg="$1"
     echo
     echo "🔍 Checking: $pkg (npm)"
     if ! npm list -g "$pkg" &>/dev/null; then
-        echo "📥 Installing: $pkg (npm)"
+        echo "📥 Installing: $pkg"
         sudo npm install -g "$pkg"
         echo "✅ $pkg installed"
     else
@@ -89,6 +126,7 @@ npm_install pyright
 npm_install vscode-langservers-extracted
 npm_install bash-language-server
 
+# pipx and python-lsp-server
 pipx_check() {
     if command -v pipx &>/dev/null; then
         echo
@@ -112,13 +150,14 @@ pipx_check
 echo
 echo "🔍 Checking: python-lsp-server (pipx)"
 if ! pipx list | grep -q python-lsp-server; then
-    echo "📥 Installing: python-lsp-server (pipx)"
+    echo "📥 Installing: python-lsp-server"
     pipx install python-lsp-server --system-site-packages --pip-args="--break-system-packages"
     echo "✅ python-lsp-server installed"
 else
     echo "✅ python-lsp-server already present"
 fi
 
+# Rust
 echo
 echo "📥 Installing rustup and Cargo"
 if ! command -v rustup &>/dev/null; then
