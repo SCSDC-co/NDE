@@ -2,22 +2,6 @@
 
 set -e
 
-if ! command -v figlet &>/dev/null; then
-    echo "📦 Installing Figlet..."
-    if command -v apt &>/dev/null; then sudo apt update && sudo apt install -y figlet
-    elif command -v pacman &>/dev/null; then sudo pacman -Syu --noconfirm figlet
-    elif command -v dnf &>/dev/null; then sudo dnf install -y figlet
-    elif command -v zypper &>/dev/null; then sudo zypper install -y figlet
-    elif command -v emerge &>/dev/null; then sudo emerge figlet
-    fi
-fi
-
-clear
-figlet -f big -w 200 "INSTALLATION"
-echo
-echo "🧠 Full Language Toolchain Setup + Nerd Font Check"
-echo
-
 detect_package_manager() {
     if command -v apt &>/dev/null; then echo "apt"
     elif command -v pacman &>/dev/null; then echo "pacman"
@@ -35,11 +19,10 @@ install_package() {
     local package="$2"
     local display="$3"
     echo
-    echo "🔍 Checking: $display"
+    echo "📦 Installing $display..."
     if command -v "$bin_check" &>/dev/null; then
         echo "✅ $display already installed."
     else
-        echo "📥 Installing $display..."
         case $PKG_MANAGER in
         apt) sudo apt update && sudo apt install -y "$package" ;;
         pacman) sudo pacman -Syu --noconfirm "$package" ;;
@@ -74,6 +57,12 @@ install_nerd_font() {
     echo "✅ $FONT_NAME Nerd Font installed successfully!"
 }
 
+install_package "figlet" "figlet" "Figlet"
+clear
+figlet -f big -w 200 "INSTALLATION"
+echo
+echo "🧠 Full Language Toolchain Setup + Nerd Font Check"
+
 if check_nerd_font_installed; then
     echo "✅ Nerd Font already installed!"
 else
@@ -82,21 +71,17 @@ else
     install_nerd_font
 fi
 
-install_package "figlet" "figlet" "Figlet"
 install_package "node" "nodejs" "Node.js"
 install_package "npm" "npm" "npm"
 install_package "python3" "python3" "Python 3"
 install_package "pip3" "python3-pip" "pip"
 install_package "clangd" "clangd" "Clangd"
-
-if [[ "$PKG_MANAGER" != "apt" ]]; then
-    install_package "dotnet" "dotnet-sdk" ".NET SDK"
-fi
+[[ "$PKG_MANAGER" != "apt" ]] && install_package "dotnet" "dotnet-sdk" ".NET SDK"
 
 if ! command -v pipx &>/dev/null; then
     echo
-    echo "📥 Installing pipx..."
-    pip3 install --user pipx
+    echo "📦 Installing pipx..."
+    python3 -m pip install --user --break-system-packages pipx
     python3 -m pipx ensurepath
     export PATH="$HOME/.local/bin:$PATH"
 fi
@@ -104,11 +89,10 @@ fi
 npm_install() {
     local package="$1"
     echo
-    echo "🔍 Checking: $package (npm)"
+    echo "📦 Installing $package (npm)..."
     if npm list -g "$package" &>/dev/null; then
         echo "✅ $package already installed"
     else
-        echo "📥 Installing $package via npm..."
         sudo npm install -g "$package"
     fi
 }
@@ -116,12 +100,11 @@ npm_install() {
 pipx_install() {
     local package="$1"
     echo
-    echo "🔍 Checking: $package (pipx)"
+    echo "📦 Installing $package (pipx)..."
     if pipx list | grep -q "$package"; then
         echo "✅ $package already installed"
     else
-        echo "📥 Installing $package via pipx..."
-        pipx install "$package"
+        pipx install "$package" --pip-args='--break-system-packages'
     fi
 }
 
