@@ -48,6 +48,8 @@ install_package() {
     fi
 }
 
+install_package "figlet" "figlet" "Figlet (ASCII banners)"
+
 check_nerd_font_installed() {
     fc-list | grep -qi "Nerd Font"
 }
@@ -59,7 +61,7 @@ install_nerd_font() {
     echo "1) FiraCode Nerd Font (Recommended)"
     echo "2) JetBrainsMono Nerd Font"
     echo
-    read -rp "Select [1/2]: " FONT_CHOICE
+    read -p "Select [1/2]: " FONT_CHOICE
 
     FONT_NAME="FiraCode"
     [[ "$FONT_CHOICE" == "2" ]] && FONT_NAME="JetBrainsMono"
@@ -77,12 +79,6 @@ install_nerd_font() {
     echo "✅ $FONT_NAME Nerd Font installed successfully!"
 }
 
-if ! command -v figlet &>/dev/null; then
-    echo
-    echo "📥 Installing Figlet (ASCII banners)..."
-    install_package "figlet" "figlet" "Figlet"
-fi
-
 if check_nerd_font_installed; then
     echo "✅ Nerd Font already installed!"
 else
@@ -91,23 +87,10 @@ else
     install_nerd_font
 fi
 
-# Check python3-venv for pipx virtualenv
-if [ "$PKG_MANAGER" = "apt" ]; then
-    if dpkg -s python3-venv &>/dev/null; then
-        echo
-        echo "✅ python3-venv package already installed."
-    else
-        echo
-        echo "📦 Installing python3-venv package (needed for pipx virtual environments)..."
-        sudo apt update && sudo apt install -y python3-venv
-    fi
-fi
-
-install_package "wget" "wget" "Wget"
 install_package "node" "nodejs" "Node.js"
 install_package "npm" "npm" "npm"
 install_package "python3" "python3" "Python 3"
-install_package "pip3" "python3-pip" "pip"
+install_package "python3-venv" "python3-venv" "Python3 venv (required for pipx)"
 install_package "dotnet" "dotnet-sdk" ".NET SDK"
 install_package "clangd" "clangd" "Clangd (C/C++)"
 
@@ -122,19 +105,29 @@ npm_install() {
         sudo npm install -g "$package"
     fi
 }
-
 npm_install "pyright"
 npm_install "vscode-langservers-extracted"
 npm_install "bash-language-server"
+
+if ! command -v pipx &>/dev/null; then
+    echo
+    echo "📥 pipx non trovato, lo installo con pip3..."
+    python3 -m pip install --user pipx --break-system-packages
+    export PATH="$HOME/.local/bin:$PATH"
+    echo "✅ pipx installato!"
+else
+    echo
+    echo "✅ pipx già presente"
+fi
 
 pipx_install() {
     local module="$1"
     echo
     echo "🔍 Checking: $module (pipx)"
     if pipx list | grep -q "$module"; then
-        echo "✅ $module already installed with pipx"
+        echo "✅ $module già installato con pipx"
     else
-        echo "📥 Installing $module via pipx..."
+        echo "📥 Installazione $module con pipx..."
         pipx install "$module" --pip-args="--break-system-packages"
     fi
 }
@@ -142,8 +135,8 @@ pipx_install() {
 pipx_install "python-lsp-server"
 
 echo
-read -rp "🌈 Do you want to install icon fonts (Font Awesome, Material Symbols)? [y/N]: " ICONS_YES
-if [[ "$ICONS_YES" =~ ^[Yy]$ ]]; then
+read -p "🌈 Do you want to install icon fonts (Font Awesome, Material Symbols)? [y/N]: " ICONS_YES
+if [[ "$ICONS_YES" == "y" || "$ICONS_YES" == "Y" ]]; then
     echo "📥 Installing icon fonts..."
     mkdir -p ~/.local/share/fonts/icons
     wget https://github.com/google/material-design-icons/releases/download/4.0.0/materialdesignicons-webfont.zip -O /tmp/materialicons.zip
