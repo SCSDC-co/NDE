@@ -20,28 +20,5 @@ return {
       update_debounce = 200,
       status_formatter = nil,
     }
-
-    vim.cmd [[
-      highlight Normal       guibg=#000000
-      highlight LineNr       guibg=#000000
-      highlight SignColumn   guibg=#000000
-      highlight GitSignsAdd    guifg=#008b2b guibg=NONE
-      highlight GitSignsChange guifg=#ff9900 guibg=NONE
-      highlight GitSignsDelete guifg=#ff0000 guibg=NONE
-    ]]
-
-    vim.api.nvim_create_autocmd("ColorScheme", {
-      pattern = "*",
-      callback = function()
-        vim.cmd [[
-          highlight Normal       guibg=#000000
-          highlight LineNr       guibg=#000000
-          highlight SignColumn   guibg=#000000
-          highlight GitSignsAdd    guifg=#008b2b guibg=NONE
-          highlight GitSignsChange guifg=#ff9900 guibg=NONE
-          highlight GitSignsDelete guifg=#ff0000 guibg=NONE
-        ]]
-      end
-    })
   end
 }

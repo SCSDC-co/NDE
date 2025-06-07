@@ -649,8 +649,6 @@ font_size 12
 include kanagawa.conf
 
 # Aesthetic settings (these will override theme settings)
-background_opacity 0.7
-background #000000
 enable_true_color yes
 EOF
     

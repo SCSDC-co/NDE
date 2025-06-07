@@ -8,14 +8,6 @@ return {
   },
   lazy = false,
   config = function()
-
-    vim.api.nvim_set_hl(0, "NeoTreeDirectoryName", { fg = "#FFFFFF", bg = "NONE" })
-    vim.api.nvim_set_hl(0, "NeoTreeDirectoryIcon", { fg = "#FFFFFF", bg = "NONE" })
-    vim.api.nvim_set_hl(0, "Directory", { fg = "#FFFFFF", bg = "NONE" })
-    vim.api.nvim_set_hl(0, "NeoTreeFileName", { fg = "#FFFFFF", bg = "NONE" })
-    vim.api.nvim_set_hl(0, "NeoTreeFileNameOpened", { fg = "#FFFFFF", bg = "NONE" })
-    vim.api.nvim_set_hl(0, "NeoTreeIndentMarker", { fg = "#FFFFFF", bg = "NONE" })
-
     require("neo-tree").setup({
       close_if_last_window = true,
       popup_border_style = "rounded",

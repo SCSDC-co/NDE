@@ -6,15 +6,6 @@ return {
   config = function()
     vim.cmd("colorscheme kanagawa-dragon")
 
-    vim.api.nvim_create_autocmd("ColorScheme", {
-      pattern = "*",
-      callback = function()
-        vim.cmd("hi! DashboardHeader guifg=#008b2b guibg=NONE")
-        vim.cmd("hi! DashboardButtons guifg=#FFFFFF guibg=NONE")
-        vim.cmd("hi! DashboardShortcut guifg=#FFFFFF guibg=NONE")
-      end,
-    })
-
     local dashboard = require("alpha.themes.dashboard")
 
     dashboard.section.header.val = {

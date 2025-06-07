@@ -20,11 +20,6 @@ return {
       },
     },
     config = function(_, opts)
-      -- PRIMA definisci i colori, così le highlight group esistono
-      vim.api.nvim_set_hl(0, "IndentBlanklineChar", { fg = "#f3f3f3", bg = "NONE" })
-      vim.api.nvim_set_hl(0, "IndentBlanklineContextChar", { fg = "#f3f3f3", bg = "NONE" })
-
-      -- POI setup del plugin
       require("ibl").setup(opts)
     end,
   },
