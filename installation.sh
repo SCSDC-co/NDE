@@ -2,13 +2,22 @@
 
 set -e
 
-# Ensure figlet is installed before using it
+# Check and install figlet if not available
 if ! command -v figlet &>/dev/null; then
-    echo "📦 Installing figlet (required for ASCII banners)..."
+    echo "📦 Installing figlet for ASCII banners..."
     if command -v apt &>/dev/null; then
         sudo apt update && sudo apt install -y figlet
     elif command -v pacman &>/dev/null; then
         sudo pacman -Syu --noconfirm figlet
+    elif command -v dnf &>/dev/null; then
+        sudo dnf install -y figlet
+    elif command -v zypper &>/dev/null; then
+        sudo zypper install -y figlet
+    elif command -v emerge &>/dev/null; then
+        sudo emerge figlet
+    else
+        echo "❌ Unknown package manager. Please install figlet manually."
+        exit 1
     fi
 fi
 
@@ -56,6 +65,7 @@ install_package() {
         dnf) sudo dnf install -y "$package" ;;
         zypper) sudo zypper install -y "$package" ;;
         emerge) sudo emerge "$package" ;;
+        *) echo "❌ Unknown package manager. Cannot install $display." ;;
         esac
     fi
 }
@@ -104,37 +114,12 @@ install_package "node" "nodejs" "Node.js"
 install_package "npm" "npm" "npm"
 install_package "python3" "python3" "Python 3"
 install_package "pip3" "python3-pip" "pip"
-
-# Install .NET SDK with proper method
-install_dotnet_sdk() {
-    echo
-    echo "🔍 Checking: .NET SDK"
-    if command -v dotnet &>/dev/null; then
-        echo "✅ .NET SDK already installed."
-    else
-        echo "📥 Installing .NET SDK..."
-
-        case $PKG_MANAGER in
-        apt)
-            wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O /tmp/packages-microsoft-prod.deb
-            sudo dpkg -i /tmp/packages-microsoft-prod.deb
-            sudo apt update
-            sudo apt install -y dotnet-sdk-8.0
-            ;;
-        pacman)
-            sudo pacman -Syu --noconfirm dotnet-sdk
-            ;;
-        *)
-            echo "❌ Unsupported package manager for .NET SDK. Install manually from https://dotnet.microsoft.com"
-            ;;
-        esac
-    fi
-}
-install_dotnet_sdk
+install_package "dotnet" "dotnet-sdk" ".NET SDK"
 
 # LSP check/install
 install_package "clangd" "clangd" "Clangd (C/C++)"
-install_package "omnisharp" "omnisharp" "OmniSharp (C#)"
+# OmniSharp non si installa direttamente
+echo "🧠 OmniSharp is included with .NET or should be installed via Neovim (Mason.nvim). Skipping direct install."
 install_package "lua-language-server" "lua-language-server" "Lua Language Server"
 
 # LSPs via npm
