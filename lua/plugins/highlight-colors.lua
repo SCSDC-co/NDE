@@ -3,24 +3,22 @@ return {
   event = "VeryLazy",
   config = function()
     require('nvim-highlight-colors').setup({
-      ---Render style
+      ---Render style - 'virtual' for VSCode-like squares
       ---@usage 'background'|'foreground'|'virtual'
-      render = 'background',
+      render = 'virtual',
 
-      ---Set virtual symbol (requires render to be set to 'virtual')
+      ---Set virtual symbol (small square like VSCode)
       virtual_symbol = '■',
 
-      ---Set virtual symbol suffix (defaults to '')
-      virtual_symbol_prefix = '',
+      ---Set virtual symbol prefix (space before the square)
+      virtual_symbol_prefix = ' ',
 
-      ---Set virtual symbol suffix (defaults to ' ')
-      virtual_symbol_suffix = ' ',
+      ---Set virtual symbol suffix (no space after)
+      virtual_symbol_suffix = '',
 
-      ---Set virtual symbol position()
+      ---Set virtual symbol position - 'inline' for VSCode style
       ---@usage 'inline'|'eol'|'eow'
-      ---inline mimics VS Code style
-      ---eol stands for `end of column` - Recommended to set `virtual_symbol_suffix = ''` when used.
-      ---eow stands for `end of word` - Recommended to set `virtual_symbol_prefix = ' ' and virtual_symbol_suffix = ''` when used.
+      ---inline mimics VS Code style perfectly
       virtual_symbol_position = 'inline',
 
       ---Highlight hex colors, e.g. '#FFFFFF'
@@ -44,12 +42,14 @@ return {
       ---Highlight tailwind colors, e.g. 'bg-blue-500'
       enable_tailwind = true,
 
-      ---Set custom colors
+      ---Set custom colors for CSS variables
       ---Label must be properly escaped with '%' to adhere to `string.gmatch`
       --- :help string.gmatch
       custom_colors = {
         { label = '%-%-theme%-primary%-color',   color = '#0f1419' },
         { label = '%-%-theme%-secondary%-color', color = '#5a5a5a' },
+        { label = '%-%-kanagawa%-bg',            color = '#181616' },
+        { label = '%-%-kanagawa%-fg',            color = '#dcd7ba' },
       }
     })
   end,

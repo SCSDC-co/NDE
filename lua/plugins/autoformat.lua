@@ -1,29 +1,80 @@
 return {
-    "Chiel92/vim-autoformat",
-
-    config = function()
-        vim.g.autoformat_verbosemode = 1
-
-        vim.g.formatdef_black = '"black --quiet -"'               
-        vim.g.formatdef_prettier = '"prettier --stdin-filepath %"'
-        vim.g.formatdef_clangformat = '"clang-format"'            
-        vim.g.formatdef_dotnet = '"dotnet format"'                
-        vim.g.formatdef_asmfmt = '"asmfmt"'                
-
-        vim.g.formatters_python = { "black" }
-        vim.g.formatters_javascript = { "prettier" }
-        vim.g.formatters_typescript = { "prettier" }
-        vim.g.formatters_html = { "prettier" }
-        vim.g.formatters_css = { "prettier" }
-        vim.g.formatters_cpp = { "clangformat" }
-        vim.g.formatters_c = { "clangformat" }
-        vim.g.formatters_cs = { "dotnet" }
-        vim.g.formatters_asm = { "asmfmt", "clangformat" }  
-
-        vim.keymap.set("n", "<leader>f", ":Autoformat<CR>", { noremap = true, silent = true })
-
-        vim.cmd([[
-            autocmd BufRead,BufNewFile *.asm set filetype=asm
-        ]])
-    end
+  "stevearc/conform.nvim",
+  event = { "BufWritePre" },
+  cmd = { "ConformInfo" },
+  keys = {
+    {
+      "<leader>f",
+      function()
+        require("conform").format({ async = true, lsp_fallback = true })
+      end,
+      mode = "",
+      desc = "Format buffer",
+    },
+  },
+  opts = {
+    formatters_by_ft = {
+      -- Python
+      python = { "black", "isort" },
+      
+      -- JavaScript/TypeScript
+      javascript = { { "prettierd", "prettier" } },
+      typescript = { { "prettierd", "prettier" } },
+      javascriptreact = { { "prettierd", "prettier" } },
+      typescriptreact = { { "prettierd", "prettier" } },
+      
+      -- Web Technologies
+      html = { { "prettierd", "prettier" } },
+      css = { { "prettierd", "prettier" } },
+      scss = { { "prettierd", "prettier" } },
+      
+      -- C/C++
+      c = { "clang_format" },
+      cpp = { "clang_format" },
+      
+      -- Other Languages
+      lua = { "stylua" },
+      go = { "gofmt" },
+      rust = { "rustfmt" },
+      java = { "google-java-format" },
+      
+      -- Data formats
+      json = { { "prettierd", "prettier" } },
+      yaml = { { "prettierd", "prettier" } },
+      markdown = { { "prettierd", "prettier" } },
+      
+      -- Shell
+      sh = { "shfmt" },
+      bash = { "shfmt" },
+      
+      -- Assembly
+      asm = { "asmfmt" },
+    },
+    
+    format_on_save = {
+      timeout_ms = 500,
+      lsp_fallback = true,
+    },
+    
+    formatters = {
+      shfmt = {
+        prepend_args = { "-i", "2" },
+      },
+      black = {
+        prepend_args = { "--fast" },
+      },
+      clang_format = {
+        prepend_args = { "--style=file" },
+      },
+    },
+  },
+  
+  config = function(_, opts)
+    require("conform").setup(opts)
+    
+    -- Set filetype for assembly files
+    vim.cmd([[
+      autocmd BufRead,BufNewFile *.asm set filetype=asm
+    ]])
+  end,
 }

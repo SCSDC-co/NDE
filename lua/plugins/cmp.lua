@@ -272,26 +272,56 @@ return {
         lspconfig[server].setup(config)
       end
 
-      -- Special setup for C#
-      local omnisharp_bin = "/usr/bin/omnisharp"
-      lspconfig.omnisharp.setup {
-        cmd = { omnisharp_bin },
-        capabilities = capabilities,
-        root_dir = lspconfig.util.root_pattern("*.sln", "*.csproj", ".git"),
-        settings = {
-          FormattingOptions = {
-            EnableEditorConfigSupport = true,
-            OrganizeImports = true,
+      -- Special setup for C# with dynamic path detection
+      local function find_omnisharp()
+        -- Try different possible locations for omnisharp
+        local possible_paths = {
+          "/usr/bin/omnisharp",           -- Arch Linux package
+          "/usr/local/bin/omnisharp",     -- Manual install
+          "/opt/omnisharp/omnisharp",     -- Custom install
+          vim.fn.expand("~/.dotnet/tools/omnisharp"), -- dotnet tool install
+          "omnisharp",                    -- In PATH
+        }
+        
+        for _, path in ipairs(possible_paths) do
+          if vim.fn.executable(path) == 1 then
+            return path
+          end
+        end
+        
+        -- Fallback: try to find via which command
+        local which_result = vim.fn.system("which omnisharp 2>/dev/null")
+        if vim.v.shell_error == 0 and which_result ~= "" then
+          return vim.trim(which_result)
+        end
+        
+        -- If not found, return nil to skip setup
+        return nil
+      end
+      
+      local omnisharp_bin = find_omnisharp()
+      if omnisharp_bin then
+        lspconfig.omnisharp.setup {
+          cmd = { omnisharp_bin },
+          capabilities = capabilities,
+          root_dir = lspconfig.util.root_pattern("*.sln", "*.csproj", ".git"),
+          settings = {
+            FormattingOptions = {
+              EnableEditorConfigSupport = true,
+              OrganizeImports = true,
+            },
+            MsBuild = {
+              LoadProjectsOnDemand = false,
+            },
+            RoslynExtensionsOptions = {
+              EnableAnalyzersSupport = true,
+              EnableImportCompletion = true,
+            },
           },
-          MsBuild = {
-            LoadProjectsOnDemand = false,
-          },
-          RoslynExtensionsOptions = {
-            EnableAnalyzersSupport = true,
-            EnableImportCompletion = true,
-          },
-        },
-      }
+        }
+      else
+        vim.notify("OmniSharp not found. Install via: sudo pacman -S omnisharp-roslyn", vim.log.levels.WARN)
+      end
     end,
   },
   -- Schema store for JSON/YAML
