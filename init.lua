@@ -1,4 +1,17 @@
 local home = os.getenv("HOME")
-package.path = home .. "/.luarocks/share/lua/5.4/?.lua;" .. package.path
-package.cpath = home .. "/.luarocks/lib/lua/5.4/?.so;" .. package.cpath
-require "launch"
+local venv_py = home .. "/.local/share/nvim_pytools_venv/bin/python"
+if vim.fn.executable(venv_py) == 1 then
+  vim.g.python3_host_prog = venv_py
+else
+  vim.notify("⚠️ Python venv not found: " .. venv_py, vim.log.levels.WARN)
+end
+
+local version = "5.4"
+package.path  = home .. "/.luarocks/share/lua/"..version.."/?.lua;"  .. package.path
+package.cpath = home .. "/.luarocks/lib/lua/"..version.."/?.so;"    .. package.cpath
+
+local data = vim.fn.stdpath("data")
+package.path  = data .. "/lua/?.lua;" .. package.path
+package.cpath = data .. "/lua/?.so;"  .. package.cpath
+
+require("launch")
