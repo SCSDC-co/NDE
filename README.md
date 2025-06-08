@@ -57,7 +57,7 @@ A personalized, comprehensive Neovim development environment optimized for syste
 
 **1. Clone the repository:**
 ```bash
-git clone https://github.com/Sckab/NVIM-configuration.git ~/.config/nvim
+git clone https://github.com/Sckab/NDE.git ~/.config/nvim
 ```
 
 **2. Install prerequisites:**
@@ -185,6 +185,7 @@ While Mason handles most installations automatically, you can manually install a
         ├── 📄 dashboard.lua     # 📊 Start screen (Alpha)
         ├── 📄 debug.lua         # 🐛 Debug configuration
         ├── 📄 gitsigns.lua      # 📝 Git integration
+        ├── 📄 highlight-colors.lua # 🌈 Color highlighting
         ├── 📄 indent-blankline.lua # ┊ Indent guides
         ├── 📄 lint.lua          # 🔍 Linting
         ├── 📄 lualine.lua       # 📊 Status line
@@ -192,13 +193,15 @@ While Mason handles most installations automatically, you can manually install a
         ├── 📄 neotree.lua       # 🌲 File explorer
         ├── 📄 noice.lua         # 💬 Enhanced UI notifications
         ├── 📄 null-ls.lua       # 🔧 Formatting & diagnostics engine
+        ├── 📄 rainbow-delimiters.lua # 🌈 Rainbow parentheses
         ├── 📄 rust-tools.lua    # 🦀 Enhanced Rust development
         ├── 📄 scrollview.lua    # 📜 Scroll indicator
         ├── 📄 telescope.lua     # 🔭 Fuzzy finder
         ├── 📄 todo-comments.lua # 📝 TODO/FIXME highlighting
         ├── 📄 toggleterm.lua    # 💻 Terminal integration
         ├── 📄 treesitter.lua    # 🌳 Syntax highlighting + context
-        └── 📄 trouble.lua       # 🚨 Diagnostics panel
+        ├── 📄 trouble.lua       # 🚨 Diagnostics panel
+        └── 📄 which-key.lua     # 🔑 Keybinding helper
 ```
 
 ## Usage
@@ -388,6 +391,6 @@ This project is licensed under the [MIT License](LICENSE).
 **Please consider starring this repository if you find it useful.**
 
 *For detailed information and updates, visit:*  
-[https://github.com/Sckab/NVIM-configuration](https://github.com/Sckab/NVIM-configuration)
+[https://github.com/Sckab/NDE](https://github.com/Sckab/NDE)
 
 </div>
