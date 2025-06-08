@@ -15,8 +15,13 @@ return {
         ensure_installed = {
           "python",
           "cppdbg",
-          "codelldb",
+          "codelldb",     -- C/C++/Rust
           "js-debug-adapter",
+          "node-debug2-adapter",
+          "chrome-debug-adapter",
+          "go-debug-adapter", -- Go
+          "java-debug-adapter", -- Java
+          "bash-debug-adapter", -- Bash
         },
         automatic_installation = true,
       })
@@ -72,6 +77,107 @@ return {
       }
 
       dap.configurations.typescript = dap.configurations.javascript
+
+      -- Rust (using codelldb)
+      dap.adapters.codelldb = {
+        type = "server",
+        port = "${port}",
+        executable = {
+          command = vim.fn.stdpath("data") .. "/mason/packages/codelldb/codelldb",
+          args = { "--port", "${port}" },
+        },
+      }
+
+      dap.configurations.rust = {
+        {
+          name = "Launch Rust",
+          type = "codelldb",
+          request = "launch",
+          program = function()
+            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
+          end,
+          cwd = "${workspaceFolder}",
+          stopOnEntry = false,
+        },
+      }
+
+      -- Go
+      dap.adapters.go = {
+        type = "executable",
+        command = "go-debug-adapter",
+      }
+
+      dap.configurations.go = {
+        {
+          type = "go",
+          name = "Debug",
+          request = "launch",
+          program = "${file}",
+          dlvToolPath = vim.fn.exepath("dlv"),
+        },
+        {
+          type = "go",
+          name = "Debug Package",
+          request = "launch",
+          program = "${fileDirname}",
+          dlvToolPath = vim.fn.exepath("dlv"),
+        },
+        {
+          type = "go",
+          name = "Debug test",
+          request = "launch",
+          mode = "test",
+          program = "${file}",
+          dlvToolPath = vim.fn.exepath("dlv"),
+        },
+      }
+
+      -- Bash
+      dap.adapters.bashdb = {
+        type = "executable",
+        command = vim.fn.stdpath("data") .. "/mason/packages/bash-debug-adapter/bash-debug-adapter",
+        name = "bashdb",
+      }
+
+      dap.configurations.sh = {
+        {
+          type = "bashdb",
+          request = "launch",
+          name = "Launch file",
+          showDebugOutput = true,
+          pathBashdb = vim.fn.stdpath("data") .. "/mason/packages/bash-debug-adapter/extension/bashdb_dir/bashdb",
+          pathBashdbLib = vim.fn.stdpath("data") .. "/mason/packages/bash-debug-adapter/extension/bashdb_dir",
+          trace = true,
+          file = "${file}",
+          program = "${file}",
+          cwd = "${workspaceFolder}",
+          pathCat = "cat",
+          pathBash = "/bin/bash",
+          pathMkfifo = "mkfifo",
+          pathPkill = "pkill",
+          args = {},
+          env = {},
+          terminalKind = "integrated",
+        },
+      }
     end,
-  }
+  },
+  -- Additional debugging plugins
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    dependencies = "mfussenegger/nvim-dap",
+    config = function()
+      require("nvim-dap-virtual-text").setup()
+    end,
+  },
+  {
+    "nvim-telescope/telescope-dap.nvim",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "nvim-telescope/telescope.nvim",
+    },
+    config = function()
+      require("telescope").load_extension("dap")
+    end,
+  },
 }
