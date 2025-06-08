@@ -1,21 +1,19 @@
 # Neovim Development Environment
 
-A comprehensive, production-ready Neovim configuration featuring automated cross-platform installation and complete development toolchain integration. This configuration provides a modern, efficient development environment with minimal setup requirements.
+A comprehensive, production-ready Neovim configuration designed for modern development workflows. This configuration provides a complete development environment with LSP support, debugging capabilities, and a beautiful user interface.
 
 [![Platform Support](https://img.shields.io/badge/Platform-Linux%20%7C%20macOS%20%7C%20Windows-blue)](#platform-support)
 [![Neovim Version](https://img.shields.io/badge/Neovim-0.10.0+-green)](#requirements)
-[![Auto Install](https://img.shields.io/badge/Installation-Automated-brightgreen)](#installation)
 [![Languages](https://img.shields.io/badge/Languages-9+-orange)](#language-support)
 [![License](https://img.shields.io/badge/License-MIT-blue)](#license)
 
 ## Features
 
-### Automated Installation
-- Cross-platform automated setup script
-- Intelligent package manager detection (apt, pacman, dnf, brew, chocolatey, winget)
-- Automatic Neovim 0.10+ installation with repository management
-- Optional terminal emulator configuration (Kitty with Kanagawa theme)
-- Comprehensive dependency resolution
+### Plugin Management
+- Modern plugin management with Lazy.nvim
+- Lazy loading for optimal startup performance
+- Automatic plugin installation and updates
+- Lock file for reproducible environments
 
 ### Development Toolchain
 **Language Servers:** Python (Pyright), JavaScript/TypeScript, C/C++ (Clangd), C# (OmniSharp), Lua, Assembly, HTML, CSS  
@@ -45,55 +43,51 @@ A comprehensive, production-ready Neovim configuration featuring automated cross
 ## Installation
 
 ### Requirements
-- **Neovim 0.10.0 or higher** (automatically installed by script)
+- **Neovim 0.10.0 or higher**
 - Git
-- Internet connection for downloading dependencies
+- Node.js and npm (for language servers)
+- Python 3 and pip (for language servers)
+- A Nerd Font (recommended for proper icon display)
+- Internet connection for downloading plugins
 
-### Automated Setup (Recommended)
+### Setup
 
-```bash
-# Clone the repository
-git clone https://github.com/Sckab/NVIM-configuration.git ~/.config/nvim
-
-# Execute the installation script
-cd ~/.config/nvim
-chmod +x main.sh
-./main.sh
-```
-
-The installation script performs the following operations:
-
-1. **System Analysis**: Detects platform and package manager
-2. **Neovim Installation**: Ensures Neovim 0.10+ is installed
-3. **Dependency Resolution**: Installs all required development tools
-4. **Language Server Setup**: Configures LSP servers for supported languages
-5. **Tool Installation**: Installs formatters, linters, and debuggers
-6. **Terminal Configuration**: Optional Kitty terminal setup
-7. **Font Installation**: Nerd Font installation for enhanced UI
-
-### Manual Installation
-
-For users preferring manual dependency management:
-
-**Prerequisites:**
-- Neovim 0.10.0 or higher
-- Git
-- Node.js and npm
-- Python 3 and pip
-- A Nerd Font
-
-**Installation steps:**
+**1. Clone the repository:**
 ```bash
 git clone https://github.com/Sckab/NVIM-configuration.git ~/.config/nvim
-nvim  # Launch Neovim to trigger plugin installation
 ```
 
-**Plugin synchronization:**
+**2. Install prerequisites:**
+Make sure you have the required tools installed on your system:
+
+- **Arch Linux:**
+  ```bash
+  sudo pacman -S neovim git nodejs npm python python-pip
+  ```
+
+- **Ubuntu/Debian:**
+  ```bash
+  sudo apt update
+  sudo apt install neovim git nodejs npm python3 python3-pip
+  ```
+
+- **macOS (with Homebrew):**
+  ```bash
+  brew install neovim git node python
+  ```
+
+**3. Launch Neovim:**
+```bash
+nvim
+```
+
+On first launch, Lazy.nvim will automatically install all configured plugins. Mason will then install the necessary language servers, formatters, and linters.
+
+**4. Install language servers (optional):**
+While Mason handles most installations automatically, you can manually install additional tools:
 ```vim
-:Lazy sync
+:Mason
 ```
-
-> **Note:** Manual installation requires careful attention to Neovim version compatibility. The automated script handles version requirements automatically.
 
 ## Installed Components
 
@@ -156,7 +150,6 @@ nvim  # Launch Neovim to trigger plugin installation
 
 ```
 ~/.config/nvim/
-├── 📄 installation.sh          # 🚀 Automated installation script
 ├── 📄 init.lua                 # Entry point
 ├── 📄 lazy-lock.json           # Plugin lockfile
 ├── 📄 LICENSE                  # MIT License
@@ -253,20 +246,14 @@ Individual plugin configurations are modularized in `lua/plugins/`. Each file co
 # Check Neovim version
 nvim --version
 
-# If version is below 0.10.0, re-run the installation script
-cd ~/.config/nvim && ./installation.sh
+# If version is below 0.10.0, update Neovim:
+# Arch Linux
+sudo pacman -S neovim
 
-# For Ubuntu/Debian, the script automatically adds the unstable PPA:
-# sudo add-apt-repository ppa:neovim-ppa/unstable
-```
-
-### Installation Problems
-```bash
-# Check installation log
-tail -f /tmp/nvim-setup-*.log
-
-# Re-run installation
-cd ~/.config/nvim && ./installation.sh
+# Ubuntu/Debian (you may need to add the unstable PPA)
+sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo apt update
+sudo apt install neovim
 ```
 
 ### Plugin Management Issues
@@ -282,13 +269,17 @@ cd ~/.config/nvim && ./installation.sh
 ```
 
 ### Dependency Resolution
-The installation script handles most dependencies, but if something is missing:
+If you're missing dependencies, install them manually:
 ```bash
 # Check what's installed
 which nvim node python3 git rg fd
 
-# Re-run dependency installation
-cd ~/.config/nvim && ./installation.sh
+# Install missing dependencies
+# Arch Linux
+sudo pacman -S ripgrep fd
+
+# Ubuntu/Debian
+sudo apt install ripgrep fd-find
 ```
 
 ### Manual Neovim Installation
