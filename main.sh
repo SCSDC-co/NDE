@@ -55,13 +55,13 @@ echo "
   _____   ____  _   _ ______ 
  |  __ \ / __ \| \ | |  ____|
  | |  | | |  | |  \| | |__   
- | |  | | |  | | . ` |  __|  
+ | |  | | |  | | .   |  __|  
  | |__| | |__| | |\  | |____ 
  |_____/ \____/|_| \_|______|
 "
 
-echo "now run \`nvim\`"
-echo "then run \`:Mason\`"
-echo "then run \`:Lazy sync\`"
+echo "now run nvim"
+echo "then run :Mason"
+echo "then run :Lazy sync"
 
-echo "and you\'re good to go!"
+echo "and you're good to go!"
