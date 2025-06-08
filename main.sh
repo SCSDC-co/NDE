@@ -1,9 +1,11 @@
 #!/bin/bash
 
+set -e
+
 clear
 
 source ./lib/detect_os.sh
-source ./lib/package_maps.sh
+source ./lib/packages_map.sh
 source ./lib/install_packages.sh
 
 OS=$(detect_os)
