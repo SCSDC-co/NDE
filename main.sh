@@ -1,5 +1,7 @@
 #!/bin/bash
 
+clear
+
 source ./lib/detect_os.sh
 source ./lib/package_maps.sh
 source ./lib/install_packages.sh

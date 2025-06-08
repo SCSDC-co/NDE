@@ -57,8 +57,8 @@ git clone https://github.com/Sckab/NVIM-configuration.git ~/.config/nvim
 
 # Execute the installation script
 cd ~/.config/nvim
-chmod +x installation.sh
-./installation.sh
+chmod +x main.sh
+./main.sh
 ```
 
 The installation script performs the following operations:

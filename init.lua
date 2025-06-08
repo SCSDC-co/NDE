@@ -10,8 +10,4 @@ local version = "5.4"
 package.path  = home .. "/.luarocks/share/lua/"..version.."/?.lua;"  .. package.path
 package.cpath = home .. "/.luarocks/lib/lua/"..version.."/?.so;"    .. package.cpath
 
-local data = vim.fn.stdpath("data")
-package.path  = data .. "/lua/?.lua;" .. package.path
-package.cpath = data .. "/lua/?.so;"  .. package.cpath
-
 require("launch")
