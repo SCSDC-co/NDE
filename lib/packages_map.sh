@@ -28,6 +28,7 @@ declare -A pkgs_arch=(
     [stylelint]="stylelint"
     [tidy]="tidy"
     [clang-tidy]="clang-tools-extra"
+    [venv]="python-virtualenv"
 )
 
 declare -A pkgs_debian=(
@@ -58,6 +59,7 @@ declare -A pkgs_debian=(
     [stylelint]="stylelint"
     [tidy]="tidy"
     [clang-tidy]="clang-tidy"
+    [venv]="python3-venv"
 )
 
 declare -A pkgs_fedora=(
@@ -88,6 +90,7 @@ declare -A pkgs_fedora=(
     [stylelint]="stylelint"
     [tidy]="tidy"
     [clang-tidy]="clang-tools-extra"
+    [venv]="python3-virtualenv"
 )
 
 declare -A pkgs_suse=(
@@ -100,7 +103,6 @@ declare -A pkgs_suse=(
     [python-lsp]="python3-pylsp"
     [rustup]="rustup"
     [cargo]="cargo"
-    # dev_tools
     [rg]="ripgrep"
     [fd]="fd-find"
     [git]="git"
@@ -119,6 +121,7 @@ declare -A pkgs_suse=(
     [stylelint]="stylelint"
     [tidy]="tidy"
     [clang-tidy]="clang-tools-extra"
+    [venv]="python3-virtualenv"
 )
 
 declare -A pkgs_solus=(
