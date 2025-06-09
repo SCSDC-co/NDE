@@ -142,6 +142,6 @@ vim.keymap.set('n', '<leader>bc', ':bdelete<CR>', { noremap = true, silent = tru
 vim.keymap.set('n', '<leader>bo', ':BufferLineCloseOthers<CR>', { noremap = true, silent = true })
 
 -- Surround shortcuts
-vim.keymap.set('n', '<F9>', 'ysiw(', { desc = "Add parentheses around word", noremap = true, silent = true })
-vim.keymap.set('n', '<F10>', 'ysiw"', { desc = "Add quotes around word", noremap = true, silent = true })
+vim.keymap.set('n', '<F9>', 'ysiw)', { desc = "Add parentheses around word", remap = true })
+vim.keymap.set('n', '<F10>', 'ysiw"', { desc = "Add quotes around word", remap = true })
 
