@@ -1,6 +1,6 @@
 <div align="center">
 
-![NDE Banner](.github/assets/banner_ui.png)
+![NDE Banner](.github/assets/banner_ui_readme.png)
 
 A personalized, comprehensive Neovim development environment optimized for systems programming, web development, and general coding workflows. This configuration features extensive language support, debugging capabilities, clipboard management, and a beautiful Kanagawa-themed interface.
 
