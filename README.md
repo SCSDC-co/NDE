@@ -179,7 +179,7 @@ While Mason handles most installations automatically, you can manually install a
 
 ## Configuration Architecture
 
-````
+```
 ~/.config/nvim/
 ├── 📄 init.lua                 # Entry point
 ├── 📄 LICENSE                  # MIT License
@@ -223,14 +223,17 @@ While Mason handles most installations automatically, you can manually install a
         ├── 📄 trouble.lua       # 🚨 Diagnostics panel
         ├── 📄 which-key.lua     # 🔑 Keybinding helper with organized groups
         └── 📄 yanky.lua         # 📋 Clipboard manager with history
+```
 
 ## Usage
 
 ### Initial Setup
+
 Launch Neovim to complete the configuration:
+
 ```bash
 nvim
-````
+```
 
 The system will automatically:
 
