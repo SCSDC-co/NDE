@@ -267,7 +267,7 @@ The system will automatically:
 | `<F7>`     | Compile & Run C   | Compile with clang and execute in vertical terminal |
 | `<F8>`     | Assemble & Run    | Assemble with NASM, link with ld, execute           |
 | `<F9>`     | Add Parentheses   | Add parentheses around current word (ysiw()         |
-| `<F10>`    | Add Quotes        | Add quotes around current word (ysiw")             |
+| `<F10>`    | Add Quotes        | Add quotes around current word (ysiw")              |
 
 #### Debugging
 
@@ -309,6 +309,13 @@ The system will automatically:
 | `<C-h/j/k/l>` | Window Navigation | Move between windows (works in terminal too) |
 | `<C-Space>`   | Completion        | Trigger auto-completion                      |
 | `<leader>f`   | Format Code       | Format current file                          |
+
+#### Others
+
+| Keybinding | Function        | Description                                     |
+| ---------- | --------------- | ----------------------------------------------- |
+| `<F11>`    | Open Lazygit    | Open Lazygit in toggleterm                      |
+| `<F12>`    | Open Toggleterm | Open toggleterm at the right side of the screen |
 
 ### Administrative Commands
 
@@ -447,8 +454,6 @@ This project is licensed under the [MIT License](LICENSE).
 - [Kanagawa](https://github.com/rebelot/kanagawa.nvim) - Beautiful color scheme
 - [Mason](https://github.com/williamboman/mason.nvim) - Language server installer
 - All the plugin authors who make Neovim amazing
-
-> ⚠️ **Note:** If the installer fails to install certain dependencies or packages, please install them manually using your system's package manager or by following the official documentation for each tool.
 
 ---
 
