@@ -266,6 +266,8 @@ The system will automatically:
 | `<F6>`     | Compile & Run C++ | Compile with g++ and execute in vertical terminal   |
 | `<F7>`     | Compile & Run C   | Compile with clang and execute in vertical terminal |
 | `<F8>`     | Assemble & Run    | Assemble with NASM, link with ld, execute           |
+| `<F9>`     | Add Parentheses   | Add parentheses around current word (ysiw()         |
+| `<F10>`    | Add Quotes        | Add quotes around current word (ysiw")             |
 
 #### Debugging
 

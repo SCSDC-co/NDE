@@ -198,6 +198,8 @@ return {
 			{ "<F6>", desc = "⚡ Compile & Run C++" },
 			{ "<F7>", desc = "🔧 Compile & Run C" },
 			{ "<F8>", desc = "⚙️ Assemble & Run ASM" },
+			{ "<F9>", desc = "🔗 Add Parentheses (ysiw()" },
+			{ "<F10>", desc = '💬 Add Quotes (ysiw")' },
 			{ "<F11>", desc = "🔥 Toggle LazyGit Terminal" },
 			{ "<F12>", desc = "💻 Toggle Terminal" },
 

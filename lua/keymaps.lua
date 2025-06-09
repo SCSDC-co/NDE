@@ -138,6 +138,10 @@ vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = "Go to above window" })
 vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = "Go to right window" })
 
 -- bufferline
-vim.api.nvim_set_keymap('n', '<leader>bc', ':bdelete<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>bo', ':BufferLineCloseOthers<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>bc', ':bdelete<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>bo', ':BufferLineCloseOthers<CR>', { noremap = true, silent = true })
+
+-- Surround shortcuts
+vim.keymap.set('n', '<F9>', 'ysiw(', { desc = "Add parentheses around word", noremap = true, silent = true })
+vim.keymap.set('n', '<F10>', 'ysiw"', { desc = "Add quotes around word", noremap = true, silent = true })
 
