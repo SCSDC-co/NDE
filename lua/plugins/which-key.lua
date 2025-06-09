@@ -110,6 +110,7 @@ return {
 			{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
 			{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help Tags" },
 			{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent Files" },
+			{ "<leader>fp", "<cmd>Telescope yank_history<cr>", desc = "📋 Clipboard History" },
 
 			{
 				"<leader>e",
@@ -180,6 +181,11 @@ return {
 				desc = "Toggle DAP UI",
 			},
 
+			{ "<leader>s", group = "🔄 Surround" },
+			{ "<leader>sa", "ys", desc = "Add Surround", remap = true },
+			{ "<leader>sc", "cs", desc = "Change Surround", remap = true },
+			{ "<leader>sd", "ds", desc = "Delete Surround", remap = true },
+
 			{ "<leader>j", "<cmd>call append(line('.'), '')<cr>", desc = "➕ Insert Line Below" },
 			{ "<leader>k", "<cmd>call append(line('.') - 1, '')<cr>", desc = "➕ Insert Line Above" },
 
@@ -192,6 +198,18 @@ return {
 			{ "<F6>", desc = "⚡ Compile & Run C++" },
 			{ "<F7>", desc = "🔧 Compile & Run C" },
 			{ "<F8>", desc = "⚙️ Assemble & Run ASM" },
+			{ "<F11>", desc = "🔥 Toggle LazyGit Terminal" },
+			{ "<F12>", desc = "💻 Toggle Terminal" },
+
+			-- Yanky clipboard cycling (after paste)
+			{ "p", desc = "📋 Yanky Put After" },
+			{ "P", desc = "📋 Yanky Put Before" },
+			{ "gp", desc = "📋 Yanky G-Put After" },
+			{ "gP", desc = "📋 Yanky G-Put Before" },
+			{ "<c-p>", desc = "📋 Yanky Previous Entry" },
+			{ "<c-n>", desc = "📋 Yanky Next Entry" },
+
+			-- Note: Surround operations are now in <leader>s group
 		},
 	},
 

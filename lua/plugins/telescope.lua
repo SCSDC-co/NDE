@@ -20,6 +20,9 @@ return {
         },
       })
 
+      -- Load yanky extension
+      telescope.load_extension("yank_history")
+
       local builtin = require("telescope.builtin")
       vim.keymap.set("n", "<leader>ff", function()
         builtin.find_files({ hidden = true })
