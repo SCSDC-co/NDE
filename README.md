@@ -42,6 +42,8 @@ A personalized, comprehensive Neovim development environment optimized for syste
 - **AI Assistance:** Codeium integration for AI-powered completion
 - **Clipboard Management:** Yanky.nvim with history, cycling, and Telescope integration
 - **Text Manipulation:** nvim-surround with organized which-key shortcuts
+- **Markdown Rendering:** render-markdown.nvim for enhanced Markdown preview and display
+- **Code Playground:** code-playground.nvim for quick code experimentation and testing
 
 ### Advanced Development Features
 
@@ -52,6 +54,8 @@ A personalized, comprehensive Neovim development environment optimized for syste
 - **Quick Compilation:** Language-specific compile/run shortcuts (Python: F5, C++: F6, C: F7, ASM: F8)
 - **Intelligent Navigation:** Custom Neo-tree toggles, smooth window management
 - **Productivity Tools:** Comment toggling, trouble diagnostics, scroll indicators
+- **Enhanced Markdown:** Live rendering and preview with render-markdown.nvim
+- **Code Experimentation:** Integrated code playground for rapid prototyping and testing
 
 ## Installation
 
@@ -173,7 +177,7 @@ While Mason handles most installations automatically, you can manually install a
 | **Bash/Shell**            | bashls                    | shfmt          | shellcheck                | -           | -                | Complete |
 | **JSON**                  | jsonls                    | Prettier       | Built-in                  | -           | -                | Complete |
 | **YAML**                  | yamlls                    | Prettier       | Built-in                  | -           | -                | Complete |
-| **Markdown**              | marksman                  | Prettier       | Built-in                  | -           | -                | Complete |
+| **Markdown**              | marksman + render-markdown | Prettier       | Built-in                  | -           | -                | Complete |
 | **TOML**                  | taplo                     | Built-in       | Built-in                  | -           | -                | Complete |
 | **Docker**                | dockerls + docker_compose | Built-in       | Built-in                  | -           | -                | Complete |
 
@@ -222,7 +226,9 @@ While Mason handles most installations automatically, you can manually install a
         ├── 📄 treesitter.lua    # 🌳 Syntax highlighting + context
         ├── 📄 trouble.lua       # 🚨 Diagnostics panel
         ├── 📄 which-key.lua     # 🔑 Keybinding helper with organized groups
-        └── 📄 yanky.lua         # 📋 Clipboard manager with history
+        ├── 📄 yanky.lua         # 📋 Clipboard manager with history
+        ├── 📄 render-markdown.lua # 📝 Enhanced Markdown rendering and preview
+        └── 📄 playground.lua    # 🎮 Code playground for quick experimentation
 ```
 
 ## Usage
