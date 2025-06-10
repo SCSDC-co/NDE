@@ -56,6 +56,7 @@ A personalized, comprehensive Neovim development environment optimized for syste
 - **Productivity Tools:** Comment toggling, trouble diagnostics, scroll indicators
 - **Enhanced Markdown:** Live rendering and preview with render-markdown.nvim
 - **Code Experimentation:** Integrated code playground for rapid prototyping and testing
+- **Auto Save:** Auto save when leaving insert mode
 
 ## Installation
 
@@ -197,6 +198,7 @@ While Mason handles most installations automatically, you can manually install a
     ├── 📁 lazynvim/
     │   └── 📄 lazy.lua          # 📦 Lazy.nvim setup
     └── 📁 plugins/
+        ├── 📄 auto-save.lua     # 💾 Auto-save
         ├── 📄 autoformat.lua    # 🔧 Auto-formatting
         ├── 📄 autopairs.lua     # () Auto-pairs
         ├── 📄 autotag.lua       # 🏷️  HTML/XML auto-tagging
