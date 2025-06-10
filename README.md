@@ -24,7 +24,7 @@ A personalized, comprehensive Neovim development environment optimized for syste
 
 **Language Servers:** Pyright (Python), TypeScript/JavaScript (ts_ls), C/C++ (Clangd), C# (OmniSharp), Rust (rust_analyzer), Go (gopls), Java (jdtls), Lua (lua_ls), Assembly (asm_lsp), HTML, CSS, Tailwind CSS, Emmet, JSON, YAML, Markdown, TOML, Bash, Docker  
 **Code Formatters:** Black, isort, Prettier, Clang-format, stylua, shfmt  
-**Linters & Diagnostics:** mypy, shellcheck, ruff (Python), null-ls integration  
+**Linters & Diagnostics:** Native LSP diagnostics with nuclear duplicate prevention system, primary provider mapping
 **Debuggers:** Python DAP, C/C++ DAP, multi-language debug adapter support  
 **Development Utilities:** Ripgrep, fd-find, Lazygit, Tree, jq, built-in terminal
 

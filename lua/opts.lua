@@ -1,3 +1,15 @@
+-- Reduce logging noise
+vim.lsp.set_log_level("ERROR")
+
+-- Suppress excessive info messages
+local original_notify = vim.notify
+vim.notify = function(msg, level, opts)
+  if level == vim.log.levels.INFO and (string.find(msg, "LSP") or string.find(msg, "Configured") or string.find(msg, "loaded")) then
+    return  -- Suppress LSP info messages
+  end
+  original_notify(msg, level, opts)
+end
+
 vim.opt.clipboard = "unnamedplus"
 vim.g.mapleader = " "
 vim.opt.nu = true
@@ -37,10 +49,31 @@ vim.opt.cursorline = true
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#e6c384", bold = true })
 vim.api.nvim_set_hl(0, "LineNr", { fg = "#5e5c64" })
 
-vim.diagnostic.config({
-	virtual_text = true,
-	signs = true,
-	underline = true,
-	update_in_insert = false,
-	severity_sort = true,
+-- Diagnostic configuration is now handled in LSP plugin
+
+-- Diagnostic configuration is now completely handled in LSP plugin with nuclear approach
+
+-- Kill stuck LSP clients after 30 seconds of inactivity
+local lsp_timeout_timer = nil
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+	callback = function()
+		if lsp_timeout_timer then
+			lsp_timeout_timer:stop()
+			lsp_timeout_timer:close()
+		end
+		
+		lsp_timeout_timer = vim.loop.new_timer()
+		lsp_timeout_timer:start(30000, 0, function()  -- 30 seconds
+			-- Use the new API for Neovim 0.11+
+			local clients = vim.lsp.get_clients and vim.lsp.get_clients() or vim.lsp.get_active_clients()
+			for _, client in pairs(clients) do
+				if not client.is_stopped() then
+					vim.schedule(function()
+						vim.notify("LSP client " .. client.name .. " seems stuck, restarting...", vim.log.levels.WARN)
+						client.stop()
+					end)
+				end
+			end
+		end)
+	end,
 })
