@@ -192,9 +192,9 @@ While Mason handles most installations automatically, you can manually install a
 └── 📁 lua/
     ├── 📁 GUI/
     │   └── 📄 theme.lua               # 🎨 Kanagawa theme configuration
-    ├── 📄 keymaps.lua                 # ⌨️  Custom key mappings & language shortcuts
+    ├── 📄 keymaps.lua                 # ⌨️ Custom key mappings & language shortcuts
     ├── 📄 launch.lua                  # 🚀 Plugin loader
-    ├── 📄 opts.lua                    # ⚙️  Editor options
+    ├── 📄 opts.lua                    # ⚙️ Editor options
     ├── 📁 lazynvim/
     │   └── 📄 lazy.lua                # 📦 Lazy.nvim setup
     └── 📁 plugins/
@@ -212,7 +212,7 @@ While Mason handles most installations automatically, you can manually install a
         ├── 📄 debug.lua               # 🐛 Debug configuration
         ├── 📄 gitsigns.lua            # 📝 Git integration
         ├── 📄 highlight-colors.lua    # 🌈 Color highlighting
-        ├── 📄 indent-blankline.lua    # ┊ Indent guides
+        ├── 📄 indent-blankline.lua    #┊   Indent guides
         ├── 📄 java.lua                # ☕ Java LSP
         ├── 📄 lint.lua                # 🔍 Linting
         ├── 📄 lualine.lua             # 📊 Status line
@@ -220,7 +220,7 @@ While Mason handles most installations automatically, you can manually install a
         ├── 📄 neotree.lua             # 🌲 File explorer
         ├── 📄 noice.lua               # 💬 Enhanced UI notifications
         ├── 📄 null-ls.lua             # 🔧 Formatting & diagnostics engine
-        ├── 📄 oil.lua                 # 🛢️  Alternative file manager
+        ├── 📄 oil.lua                 # 🛢️ Alternative file manager
         ├── 📄 rainbow-delimiters.lua  # 🌈 Rainbow parentheses
         ├── 📄 rust-tools.lua          # 🦀 Enhanced Rust development
         ├── 📄 surround.lua            # 🔄 Text object manipulation
