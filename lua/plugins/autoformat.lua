@@ -6,11 +6,7 @@ return {
 		{
 			"<leader>f",
 			function()
-				require("conform").format({
-					async = true,
-					lsp_fallback = false,
-					timeout_ms = 500,
-				})
+				require("conform").format({ async = false, lsp_fallback = false })
 			end,
 			mode = "n",
 			desc = "Format buffer",
@@ -22,19 +18,19 @@ return {
 			python = { "black", "isort" },
 
 			-- JavaScript/TypeScript
-			javascript = { { "prettierd", "prettier" } },
-			typescript = { { "prettierd", "prettier" } },
-			javascriptreact = { { "prettierd", "prettier" } },
-			typescriptreact = { { "prettierd", "prettier" } },
+			javascript = { "prettierd", "prettier", stop_after_first = true },
+			typescript = { "prettierd", "prettier", stop_after_first = true },
+			javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+			typescriptreact = { "prettierd", "prettier", stop_after_first = true },
 
 			-- Web Technologies
-			html = { { "prettierd", "prettier" } },
-			css = { { "prettierd", "prettier" } },
-			scss = { { "prettierd", "prettier" } },
+			html = { "prettierd", "prettier", stop_after_first = true },
+			css = { "prettierd", "prettier", stop_after_first = true },
+			scss = { "prettierd", "prettier", stop_after_first = true },
 
 			-- C/C++
-			c = { "clang_format" },
-			cpp = { "clang_format" },
+			c = { "clang-format" },
+			cpp = { "clang-format" },
 
 			-- Other Languages
 			lua = { "stylua" },
@@ -43,16 +39,15 @@ return {
 			java = { "google-java-format" },
 
 			-- Data formats
-			json = { { "prettierd", "prettier" } },
-			yaml = { { "prettierd", "prettier" } },
-			markdown = { { "prettierd", "prettier" } },
+			json = { "prettierd", "prettier", stop_after_first = true },
+			yaml = { "prettierd", "prettier", stop_after_first = true },
+			markdown = { "prettierd", "prettier", stop_after_first = true },
 
 			-- Shell
 			sh = { "shfmt" },
 			bash = { "shfmt" },
 
-			-- Assembly
-			asm = { "asmfmt" },
+			-- Note: Assembly (asm) formatter not available
 		},
 
 		format_on_save = {
@@ -73,7 +68,7 @@ return {
 			stylua = {
 				prepend_args = { "--indent-type", "Tabs", "--indent-width", "4" },
 			},
-			clang_format = {
+			["clang-format"] = {
 				prepend_args = { "--style={IndentWidth: 4, UseTab: Always}" },
 			},
 			black = {
@@ -83,6 +78,10 @@ return {
 	},
 
 	config = function(_, opts)
+		-- Ensure Mason PATH is available for conform.nvim
+		local mason_bin = vim.fn.stdpath("data") .. "/mason/bin"
+		vim.env.PATH = mason_bin .. ":" .. vim.env.PATH
+		
 		require("conform").setup(opts)
 
 		-- Set filetype for assembly files

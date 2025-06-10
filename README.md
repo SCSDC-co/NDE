@@ -66,20 +66,23 @@ A meticulously crafted, enterprise-grade Neovim configuration featuring revoluti
 └── 🔩 Assembly        → asm_lsp (x86/x64 assembly)
 ```
 
-**Code Formatters:**
+**Code Formatters (Auto-installed via Mason):**
 ```
 ├── 🐍 Python    → Black (code formatting) + isort (import sorting)
-├── 🌐 Web       → Prettier (JS/TS/HTML/CSS/JSON/YAML/Markdown)
+├── 🌐 Web       → Prettier/Prettierd (JS/TS/HTML/CSS/JSON/YAML/Markdown)
 ├── 🔧 C/C++     → clang-format (LLVM code formatter)
 ├── 🌙 Lua       → stylua (Lua code formatter)
 ├── 🐚 Shell     → shfmt (shell script formatter)
-└── 🦀 Rust      → Built-in rustfmt integration
+├── ☕ Java      → google-java-format (Google's Java formatter)
+├── 🦀 Rust      → Built-in rustfmt integration
+└── 🐹 Go        → Built-in gofmt integration
 ```
 
 **Linters & Diagnostics:**
 - **Revolutionary Approach**: Native LSP diagnostics with nuclear duplicate prevention
 - **Primary Provider System**: One authoritative diagnostic source per language
-- **Real-time Validation**: Instant feedback with zero conflicts
+- **No Linter Conflicts**: Dedicated formatters only, LSP handles all diagnostics
+- **Mason Tool Installer**: Automatic formatter installation and management
 - **Smart Error Handling**: Robust diagnostic format validation
 
 **Debug Adapters:**
@@ -112,7 +115,7 @@ A meticulously crafted, enterprise-grade Neovim configuration featuring revoluti
 #### **Code Intelligence**
 - **🔤 nvim-cmp Completion**: Multi-source autocompletion with beautiful icons (λ, ⋗, Ω, 🖫, Π, 🖩, 😀, ✓)
 - **🌳 Treesitter Syntax**: Context-aware syntax highlighting for 40+ languages
-- **🔗 Auto-pairs**: Intelligent bracket and quote pairing with context awareness
+- **🔗 Auto-pairs**: nvim-autopairs with intelligent bracket/quote pairing and CMP integration
 - **🏷️ Auto-tags**: Smart HTML/XML tag completion and management
 - **💬 Smart Commenting**: Language-aware comment toggling with proper formatting
 
@@ -129,14 +132,14 @@ A meticulously crafted, enterprise-grade Neovim configuration featuring revoluti
 - **🌈 Visual Enhancements**: Rainbow delimiters, color highlighting, indent guides
 - **📝 Markdown Tools**: Live rendering and preview with render-markdown.nvim
 - **🎮 Code Playground**: Integrated experimentation environment for rapid prototyping
-- **💾 Auto-save**: Intelligent file saving when leaving insert mode
+- **💾 Auto-save**: Removed to prevent conflicts (format-on-save available instead)
 
 ### 🔬 **Advanced Development Features**
 
 #### **Intelligent Code Analysis**
 - **🔍 LSP Integration**: Full language server support with automatic installation via Mason
 - **🎯 Smart Diagnostics**: Revolutionary duplicate prevention with primary provider mapping
-- **🔧 Auto-formatting**: Language-specific formatting on save with conflict prevention
+- **🔧 Auto-formatting**: Language-specific formatting on save via conform.nvim with Mason Tool Installer
 - **⚡ Quick Actions**: Code actions, refactoring, and symbol navigation
 
 #### **Performance & Reliability**
@@ -180,8 +183,8 @@ A meticulously crafted, enterprise-grade Neovim configuration featuring revoluti
 ### Development Toolchain
 
 **Language Servers:** Pyright (Python), TypeScript/JavaScript (ts_ls), C/C++ (Clangd), C# (OmniSharp), Rust (rust_analyzer), Go (gopls), Java (jdtls), Lua (lua_ls), Assembly (asm_lsp), HTML, CSS, Tailwind CSS, Emmet, JSON, YAML, Markdown, TOML, Bash, Docker  
-**Code Formatters:** Black, isort, Prettier, Clang-format, stylua, shfmt  
-**Linters & Diagnostics:** Native LSP diagnostics with nuclear duplicate prevention system, primary provider mapping
+**Code Formatters:** Auto-installed via Mason Tool Installer - Black, isort, Prettier/Prettierd, Clang-format, stylua, shfmt, google-java-format  
+**Linters & Diagnostics:** Native LSP diagnostics only (no separate linters to prevent conflicts), primary provider mapping
 **Debuggers:** Python DAP, C/C++ DAP, multi-language debug adapter support  
 **Development Utilities:** Ripgrep, fd-find, Lazygit, Tree, jq, built-in terminal
 
@@ -206,7 +209,7 @@ A meticulously crafted, enterprise-grade Neovim configuration featuring revoluti
 
 - **LSP Integration:** Full language server support with automatic installation via Mason
 - **Debug Adapter Protocol:** Comprehensive debugging with DAP UI and virtual text
-- **Code Quality:** Automatic formatting on save via null-ls, linting integration
+- **Code Quality:** Automatic formatting on save via conform.nvim with Mason Tool Installer
 - **Plugin Management:** Lazy.nvim with performance optimization and lazy loading
 - **Quick Compilation:** Language-specific compile/run shortcuts (Python: F5, C++: F6, C: F7, ASM: F8)
 - **Intelligent Navigation:** Custom Neo-tree toggles, smooth window management
@@ -410,7 +413,7 @@ While Mason handles most installations automatically, you can manually install a
         ├── 📝 Text Editing
         ├── 📄 surround.lua            # 🔄 Advanced text object manipulation
         ├── 📄 comment.lua             # 💬 Intelligent commenting system
-        ├── 📄 blink-pairs.lua         # () Smart auto-pairs
+        ├── 📄 autopairs.lua           # () Smart auto-pairs with CMP integration
         ├── 📄 autotag.lua             # 🏷️ HTML/XML auto-tagging
         ├── 📄 yanky.lua               # 📋 Advanced clipboard management
         │
@@ -421,9 +424,9 @@ While Mason handles most installations automatically, you can manually install a
         ├── 📄 render-markdown.lua     # 📝 Live Markdown rendering
         │
         ├── 🔧 Code Quality
-        ├── 📄 autoformat.lua          # 🔧 Automatic code formatting
-        ├── 📄 lint.lua                # 🔍 Linting system (disabled for LSP)
-        ├── 📄 null-ls.lua             # 🔧 Formatting engine (disabled)
+        ├── 📄 autoformat.lua          # 🔧 conform.nvim with Mason Tool Installer
+        ├── 📄 lint.lua                # 🔍 Disabled to prevent LSP conflicts
+        ├── 📄 null-ls.lua             # 🔧 Disabled to prevent LSP conflicts
         ├── 📄 trouble.lua             # 🚨 Diagnostics & problem viewer
         ├── 📄 todo-comments.lua       # 📝 TODO/FIXME highlighting
         │
@@ -435,7 +438,7 @@ While Mason handles most installations automatically, you can manually install a
         │
         └── 🎯 Utilities
             ├── 📄 blink.lua           # 👀 Character toggle utilities
-            └── 📄 auto-save.lua       # 💾 Intelligent auto-save system
+            └── 📄 auto-save.lua       # 💾 Removed (was causing conflicts)
 ```
 
 ### 🔍 **Component Interaction Diagram**

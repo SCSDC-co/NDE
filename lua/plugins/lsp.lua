@@ -1,7 +1,3 @@
--- NUCLEAR APPROACH: Single diagnostic source only
-local diagnostic_namespace = vim.api.nvim_create_namespace("single_diagnostic")
-local active_diagnostics = {}
-
 return {
   -- Mason for LSP server management
   {
@@ -17,8 +13,7 @@ return {
             package_uninstalled = "✗",
           },
         },
-        log_level = vim.log.levels.ERROR,
-        max_concurrent_installers = 4,
+        PATH = "prepend", -- This ensures Mason tools are found first
       })
     end,
   },
@@ -48,6 +43,30 @@ return {
     end,
   },
 
+  -- Mason Tool Installer for formatters (used by conform.nvim)
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    dependencies = { "williamboman/mason.nvim" },
+    config = function()
+      require("mason-tool-installer").setup({
+        ensure_installed = {
+          -- Formatters only (no linters to avoid LSP conflicts)
+          "stylua",              -- Lua formatter
+          "black",               -- Python formatter
+          "isort",               -- Python import sorting
+          "prettier",            -- JS/TS/HTML/CSS/JSON/YAML/Markdown formatter
+          "prettierd",           -- Faster prettier daemon
+          "clang-format",        -- C/C++ formatter
+          "shfmt",               -- Shell script formatter
+          "google-java-format",  -- Java formatter
+        },
+        auto_update = false,
+        run_on_start = true,
+        start_delay = 3000,  -- 3 second delay after startup
+      })
+    end,
+  },
+
   -- LSP Config with NUCLEAR duplicate prevention
   {
     "neovim/nvim-lspconfig",
@@ -59,6 +78,9 @@ return {
       local lspconfig = require("lspconfig")
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
       capabilities.textDocument.completion.completionItem.snippetSupport = true
+      
+      -- Create diagnostic namespace
+      local diagnostic_namespace = vim.api.nvim_create_namespace("primary_diagnostics")
 
       -- COMPLETELY disable default diagnostic handling
       vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
@@ -164,7 +186,7 @@ return {
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopt)
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopt)
         vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopt)
-        vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopt)
+        -- Note: formatting handled by conform.nvim, not LSP
       end
 
       -- Setup servers
