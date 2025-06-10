@@ -161,25 +161,25 @@ While Mason handles most installations automatically, you can manually install a
 
 ## Language Support
 
-| Language                  | LSP Server                | Code Formatter | Linter/Diagnostics        | Debugger    | Quick Run        | Status   |
-| ------------------------- | ------------------------- | -------------- | ------------------------- | ----------- | ---------------- | -------- |
-| **Python**                | Pyright + ruff            | Black + isort  | mypy (conditional) + ruff | debugpy     | F5               | Complete |
-| **JavaScript/TypeScript** | ts_ls + eslint            | Prettier       | ESLint                    | DAP support | -                | Complete |
-| **C/C++**                 | Clangd                    | clang-format   | Built-in                  | DAP support | F6 (C++), F7 (C) | Complete |
-| **Rust**                  | rust_analyzer             | Built-in       | Built-in                  | DAP support | rust-tools       | Complete |
-| **Assembly**              | asm_lsp                   | -              | -                         | DAP support | F8 (NASM)        | Complete |
-| **C#**                    | OmniSharp                 | Built-in       | Built-in                  | DAP support | -                | Complete |
-| **Go**                    | gopls                     | Built-in       | Built-in                  | DAP support | -                | Complete |
-| **Java**                  | jdtls                     | Built-in       | Built-in                  | DAP support | -                | Complete |
-| **Lua**                   | lua_ls                    | stylua         | Built-in                  | -           | -                | Complete |
-| **HTML**                  | html + emmet_ls           | Prettier       | Built-in                  | -           | -                | Complete |
-| **CSS**                   | cssls + tailwindcss       | Prettier       | Built-in                  | -           | -                | Complete |
-| **Bash/Shell**            | bashls                    | shfmt          | shellcheck                | -           | -                | Complete |
-| **JSON**                  | jsonls                    | Prettier       | Built-in                  | -           | -                | Complete |
-| **YAML**                  | yamlls                    | Prettier       | Built-in                  | -           | -                | Complete |
+| Language                  | LSP Server                 | Code Formatter | Linter/Diagnostics        | Debugger    | Quick Run        | Status   |
+| ------------------------- | -------------------------- | -------------- | ------------------------- | ----------- | ---------------- | -------- |
+| **Python**                | Pyright + ruff             | Black + isort  | mypy (conditional) + ruff | debugpy     | F5               | Complete |
+| **JavaScript/TypeScript** | ts_ls + eslint             | Prettier       | ESLint                    | DAP support | -                | Complete |
+| **C/C++**                 | Clangd                     | clang-format   | Built-in                  | DAP support | F6 (C++), F7 (C) | Complete |
+| **Rust**                  | rust_analyzer              | Built-in       | Built-in                  | DAP support | rust-tools       | Complete |
+| **Assembly**              | asm_lsp                    | -              | -                         | DAP support | F8 (NASM)        | Complete |
+| **C#**                    | OmniSharp                  | Built-in       | Built-in                  | DAP support | -                | Complete |
+| **Go**                    | gopls                      | Built-in       | Built-in                  | DAP support | -                | Complete |
+| **Java**                  | jdtls                      | Built-in       | Built-in                  | DAP support | -                | Complete |
+| **Lua**                   | lua_ls                     | stylua         | Built-in                  | -           | -                | Complete |
+| **HTML**                  | html + emmet_ls            | Prettier       | Built-in                  | -           | -                | Complete |
+| **CSS**                   | cssls + tailwindcss        | Prettier       | Built-in                  | -           | -                | Complete |
+| **Bash/Shell**            | bashls                     | shfmt          | shellcheck                | -           | -                | Complete |
+| **JSON**                  | jsonls                     | Prettier       | Built-in                  | -           | -                | Complete |
+| **YAML**                  | yamlls                     | Prettier       | Built-in                  | -           | -                | Complete |
 | **Markdown**              | marksman + render-markdown | Prettier       | Built-in                  | -           | -                | Complete |
-| **TOML**                  | taplo                     | Built-in       | Built-in                  | -           | -                | Complete |
-| **Docker**                | dockerls + docker_compose | Built-in       | Built-in                  | -           | -                | Complete |
+| **TOML**                  | taplo                      | Built-in       | Built-in                  | -           | -                | Complete |
+| **Docker**                | dockerls + docker_compose  | Built-in       | Built-in                  | -           | -                | Complete |
 
 ## Configuration Architecture
 
@@ -210,6 +210,7 @@ While Mason handles most installations automatically, you can manually install a
         ├── 📄 gitsigns.lua      # 📝 Git integration
         ├── 📄 highlight-colors.lua # 🌈 Color highlighting
         ├── 📄 indent-blankline.lua # ┊ Indent guides
+        ├── 📄 java.lua          # ☕ Java LSP
         ├── 📄 lint.lua          # 🔍 Linting
         ├── 📄 lualine.lua       # 📊 Status line
         ├── 📄 mason.lua         # 🔨 LSP installer (15+ language servers)
