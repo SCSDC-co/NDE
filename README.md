@@ -235,6 +235,9 @@ git clone https://github.com/Sckab/NDE.git ~/.config/nvim && nvim
 - Git
 - Node.js and npm (for language servers)
 - Python 3 and pip (for language servers)
+- Go (for Go language server and development)
+- Rust toolchain via rustup (for Rust development and tools)
+- Lazygit (Git TUI - may be named differently on some distributions)
 - A Nerd Font (recommended for proper icon display)
 - Internet connection for downloading plugins
 
@@ -252,19 +255,27 @@ Make sure you have the required tools installed on your system:
 - **Arch Linux:**
 
   ```bash
-  sudo pacman -S neovim git nodejs npm python python-pip
+  sudo pacman -S neovim git nodejs npm python python-pip go rustup lazygit
+  # Initialize rustup after installation
+  rustup default stable
   ```
 
 - **Ubuntu/Debian:**
 
   ```bash
   sudo apt update
-  sudo apt install neovim git nodejs npm python3 python3-pip
+  sudo apt install neovim git nodejs npm python3 python3-pip golang-go rustup
+  # Initialize rustup after installation
+  rustup default stable
+  # Install lazygit (may need to use snap or build from source on older distributions)
+  sudo snap install lazygit  # or build from https://github.com/jesseduffield/lazygit
   ```
 
 - **macOS (with Homebrew):**
   ```bash
-  brew install neovim git node python
+  brew install neovim git node python go rustup-init lazygit
+  # Initialize rustup after installation
+  rustup-init
   ```
 
 **3. Launch Neovim:**
