@@ -211,6 +211,15 @@ return {
 			{ "<c-p>", desc = "📋 Yanky Previous Entry" },
 			{ "<c-n>", desc = "📋 Yanky Next Entry" },
 
+			{ "<leader>J", group = "☕ Java", buffer = bufnr },
+			{ "<leader>Jo", desc = "📦 Organize Imports", buffer = bufnr },
+			{ "<leader>Jv", desc = "🔧 Extract Variable", buffer = bufnr },
+			{ "<leader>Jc", desc = "📌 Extract Constant", buffer = bufnr },
+			{ "<leader>Jm", desc = "🔨 Extract Method", buffer = bufnr, mode = "v" },
+			{ "<leader>Jt", desc = "🧪 Test Nearest Method", buffer = bufnr },
+			{ "<leader>JT", desc = "🧪 Test Class", buffer = bufnr },
+			{ "<leader>Ju", desc = "🔄 Update Config", buffer = bufnr },
+
 			-- Note: Surround operations are now in <leader>s group
 		},
 	},

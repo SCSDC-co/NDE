@@ -132,6 +132,23 @@ return {
         },
       }
 
+      -- Java
+      dap.configurations.java = {
+        {
+          type = "java",
+          request = "attach",
+          name = "Debug (Attach) - Remote",
+          hostName = "127.0.0.1",
+          port = 5005,
+        },
+        {
+          type = "java",
+          request = "launch",
+          name = "Debug (Launch) - Current File",
+          mainClass = "${file}",
+        },
+      }
+
       -- Bash
       dap.adapters.bashdb = {
         type = "executable",
