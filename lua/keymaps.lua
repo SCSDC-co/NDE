@@ -4,9 +4,31 @@ local dapui = require("dapui")
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set("n", "<Leader>j", [[:call append(line("."), '')<CR>]], { desc = "Nuova riga sotto", noremap = true })
+-- Emergency fix for leader j/k mappings
+vim.keymap.set("n", "<space>j", function()
+	local current_line = vim.fn.line(".")
+	vim.fn.append(current_line, "")
+	vim.cmd("normal! j")
+end, { desc = "Nuova riga sotto", noremap = true, silent = true })
 
-vim.keymap.set("n", "<Leader>k", [[:call append(line(".") - 1, '')<CR>]], { desc = "Nuova riga sopra", noremap = true })
+vim.keymap.set("n", "<space>k", function()
+	local current_line = vim.fn.line(".")
+	vim.fn.append(current_line - 1, "")
+	vim.cmd("normal! k")
+end, { desc = "Nuova riga sopra", noremap = true, silent = true })
+
+-- Also set with <Leader> for compatibility
+vim.keymap.set("n", "<Leader>j", function()
+	local current_line = vim.fn.line(".")
+	vim.fn.append(current_line, "")
+	vim.cmd("normal! j")
+end, { desc = "Nuova riga sotto", noremap = true, silent = true })
+
+vim.keymap.set("n", "<Leader>k", function()
+	local current_line = vim.fn.line(".")
+	vim.fn.append(current_line - 1, "")
+	vim.cmd("normal! k")
+end, { desc = "Nuova riga sopra", noremap = true, silent = true })
 
 -- Neotree keymaps are now handled by which-key.lua to avoid conflicts
 
