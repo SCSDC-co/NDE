@@ -47,7 +47,6 @@ A meticulously crafted, enterprise-grade Neovim configuration featuring revoluti
 - **Performance First**: Optimized startup times with event-based initialization
 - **Automatic Updates**: Self-maintaining plugin ecosystem
 - **Dependency Resolution**: Smart plugin dependency management
-- **Lock File Support**: Reproducible environments across installations
 
 #### **Development Toolchain**
 
