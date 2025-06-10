@@ -186,53 +186,53 @@ While Mason handles most installations automatically, you can manually install a
 
 ```
 ~/.config/nvim/
-├── 📄 init.lua                 # Entry point
-├── 📄 LICENSE                  # MIT License
-├── 📄 README.md                # This file
+├── 📄 init.lua                        # Entry point
+├── 📄 LICENSE                         # MIT License
+├── 📄 README.md                       # This file
 └── 📁 lua/
     ├── 📁 GUI/
-    │   └── 📄 theme.lua         # 🎨 Kanagawa theme configuration
-    ├── 📄 keymaps.lua           # ⌨️  Custom key mappings & language shortcuts
-    ├── 📄 launch.lua            # 🚀 Plugin loader
-    ├── 📄 opts.lua              # ⚙️  Editor options
+    │   └── 📄 theme.lua               # 🎨 Kanagawa theme configuration
+    ├── 📄 keymaps.lua                 # ⌨️  Custom key mappings & language shortcuts
+    ├── 📄 launch.lua                  # 🚀 Plugin loader
+    ├── 📄 opts.lua                    # ⚙️  Editor options
     ├── 📁 lazynvim/
-    │   └── 📄 lazy.lua          # 📦 Lazy.nvim setup
+    │   └── 📄 lazy.lua                # 📦 Lazy.nvim setup
     └── 📁 plugins/
-        ├── 📄 auto-save.lua     # 💾 Auto-save
-        ├── 📄 autoformat.lua    # 🔧 Auto-formatting
-        ├── 📄 autotag.lua       # 🏷️ HTML/XML auto-tagging
-        ├── 📄 bufferline.lua    # 📑 Buffer tabs
-        ├── 📄 blink-pairs.lua     # () Auto-pairs
-        ├── 📄 blink.lua         # 👀 Blink config
-        ├── 📄 cmp.lua           # 🔤 Auto-completion with multiple sources
-        ├── 📄 codeium.lua       # 🤖 AI completion
-        ├── 📄 comment.lua       # 💬 Smart commenting
-        ├── 📄 dap.lua           # 🐛 Debug adapters
-        ├── 📄 dashboard.lua     # 📊 Start screen (Alpha)
-        ├── 📄 debug.lua         # 🐛 Debug configuration
-        ├── 📄 gitsigns.lua      # 📝 Git integration
-        ├── 📄 highlight-colors.lua # 🌈 Color highlighting
-        ├── 📄 indent-blankline.lua # ┊ Indent guides
-        ├── 📄 java.lua          # ☕ Java LSP
-        ├── 📄 lint.lua          # 🔍 Linting
-        ├── 📄 lualine.lua       # 📊 Status line
-        ├── 📄 mason.lua         # 🔨 LSP installer (15+ language servers)
-        ├── 📄 neotree.lua       # 🌲 File explorer
-        ├── 📄 noice.lua         # 💬 Enhanced UI notifications
-        ├── 📄 null-ls.lua       # 🔧 Formatting & diagnostics engine
-        ├── 📄 oil.lua           # 🛢️  Alternative file manager
-        ├── 📄 rainbow-delimiters.lua # 🌈 Rainbow parentheses
-        ├── 📄 rust-tools.lua    # 🦀 Enhanced Rust development
-        ├── 📄 surround.lua      # 🔄 Text object manipulation
-        ├── 📄 telescope.lua     # 🔭 Fuzzy finder
-        ├── 📄 todo-comments.lua # 📝 TODO/FIXME highlighting
-        ├── 📄 toggleterm.lua    # 💻 Terminal integration
-        ├── 📄 treesitter.lua    # 🌳 Syntax highlighting + context
-        ├── 📄 trouble.lua       # 🚨 Diagnostics panel
-        ├── 📄 which-key.lua     # 🔑 Keybinding helper with organized groups
-        ├── 📄 yanky.lua         # 📋 Clipboard manager with history
-        ├── 📄 render-markdown.lua # 📝 Enhanced Markdown rendering and preview
-        └── 📄 playground.lua    # 🎮 Code playground for quick experimentation
+        ├── 📄 auto-save.lua           # 💾 Auto-save
+        ├── 📄 autoformat.lua          # 🔧 Auto-formatting
+        ├── 📄 autotag.lua             # 🏷️ HTML/XML auto-tagging
+        ├── 📄 bufferline.lua          # 📑 Buffer tabs
+        ├── 📄 blink-pairs.lua         # () Auto-pairs
+        ├── 📄 blink.lua               # 👀 Blink config
+        ├── 📄 cmp.lua                 # 🔤 Auto-completion with multiple sources
+        ├── 📄 codeium.lua             # 🤖 AI completion
+        ├── 📄 comment.lua             # 💬 Smart commenting
+        ├── 📄 dap.lua                 # 🐛 Debug adapters
+        ├── 📄 dashboard.lua           # 📊 Start screen (Alpha)
+        ├── 📄 debug.lua               # 🐛 Debug configuration
+        ├── 📄 gitsigns.lua            # 📝 Git integration
+        ├── 📄 highlight-colors.lua    # 🌈 Color highlighting
+        ├── 📄 indent-blankline.lua    # ┊ Indent guides
+        ├── 📄 java.lua                # ☕ Java LSP
+        ├── 📄 lint.lua                # 🔍 Linting
+        ├── 📄 lualine.lua             # 📊 Status line
+        ├── 📄 mason.lua               # 🔨 LSP installer (15+ language servers)
+        ├── 📄 neotree.lua             # 🌲 File explorer
+        ├── 📄 noice.lua               # 💬 Enhanced UI notifications
+        ├── 📄 null-ls.lua             # 🔧 Formatting & diagnostics engine
+        ├── 📄 oil.lua                 # 🛢️  Alternative file manager
+        ├── 📄 rainbow-delimiters.lua  # 🌈 Rainbow parentheses
+        ├── 📄 rust-tools.lua          # 🦀 Enhanced Rust development
+        ├── 📄 surround.lua            # 🔄 Text object manipulation
+        ├── 📄 telescope.lua           # 🔭 Fuzzy finder
+        ├── 📄 todo-comments.lua       # 📝 TODO/FIXME highlighting
+        ├── 📄 toggleterm.lua          # 💻 Terminal integration
+        ├── 📄 treesitter.lua          # 🌳 Syntax highlighting + context
+        ├── 📄 trouble.lua             # 🚨 Diagnostics panel
+        ├── 📄 which-key.lua           # 🔑 Keybinding helper with organized groups
+        ├── 📄 yanky.lua               # 📋 Clipboard manager with history
+        ├── 📄 render-markdown.lua     # 📝 Enhanced Markdown rendering and preview
+        └── 📄 playground.lua          # 🎮 Code playground for quick experimentation
 ```
 
 ## Usage
