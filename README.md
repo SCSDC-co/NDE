@@ -201,8 +201,9 @@ While Mason handles most installations automatically, you can manually install a
         ├── 📄 auto-save.lua     # 💾 Auto-save
         ├── 📄 autoformat.lua    # 🔧 Auto-formatting
         ├── 📄 autopairs.lua     # () Auto-pairs
-        ├── 📄 autotag.lua       # 🏷️  HTML/XML auto-tagging
+        ├── 📄 autotag.lua       # 🏷️ HTML/XML auto-tagging
         ├── 📄 bufferline.lua    # 📑 Buffer tabs
+        ├── 📄 blink.lua         # 👀 Blink config
         ├── 📄 cmp.lua           # 🔤 Auto-completion with multiple sources
         ├── 📄 codeium.lua       # 🤖 AI completion
         ├── 📄 comment.lua       # 💬 Smart commenting
@@ -318,6 +319,8 @@ The system will automatically:
 | `<C-h/j/k/l>` | Window Navigation | Move between windows (works in terminal too) |
 | `<C-Space>`   | Completion        | Trigger auto-completion                      |
 | `<leader>f`   | Format Code       | Format current file                          |
+| `<leader>B;`  | Insert ; eol      | Insert semicolon at the end of the line      |
+| `<leader>B,`  | Insert , eol      | Insert comma at the end of the line          |
 
 #### Others
 

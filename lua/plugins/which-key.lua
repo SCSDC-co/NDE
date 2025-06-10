@@ -220,7 +220,10 @@ return {
 			{ "<leader>JT", desc = "🧪 Test Class", buffer = bufnr },
 			{ "<leader>Ju", desc = "🔄 Update Config", buffer = bufnr },
 
-			-- Note: Surround operations are now in <leader>s group
+			-- Blink
+			{ "<leader>B", group = "👀 Blink" },
+			{ "<leader>B;", "<cmd>lua require('blink.chartoggle').toggle_char_eol(';')<cr>", desc = "Toggle ; at eol" },
+			{ "<leader>B,", "<cmd>lua require('blink.chartoggle').toggle_char_eol(',')<cr>", desc = "Toggle , at eol" },
 		},
 	},
 

@@ -6,7 +6,7 @@ return {
 				trigger_events = { "InsertLeave" },
 				execution_message = {
 					message = function()
-						return ("💾 " .. vim.fn.strftime("%H:%M:%S"))
+						return ("💾 Auto Save: " .. vim.fn.strftime("%H:%M:%S"))
 					end,
 				},
 			})
