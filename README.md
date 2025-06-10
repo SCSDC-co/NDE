@@ -200,9 +200,9 @@ While Mason handles most installations automatically, you can manually install a
     └── 📁 plugins/
         ├── 📄 auto-save.lua     # 💾 Auto-save
         ├── 📄 autoformat.lua    # 🔧 Auto-formatting
-        ├── 📄 autopairs.lua     # () Auto-pairs
         ├── 📄 autotag.lua       # 🏷️ HTML/XML auto-tagging
         ├── 📄 bufferline.lua    # 📑 Buffer tabs
+        ├── 📄 blink-pairs.lua     # () Auto-pairs
         ├── 📄 blink.lua         # 👀 Blink config
         ├── 📄 cmp.lua           # 🔤 Auto-completion with multiple sources
         ├── 📄 codeium.lua       # 🤖 AI completion
