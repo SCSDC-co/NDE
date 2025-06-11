@@ -207,16 +207,41 @@ return {
         jsonls = {},
         yamlls = {},
         html = {},
-        cssls = {},
+        cssls = {
+          settings = {
+            css = {
+              validate = true,
+              lint = {
+                unknownAtRules = "ignore"
+              }
+            },
+            scss = {
+              validate = true,
+              lint = {
+                unknownAtRules = "ignore"
+              }
+            },
+            less = {
+              validate = true,
+              lint = {
+                unknownAtRules = "ignore"
+              }
+            }
+          }
+        },
         bashls = {},
         marksman = {},
       }
 
+      -- Setup servers with duplicate prevention
       for server, config in pairs(servers) do
-        lspconfig[server].setup(vim.tbl_extend("force", {
-          capabilities = capabilities,
-          on_attach = on_attach,
-        }, config))
+        -- Check if server is already configured to prevent duplicates
+        if not lspconfig[server].manager then
+          lspconfig[server].setup(vim.tbl_extend("force", {
+            capabilities = capabilities,
+            on_attach = on_attach,
+          }, config))
+        end
       end
     end,
   },

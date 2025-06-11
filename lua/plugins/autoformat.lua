@@ -51,17 +51,14 @@ return {
 		},
 
 		format_on_save = {
-			timeout_ms = 500,
-			lsp_fallback = false,
+			timeout_ms = 1000,
+			lsp_fallback = true,  -- Allow LSP fallback if prettier fails
+			quiet = false,  -- Show errors if formatting fails
 		},
 
 		formatters = {
-			prettierd = {
-				prepend_args = { "--tab-width", "4", "--use-tabs", "true" },
-			},
-			prettier = {
-				prepend_args = { "--tab-width", "4", "--use-tabs", "true" },
-			},
+			-- prettierd and prettier will use their default configurations
+			-- They will look for .prettierrc files in the project root automatically
 			shfmt = {
 				prepend_args = { "-i", "4", "-ci", "-bn" },
 			},

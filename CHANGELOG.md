@@ -5,6 +5,26 @@ All notable changes to the NDE (Neovim Development Environment) project will be 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### 🔧 **Configuration Improvements**
+
+#### **Prettier/Prettierd Refactoring**
+- **Simplified** Prettier configuration to use standard project-based discovery
+- **Enhanced** Project compatibility by allowing per-project .prettierrc files
+- **Improved** Format reliability by using default prettierd behavior
+
+#### **LSP Enhancements**
+- **Added** CSS/SCSS/Less language server configuration with unknown at-rules ignored
+- **Fixed** Potential LSP server duplication with manager check
+- **Improved** Format timeout from 500ms to 1000ms for better reliability
+- **Added** LSP fallback support when prettier formatting fails
+- **Enhanced** Error visibility with quiet mode disabled
+
+### 🗑️ **Cleanup**
+- **Cleaned** Hardcoded prettier arguments from formatter configuration
+- **Streamlined** Configuration to follow standard prettier conventions
+
 ## [1.0.0] - 2024-12-11
 
 ### 🎉 **OFFICIAL RELEASE - The Ultimate Neovim Development Environment**
