@@ -5,6 +5,42 @@ All notable changes to the NDE (Neovim Development Environment) project will be 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] - 2025-06-11
+
+### 🔧 **Formatter Enhancements & Optimization**
+
+#### **Formatter Configuration Overhaul**
+
+- **Removed** Aggressive LSP timeout logic that was unnecessarily restarting healthy clients
+- **Fixed** LSP client stability - eliminated "LSP client seems stuck, restarting..." warnings
+- **Enhanced** clang-format configuration with proper `TabWidth: 4` for consistent C/C++ indentation
+- **Optimized** All formatters for proper tab/space handling:
+  - **clang-format**: `IndentWidth: 4` + `UseTab: Always` + `TabWidth: 4` + `ColumnLimit: 0`
+  - **stylua**: `--indent-type Tabs` + `--indent-width 4` + `--column-width 999999`
+  - **shfmt**: `-i 0` (uses tabs) + `-ci` + `-bn` + `-s`
+  - **black**: `--fast` + `--line-length 999999` + `--skip-string-normalization`
+
+#### **Formatter Simplification**
+
+- **Removed** prettier from configuration - now uses only prettierd for consistency
+- **Preserved** prettierd default length limits (as requested for web development)
+- **Eliminated** length limits for all other formatters (stylua, clang-format, black, shfmt)
+
+#### **Code Quality Improvements**
+
+- **Fixed** Inconsistent indentation issues in C/C++ files
+- **Verified** All formatters working correctly with complex nested code structures
+- **Ensured** Language-appropriate indentation standards:
+  - **Tabs**: C/C++, Lua, Shell scripts (4-space width)
+  - **Spaces**: Python (PEP 8 standard), JavaScript/TypeScript/JSON (prettierd defaults)
+
+### 🗑️ **Cleanup & Stability**
+
+- **Removed** Problematic LSP timeout timer causing false "stuck client" warnings
+- **Cleaned** Redundant prettier configuration entries
+- **Streamlined** Formatter setup for better maintainability
+- **Validated** All formatters with comprehensive testing suite
+
 ## [1.0.1] - 2025-06-12
 
 ### 🔧 **Configuration Improvements**

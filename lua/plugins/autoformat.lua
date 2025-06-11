@@ -18,15 +18,15 @@ return {
 			python = { "black", "isort" },
 
 			-- JavaScript/TypeScript
-			javascript = { "prettierd", "prettier", stop_after_first = true },
-			typescript = { "prettierd", "prettier", stop_after_first = true },
-			javascriptreact = { "prettierd", "prettier", stop_after_first = true },
-			typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+			javascript = { "prettierd" },
+			typescript = { "prettierd" },
+			javascriptreact = { "prettierd" },
+			typescriptreact = { "prettierd" },
 
 			-- Web Technologies
-			html = { "prettierd", "prettier", stop_after_first = true },
-			css = { "prettierd", "prettier", stop_after_first = true },
-			scss = { "prettierd", "prettier", stop_after_first = true },
+			html = { "prettierd" },
+			css = { "prettierd" },
+			scss = { "prettierd" },
 
 			-- C/C++
 			c = { "clang-format" },
@@ -39,9 +39,9 @@ return {
 			java = { "google-java-format" },
 
 			-- Data formats
-			json = { "prettierd", "prettier", stop_after_first = true },
-			yaml = { "prettierd", "prettier", stop_after_first = true },
-			markdown = { "prettierd", "prettier", stop_after_first = true },
+			json = { "prettierd" },
+			yaml = { "prettierd" },
+			markdown = { "prettierd" },
 
 			-- Shell
 			sh = { "shfmt" },
@@ -57,19 +57,19 @@ return {
 		},
 
 		formatters = {
-			-- prettierd and prettier will use their default configurations
-			-- They will look for .prettierrc files in the project root automatically
+			-- prettierd will use its default configuration and look for .prettierrc files
+			-- (keeps default length limits)
 			shfmt = {
-				prepend_args = { "-i", "4", "-ci", "-bn" },
+				prepend_args = { "-i", "0", "-ci", "-bn", "-s" },  -- -i 0 uses tabs, -s for simplify code
 			},
 			stylua = {
-				prepend_args = { "--indent-type", "Tabs", "--indent-width", "4" },
+				prepend_args = { "--indent-type", "Tabs", "--indent-width", "4", "--column-width", "999999" },
 			},
 			["clang-format"] = {
-				prepend_args = { "--style={IndentWidth: 4, UseTab: Always}" },
+				prepend_args = { "--style={IndentWidth: 4, UseTab: Always, TabWidth: 4, ColumnLimit: 0}" },
 			},
 			black = {
-				prepend_args = { "--fast" },
+				prepend_args = { "--fast", "--line-length", "999999", "--skip-string-normalization" },
 			},
 		},
 	},
