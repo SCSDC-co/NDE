@@ -1,0 +1,52 @@
+name: Feature Request
+description: Suggest an enhancement or new feature for this Neovim configuration.
+title: "[Feature] <short description>"
+labels: [enhancement]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Thank you for your interest in improving NDE!
+        Please fill out this form to describe your feature idea.
+  - type: input
+    id: summary
+    attributes:
+      label: Summary of the feature
+      description: Briefly describe the feature or enhancement.
+      placeholder: "e.g., Add Kanagawa theme integration"
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this feature solve?
+      description: Describe the problem or use-case for this feature.
+      placeholder: "e.g., Improve color scheme consistency for dark mode."
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe your proposed solution or approach.
+      placeholder: "e.g., Install kanagawa.nvim and update colorscheme logic."
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: List any alternatives you've considered or tried.
+      placeholder: "e.g., Tried other colorschemes or plugin managers."
+    validations:
+      required: false
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional context or screenshots
+      description: Add any other context or images about the feature request.
+      placeholder: "Add screenshots, links, or references."
+    validations:
+      required: false
+

@@ -1,0 +1,67 @@
+name: Bug Report
+description: Report a reproducible bug or problem with this Neovim configuration.
+title: "[Bug] <short description>"
+labels: [bug]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Thank you for reporting a bug!
+        Please fill out all relevant sections to help us troubleshoot more efficiently.
+  - type: input
+    id: summary
+    attributes:
+      label: Summary of the bug
+      description: Briefly describe the bug.
+      placeholder: "e.g., LSP not attaching to Lua files"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Provide step-by-step instructions to reproduce the bug.
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What did you expect to happen?
+      placeholder: "e.g., LSP should attach and provide diagnostics"
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: What actually happened? Include error messages, if any.
+      placeholder: "e.g., No diagnostics shown, error message in :messages"
+    validations:
+      required: true
+  - type: textarea
+    id: config
+    attributes:
+      label: Configuration details
+      description: Provide relevant details: Neovim version, OS, plugins involved, and any custom config related to the bug.
+      placeholder: |
+        - Neovim version:
+        - OS:
+        - Plugins involved:
+        - Relevant config snippets:
+    validations:
+      required: false
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional context or screenshots
+      description: Add screenshots, logs, or any other context that might help.
+      placeholder: "Paste images or logs here."
+    validations:
+      required: false
+
