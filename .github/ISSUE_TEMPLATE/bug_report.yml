@@ -48,7 +48,7 @@ body:
     id: config
     attributes:
       label: Configuration details
-      description: Provide relevant details: Neovim version, OS, plugins involved, and any custom config related to the bug.
+      description: "Provide relevant details: Neovim version, OS, plugins involved, and any custom config related to the bug."
       placeholder: |
         - Neovim version:
         - OS:
