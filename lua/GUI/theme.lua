@@ -20,6 +20,7 @@ kanagawa.setup({
 			DiagnosticSignHint = { bg = "#181616" },
 			VertSplit = { fg = "#0D0C0C", bg = "#0D0C0C" },
 			WinSeparator = { fg = "#0D0C0C", bg = "#0D0C0C" },
+			SatelliteBar = { bg = "#8BA4B0" },
 		}
 	end,
 })

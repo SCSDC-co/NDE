@@ -43,8 +43,9 @@ _One-key compilation and execution for multiple languages_
 _Kanagawa Dragon theme integrated across every component_
 
 - **Consistent Visual Language**: Every UI element follows the same color palette
-- **Custom Component Styling**: Hand-crafted colors for diagnostics, git signs, and separators
-- **Professional Appearance**: Enterprise-ready visual design
+- **Custom Component Styling**: Hand-crafted colors for diagnostics, git signs, separators, and smart scrollbars
+- **Satellite Integration**: Themed scrollbar with visual indicators for enhanced navigation
+- **Professional Appearance**: Enterprise-ready visual design with smooth animations
 
 ### 🏗️ **Core Architecture**
 
@@ -124,6 +125,8 @@ _Kanagawa Dragon theme integrated across every component_
 - **🌲 Neo-tree File Explorer**: Intelligent file management with context-aware actions
 - **🗝️ Which-key Integration**: Real-time keybinding discovery and learning system
 - **📑 Buffer Management**: Smart tab system with close controls and visual indicators
+- **📊 Satellite Scrollbar**: Visual buffer navigation with real-time diagnostic and git indicators
+- **🪟 Smart-splits**: Intelligent window management with tmux integration and intuitive resizing
 
 #### **Code Intelligence**
 
@@ -145,10 +148,11 @@ _Kanagawa Dragon theme integrated across every component_
 
 - **📋 Yanky Clipboard**: Advanced clipboard management with history and Telescope integration
 - **🔄 nvim-surround**: Powerful text object manipulation with organized shortcuts
+- **🔍 nvim-spectre**: Project-wide search and replace with live preview and regex support
+- **🎬 Mini.animate**: Smooth animations for cursor movement, scrolling, and window operations
 - **🌈 Visual Enhancements**: Rainbow delimiters, color highlighting, indent guides
 - **📝 Markdown Tools**: Live rendering and preview with render-markdown.nvim
 - **🎮 Code Playground**: Integrated experimentation environment for rapid prototyping
-- **💾 Auto-save**: Removed to prevent conflicts (format-on-save available instead)
 
 ### 🔬 **Advanced Development Features**
 
@@ -548,11 +552,14 @@ When you first launch Neovim after installation:
 | `<Leader>fg` | **Content Search**        | Live grep across entire project       | Ripgrep integration    |
 | `<Leader>fb` | **Buffer List**           | Show all open buffers with preview    | Buffer management      |
 | `<Leader>fh` | **Help Search**           | Search Neovim help documentation      | Learning & reference   |
-| `<Leader>fp` | **Clipboard History**     | Access yanky clipboard history        | Productivity           |
-| `<Leader>e`  | **File Explorer (Root)**  | Toggle Neo-tree from project root     | Project navigation     |
-| `<Leader>n`  | **File Explorer (Local)** | Smart Neo-tree with context switching | Local navigation       |
-| `<Leader>bc` | **Close Buffer**          | Close current buffer safely           | Buffer management      |
-| `<Leader>bo` | **Close Others**          | Close all buffers except current      | Workspace cleanup      |
+| `<leader>fp` | **Clipboard History**     | Access yanky clipboard history        | Productivity           |
+| `<leader>fR` | **Find & Replace (Spectre)** | Project-wide search and replace with live preview | Advanced search |
+| `<leader>fw` | **Find & Replace Word**   | Search and replace current word/selection | Quick editing |
+| `<leader>fc` | **Find & Replace in File** | Search and replace within current file only | File-specific |
+| `<leader>e`  | **File Explorer (Root)**  | Toggle Neo-tree from project root     | Project navigation     |
+| `<leader>n`  | **File Explorer (Local)** | Smart Neo-tree with context switching | Local navigation       |
+| `<leader>bc` | **Close Buffer**          | Close current buffer safely           | Buffer management      |
+| `<leader>bo` | **Close Others**          | Close all buffers except current      | Workspace cleanup      |
 
 #### 🚀 **Language-Specific Development**
 
@@ -605,6 +612,15 @@ When you first launch Neovim after installation:
 | `<Leader>rn` | **Rename Symbol**       | Intelligent symbol renaming   | Project-wide      |
 | `<Leader>ca` | **Code Actions**        | Show available code actions   | Context-aware     |
 | `gr`         | **Go to References**    | Find all symbol references    | Cross-file search |
+
+#### 🪟 **Smart Window Management**
+
+| Keybinding     | Action                    | Function                          | Smart Features        |
+| -------------- | ------------------------- | --------------------------------- | --------------------- |
+| `Ctrl+h/j/k/l`    | **Smart Navigation**      | Move between windows intelligently | Tmux integration      |
+| `Alt+h/j/k/l`     | **Resize Windows**        | Intuitive window resizing         | Real-time feedback    |
+| `Ctrl+Arrows`  | **Resize (Alternative)**  | Arrow key window resizing         | Ergonomic option      |
+| `<leader>Wh/j/k/l` | **Swap Windows**         | Move windows around splits        | Buffer preservation   |
 
 #### 🔧 **Terminal & Git Integration**
 
