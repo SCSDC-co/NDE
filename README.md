@@ -19,23 +19,29 @@ A meticulously crafted, enterprise-grade Neovim configuration featuring revoluti
 
 ### 🚀 **Breakthrough Innovations**
 
-#### 🔬 **Nuclear Diagnostic System** 
-*The world's first zero-duplicate diagnostic engine*
+#### 🔬 **Nuclear Diagnostic System**
+
+_The world's first zero-duplicate diagnostic engine_
+
 - **Intelligent Primary Provider Mapping**: Automatically designates one authoritative diagnostic source per language
 - **Real-time Conflict Resolution**: Eliminates diagnostic duplicates at the LSP handler level
 - **Modern API Integration**: Uses latest Neovim diagnostic system with zero deprecated warnings
 - **Performance Optimized**: Minimal overhead with maximum reliability
 
 #### ⚡ **Instant Code Execution Engine**
-*One-key compilation and execution for multiple languages*
+
+_One-key compilation and execution for multiple languages_
+
 - **F5**: Python → Instant execution in vertical terminal
 - **F6**: C++ → Compile with g++ and execute
-- **F7**: C → Compile with Clang and execute  
+- **F7**: C → Compile with Clang and execute
 - **F8**: Assembly → Assemble with NASM, link with LD, execute
 - **Smart File Detection**: Automatic language recognition and appropriate toolchain selection
 
 #### 🎨 **Unified Theme Architecture**
-*Kanagawa Dragon theme integrated across every component*
+
+_Kanagawa Dragon theme integrated across every component_
+
 - **Consistent Visual Language**: Every UI element follows the same color palette
 - **Custom Component Styling**: Hand-crafted colors for diagnostics, git signs, and separators
 - **Professional Appearance**: Enterprise-ready visual design
@@ -43,6 +49,7 @@ A meticulously crafted, enterprise-grade Neovim configuration featuring revoluti
 ### 🏗️ **Core Architecture**
 
 #### **Plugin Management**
+
 - **Lazy.nvim**: Modern plugin management with intelligent lazy loading
 - **Performance First**: Optimized startup times with event-based initialization
 - **Automatic Updates**: Self-maintaining plugin ecosystem
@@ -51,6 +58,7 @@ A meticulously crafted, enterprise-grade Neovim configuration featuring revoluti
 #### **Development Toolchain**
 
 **Language Servers (Mason-managed):**
+
 ```
 ├── 🐍 Python          → Pyright (type checking, intellisense)
 ├── 🦀 Rust            → rust_analyzer (comprehensive Rust support)
@@ -67,6 +75,7 @@ A meticulously crafted, enterprise-grade Neovim configuration featuring revoluti
 ```
 
 **Code Formatters (Auto-installed via Mason):**
+
 ```
 ├── 🐍 Python    → Black (code formatting) + isort (import sorting)
 ├── 🌐 Web       → Prettier/Prettierd (JS/TS/HTML/CSS/JSON/YAML/Markdown)
@@ -79,6 +88,7 @@ A meticulously crafted, enterprise-grade Neovim configuration featuring revoluti
 ```
 
 **Linters & Diagnostics:**
+
 - **Revolutionary Approach**: Native LSP diagnostics with nuclear duplicate prevention
 - **Primary Provider System**: One authoritative diagnostic source per language
 - **No Linter Conflicts**: Dedicated formatters only, LSP handles all diagnostics
@@ -86,6 +96,7 @@ A meticulously crafted, enterprise-grade Neovim configuration featuring revoluti
 - **Smart Error Handling**: Robust diagnostic format validation
 
 **Debug Adapters:**
+
 ```
 ├── 🐍 Python    → debugpy (Python Debug Adapter)
 ├── 🔧 C/C++     → DAP support via Mason
@@ -95,6 +106,7 @@ A meticulously crafted, enterprise-grade Neovim configuration featuring revoluti
 ```
 
 **Development Utilities:**
+
 ```
 ├── 🔍 Search     → ripgrep (ultra-fast text search)
 ├── 📁 Files      → fd-find (modern file finder)
@@ -107,12 +119,14 @@ A meticulously crafted, enterprise-grade Neovim configuration featuring revoluti
 ### 🎯 **User Interface & Experience**
 
 #### **Navigation & Discovery**
+
 - **🔭 Telescope Fuzzy Finder**: Lightning-fast file and content search with custom styling
 - **🌲 Neo-tree File Explorer**: Intelligent file management with context-aware actions
 - **🗝️ Which-key Integration**: Real-time keybinding discovery and learning system
 - **📑 Buffer Management**: Smart tab system with close controls and visual indicators
 
 #### **Code Intelligence**
+
 - **🔤 nvim-cmp Completion**: Multi-source autocompletion with beautiful icons (λ, ⋗, Ω, 🖫, Π, 🖩, 😀, ✓)
 - **🌳 Treesitter Syntax**: Context-aware syntax highlighting for 40+ languages
 - **🔗 Auto-pairs**: nvim-autopairs with intelligent bracket/quote pairing and CMP integration
@@ -120,6 +134,7 @@ A meticulously crafted, enterprise-grade Neovim configuration featuring revoluti
 - **💬 Smart Commenting**: Language-aware comment toggling with proper formatting
 
 #### **Development Workflow**
+
 - **💻 ToggleTerm Integration**: Seamless terminal integration with custom shortcuts
 - **📝 Git Integration**: Gitsigns for inline Git status + Lazygit for advanced operations
 - **📊 Status & UI**: Lualine status bar + Bufferline tabs + Noice enhanced notifications
@@ -127,6 +142,7 @@ A meticulously crafted, enterprise-grade Neovim configuration featuring revoluti
 - **🤖 AI Assistance**: Codeium integration for intelligent code completion
 
 #### **Productivity Tools**
+
 - **📋 Yanky Clipboard**: Advanced clipboard management with history and Telescope integration
 - **🔄 nvim-surround**: Powerful text object manipulation with organized shortcuts
 - **🌈 Visual Enhancements**: Rainbow delimiters, color highlighting, indent guides
@@ -137,18 +153,21 @@ A meticulously crafted, enterprise-grade Neovim configuration featuring revoluti
 ### 🔬 **Advanced Development Features**
 
 #### **Intelligent Code Analysis**
+
 - **🔍 LSP Integration**: Full language server support with automatic installation via Mason
 - **🎯 Smart Diagnostics**: Revolutionary duplicate prevention with primary provider mapping
 - **🔧 Auto-formatting**: Language-specific formatting on save via conform.nvim with Mason Tool Installer
 - **⚡ Quick Actions**: Code actions, refactoring, and symbol navigation
 
 #### **Performance & Reliability**
+
 - **🚀 Lazy Loading**: Plugin-specific performance optimization
 - **⏱️ LSP Timeout Management**: Automatic stuck client detection and recovery
 - **💡 Smart Notifications**: Filtered logging system preventing information overload
 - **🔄 Automatic Recovery**: Self-healing configuration with graceful error handling
 
 #### **Developer Experience**
+
 - **🎨 Consistent Theming**: Unified Kanagawa Dragon theme across all components
 - **⌨️ Intuitive Keybindings**: Logical, memorable shortcuts with clear descriptions
 - **📚 Contextual Help**: Integrated help system with searchable documentation
@@ -319,7 +338,7 @@ While Mason handles most installations automatically, you can manually install a
 | Component Type            | Tools                                                                                                                                                                                                                 | Languages Supported                                                                                                                    |
 | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | **Language Servers**      | pyright, ruff, ts_ls, eslint, clangd, rust_analyzer, omnisharp, gopls, jdtls, lua_ls, asm_lsp, bashls, html, cssls, tailwindcss, emmet_ls, jsonls, yamlls, marksman, taplo, dockerls, docker_compose_language_service | Python, JavaScript/TypeScript, C/C++, Rust, C#, Go, Java, Lua, Assembly, Bash, HTML, CSS, Tailwind, JSON, YAML, Markdown, TOML, Docker |
-| **Code Formatters**       | Black, isort, Prettierd, Clang-format, stylua, shfmt                                                                                                                                                                   | Python, Web technologies, C/C++, Lua, Shell scripts            |
+| **Code Formatters**       | Black, isort, Prettierd, Clang-format, stylua, shfmt                                                                                                                                                                  | Python, Web technologies, C/C++, Lua, Shell scripts                                                                                    |
 | **Linters & Diagnostics** | mypy, shellcheck, ruff, null-ls integration                                                                                                                                                                           | Python, Shell scripts, with conditional mypy support                                                                                   |
 | **Debuggers**             | Python DAP, C/C++ DAP, Mason DAP adapters                                                                                                                                                                             | Python, C/C++, with extensible DAP support                                                                                             |
 
@@ -365,8 +384,9 @@ While Mason handles most installations automatically, you can manually install a
 ## 🏗️ **Advanced Configuration Architecture**
 
 ### 📊 **Project Statistics**
+
 - **Total Configuration Size**: 2,850+ lines of carefully crafted Lua code
-- **Plugin Count**: 39+ professionally selected and configured plugins  
+- **Plugin Count**: 39+ professionally selected and configured plugins
 - **Language Support**: 15+ programming languages with full toolchain integration
 - **Configuration Files**: 44 modular files for maximum maintainability
 - **Performance**: Enhanced startup time with intelligent lazy loading and optimizations
@@ -465,20 +485,20 @@ graph TD
     B --> D[lazy.lua]
     B --> E[theme.lua]
     B --> F[keymaps.lua]
-    
+
     D --> G[Plugin Ecosystem]
     G --> H[LSP System]
     G --> I[UI Components]
     G --> J[Development Tools]
-    
+
     H --> K[Nuclear Diagnostics]
     H --> L[Language Servers]
     H --> M[Auto-completion]
-    
+
     I --> N[Telescope]
     I --> O[Neo-tree]
     I --> P[Which-key]
-    
+
     J --> Q[Debug Adapters]
     J --> R[Terminal Integration]
     J --> S[Git Tools]
@@ -486,14 +506,14 @@ graph TD
 
 ### 🎯 **Performance Metrics**
 
-| Metric | Value | Optimization |
-|--------|-------|-------------|
-| **Startup Time** | <200ms | Lazy loading + smart caching |
-| **Memory Usage** | <50MB | Efficient plugin management |
-| **Plugin Load** | Event-based | Conditional loading |
-| **LSP Response** | <10ms | Nuclear diagnostic system |
-| **File Search** | <5ms | Ripgrep integration |
-| **Code Completion** | Real-time | Optimized nvim-cmp |
+| Metric              | Value       | Optimization                 |
+| ------------------- | ----------- | ---------------------------- |
+| **Startup Time**    | <200ms      | Lazy loading + smart caching |
+| **Memory Usage**    | <50MB       | Efficient plugin management  |
+| **Plugin Load**     | Event-based | Conditional loading          |
+| **LSP Response**    | <10ms       | Nuclear diagnostic system    |
+| **File Search**     | <5ms        | Ripgrep integration          |
+| **Code Completion** | Real-time   | Optimized nvim-cmp           |
 
 ## Configuration Architecture
 
@@ -521,91 +541,101 @@ When you first launch Neovim after installation:
 ### ⌨️ **Complete Keybinding Reference**
 
 #### 🔍 **File Navigation & Management**
-| Keybinding | Action | Description | Context |
-|------------|--------|-------------|----------|
-| `<Leader>ff` | **File Search** | Search all files with live preview | Telescope fuzzy finder |
-| `<Leader>fg` | **Content Search** | Live grep across entire project | Ripgrep integration |
-| `<Leader>fb` | **Buffer List** | Show all open buffers with preview | Buffer management |
-| `<Leader>fh` | **Help Search** | Search Neovim help documentation | Learning & reference |
-| `<Leader>fp` | **Clipboard History** | Access yanky clipboard history | Productivity |
-| `<Leader>e` | **File Explorer (Root)** | Toggle Neo-tree from project root | Project navigation |
-| `<Leader>n` | **File Explorer (Local)** | Smart Neo-tree with context switching | Local navigation |
-| `<Leader>bc` | **Close Buffer** | Close current buffer safely | Buffer management |
-| `<Leader>bo` | **Close Others** | Close all buffers except current | Workspace cleanup |
+
+| Keybinding   | Action                    | Description                           | Context                |
+| ------------ | ------------------------- | ------------------------------------- | ---------------------- |
+| `<Leader>ff` | **File Search**           | Search all files with live preview    | Telescope fuzzy finder |
+| `<Leader>fg` | **Content Search**        | Live grep across entire project       | Ripgrep integration    |
+| `<Leader>fb` | **Buffer List**           | Show all open buffers with preview    | Buffer management      |
+| `<Leader>fh` | **Help Search**           | Search Neovim help documentation      | Learning & reference   |
+| `<Leader>fp` | **Clipboard History**     | Access yanky clipboard history        | Productivity           |
+| `<Leader>e`  | **File Explorer (Root)**  | Toggle Neo-tree from project root     | Project navigation     |
+| `<Leader>n`  | **File Explorer (Local)** | Smart Neo-tree with context switching | Local navigation       |
+| `<Leader>bc` | **Close Buffer**          | Close current buffer safely           | Buffer management      |
+| `<Leader>bo` | **Close Others**          | Close all buffers except current      | Workspace cleanup      |
 
 #### 🚀 **Language-Specific Development**
-| Keybinding | Language | Action | Terminal Output |
-|------------|----------|--------|-----------------|
-| `<F5>` | **🐍 Python** | Save → Execute in vertical terminal | `python3 "file.py"` |
-| `<F6>` | **⚡ C++** | Save → Compile with g++ → Execute | `g++ "file.cpp" -o "executable" && ./executable` |
-| `<F7>` | **🔧 C** | Save → Compile with Clang → Execute | `clang "file.c" -o "executable" && ./executable` |
-| `<F8>` | **🔩 Assembly** | Save → Assemble → Link → Execute | `nasm -f elf64 && ld && ./executable` |
-| `<F9>` | **Any** | Add parentheses around word | `ysiw()` surround operation |
-| `<F10>` | **Any** | Add quotes around word | `ysiw"` surround operation |
+
+| Keybinding | Language        | Action                              | Terminal Output                                  |
+| ---------- | --------------- | ----------------------------------- | ------------------------------------------------ |
+| `<F5>`     | **🐍 Python**   | Save → Execute in vertical terminal | `python3 "file.py"`                              |
+| `<F6>`     | **⚡ C++**      | Save → Compile with g++ → Execute   | `g++ "file.cpp" -o "executable" && ./executable` |
+| `<F7>`     | **🔧 C**        | Save → Compile with Clang → Execute | `clang "file.c" -o "executable" && ./executable` |
+| `<F8>`     | **🔩 Assembly** | Save → Assemble → Link → Execute    | `nasm -f elf64 && ld && ./executable`            |
+| `<F9>`     | **Any**         | Add parentheses around word         | `ysiw()` surround operation                      |
+| `<F10>`    | **Any**         | Add quotes around word              | `ysiw"` surround operation                       |
 
 #### 🐛 **Debugging Controls**
-| Keybinding | Action | Function | DAP Integration |
-|------------|--------|----------|------------------|
-| `<F1>` | **Toggle Breakpoint** | Set/remove breakpoint at cursor | Visual indicator |
-| `<F2>` | **Continue** | Resume program execution | Full DAP support |
-| `<F3>` | **Step Into** | Step into function calls | Variable inspection |
-| `<F4>` | **Step Over** | Execute current line | Scope awareness |
-| `<Leader>du` | **Toggle DAP UI** | Show/hide debug interface | Visual debugging |
+
+| Keybinding   | Action                | Function                        | DAP Integration     |
+| ------------ | --------------------- | ------------------------------- | ------------------- |
+| `<F1>`       | **Toggle Breakpoint** | Set/remove breakpoint at cursor | Visual indicator    |
+| `<F2>`       | **Continue**          | Resume program execution        | Full DAP support    |
+| `<F3>`       | **Step Into**         | Step into function calls        | Variable inspection |
+| `<F4>`       | **Step Over**         | Execute current line            | Scope awareness     |
+| `<Leader>du` | **Toggle DAP UI**     | Show/hide debug interface       | Visual debugging    |
 
 #### 📋 **Advanced Clipboard Management (Yanky)**
-| Keybinding | Action | Behavior | Integration |
-|------------|--------|----------|-------------|
-| `<Leader>fp` | **History Picker** | Open Telescope clipboard browser | Visual selection |
-| `p` | **Smart Paste After** | Enhanced paste with history | Context-aware |
-| `P` | **Smart Paste Before** | Enhanced paste before cursor | Position-aware |
-| `<C-p>` | **Previous Entry** | Cycle to previous clipboard item | Post-paste cycling |
-| `<C-n>` | **Next Entry** | Cycle to next clipboard item | Post-paste cycling |
+
+| Keybinding   | Action                 | Behavior                         | Integration        |
+| ------------ | ---------------------- | -------------------------------- | ------------------ |
+| `<Leader>fp` | **History Picker**     | Open Telescope clipboard browser | Visual selection   |
+| `p`          | **Smart Paste After**  | Enhanced paste with history      | Context-aware      |
+| `P`          | **Smart Paste Before** | Enhanced paste before cursor     | Position-aware     |
+| `<C-p>`      | **Previous Entry**     | Cycle to previous clipboard item | Post-paste cycling |
+| `<C-n>`      | **Next Entry**         | Cycle to next clipboard item     | Post-paste cycling |
 
 #### 🔄 **Text Manipulation (Surround)**
-| Operation | Keybinding | Example | Result |
-|-----------|------------|---------|--------|
-| **Add Surround** | `<Leader>sa` → `ys{motion}{char}` | `ysiw"` on `word` | `"word"` |
-| **Change Surround** | `<Leader>sc` → `cs{old}{new}` | `cs'"` on `'text'` | `"text"` |
-| **Delete Surround** | `<Leader>sd` → `ds{char}` | `ds"` on `"text"` | `text` |
-| **Visual Mode** | Select → `S{char}` | Select text → `S)` | `(selected text)` |
+
+| Operation           | Keybinding                        | Example            | Result            |
+| ------------------- | --------------------------------- | ------------------ | ----------------- |
+| **Add Surround**    | `<Leader>sa` → `ys{motion}{char}` | `ysiw"` on `word`  | `"word"`          |
+| **Change Surround** | `<Leader>sc` → `cs{old}{new}`     | `cs'"` on `'text'` | `"text"`          |
+| **Delete Surround** | `<Leader>sd` → `ds{char}`         | `ds"` on `"text"`  | `text`            |
+| **Visual Mode**     | Select → `S{char}`                | Select text → `S)` | `(selected text)` |
 
 #### 🎯 **Code Intelligence**
-| Keybinding | LSP Action | Function | Availability |
-|------------|------------|----------|-------------|
-| `gd` | **Go to Definition** | Navigate to symbol definition | All LSP languages |
-| `K` | **Hover Documentation** | Show symbol information | Context-sensitive |
-| `<C-k>` | **Signature Help** | Show function signature | Function calls |
-| `<Leader>f` | **Format Document** | Auto-format current file | Language-specific |
-| `<Leader>rn` | **Rename Symbol** | Intelligent symbol renaming | Project-wide |
-| `<Leader>ca` | **Code Actions** | Show available code actions | Context-aware |
-| `gr` | **Go to References** | Find all symbol references | Cross-file search |
+
+| Keybinding   | LSP Action              | Function                      | Availability      |
+| ------------ | ----------------------- | ----------------------------- | ----------------- |
+| `gd`         | **Go to Definition**    | Navigate to symbol definition | All LSP languages |
+| `K`          | **Hover Documentation** | Show symbol information       | Context-sensitive |
+| `<C-k>`      | **Signature Help**      | Show function signature       | Function calls    |
+| `<Leader>f`  | **Format Document**     | Auto-format current file      | Language-specific |
+| `<Leader>rn` | **Rename Symbol**       | Intelligent symbol renaming   | Project-wide      |
+| `<Leader>ca` | **Code Actions**        | Show available code actions   | Context-aware     |
+| `gr`         | **Go to References**    | Find all symbol references    | Cross-file search |
 
 #### 🔧 **Terminal & Git Integration**
-| Keybinding | Tool | Action | Interface |
-|------------|------|--------|------------|
-| `<F11>` | **Lazygit** | Open Git interface in terminal | Full-screen TUI |
-| `<F12>` | **ToggleTerm** | Open terminal on right side | Vertical split |
-| `<C-h/j/k/l>` | **Window Nav** | Navigate between panes | Works in terminal |
-| Git signs | **Automatic** | Show changes in sign column | Real-time updates |
+
+| Keybinding    | Tool           | Action                         | Interface         |
+| ------------- | -------------- | ------------------------------ | ----------------- |
+| `<F11>`       | **Lazygit**    | Open Git interface in terminal | Full-screen TUI   |
+| `<F12>`       | **ToggleTerm** | Open terminal on right side    | Vertical split    |
+| `<C-h/j/k/l>` | **Window Nav** | Navigate between panes         | Works in terminal |
+| Git signs     | **Automatic**  | Show changes in sign column    | Real-time updates |
 
 #### 🎨 **Character Utilities (Blink)**
-| Keybinding | Function | Behavior | Use Case |
-|------------|----------|----------|----------|
+
+| Keybinding   | Function             | Behavior                   | Use Case        |
+| ------------ | -------------------- | -------------------------- | --------------- |
 | `<Leader>B;` | **Toggle Semicolon** | Add/remove `;` at line end | Code formatting |
-| `<Leader>B,` | **Toggle Comma** | Add/remove `,` at line end | List formatting |
+| `<Leader>B,` | **Toggle Comma**     | Add/remove `,` at line end | List formatting |
 
 #### 📝 **Text Editing Helpers**
-| Keybinding | Action | Behavior | Context |
-|------------|--------|----------|----------|
-| `<Leader>j` | **Insert Line Below** | Add empty line after cursor | Any mode |
-| `<Leader>k` | **Insert Line Above** | Add empty line before cursor | Any mode |
-| `<C-Space>` | **Trigger Completion** | Force completion menu | Insert mode |
-| `/` → `<CR>` | **Search** | Enhanced search with Telescope | Search mode |
-| `:` | **Command Mode** | Command palette with completion | Command mode |
+
+| Keybinding   | Action                 | Behavior                        | Context      |
+| ------------ | ---------------------- | ------------------------------- | ------------ |
+| `<Leader>j`  | **Insert Line Below**  | Add empty line after cursor     | Any mode     |
+| `<Leader>k`  | **Insert Line Above**  | Add empty line before cursor    | Any mode     |
+| `<C-Space>`  | **Trigger Completion** | Force completion menu           | Insert mode  |
+| `/` → `<CR>` | **Search**             | Enhanced search with Telescope  | Search mode  |
+| `:`          | **Command Mode**       | Command palette with completion | Command mode |
 
 ### 🎛️ **Administrative Commands**
 
 #### **Plugin Management**
+
 ```vim
 :Lazy                 " Plugin manager interface
 :Lazy sync            " Update all plugins
@@ -615,6 +645,7 @@ When you first launch Neovim after installation:
 ```
 
 #### **LSP Management**
+
 ```vim
 :Mason                " LSP server manager
 :MasonInstall <server>" Install specific language server
@@ -625,6 +656,7 @@ When you first launch Neovim after installation:
 ```
 
 #### **Development Tools**
+
 ```vim
 :Telescope            " Open Telescope picker
 :Neotree              " File explorer commands
@@ -635,6 +667,7 @@ When you first launch Neovim after installation:
 ```
 
 #### **Diagnostic Commands**
+
 ```vim
 :lua vim.diagnostic.open_float()  " Show diagnostic details
 :lua vim.diagnostic.goto_next()   " Next diagnostic
@@ -645,6 +678,7 @@ When you first launch Neovim after installation:
 ### 🚀 **Advanced Workflows**
 
 #### **🐍 Python Development Workflow**
+
 1. Open Python file → `<Leader>ff` → `main.py`
 2. Write code with intelligent completion
 3. Press `<F5>` for instant execution
@@ -652,6 +686,7 @@ When you first launch Neovim after installation:
 5. `<Leader>f` to format code with Black
 
 #### **🦀 Rust Development Workflow**
+
 1. Open Rust project → `:Neotree`
 2. Navigate to `src/main.rs`
 3. Use `rust-analyzer` for intelligent features
@@ -659,6 +694,7 @@ When you first launch Neovim after installation:
 5. Debug with integrated DAP support
 
 #### **🌐 Web Development Workflow**
+
 1. Open project → `<Leader>e`
 2. Navigate between HTML/CSS/JS files
 3. Use Emmet for rapid HTML development
@@ -666,6 +702,7 @@ When you first launch Neovim after installation:
 5. Live preview in browser
 
 #### **🔧 C/C++ Development Workflow**
+
 1. Create/open `.cpp` or `.c` file
 2. Write code with Clangd assistance
 3. `<F6>` (C++) or `<F7>` (C) for compile & run
@@ -675,6 +712,7 @@ When you first launch Neovim after installation:
 ### 📊 **Productivity Tips & Tricks**
 
 #### **🔥 Pro Tips**
+
 - **Multiple Cursors**: Use visual selection + surround for batch editing
 - **Quick Navigation**: `<Leader>ff` → type partial filename → instant open
 - **Smart Search**: `<Leader>fg` → search for any text across entire project
@@ -682,6 +720,7 @@ When you first launch Neovim after installation:
 - **Terminal Workflow**: `<F12>` for quick terminal, `<F11>` for git operations
 
 #### **🎯 Efficiency Hacks**
+
 - Use Which-key (`<Space>`) to discover new commands
 - Leverage clipboard history (`<Leader>fp`) for copy-paste workflows
 - Master surround operations for rapid text manipulation
@@ -777,30 +816,30 @@ The system will automatically:
 
 #### Others
 
-| Keybinding | Function        | Description                                     |
-| ---------- | --------------- | ----------------------------------------------- |
-| `<F11>`    | Open Lazygit    | Open Lazygit in toggleterm                      |
-|| `<F12>`    | Open Toggleterm | Open toggleterm at the right side of the screen |
-|| `s`        | Leap Forward    | Jump to location with 2 characters (leap.nvim)  |
-|| `S`        | Leap Backward   | Jump backwards with 2 characters (leap.nvim)    |
-|| `gs`       | Leap Windows    | Jump across windows (leap.nvim)                 |
-|| `<leader>;`| Symbol Picker   | Interactive symbol picker in winbar (dropbar)   |
-|| `[;`       | Context Start   | Go to start of current context (dropbar)        |
-|| `];`       | Next Context    | Select next context (dropbar)                   |
+| Keybinding  | Function        | Description                                     |
+| ----------- | --------------- | ----------------------------------------------- |
+| `<F11>`     | Open Lazygit    | Open Lazygit in toggleterm                      |
+| `<F12>`     | Open Toggleterm | Open toggleterm at the right side of the screen |
+| `s`         | Leap Forward    | Jump to location with 2 characters (leap.nvim)  |
+| `S`         | Leap Backward   | Jump backwards with 2 characters (leap.nvim)    |
+| `gs`        | Leap Windows    | Jump across windows (leap.nvim)                 |
+| `<leader>;` | Symbol Picker   | Interactive symbol picker in winbar (dropbar)   |
+| `[;`        | Context Start   | Go to start of current context (dropbar)        |
+| `];`        | Next Context    | Select next context (dropbar)                   |
 
 ### Administrative Commands
 
-| Command          | Purpose           | Usage                                   |
-| ---------------- | ----------------- | --------------------------------------- |
-| `:Lazy`          | Plugin Management | Install, update, and manage plugins     |
-| `:Mason`         | LSP Management    | Install and configure language servers  |
-| `:Telescope`     | Fuzzy Finder      | Advanced file and content search        |
-| `:Neotree`       | File Explorer     | Navigate project structure              |
-| `:Trouble`       | Diagnostics Panel | Show workspace diagnostics and errors   |
-| `:TodoTelescope` | TODO Search       | Find TODO/FIXME comments across project |
-| `:DapUIToggle`   | Debug Interface   | Toggle debugging interface              |
-|| `:ToggleTerm`    | Terminal          | Open/close integrated terminal          |
-|| `:ZenMode`       | Focus Mode        | Toggle distraction-free coding environment |
+| Command          | Purpose           | Usage                                      |
+| ---------------- | ----------------- | ------------------------------------------ |
+| `:Lazy`          | Plugin Management | Install, update, and manage plugins        |
+| `:Mason`         | LSP Management    | Install and configure language servers     |
+| `:Telescope`     | Fuzzy Finder      | Advanced file and content search           |
+| `:Neotree`       | File Explorer     | Navigate project structure                 |
+| `:Trouble`       | Diagnostics Panel | Show workspace diagnostics and errors      |
+| `:TodoTelescope` | TODO Search       | Find TODO/FIXME comments across project    |
+| `:DapUIToggle`   | Debug Interface   | Toggle debugging interface                 |
+| `:ToggleTerm`    | Terminal          | Open/close integrated terminal             |
+| `:ZenMode`       | Focus Mode        | Toggle distraction-free coding environment |
 
 ## 🎨 **Advanced Customization Guide**
 
@@ -811,7 +850,9 @@ This configuration is built with extensibility as a core principle. Every compon
 ### 📝 **Customization Levels**
 
 #### 🟢 **Beginner Level** - Simple Tweaks
-#### 🟡 **Intermediate Level** - Feature Additions  
+
+#### 🟡 **Intermediate Level** - Feature Additions
+
 #### 🔴 **Advanced Level** - Architectural Changes
 
 ---
@@ -821,6 +862,7 @@ This configuration is built with extensibility as a core principle. Every compon
 #### **🎨 Theme & Appearance**
 
 **Changing Color Scheme:**
+
 ```lua
 -- In lua/GUI/theme.lua
 kanagawa.setup({
@@ -831,6 +873,7 @@ kanagawa.setup({
 ```
 
 **Custom Highlight Colors:**
+
 ```lua
 -- In lua/GUI/theme.lua, add to overrides function
 overrides = function(colors)
@@ -844,6 +887,7 @@ end
 ```
 
 **Status Line Customization:**
+
 ```lua
 -- In lua/plugins/lualine.lua
 sections = {
@@ -859,6 +903,7 @@ sections = {
 #### **⌨️ Keybinding Modifications**
 
 **Adding New Keybindings:**
+
 ```lua
 -- In lua/keymaps.lua
 vim.keymap.set("n", "<Leader>cc", function()
@@ -868,6 +913,7 @@ end, { desc = "My custom command" })
 ```
 
 **Modifying Existing Shortcuts:**
+
 ```lua
 -- Change F5 Python execution
 vim.keymap.set("n", "<F5>", function()
@@ -882,6 +928,7 @@ end, { desc = "Run Python with specific version" })
 #### **📁 File Explorer Settings**
 
 **Neo-tree Customization:**
+
 ```lua
 -- In lua/plugins/neotree.lua
 require("neo-tree").setup({
@@ -905,6 +952,7 @@ require("neo-tree").setup({
 #### **🔌 Adding New Plugins**
 
 **Creating a New Plugin Configuration:**
+
 ```lua
 -- Create lua/plugins/my-plugin.lua
 return {
@@ -920,11 +968,12 @@ return {
 ```
 
 **Adding Language Support:**
+
 ```lua
 -- In lua/plugins/lsp.lua, add to servers table
 servers = {
   -- Existing servers...
-  
+
   -- New language server
   kotlin_language_server = {
     settings = {
@@ -941,6 +990,7 @@ servers = {
 ```
 
 **Custom Completion Sources:**
+
 ```lua
 -- In lua/plugins/cmp.lua, add to sources
 sources = cmp.config.sources({
@@ -954,6 +1004,7 @@ sources = cmp.config.sources({
 #### **🎯 Custom Development Workflows**
 
 **Adding Language-Specific Commands:**
+
 ```lua
 -- In lua/keymaps.lua
 -- Go development workflow
@@ -977,6 +1028,7 @@ end, { desc = "Docker build" })
 ```
 
 **Custom Telescope Pickers:**
+
 ```lua
 -- In lua/plugins/telescope.lua
 local pickers = require("telescope.pickers")
@@ -1000,6 +1052,7 @@ end, { desc = "Custom picker" })
 #### **🧠 Advanced LSP Configurations**
 
 **Custom LSP Handler:**
+
 ```lua
 -- In lua/plugins/lsp.lua
 -- Custom hover handler with enhanced formatting
@@ -1016,7 +1069,7 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
 vim.lsp.handlers["$/progress"] = function(_, result, ctx)
   local client = vim.lsp.get_client_by_id(ctx.client_id)
   local value = result.value
-  
+
   if value.kind == "end" then
     vim.notify(
       string.format("✅ %s: %s", client.name, value.title),
@@ -1027,6 +1080,7 @@ end
 ```
 
 **Multi-Root Workspace Support:**
+
 ```lua
 -- Enhanced workspace management
 local function setup_workspace()
@@ -1042,6 +1096,7 @@ end
 #### **🔧 Performance Optimization**
 
 **Custom Lazy Loading:**
+
 ```lua
 -- In individual plugin files
 return {
@@ -1062,6 +1117,7 @@ return {
 ```
 
 **Memory Management:**
+
 ```lua
 -- In lua/opts.lua
 -- Advanced memory optimization
@@ -1084,6 +1140,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 #### **🎨 Custom UI Components**
 
 **Enhanced Which-key Groups:**
+
 ```lua
 -- In lua/plugins/which-key.lua
 local wk = require("which-key")
@@ -1106,6 +1163,7 @@ wk.register({
 ```
 
 **Custom Statusline Components:**
+
 ```lua
 -- In lua/plugins/lualine.lua
 local function lsp_status()
@@ -1113,7 +1171,7 @@ local function lsp_status()
   if #clients == 0 then
     return "No LSP"
   end
-  
+
   local names = {}
   for _, client in pairs(clients) do
     table.insert(names, client.name)
@@ -1130,6 +1188,7 @@ end
 ### 🛠️ **Configuration Best Practices**
 
 #### **📝 Documentation Standards**
+
 ```lua
 -- Always document your customizations
 -- File: lua/plugins/my-custom-plugin.lua
@@ -1139,7 +1198,7 @@ end
   Dependencies: telescope.nvim, plenary.nvim
   Author: Your Name
   Last Updated: 2024-01-10
-  
+
   Configuration Notes:
   - Uses custom keybindings in <Leader>m namespace
   - Integrates with existing Telescope setup
@@ -1152,6 +1211,7 @@ return {
 ```
 
 #### **🧪 Testing Your Changes**
+
 ```lua
 -- Create a test configuration
 -- File: lua/config-test.lua
@@ -1173,6 +1233,7 @@ test_keybinding("<F5>", "Python execution")
 ```
 
 #### **🔄 Version Control for Configs**
+
 ```bash
 # Create a branch for your customizations
 git checkout -b my-customizations
@@ -1192,6 +1253,7 @@ git rebase upstream/main
 #### **Common Issues & Solutions**
 
 **Plugin Not Loading:**
+
 ```lua
 -- Debug plugin loading
 vim.api.nvim_create_user_command("DebugPlugins", function()
@@ -1203,6 +1265,7 @@ end, {})
 ```
 
 **LSP Server Issues:**
+
 ```lua
 -- Debug LSP setup
 vim.api.nvim_create_user_command("DebugLSP", function()
@@ -1219,6 +1282,7 @@ end, {})
 ```
 
 **Performance Issues:**
+
 ```lua
 -- Profile startup time
 vim.api.nvim_create_user_command("ProfileStartup", function()
@@ -1379,14 +1443,14 @@ This project is licensed under the [MIT License](LICENSE).
 
 ### 📊 **Success Metrics**
 
-| Metric | Achievement |
-|--------|-------------|
-| **Startup Time** | Sub-200ms cold start |
-| **Plugin Count** | 36+ carefully curated |
-| **Language Support** | 15+ with full toolchains |
-| **Documentation** | 100% coverage |
-| **User Satisfaction** | Professional grade |
-| **Maintenance** | Self-optimizing |
+| Metric                | Achievement              |
+| --------------------- | ------------------------ |
+| **Startup Time**      | Sub-200ms cold start     |
+| **Plugin Count**      | 36+ carefully curated    |
+| **Language Support**  | 15+ with full toolchains |
+| **Documentation**     | 100% coverage            |
+| **User Satisfaction** | Professional grade       |
+| **Maintenance**       | Self-optimizing          |
 
 ### 🤝 **Community & Support**
 
