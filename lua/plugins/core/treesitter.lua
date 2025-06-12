@@ -34,6 +34,13 @@ return {
         highlight = { 
           enable = true,
           additional_vim_regex_highlighting = false,
+          disable = function(lang, buf)
+            local max_filesize = 100 * 1024 -- 100 KB
+            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+            if ok and stats and stats.size > max_filesize then
+              return true
+            end
+          end,
         },
         indent = { enable = true },
         incremental_selection = {
@@ -44,11 +51,18 @@ return {
             scope_incremental = "<S-CR>",
             node_decremental = "<BS>",
           },
+          disable = function(lang, buf)
+            local max_filesize = 100 * 1024 -- 100 KB
+            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+            if ok and stats and stats.size > max_filesize then
+              return true
+            end
+          end,
         },
         textobjects = {
           select = {
             enable = true,
-            lookahead = true,
+            lookahead = false,  -- Disable lookahead for performance
             keymaps = {
               ["af"] = "@function.outer",
               ["if"] = "@function.inner",
@@ -62,12 +76,12 @@ return {
           },
         },
         fold = {
-          enable = true,
+          enable = false,  -- Disable treesitter folding for performance, handled in opts.lua
         },
 
         playground = {
-          enable = true,
-          updatetime = 25,
+          enable = false,  -- Disable by default, only enable when needed
+          updatetime = 100,  -- Slower updates
           persist_queries = false,
         },
       })

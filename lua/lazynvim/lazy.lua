@@ -12,8 +12,27 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+   -- Theme with high priority
    { "rebelot/kanagawa.nvim", priority = 1000 },
+   
+   -- Import all organized plugins
    { import = "plugins" },
+   
+   -- Additional dependencies
    { "nvim-neotest/nvim-nio" },
+   
+   -- Lazy.nvim configuration
    checker = { enabled = true },
+   change_detection = { notify = false },
+   performance = {
+     rtp = {
+       disabled_plugins = {
+         "gzip",
+         "tarPlugin",
+         "tohtml",
+         "tutor",
+         "zipPlugin",
+       },
+     },
+   },
 })

@@ -365,11 +365,11 @@ While Mason handles most installations automatically, you can manually install a
 ## 🏗️ **Advanced Configuration Architecture**
 
 ### 📊 **Project Statistics**
-- **Total Configuration Size**: 2,801+ lines of carefully crafted Lua code
-- **Plugin Count**: 36+ professionally selected and configured plugins  
+- **Total Configuration Size**: 2,850+ lines of carefully crafted Lua code
+- **Plugin Count**: 39+ professionally selected and configured plugins  
 - **Language Support**: 15+ programming languages with full toolchain integration
-- **Configuration Files**: 41 modular files for maximum maintainability
-- **Performance**: Optimized startup time with intelligent lazy loading
+- **Configuration Files**: 44 modular files for maximum maintainability
+- **Performance**: Enhanced startup time with intelligent lazy loading and optimizations
 
 ### 🎯 **Design Philosophy**
 
@@ -390,66 +390,70 @@ While Mason handles most installations automatically, you can manually install a
     ├── 📁 GUI/                        # 🎨 User Interface Components
     │   └── 📄 theme.lua               # 🌈 Kanagawa Dragon theme with custom overrides
     │
-    ├── 📄 keymaps.lua                 # ⌨️ Global keybindings & language-specific shortcuts
-    ├── 📄 launch.lua                  # 🏁 Orchestrated startup sequence
-    ├── 📄 opts.lua                    # ⚙️ Core editor options & performance settings
+    ├── 📄 keymaps.lua                  #  ⌨️ Global keybindings & language-specific shortcuts
+    ├── 📄 launch.lua                   # 🏁 Orchestrated startup sequence
+    ├── 📄 opts.lua                     # ⚙️ Core editor options & performance settings
     │
-    ├── 📁 lazynvim/                   # 📦 Plugin Management
-    │   └── 📄 lazy.lua                # 🔄 Lazy.nvim configuration & plugin loader
+    ├── 📁 lazynvim/                    # 📦 Plugin Management
+    │   └── 📄 lazy.lua                 # 🔄 Lazy.nvim configuration & plugin loader
     │
-    └── 📁 plugins/                    # 🔌 Plugin Ecosystem (36+ plugins)
+    └── 📁 plugins/                     # 🔌 Plugin Ecosystem (39+ plugins)
+        ├── 📄 init.lua                 # 🚀 Plugin loader for organized directories
         │
-        ├── 🎯 Core Development
-        ├── 📄 lsp.lua                 # 🧠 Revolutionary LSP with nuclear diagnostic system
-        ├── 📄 cmp.lua                 # 🔤 Beautiful auto-completion (nvim-cmp)
-        ├── 📄 treesitter.lua          # 🌳 Advanced syntax highlighting (40+ languages)
-        ├── 📄 mason.lua               # 🔨 Automatic LSP server installation
+        ├── 📁 core/                    # 🧠 Core Functionality
+        │   ├── 📄 treesitter.lua       # 🌳 Syntax highlighting & code understanding
+        │   ├── 📄 which-key.lua        # ⌨️ Interactive keybinding help
+        │   └── 📄 dashboard.lua        # 🎛️ Welcome screen & quick actions
         │
-        ├── 🐛 Debugging & Testing
-        ├── 📄 dap.lua                 # 🐛 Debug Adapter Protocol setup
-        ├── 📄 debug.lua               # 🔧 Debug configuration & keybindings
-        ├── 📄 rust-tools.lua          # 🦀 Advanced Rust development (rustaceanvim)
-        ├── 📄 java.lua                # ☕ Java development environment
-        ├── 📄 playground.lua          # 🎮 Code experimentation sandbox
+        ├── 📁 ui/                      # 🎨 User Interface Components
+        │   ├── 📄 lualine.lua          # 📊 Status line with Git & time
+        │   ├── 📄 bufferline.lua       # 📑 Buffer tabs with close controls
+        │   ├── 📄 noice.lua            # 🔔 Enhanced notifications
+        │   ├── 📄 highlight-colors.lua # 🎨 Color code visualization
+        │   ├── 📄 rainbow-delimiters.lua # 🌈 Rainbow parentheses
+        │   ├── 📄 indent-blankline.lua # ┃ Visual indent guides
+        │   ├── 📄 dropbar.lua          # 🧭 IDE-like breadcrumb navigation
+        │   └── 📄 zen.lua              # 🧘 Distraction-free coding mode
         │
-        ├── 🎨 User Interface
-        ├── 📄 telescope.lua           # 🔭 Fuzzy finder with custom styling
-        ├── 📄 neotree.lua             # 🌲 Advanced file explorer
-        ├── 📄 lualine.lua             # 📊 Status line with clock & Git info
-        ├── 📄 bufferline.lua          # 📑 Smart buffer tabs
-        ├── 📄 which-key.lua           # 🔑 Interactive keybinding guide
-        ├── 📄 dashboard.lua           # 📊 Beautiful start screen
-        ├── 📄 noice.lua               # 💬 Enhanced UI notifications
+        ├── 📁 navigation/              # 🔍 Navigation & Search
+        │   ├── 📄 telescope.lua        # 🔭 Fuzzy finder with live preview
+        │   ├── 📄 neotree.lua          # 🌲 File explorer with Git integration
+        │   ├── 📄 oil.lua              # 🛢️ Buffer-like file editor
+        │   └── 📄 leap.lua             # ⚡ Fast two-character navigation
         │
-        ├── 📝 Text Editing
-        ├── 📄 surround.lua            # 🔄 Advanced text object manipulation
-        ├── 📄 comment.lua             # 💬 Intelligent commenting system
-        ├── 📄 autopairs.lua           # () Smart auto-pairs with CMP integration
-        ├── 📄 autotag.lua             # 🏷️ HTML/XML auto-tagging
-        ├── 📄 yanky.lua               # 📋 Advanced clipboard management
+        ├── 📁 editing/                 # ✏️ Text Editing & Manipulation
+        │   ├── 📄 autopairs.lua        # 🔗 Intelligent bracket pairing
+        │   ├── 📄 autotag.lua          # 🏷️ Smart HTML/XML tag completion
+        │   ├── 📄 surround.lua         # 🔄 Text object manipulation
+        │   ├── 📄 comment.lua          # 💬 Smart commenting system
+        │   ├── 📄 yanky.lua            # 📋 Advanced clipboard management
+        │   ├── 📄 blink.lua            # ✨ Modern completion framework
+        │   └── 📄 cmp.lua              # 🔤 Legacy completion (fallback)
         │
-        ├── 🎨 Visual Enhancements
-        ├── 📄 highlight-colors.lua    # 🌈 Color code highlighting
-        ├── 📄 rainbow-delimiters.lua  # 🌈 Rainbow parentheses
-        ├── 📄 indent-blankline.lua    # ┊ Visual indent guides
-        ├── 📄 render-markdown.lua     # 📝 Live Markdown rendering
+        ├── 📁 development/             # 🛠️ Development Tools
+        │   ├── 📄 autoformat.lua       # 📐 Multi-language formatting
+        │   ├── 📄 lint.lua             # 🔍 Code quality analysis
+        │   ├── 📄 null-ls.lua          # 🔧 Additional LSP sources
+        │   ├── 📄 codeium.lua          # 🤖 AI-powered code completion
+        │   ├── 📄 playground.lua       # 🎮 Code experimentation environment
+        │   ├── 📄 render-markdown.lua  # 📝 Live Markdown rendering
+        │   ├── 📄 rust-tools.lua       # 🦀 Enhanced Rust development
+        │   ├── 📄 java.lua             # ☕ Java development environment
+        │   ├── 📄 todo-comments.lua    # 📝 TODO/FIXME highlighting
+        │   └── 📄 trouble.lua          # 🚨 Diagnostic management
         │
-        ├── 🔧 Code Quality
-        ├── 📄 autoformat.lua          # 🔧 conform.nvim with Mason Tool Installer
-        ├── 📄 lint.lua                # 🔍 Disabled to prevent LSP conflicts
-        ├── 📄 null-ls.lua             # 🔧 Disabled to prevent LSP conflicts
-        ├── 📄 trouble.lua             # 🚨 Diagnostics & problem viewer
-        ├── 📄 todo-comments.lua       # 📝 TODO/FIXME highlighting
+        ├── 📁 lsp/                     # 🧠 Language Server Protocol
+        │   └── 📄 lsp.lua              # 🔌 LSP configuration & setup
         │
-        ├── 🔗 Integration Tools  
-        ├── 📄 gitsigns.lua            # 📝 Git integration & change indicators
-        ├── 📄 toggleterm.lua          # 💻 Advanced terminal integration
-        ├── 📄 codeium.lua             # 🤖 AI-powered code completion
-        ├── 📄 oil.lua                 # 🛢️ Alternative file manager
+        ├── 📁 debugging/               # 🐛 Debug Adapter Protocol
+        │   ├── 📄 dap.lua              # 🔍 Debug adapter configuration
+        │   └── 📄 debug.lua            # 🛠️ Debugging UI & controls
         │
-        └── 🎯 Utilities
-            ├── 📄 blink.lua           # 👀 Character toggle utilities
-            └── 📄 auto-save.lua       # 💾 Removed (was causing conflicts)
+        ├── 📁 git/                     # 📊 Version Control
+        │   └── 📄 gitsigns.lua         # 📈 Git integration & visual indicators
+        │
+        └── 📁 terminal/                # 💻 Terminal Integration
+            └── 📄 toggleterm.lua       # 🖥️ Smart terminal management
 ```
 
 ### 🔍 **Component Interaction Diagram**
@@ -776,7 +780,13 @@ The system will automatically:
 | Keybinding | Function        | Description                                     |
 | ---------- | --------------- | ----------------------------------------------- |
 | `<F11>`    | Open Lazygit    | Open Lazygit in toggleterm                      |
-| `<F12>`    | Open Toggleterm | Open toggleterm at the right side of the screen |
+|| `<F12>`    | Open Toggleterm | Open toggleterm at the right side of the screen |
+|| `s`        | Leap Forward    | Jump to location with 2 characters (leap.nvim)  |
+|| `S`        | Leap Backward   | Jump backwards with 2 characters (leap.nvim)    |
+|| `gs`       | Leap Windows    | Jump across windows (leap.nvim)                 |
+|| `<leader>;`| Symbol Picker   | Interactive symbol picker in winbar (dropbar)   |
+|| `[;`       | Context Start   | Go to start of current context (dropbar)        |
+|| `];`       | Next Context    | Select next context (dropbar)                   |
 
 ### Administrative Commands
 
@@ -789,7 +799,8 @@ The system will automatically:
 | `:Trouble`       | Diagnostics Panel | Show workspace diagnostics and errors   |
 | `:TodoTelescope` | TODO Search       | Find TODO/FIXME comments across project |
 | `:DapUIToggle`   | Debug Interface   | Toggle debugging interface              |
-| `:ToggleTerm`    | Terminal          | Open/close integrated terminal          |
+|| `:ToggleTerm`    | Terminal          | Open/close integrated terminal          |
+|| `:ZenMode`       | Focus Mode        | Toggle distraction-free coding environment |
 
 ## 🎨 **Advanced Customization Guide**
 

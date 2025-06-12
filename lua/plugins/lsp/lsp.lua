@@ -178,8 +178,15 @@ return {
         },
       })
 
-      -- Simple on_attach without diagnostic logic (handled above)
+      -- Optimized on_attach function for better performance
       local function on_attach(client, bufnr)
+        -- Disable some LSP features that can slow things down
+        if client.server_capabilities.semanticTokensProvider then
+          client.server_capabilities.semanticTokensProvider = nil
+        end
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+        
         vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
         
         local bufopt = { noremap = true, silent = true, buffer = bufnr }
