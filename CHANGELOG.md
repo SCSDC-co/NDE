@@ -5,6 +5,94 @@ All notable changes to the NDE (Neovim Development Environment) project will be 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.1] - 2025-06-15
+
+### 🎯 **Tips System Intelligence Update - The Smart Learning Revolution**
+
+#### **🧠 Intelligent Display System** ⭐ *Revolutionary Enhancement*
+
+- **Enhanced** File-Only Tips Display: Tips now only appear when editing actual files
+  - **🚫 Smart Exclusion**: Prevents tips in terminals, help pages, file explorers, and special buffers
+  - **📁 File Detection**: Intelligent buffer type checking with comprehensive filetype exclusions
+  - **🎯 Focused Learning**: Tips appear only during actual coding/editing sessions
+  - **📊 Enhanced User Experience**: No more distracting tips during navigation or system tasks
+
+#### **💾 Advanced Settings Persistence** ⭐ *Game-Changing Feature*
+
+- **Added** Revolutionary settings persistence system with intelligent defaults:
+  - **🔄 Cross-Session Memory**: Your tip preferences persist across all Neovim restarts
+  - **📂 Data Directory Storage**: Settings saved in `~/.local/share/nvim/nde_tips_settings.json`
+  - **🧠 Smart Initialization**: First-time users get tips enabled by default
+  - **👤 User Preference Respect**: Returning users keep their previous on/off choices
+  - **⚡ Instant Application**: Settings load immediately on startup with zero delay
+
+#### **🎭 Dynamic Welcome Experience** ⭐ *Personalized Innovation*
+
+- **Implemented** Context-aware welcome messages with dual personalities:
+  - **🎉 Tips Enabled Welcome**: Energetic message promising learning assistance
+  - **😴 Tips Disabled Welcome**: Respectful message acknowledging user preference
+  - **🎨 Visual Distinction**: Different titles and content for each state
+  - **💬 Smart Messaging**: Tailored guidance based on current tip status
+
+#### **🎨 Enhanced Notification System**
+
+- **Fixed** Notification formatting with proper visual hierarchy:
+  - **🚫 Removed** Unwanted `| notify:` prefix by using nvim-notify directly
+  - **📏 Proper Line Breaks**: Title and content properly separated with clean formatting
+  - **🎨 Consistent Styling**: Integrated with noice.nvim and nvim-notify theming
+  - **✨ Visual Polish**: Professional notification appearance matching NDE aesthetics
+
+#### **🎯 BufferLine Visual Enhancement**
+
+- **Fixed** BufferLine offset colors with theme integration:
+  - **🎨 Perfect Color Match**: Offset background now matches intended `#0d0c0c` color
+  - **🔧 Theme Override**: Added BufferLine highlights to Kanagawa theme overrides
+  - **⚡ Load Order Fix**: Prevents theme from overriding BufferLine custom colors
+  - **👁️ Visual Consistency**: Seamless integration with overall NDE visual design
+
+### 🔧 **Technical Improvements**
+
+#### **Architecture Enhancements**
+
+- **Optimized** Settings loading with intelligent fallback system
+- **Enhanced** File detection with comprehensive buffer type analysis
+- **Improved** Theme integration preventing color override conflicts
+- **Streamlined** Notification pipeline for better user experience
+
+#### **User Experience Refinements**
+
+- **Eliminated** Notification formatting issues for clean, professional appearance
+- **Resolved** Settings persistence ensuring user preferences are always respected
+- **Enhanced** Visual consistency across all UI components
+- **Improved** Learning system intelligence with context-aware tip display
+
+### 🎯 **Impact Summary**
+
+#### **For New Users:**
+- **🎉 Seamless Experience**: Tips enabled by default for immediate learning assistance
+- **🎨 Professional Appearance**: Clean, polished interface from first launch
+- **📚 Intelligent Learning**: Tips appear only during relevant editing sessions
+
+#### **For Existing Users:**
+- **💾 Preference Preservation**: All previous tip settings automatically maintained
+- **🔄 Upgrade Smoothness**: Zero configuration changes required
+- **✨ Enhanced Polish**: Improved visual experience with existing workflows
+
+### 🧹 **Code Quality & Maintenance**
+
+#### **Enhanced Architecture**
+
+- **Improved** Settings management with robust JSON handling
+- **Enhanced** Error handling for file operations and settings persistence
+- **Optimized** Theme loading order for consistent visual appearance
+- **Streamlined** Notification system for better integration
+
+#### **Documentation Excellence**
+
+- **Updated** README.md with new persistence and intelligence features
+- **Enhanced** Feature descriptions with comprehensive technical details
+- **Improved** User guidance with updated configuration examples
+
 ## [2.0.0] - 2025-06-15
 
 ### 🚀 **Beginner's Dream - The Revolutionary Learning Update**

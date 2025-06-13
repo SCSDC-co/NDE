@@ -88,7 +88,63 @@ local current_tip = 1
 local last_shown_tip = nil  -- Track last shown tip to prevent duplicates
 local tip_timer = nil
 local tip_interval = 45000 -- 45 seconds (a bit longer to read)
+
+-- Settings persistence
+local settings_file = vim.fn.stdpath('data') .. '/nde_tips_settings.json'
 local tips_enabled = true
+
+-- Load settings from file
+local function load_settings()
+	local file = io.open(settings_file, 'r')
+	if file then
+		local content = file:read('*all')
+		file:close()
+		local ok, settings = pcall(vim.fn.json_decode, content)
+		if ok and settings then
+			tips_enabled = settings.tips_enabled ~= false
+		end
+	end
+end
+
+-- Save settings to file
+local function save_settings()
+	local settings = {
+		tips_enabled = tips_enabled
+	}
+	local file = io.open(settings_file, 'w')
+	if file then
+		file:write(vim.fn.json_encode(settings))
+		file:close()
+	end
+end
+
+-- Check if current buffer is a file (not empty, terminal, etc.)
+local function is_in_file()
+	local buftype = vim.bo.buftype
+	local filetype = vim.bo.filetype
+	local bufname = vim.api.nvim_buf_get_name(0)
+	
+	-- Don't show tips in special buffers
+	if buftype ~= '' then
+		return false
+	end
+	
+	-- Don't show tips in help, terminal, or other special filetypes
+	local excluded_filetypes = {
+		'help', 'terminal', 'NvimTree', 'neo-tree', 'TelescopePrompt',
+		'TelescopeResults', 'dashboard', 'alpha', 'startify', 'lazy',
+		'mason', 'lspinfo', 'checkhealth', 'qf'
+	}
+	
+	for _, ft in ipairs(excluded_filetypes) do
+		if filetype == ft then
+			return false
+		end
+	end
+	
+	-- Must have a filename (not an empty buffer)
+	return bufname ~= ''
+end
 local fun_messages = {
 	"🎉 Here's another awesome tip!",
 	'💡 Time for some Vim wisdom!',
@@ -108,11 +164,13 @@ local function show_tip(tip)
 
 	local content = table.concat(tip.content, '\n')
 	local fun_msg = fun_messages[math.random(#fun_messages)]
-
-	vim.notify(content, vim.log.levels.INFO, {
+	
+	-- Use nvim-notify directly to avoid noice formatting
+	local notify = require('notify')
+	notify(content, vim.log.levels.INFO, {
 		title = fun_msg .. ' ' .. tip.title,
 		timeout = 6000,
-		render = 'compact',
+		render = 'default',
 	})
 end
 
@@ -128,7 +186,8 @@ local function start_tips()
 		tip_interval,
 		tip_interval,
 		vim.schedule_wrap(function()
-			if tips_enabled and #tips > 0 then
+			-- Only show tips when in a file and tips are enabled
+			if tips_enabled and #tips > 0 and is_in_file() then
 				show_tip(tips[current_tip])
 				last_shown_tip = current_tip
 				current_tip = current_tip % #tips + 1
@@ -149,26 +208,45 @@ end
 -- Show epic welcome message
 local function show_welcome()
 	vim.defer_fn(function()
-		vim.notify(
-			'🎉 Welcome to NDE (Neovim Development Environment)! 🎉\n\n'
-				.. '🚀 Ready to code with power and simplicity\n'
-				.. '💡 Fun tips will appear every 45 seconds\n'
-				.. '⚙️ Use :NDE to access all commands\n'
-				.. '🎯 Type :NDE help for the full command list\n\n'
-				.. '🔥 First epic tip coming right up...',
-			vim.log.levels.INFO,
-			{
-				title = '🌟 NDE is Ready to Rock! 🌟',
-				timeout = 5000,
-			}
-		)
+		if tips_enabled then
+			-- Welcome message when tips are enabled
+			vim.notify(
+				'🎉 Welcome to NDE (Neovim Development Environment)! 🎉\n\n'
+					.. '🚀 Ready to code with power and simplicity\n'
+					.. '💡 Fun tips will appear every 45 seconds\n'
+					.. '⚙️ Use :NDE to access all commands\n'
+					.. '🎯 Type :NDE help for the full command list\n\n'
+					.. '🔥 First epic tip coming right up...',
+				vim.log.levels.INFO,
+				{
+					title = '🌟 NDE is Ready to Rock! 🌟',
+					timeout = 5000,
+				}
+			)
 
-		-- Show first tip after welcome
-		vim.defer_fn(function()
-			if #tips > 0 then
-				show_tip(tips[1])
-			end
-		end, 3000)
+			-- Show first tip after welcome
+			vim.defer_fn(function()
+				if #tips > 0 then
+					show_tip(tips[1])
+				end
+			end, 3000)
+		else
+			-- Welcome message when tips are disabled
+			vim.notify(
+				'🎉 Welcome back to NDE! 🎉\n\n'
+					.. '🚀 Ready to code with power and simplicity\n'
+					.. '😴 Tips are currently sleeping (you disabled them)\n'
+					.. '💡 Use :NDE tips on to wake them up anytime\n'
+					.. '⚙️ Use :NDE to access all commands\n'
+					.. '🎯 Type :NDE help for the full command list\n\n'
+					.. '🔥 Happy coding without distractions!',
+				vim.log.levels.INFO,
+				{
+					title = '🌟 NDE is Ready (Tips Off) 🌟',
+					timeout = 5000,
+				}
+			)
+		end
 	end, 1000)
 end
 
@@ -195,14 +273,17 @@ local function setup_commands()
 			local action = args[2] or 'toggle'
 			if action == 'on' then
 				tips_enabled = true
+				save_settings()
 				start_tips()
 				vim.notify('🎉 Tips enabled! Get ready for awesome advice! 💡', vim.log.levels.INFO)
 			elseif action == 'off' then
 				tips_enabled = false
+				save_settings()
 				stop_tips()
 				vim.notify("😴 Tips disabled. They'll be waiting when you're ready!", vim.log.levels.INFO)
 			else
 				tips_enabled = not tips_enabled
+				save_settings()
 				if tips_enabled then
 					start_tips()
 					vim.notify('🎉 Tips enabled! Let the learning begin! 🚀', vim.log.levels.INFO)
@@ -280,9 +361,20 @@ end
 function M.setup(opts)
 	opts = opts or {}
 
+	-- Check if settings file exists
+	local settings_exist = vim.loop.fs_stat(settings_file) ~= nil
+	
+	if settings_exist then
+		-- Load saved settings if they exist
+		load_settings()
+	else
+		-- First time setup - use provided defaults or true
+		tips_enabled = opts.enabled ~= false -- Default to true unless explicitly set to false
+		save_settings() -- Save the initial setting
+	end
+
 	-- Override defaults with user options
 	tip_interval = opts.interval or tip_interval
-	tips_enabled = opts.enabled ~= false -- default to true
 
 	-- Seed random for fun messages
 	math.randomseed(os.time())

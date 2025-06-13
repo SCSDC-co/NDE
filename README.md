@@ -29,6 +29,9 @@ _Revolutionary learning assistance for Neovim newcomers_
 - **⚡ Full Command Integration**: `:NDE` command suite for complete control
 - **🎨 Emoji-Powered Interface**: Engaging, colorful, and fun learning experience
 - **📚 8 Comprehensive Categories**: From basics to advanced Vim wizardry
+- **📁 File-Only Display**: Tips only appear when editing actual files (not terminals/help), exept the navigation basics
+- **💾 Settings Persistence**: Your tip preferences persist across Neovim restarts
+- **🎭 Dynamic Welcome**: Different welcome messages for enabled/disabled states
 
 #### 🔬 **Nuclear Diagnostic System**
 

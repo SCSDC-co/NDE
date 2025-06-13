@@ -7,13 +7,6 @@ return {
 		'nvim-tree/nvim-web-devicons',
 	},
 	config = function()
-		vim.api.nvim_create_autocmd({ 'VimEnter', 'ColorScheme' }, {
-			callback = function()
-				vim.api.nvim_set_hl(0, 'BufferLineOffset', { bg = '#0d0c0c', fg = '#8BA4B0', bold = true })
-				vim.api.nvim_set_hl(0, 'BufferLineOffsetSeparator', { bg = '#0d0c0c', fg = '#0d0c0c' })
-			end,
-		})
-
 		require('bufferline').setup({
 			options = {
 				mode = 'buffers',
