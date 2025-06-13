@@ -1,6 +1,14 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
+    lazy = true, -- ⚡ PERFORMANCE: Only load when searching
+    keys = {
+      { "<leader>ff", desc = "Telescope Find Files (All)" },
+      { "<leader>fg", desc = "Telescope Live Grep" },
+      { "<leader>fb", desc = "Telescope Buffers" },
+      { "<leader>fh", desc = "Telescope Help" },
+    },
+    cmd = { "Telescope" },
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       local telescope = require("telescope")

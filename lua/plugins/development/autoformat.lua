@@ -11,79 +11,51 @@ return {
 			mode = "n",
 			desc = "Format buffer",
 		},
-	},
-	opts = {
-		formatters_by_ft = {
-			-- Python
-			python = { "black", "isort" },
-
-			-- JavaScript/TypeScript
-			javascript = { "prettierd" },
-			typescript = { "prettierd" },
-			javascriptreact = { "prettierd" },
-			typescriptreact = { "prettierd" },
-
-			-- Web Technologies
-			html = { "prettierd" },
-			css = { "prettierd" },
-			scss = { "prettierd" },
-
-			-- C/C++
-			c = { "clang-format" },
-			cpp = { "clang-format" },
-
-			-- Other Languages
-			lua = { "stylua" },
-			go = { "gofmt" },
-			rust = { "rustfmt" },
-			java = { "google-java-format" },
-
-			-- Data formats
-			json = { "prettierd" },
-			yaml = { "prettierd" },
-			markdown = { "prettierd" },
-
-			-- Shell
-			sh = { "shfmt" },
-			bash = { "shfmt" },
-
-			-- Note: Assembly (asm) formatter not available
-		},
-
-		format_on_save = {
-			timeout_ms = 1000,
-			lsp_fallback = true,  -- Allow LSP fallback if prettier fails
-			quiet = false,  -- Show errors if formatting fails
-		},
-
-		formatters = {
-			-- prettierd will use its default configuration and look for .prettierrc files
-			-- (keeps default length limits)
-			shfmt = {
-				prepend_args = { "-i", "0", "-ci", "-bn", "-s" },  -- -i 0 uses tabs, -s for simplify code
-			},
-			stylua = {
-				prepend_args = { "--indent-type", "Tabs", "--indent-width", "4", "--column-width", "999999" },
-			},
-			["clang-format"] = {
-				prepend_args = { "--style={IndentWidth: 4, UseTab: Always, TabWidth: 4, ColumnLimit: 0}" },
-			},
-			black = {
-				prepend_args = { "--fast", "--line-length", "999999", "--skip-string-normalization" },
-			},
+		{
+			"<leader>F",
+			"<Cmd>ConformInfo<CR>",
+			mode = "n",
+			desc = "Formatter info",
 		},
 	},
-
-	config = function(_, opts)
+	config = function()
+		-- Load formatters configuration
+		local formatters_config = require("formatters").setup()
+		
 		-- Ensure Mason PATH is available for conform.nvim
 		local mason_bin = vim.fn.stdpath("data") .. "/mason/bin"
 		vim.env.PATH = mason_bin .. ":" .. vim.env.PATH
 		
-		require("conform").setup(opts)
+		-- Setup conform.nvim with our formatters
+		require("conform").setup({
+			formatters_by_ft = formatters_config.formatters_by_ft,
+			formatters = formatters_config.formatters,
+			
+			format_on_save = {
+				timeout_ms = 1000,
+				lsp_fallback = true,
+				quiet = false,
+			},
+			
+			-- Additional formatting options
+			log_level = vim.log.levels.WARN,
+			notify_on_error = true,
+		})
 
-		-- Set filetype for assembly files
-		vim.cmd([[
-      autocmd BufRead,BufNewFile *.asm set filetype=asm
-    ]])
+		-- Set filetype for assembly files (no formatter available)
+		vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+			pattern = "*.asm",
+			callback = function()
+				vim.bo.filetype = "asm"
+			end,
+		})
+		
+		-- Additional file type detection
+		vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+			pattern = { "*.zsh", "*.zshrc" },
+			callback = function()
+				vim.bo.filetype = "zsh"
+			end,
+		})
 	end,
 }

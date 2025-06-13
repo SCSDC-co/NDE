@@ -1,5 +1,7 @@
 return {
   "folke/todo-comments.nvim",
+  lazy = true, -- ⚡ PERFORMANCE: Only load when viewing code
+  event = "BufReadPost", -- Load after buffer is ready
   dependencies = "nvim-lua/plenary.nvim",
   config = function()
     require("todo-comments").setup({

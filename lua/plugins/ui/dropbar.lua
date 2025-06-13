@@ -1,5 +1,7 @@
 return {
 	"Bekaboo/dropbar.nvim",
+	lazy = true, -- ⚡ PERFORMANCE: Load after UI is ready
+	event = "VeryLazy",
 	dependencies = {
 		"nvim-telescope/telescope-fzf-native.nvim",
 		build = "make",

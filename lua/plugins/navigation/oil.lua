@@ -1,5 +1,11 @@
 return {
 	"stevearc/oil.nvim",
+	lazy = true, -- ⚡ PERFORMANCE: Only load when needed
+	keys = {
+		{ "<leader>o", "<CMD>Oil<CR>", desc = "🛢️ Open Oil file manager" },
+		{ "<leader>O", "<CMD>Oil --float<CR>", desc = "🛢️ Open Oil floating window" },
+	},
+	cmd = { "Oil" },
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
 		require("oil").setup({

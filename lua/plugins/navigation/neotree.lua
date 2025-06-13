@@ -1,12 +1,17 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
   branch = "v3.x",
+  lazy = true, -- ⚡ PERFORMANCE: Only load when needed
+  keys = {
+    { "<leader>e", "<cmd>Neotree toggle<cr>", desc = "Toggle Neo-tree" },
+    { "<leader>r", "<cmd>Neotree reveal<cr>", desc = "Reveal in Neo-tree" },
+  },
+  cmd = { "Neotree" },
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
   },
-  lazy = false,
   config = function()
     require("neo-tree").setup({
       close_if_last_window = true,

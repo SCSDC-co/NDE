@@ -1,5 +1,6 @@
-local dap = require("dap")
-local dapui = require("dapui")
+-- DAP will be loaded lazily when F1-F4 keys are pressed
+-- local dap = require("dap")
+-- local dapui = require("dapui")
 
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
@@ -136,13 +137,13 @@ vim.keymap.set("n", "<F8>", function()
     :toggle()
 end, { desc = "Compila ed esegui ASM (nasm + ld, terminale a destra)", noremap = true, silent = true })
 
--- debug
-vim.keymap.set("n", "<F1>", dap.toggle_breakpoint, { desc = "Toggle Breakpoint" })
-vim.keymap.set("n", "<F2>", dap.continue, { desc = "Continue" })
-vim.keymap.set("n", "<F3>", dap.step_into, { desc = "Step Into" })
-vim.keymap.set("n", "<F4>", dap.step_over, { desc = "Step Over" })
+-- debug - LAZY LOADED for performance
+vim.keymap.set("n", "<F1>", function() require('dap').toggle_breakpoint() end, { desc = "Toggle Breakpoint" })
+vim.keymap.set("n", "<F2>", function() require('dap').continue() end, { desc = "Continue" })
+vim.keymap.set("n", "<F3>", function() require('dap').step_into() end, { desc = "Step Into" })
+vim.keymap.set("n", "<F4>", function() require('dap').step_over() end, { desc = "Step Over" })
 
-vim.keymap.set("n", "<leader>du", dapui.toggle, { desc = "Toggle DAP UI" })
+vim.keymap.set("n", "<leader>du", function() require('dapui').toggle() end, { desc = "Toggle DAP UI" })
 
 vim.keymap.set("v", "<leader>ge", ":GpExplain<CR>", { desc = "Spiega il codice selezionato" })
 vim.keymap.set("v", "<leader>gr", ":GpRewrite<CR>", { desc = "Riscrivi il codice selezionato" })

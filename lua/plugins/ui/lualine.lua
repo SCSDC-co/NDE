@@ -4,7 +4,12 @@ end
 
 return {
   "nvim-lualine/lualine.nvim",
-  dependencies = { "nvim-tree/nvim-web-devicons" }, 
+  lazy = true, -- ⚡ PERFORMANCE: Only load after colorscheme
+  event = "VeryLazy", -- ⚡ PERFORMANCE: Load after everything else
+  dependencies = { 
+    "nvim-tree/nvim-web-devicons",
+    "rebelot/kanagawa.nvim" -- Ensure kanagawa loads first
+  }, 
   config = function()
     -- Get Kanagawa theme and customize it
     local kanagawa_theme = require("lualine.themes.kanagawa")

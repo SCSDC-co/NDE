@@ -1,5 +1,7 @@
 return {
   "folke/trouble.nvim",
+  lazy = true, -- ⚡ PERFORMANCE: Only load when viewing diagnostics
+  cmd = { "Trouble", "TroubleToggle", "TroubleClose", "TroubleRefresh" },
   dependencies = "nvim-tree/nvim-web-devicons",
   config = function()
     require("trouble").setup({

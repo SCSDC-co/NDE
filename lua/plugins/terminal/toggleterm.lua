@@ -1,5 +1,11 @@
 return {
   "akinsho/toggleterm.nvim",
+  lazy = true, -- ⚡ PERFORMANCE: Only load when needed
+  keys = {
+    { "<F12>", desc = "Toggle Terminal" },
+    { "<F11>", desc = "Toggle Lazygit" },
+  },
+  cmd = { "ToggleTerm", "TermExec" },
   version = "*",
   config = function()
     vim.cmd([[highlight ToggleTermBG guibg=#181616]])

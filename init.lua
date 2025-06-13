@@ -1,3 +1,11 @@
+-- 🚀 Enable Neovim's built-in bytecode cache for faster startup
+if vim.loader then
+  vim.loader.enable()
+end
+
+-- ⏱️ Initialize startup timer for dashboard display
+vim.g.startup_timer = vim.fn.reltime()
+
 local home = os.getenv("HOME")
 local venv_py = home .. "/.local/share/nvim_pytools_venv/bin/python"
 if vim.fn.executable(venv_py) == 1 then

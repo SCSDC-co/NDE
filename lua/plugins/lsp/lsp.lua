@@ -1,8 +1,10 @@
 return {
-  -- Mason for LSP server management
+  -- Mason for LSP server management - LAZY LOADED FOR PERFORMANCE
   {
     "williamboman/mason.nvim",
     build = ":MasonUpdate",
+    lazy = true, -- ⚡ PERFORMANCE: Don't load on startup
+    cmd = { "Mason", "MasonInstall", "MasonUninstall", "MasonUpdate" },
     config = function()
       require("mason").setup({
         ui = {
@@ -18,52 +20,61 @@ return {
     end,
   },
 
-  -- Mason LSP Config
+  -- Mason LSP Config - BACKGROUND LOADED
   {
     "williamboman/mason-lspconfig.nvim",
     dependencies = { "williamboman/mason.nvim" },
+    lazy = true, -- ⚡ PERFORMANCE: Background load
+    event = "VeryLazy", -- Load after UI is ready
     config = function()
-      require("mason-lspconfig").setup({
-        ensure_installed = {
-          "lua_ls",       -- Lua
-          "pyright",       -- Python
-          "clangd",        -- C/C++
-          "rust_analyzer", -- Rust
-          "ts_ls",         -- JavaScript/TypeScript
-          "html",          -- HTML
-          "cssls",         -- CSS
-          "jsonls",        -- JSON
-          "yamlls",        -- YAML
-          "bashls",        -- Bash
-          "gopls",         -- Go
-          "marksman",      -- Markdown
-        },
-        automatic_installation = true,
-      })
+      -- Background LSP server installation
+      require('utils.lazy_loader').defer(function()
+        local lang_config = require("langs").setup()
+        local mason_tools = lang_config.mason_tools
+        
+        require("mason-lspconfig").setup({
+          ensure_installed = mason_tools.lsp,
+          automatic_installation = true,
+        })
+      end, 2000) -- 2 second delay
     end,
   },
 
-  -- Mason Tool Installer for formatters (used by conform.nvim)
+  -- Mason Tool Installer - BACKGROUND LOADED
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     dependencies = { "williamboman/mason.nvim" },
+    lazy = true, -- ⚡ PERFORMANCE: Background load
+    event = "VeryLazy", -- Load after startup
     config = function()
-      require("mason-tool-installer").setup({
-        ensure_installed = {
-          -- Formatters only (no linters to avoid LSP conflicts)
-          "stylua",              -- Lua formatter
-          "black",               -- Python formatter
-          "isort",               -- Python import sorting
-          "prettier",            -- JS/TS/HTML/CSS/JSON/YAML/Markdown formatter
-          "prettierd",           -- Faster prettier daemon
-          "clang-format",        -- C/C++ formatter
-          "shfmt",               -- Shell script formatter
-          "google-java-format",  -- Java formatter
-        },
-        auto_update = false,
-        run_on_start = true,
-        start_delay = 3000,  -- 3 second delay after startup
-      })
+      -- Background tool installation
+      require('utils.lazy_loader').defer(function()
+        local lang_config = require("langs").setup()
+        local formatter_packages = require("formatters").get_mason_packages()
+        
+        -- Combine all tools
+        local all_tools = {}
+        vim.list_extend(all_tools, lang_config.mason_tools.formatters)
+        vim.list_extend(all_tools, lang_config.mason_tools.debuggers)
+        vim.list_extend(all_tools, formatter_packages)
+        
+        -- Remove duplicates
+        local unique_tools = {}
+        local seen = {}
+        for _, tool in ipairs(all_tools) do
+          if not seen[tool] then
+            seen[tool] = true
+            table.insert(unique_tools, tool)
+          end
+        end
+        
+        require("mason-tool-installer").setup({
+          ensure_installed = unique_tools,
+          auto_update = false,
+          run_on_start = true,
+          start_delay = 1000,  -- Quick background installation
+        })
+      end, 3000) -- 3 second delay for tools
     end,
   },
 

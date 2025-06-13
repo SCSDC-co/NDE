@@ -1,7 +1,8 @@
 return {
   {
     "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
+    lazy = true, -- ⚡ PERFORMANCE: Only load when viewing code
+    event = { "BufReadPost", "BufNewFile" }, -- Load after buffer is fully loaded
     opts = {
       indent = {
         char = "│",

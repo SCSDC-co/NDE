@@ -1,6 +1,7 @@
 return {
   "lewis6991/gitsigns.nvim",
-  lazy = false,
+  lazy = true, -- ⚡ PERFORMANCE: Load when needed
+  event = { "BufReadPre", "BufNewFile" }, -- Load when opening files
   config = function()
     vim.o.termguicolors = true
 

@@ -1,6 +1,8 @@
 return {
   {
     "hrsh7th/nvim-cmp",
+    lazy = true, -- ⚡ PERFORMANCE: Only load when typing
+    event = "InsertEnter", -- ⚡ PERFORMANCE: Only load when typing
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",

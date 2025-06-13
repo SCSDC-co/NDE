@@ -1,6 +1,8 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    lazy = true, -- ⚡ PERFORMANCE: Only load when opening files
+    event = { "BufReadPost", "BufNewFile" }, -- ⚡ PERFORMANCE: Load on file events
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({
@@ -93,10 +95,13 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
+    lazy = true, -- ⚡ PERFORMANCE: Only load with treesitter
     dependencies = "nvim-treesitter/nvim-treesitter",
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
+    lazy = true, -- ⚡ PERFORMANCE: Only load with treesitter
+    event = { "BufReadPost", "BufNewFile" }, -- Load with files
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = function()
       require('treesitter-context').setup({

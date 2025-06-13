@@ -189,6 +189,10 @@ return {
 			{ "<leader>j", "<cmd>call append(line('.'), '')<cr>", desc = "➕ Insert Line Below" },
 			{ "<leader>k", "<cmd>call append(line('.') - 1, '')<cr>", desc = "➕ Insert Line Above" },
 
+			-- Vim Training (vim-be-good)
+			{ "<leader>v", group = "🎮 Training" },
+			{ "<leader>vt", "<cmd>VimBeGood<cr>", desc = "Training Mode" },
+
 			-- Function keys
 			{ "<F1>", desc = "🔴 Toggle Breakpoint" },
 			{ "<F2>", desc = "▶️ Debug Continue" },

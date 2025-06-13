@@ -1,7 +1,7 @@
 return {
 	"Exafunction/codeium.vim",
-	lazy = false, -- Force immediate loading
-	priority = 1000,
+	lazy = true, -- ⚡ PERFORMANCE: Load only when needed
+	event = "InsertEnter", -- Load when entering insert mode
 	config = function()
 		-- DISABLE VIM.SNIPPET DEFAULT MAPPINGS
 		-- This is what was breaking Codeium Tab functionality!
