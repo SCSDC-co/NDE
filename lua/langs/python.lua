@@ -61,14 +61,6 @@ M.dap = {
 
 -- Python formatter configuration
 M.formatters = { 'black', 'isort' }
-M.formatter_opts = {
-  black = {
-    prepend_args = { '--fast', '--line-length', '999999', '--skip-string-normalization' },
-  },
-  isort = {
-    prepend_args = { '--profile', 'black' },
-  },
-}
 
 -- Python-specific autocmds and settings
 M.setup = function()

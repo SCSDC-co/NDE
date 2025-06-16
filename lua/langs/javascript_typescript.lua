@@ -83,15 +83,7 @@ M.dap = {
 }
 
 -- JavaScript/TypeScript formatter configuration
-M.formatters = { 'prettierd', 'prettier' }
-M.formatter_opts = {
-  prettierd = {
-    prepend_args = { '--single-quote', '--jsx-single-quote' },
-  },
-  prettier = {
-    prepend_args = { '--single-quote', '--jsx-single-quote' },
-  },
-}
+M.formatters = { "prettierd" }
 
 -- JavaScript/TypeScript-specific autocmds and settings
 M.setup = function()
@@ -128,7 +120,7 @@ end
 -- Mason tools for JavaScript/TypeScript
 M.mason_tools = {
   lsp = { 'ts_ls' },
-  formatters = { 'prettierd', 'prettier' },
+  formatters = { 'prettierd' },
   debuggers = { 'js-debug-adapter' }, -- Modern replacement for node-debug2-adapter
 }
 

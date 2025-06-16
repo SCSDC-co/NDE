@@ -3,13 +3,18 @@ local M = {}
 -- Available formatters
 local formatters = {
   "black",
+  "isort",
   "rustfmt",
   "clang-format",
   "prettierd",
   "stylua",
   "gofmt",
+  "goimports",
   "google-java-format",
   "shfmt",
+  "zig_fmt",
+  "php-cs-fixer",
+  "phpcbf",
 }
 
 -- Cache for loaded configurations
@@ -41,10 +46,60 @@ M.get_formatters_by_ft = function()
   local formatter_configs = load_formatters()
   local formatters_by_ft = {}
   
+  -- Method 1: From formatter configs (formatter -> languages)
   for formatter_name, config in pairs(formatter_configs) do
     if config.languages then
       for _, lang in ipairs(config.languages) do
-        formatters_by_ft[lang] = { formatter_name }
+        if not formatters_by_ft[lang] then
+          formatters_by_ft[lang] = {}
+        end
+        table.insert(formatters_by_ft[lang], formatter_name)
+      end
+    end
+  end
+  
+  -- Method 2: From language configs (language -> formatters)
+  local success, langs = pcall(require, 'langs')
+  if success then
+    local lang_configs = langs.setup()
+    -- Load individual language configs to get their formatter preferences
+    local languages = { "python", "rust", "c_cpp", "javascript_typescript", "lua", "go", "java", "zig", "php", "shell" }
+    
+    for _, lang_name in ipairs(languages) do
+      local lang_success, lang_config = pcall(require, 'langs.' .. lang_name)
+      if lang_success and lang_config.formatters then
+        -- Map language names to file types
+        local lang_to_ft = {
+          python = "python",
+          rust = "rust",
+          c_cpp = { "c", "cpp", "h", "hpp" },
+          javascript_typescript = { "javascript", "typescript", "javascriptreact", "typescriptreact", "js", "ts", "jsx", "tsx" },
+          lua = "lua",
+          go = "go",
+          java = "java",
+          zig = "zig",
+          php = "php",
+          shell = { "sh", "bash", "zsh" }
+        }
+        
+        local filetypes = lang_to_ft[lang_name]
+        if filetypes then
+          if type(filetypes) == "string" then
+            filetypes = { filetypes }
+          end
+          
+          for _, ft in ipairs(filetypes) do
+            if not formatters_by_ft[ft] then
+              formatters_by_ft[ft] = {}
+            end
+            -- Add formatters from language config, avoid duplicates
+            for _, formatter_name in ipairs(lang_config.formatters) do
+              if not vim.tbl_contains(formatters_by_ft[ft], formatter_name) then
+                table.insert(formatters_by_ft[ft], formatter_name)
+              end
+            end
+          end
+        end
       end
     end
   end

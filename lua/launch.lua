@@ -1,5 +1,9 @@
 vim.env.PATH = vim.env.PATH .. ":" .. os.getenv("HOME") .. "/.luarocks/bin"
 require "opts"
+
+-- 🚀 Load performance optimizations (based on benchmark analysis)
+require("performance").setup()
+
 require "lazynvim.lazy"
 require "GUI.theme"
 require "keymaps"

@@ -18,7 +18,7 @@ local tips = {
 			"💾 ':w' to save file, ':q' to quit",
 			"🚪 ':wq' to save and quit, ':q!' to quit without saving",
 			"🔍 '<leader>ff' to find files (Telescope magic!)",
-			"🕵️'<leader>fg' to search in files (grep power!)",
+			"🕵️ '<leader>fg' to search in files (grep power!)",
 			"🌳 '<leader>e' to toggle file explorer",
 		},
 	},
@@ -46,7 +46,7 @@ local tips = {
 		title = '🪟 Window Management',
 		content = {
 			"➖ ':split' or ':sp' for horizontal split",
-			"➡️ ':vsplit' or ':vs' for vertical split",
+			"➡️  ':vsplit' or ':vs' for vertical split",
 			"🧭 'Ctrl+w h/j/k/l' to navigate between windows",
 			"📏 'Ctrl+w +/-' to resize windows",
 			"⚖️ 'Ctrl+w =' to equalize window sizes",
@@ -59,13 +59,13 @@ local tips = {
 			"📐 '<leader>th' for horizontal terminal",
 			"📏 '<leader>tv' for vertical terminal",
 			"🚪 'Ctrl+\\' then 'Ctrl+n' to exit terminal mode",
-			"⚡ Use ':!' to run shell commands",
+			"⚡  Use ':!' to run shell commands",
 		},
 	},
 	{
 		title = '🎨 Pro Tips',
 		content = {
-			"🌟 Use '.' to repeat last command",
+			"🌟  Use '.' to repeat last command",
 			"🔄 'Ctrl+o' to go back, 'Ctrl+i' to go forward",
 			"📝 'o' to create new line below, 'O' for above",
 			"🎪 'f{char}' to find character in line",
@@ -79,7 +79,8 @@ local tips = {
 			"🎯 'da\"' to delete around quotes",
 			"📦 'yap' to yank around paragraph",
 			"🔥 'C' to change from cursor to end of line",
-			"⚡ 'D' to delete from cursor to end of line",
+			"⚡  'D' to delete from cursor to end of line",
+			"🚀 'F8' to run code (universal runner for any language!)",
 		},
 	},
 }
@@ -153,7 +154,7 @@ local fun_messages = {
 	'🔥 Hot tip incoming!',
 	'🏆 Pro tip alert!',
 	'🎯 Precision editing ahead!',
-	'⚡ Speed boost unlocked!',
+	'⚡  Speed boost unlocked!',
 }
 
 -- Show tip notification with random fun message
@@ -250,111 +251,86 @@ local function show_welcome()
 	end, 1000)
 end
 
--- Commands with emoji power!
-local function setup_commands()
-	-- Main NDE command
-	vim.api.nvim_create_user_command('NDE', function(opts)
-		local args = vim.split(opts.args, ' ', { trimempty = true })
-		local cmd = args[1] or 'help'
+-- Expose functions for command suite
+M.enable = function()
+	tips_enabled = true
+	save_settings()
+	start_tips()
+	vim.notify('🎉 Tips enabled! Get ready for awesome advice! 💡', vim.log.levels.INFO)
+end
 
-		if cmd == 'help' then
-			vim.notify(
-				'🎯 NDE Commands Menu:\n\n'
-					.. '💡 :NDE tips on/off - Toggle awesome tips\n'
-					.. '🔥 :NDE tip show - Show current tip\n'
-					.. '⚡ :NDE tip next - Jump to next tip\n'
-					.. '🎉 :NDE welcome - Show welcome message\n'
-					.. '📊 :NDE status - Show NDE status\n'
-					.. '🎲 :NDE tip random - Random tip surprise!',
-				vim.log.levels.INFO,
-				{ title = '🚀 NDE Command Center' }
-			)
-		elseif cmd == 'tips' then
-			local action = args[2] or 'toggle'
-			if action == 'on' then
-				tips_enabled = true
-				save_settings()
-				start_tips()
-				vim.notify('🎉 Tips enabled! Get ready for awesome advice! 💡', vim.log.levels.INFO)
-			elseif action == 'off' then
-				tips_enabled = false
-				save_settings()
-				stop_tips()
-				vim.notify("😴 Tips disabled. They'll be waiting when you're ready!", vim.log.levels.INFO)
-			else
-				tips_enabled = not tips_enabled
-				save_settings()
-				if tips_enabled then
-					start_tips()
-					vim.notify('🎉 Tips enabled! Let the learning begin! 🚀', vim.log.levels.INFO)
-				else
-					stop_tips()
-					vim.notify('😴 Tips paused. Use :NDE tips on to resume!', vim.log.levels.INFO)
-				end
-			end
-		elseif cmd == 'tip' then
-			local action = args[2] or 'show'
-			if action == 'show' then
-				if #tips > 0 then
-					show_tip(tips[current_tip])
-					last_shown_tip = current_tip
-				end
-			elseif action == 'next' then
-				current_tip = current_tip % #tips + 1
-				show_tip(tips[current_tip])
-				last_shown_tip = current_tip
-			elseif action == 'random' then
-				local random_tip
-				-- Ensure random tip is different from last shown (if we have more than 1 tip)
-				if #tips > 1 and last_shown_tip then
-					repeat
-						random_tip = math.random(#tips)
-					until random_tip ~= last_shown_tip
-				else
-					random_tip = math.random(#tips)
-				end
-				show_tip(tips[random_tip])
-				last_shown_tip = random_tip
-				vim.notify('🎲 Random tip served! 🎯', vim.log.levels.INFO)
-			end
-		elseif cmd == 'welcome' then
-			show_welcome()
-		elseif cmd == 'status' then
-			vim.notify(
-				'📊 NDE Status Dashboard:\n\n'
-					.. '💡 Tips: '
-					.. (tips_enabled and 'Enabled & Rocking! 🎉' or 'Sleeping 😴')
-					.. '\n'
-					.. '🎯 Current tip: '
-					.. current_tip
-					.. '/'
-					.. #tips
-					.. '\n'
-					.. '⏰ Tip interval: '
-					.. (tip_interval / 1000)
-					.. 's\n'
-					.. '📚 Total tips available: '
-					.. #tips
-					.. ' awesome tips!\n'
-					.. '🚀 NDE is running smooth!',
-				vim.log.levels.INFO,
-				{ title = '🌟 NDE Status Report' }
-			)
-		end
-	end, {
-		nargs = '*',
-		complete = function(_, line)
-			local args = vim.split(line, ' ', { trimempty = true })
-			if #args <= 2 then
-				return { 'help', 'tips', 'tip', 'welcome', 'status' }
-			elseif args[2] == 'tips' then
-				return { 'on', 'off', 'toggle' }
-			elseif args[2] == 'tip' then
-				return { 'show', 'next', 'random' }
-			end
-			return {}
-		end,
-	})
+M.disable = function()
+	tips_enabled = false
+	save_settings()
+	stop_tips()
+	vim.notify("😴 Tips disabled. They'll be waiting when you're ready!", vim.log.levels.INFO)
+end
+
+M.toggle = function()
+	tips_enabled = not tips_enabled
+	save_settings()
+	if tips_enabled then
+		start_tips()
+		vim.notify('🎉 Tips enabled! Let the learning begin! 🚀', vim.log.levels.INFO)
+	else
+		stop_tips()
+		vim.notify('😴 Tips paused. Use :NDE tips on to resume!', vim.log.levels.INFO)
+	end
+end
+
+M.show_current = function()
+	if #tips > 0 then
+		show_tip(tips[current_tip])
+		last_shown_tip = current_tip
+	end
+end
+
+M.show_next = function()
+	current_tip = current_tip % #tips + 1
+	show_tip(tips[current_tip])
+	last_shown_tip = current_tip
+end
+
+M.show_random = function()
+	local random_tip
+	-- Ensure random tip is different from last shown (if we have more than 1 tip)
+	if #tips > 1 and last_shown_tip then
+		repeat
+			random_tip = math.random(#tips)
+		until random_tip ~= last_shown_tip
+	else
+		random_tip = math.random(#tips)
+	end
+	show_tip(tips[random_tip])
+	last_shown_tip = random_tip
+	vim.notify('🎲 Random tip served! 🎯', vim.log.levels.INFO)
+end
+
+M.show_welcome = function()
+	show_welcome()
+end
+
+M.show_status = function()
+	vim.notify(
+		'📊 NDE Status Dashboard:\n\n'
+			.. '💡 Tips: '
+			.. (tips_enabled and 'Enabled & Rocking! 🎉' or 'Sleeping 😴')
+			.. '\n'
+			.. '🎯 Current tip: '
+			.. current_tip
+			.. '/'
+			.. #tips
+			.. '\n'
+			.. '⏰ Tip interval: '
+			.. (tip_interval / 1000)
+			.. 's\n'
+			.. '📚 Total tips available: '
+			.. #tips
+			.. ' awesome tips!\n'
+			.. '🚀 NDE is running smooth!',
+		vim.log.levels.INFO,
+		{ title = '🌟 NDE Status Report' }
+	)
 end
 
 -- Setup function
@@ -379,8 +355,9 @@ function M.setup(opts)
 	-- Seed random for fun messages
 	math.randomseed(os.time())
 
-	-- Setup commands
-	setup_commands()
+	-- Setup NDE command suite
+	local command_suite = require('nde.command-suite')
+	command_suite.setup()
 
 	-- Show welcome message on startup
 	show_welcome()

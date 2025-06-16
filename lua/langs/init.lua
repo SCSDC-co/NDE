@@ -9,6 +9,8 @@ local languages = {
   "lua",
   "go",
   "java",
+  "zig",
+  "php",
 }
 
 -- Cache for loaded configurations

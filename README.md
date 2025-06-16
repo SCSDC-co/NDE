@@ -17,7 +17,20 @@ A meticulously crafted, enterprise-grade Neovim configuration featuring revoluti
 
 ## ✨ Revolutionary Features
 
-### 🚀 **Breakthrough Innovations**
+### 🎯 **Revolutionary Features**
+
+#### 🚀 **Dynamic Performance System** ⚡
+
+_World's first adaptive language loading with zero startup impact_
+
+- **📁 File-Triggered Loading**: Languages and formatters load only when you open matching file types
+- **🎯 Priority-Based System**: Critical languages (Lua, Go, Python) load with zero delay
+- **⚡ Smart Delays**: Slower languages (TypeScript, C++) load with intelligent delays (30-100ms)
+- **💾 Aggressive Caching**: Multi-layer caching system prevents redundant loading
+- **📊 Performance Monitoring**: Real-time stats with `:NDE dynamicloader stats`
+- **🔧 Fully Configurable**: Customize delays, priorities, and file extension mappings
+- **🧹 Cache Management**: Clear and reset performance caches with `:NDE dynamicloader clearcache`
+- **🌐 Zero Startup Cost**: No languages load during Neovim startup - everything is on-demand
 
 #### 🎯 **NDE Beginner's Dream System** ✨
 
@@ -29,9 +42,30 @@ _Revolutionary learning assistance for Neovim newcomers_
 - **⚡ Full Command Integration**: `:NDE` command suite for complete control
 - **🎨 Emoji-Powered Interface**: Engaging, colorful, and fun learning experience
 - **📚 8 Comprehensive Categories**: From basics to advanced Vim wizardry
-- **📁 File-Only Display**: Tips only appear when editing actual files (not terminals/help), exept the navigation basics
+- **📁 File-Only Display**: Tips only appear when editing actual files (not terminals/help)
 - **💾 Settings Persistence**: Your tip preferences persist across Neovim restarts
 - **🎭 Dynamic Welcome**: Different welcome messages for enabled/disabled states
+
+#### 🎮 **Universal Code Runner** 🚀
+
+_One-key execution for 20+ programming languages with smart project detection_
+
+- **F8 Universal Runner**: Automatically detects file type and runs with optimal settings
+- **🔍 Smart Project Detection**: Recognizes Cargo.toml, package.json, Makefile, and uses project commands
+- **⚡ Optimized Compilation**: Enhanced flags for C/C++, intelligent Rust/Go project handling
+- **🌐 Multi-Language Support**: Python, JS/TS, C/C++, Rust, Go, Java, Assembly, Lua, Ruby, PHP, and more
+- **📢 Performance Notifications**: Beautiful execution notifications with file type and status
+- **🔧 Terminal Integration**: Consistent ToggleTerm vertical split experience
+
+#### 🎮 **Integrated Development Playground** 🏗️
+
+_Interactive code experimentation and rapid prototyping environment_
+
+- **:PlaygroundToggle**: Quick access to code experimentation environment
+- **🔄 Session Management**: Save and load playground sessions
+- **📱 Responsive Layout**: Adaptive vertical split design
+- **⚡  Multi-Language**: Experiment across different programming languages
+- **🎨 Beautiful Animations**: Wave animation effects for engaging experience
 
 #### 🔬 **Nuclear Diagnostic System**
 
@@ -42,15 +76,15 @@ _The world's first zero-duplicate diagnostic engine_
 - **Modern API Integration**: Uses latest Neovim diagnostic system with zero deprecated warnings
 - **Performance Optimized**: Minimal overhead with maximum reliability
 
-#### ⚡ **Instant Code Execution Engine**
+#### ⚡ **Universal Code Runner System**
 
-_One-key compilation and execution for multiple languages_
+_Revolutionary one-key execution for 20+ programming languages_
 
-- **F5**: Python → Instant execution in vertical terminal
-- **F6**: C++ → Compile with g++ and execute
-- **F7**: C → Compile with Clang and execute
-- **F8**: Assembly → Assemble with NASM, link with LD, execute
-- **Smart File Detection**: Automatic language recognition and appropriate toolchain selection
+- **F8**: Universal Code Runner → Automatically detects file type and runs with appropriate compiler/interpreter
+- **Smart Project Detection**: Detects project files (Cargo.toml, package.json, Makefile) and uses project-specific commands
+- **Optimized Compilation**: Enhanced compilation flags and toolchain selection
+- **Multi-Language Support**: Python, JavaScript/TypeScript, C/C++, Rust, Go, Java, Assembly, Lua, Ruby, PHP, and many more
+- **Terminal Integration**: Uses ToggleTerm for consistent vertical terminal experience
 
 #### 🎨 **Unified Theme Architecture**
 
@@ -256,79 +290,15 @@ _Kanagawa Dragon theme integrated across every component_
 - **Code Experimentation:** Integrated code playground for rapid prototyping and testing
 - **Auto Save:** Auto save when leaving insert mode
 
-## 🚀 **Quick Start Installation**
+## 📥 Installation & Setup
 
-### ⚡ **One-Command Setup**
+**For complete installation instructions, requirements, and platform-specific setup guides, see [INSTALL.md](INSTALL.md)**
+
+### ⚡ Quick Start
 
 ```bash
 # Clone and install in one step
 git clone https://github.com/Sckab/NDE.git ~/.config/nvim && nvim
-```
-
-### 📋 **Detailed Installation Guide**
-
-### Requirements
-
-- **Neovim 0.10.0 or higher**
-- Git
-- Node.js and npm (for language servers)
-- Python 3 and pip (for language servers)
-- Go (for Go language server and development)
-- Rust toolchain via rustup (for Rust development and tools)
-- Lazygit (Git TUI - may be named differently on some distributions)
-- A Nerd Font (recommended for proper icon display)
-- Internet connection for downloading plugins
-
-### Setup
-
-**1. Clone the repository:**
-
-```bash
-git clone https://github.com/Sckab/NDE.git ~/.config/nvim
-```
-
-**2. Install prerequisites:**
-Make sure you have the required tools installed on your system:
-
-- **Arch Linux:**
-
-  ```bash
-  sudo pacman -S neovim git nodejs npm python python-pip go rustup lazygit
-  # Initialize rustup after installation
-  rustup default stable
-  ```
-
-- **Ubuntu/Debian:**
-
-  ```bash
-  sudo apt update
-  sudo apt install neovim git nodejs npm python3 python3-pip golang-go rustup
-  # Initialize rustup after installation
-  rustup default stable
-  # Install lazygit (may need to use snap or build from source on older distributions)
-  sudo snap install lazygit  # or build from https://github.com/jesseduffield/lazygit
-  ```
-
-- **macOS (with Homebrew):**
-  ```bash
-  brew install neovim git node python go rustup-init lazygit
-  # Initialize rustup after installation
-  rustup-init
-  ```
-
-**3. Launch Neovim:**
-
-```bash
-nvim
-```
-
-On first launch, Lazy.nvim will automatically install all configured plugins. Mason will then install the necessary language servers, formatters, and linters.
-
-**4. Install language servers (optional):**
-While Mason handles most installations automatically, you can manually install additional tools:
-
-```vim
-:Mason
 ```
 
 ## Installed Components
@@ -561,14 +531,14 @@ graph TD
 
 ### 🎯 **Performance Metrics**
 
-| Metric              | Value       | Optimization                 |
-| ------------------- | ----------- | ---------------------------- |
+| Metric              | Value       | Optimization                               |
+| ------------------- | ----------- | ------------------------------------------ |
 | **Startup Time**    | **25.4ms**  | 🚀 Extreme optimization (95% improvement!) |
-| **Memory Usage**    | **13.6MB**  | ⚡ Intelligent plugin management  |
-| **Plugin Load**     | Event-based | 🎯 Conditional loading          |
-| **LSP Response**    | <10ms       | 🔬 Nuclear diagnostic system    |
-| **File Search**     | <5ms        | 🔍 Ripgrep integration          |
-| **Code Completion** | Real-time   | ✨ Optimized nvim-cmp           |
+| **Memory Usage**    | **13.6MB**  | ⚡ Intelligent plugin management            |
+| **Plugin Load**     | Event-based | 🎯 Conditional loading                     |
+| **LSP Response**    | <10ms       | 🔬 Nuclear diagnostic system               |
+| **File Search**     | <5ms        | 🔍 Ripgrep integration                     |
+| **Code Completion** | Real-time   | ✨ Optimized nvim-cmp                      |
 
 #### 🏆 **Optimization Achievements**
 
@@ -601,145 +571,48 @@ When you first launch Neovim after installation:
 - **Try `<Leader>ff`**: Quick file search with live preview
 - **Use `:Mason`**: View and manage installed language servers
 
-### ⌨️ **Complete Keybinding Reference**
+## ⌨️ Keybindings & Usage
 
-#### 🔍 **File Navigation & Management**
+**For comprehensive keybinding reference, shortcuts, and usage examples, see [KEYBINDINGS.md](KEYBINDINGS.md)**
 
-| Keybinding   | Action                    | Description                           | Context                |
-| ------------ | ------------------------- | ------------------------------------- | ---------------------- |
-| `<Leader>ff` | **File Search**           | Search all files with live preview    | Telescope fuzzy finder |
-| `<Leader>fg` | **Content Search**        | Live grep across entire project       | Ripgrep integration    |
-| `<Leader>fb` | **Buffer List**           | Show all open buffers with preview    | Buffer management      |
-| `<Leader>fh` | **Help Search**           | Search Neovim help documentation      | Learning & reference   |
-| `<leader>fp` | **Clipboard History**     | Access yanky clipboard history        | Productivity           |
-| `<leader>fR` | **Find & Replace (Spectre)** | Project-wide search and replace with live preview | Advanced search |
-| `<leader>fw` | **Find & Replace Word**   | Search and replace current word/selection | Quick editing |
-| `<leader>fc` | **Find & Replace in File** | Search and replace within current file only | File-specific |
-| `<leader>e`  | **File Explorer (Root)**  | Toggle Neo-tree from project root     | Project navigation     |
-| `<leader>n`  | **File Explorer (Local)** | Smart Neo-tree with context switching | Local navigation       |
-| `<leader>bc` | **Close Buffer**          | Close current buffer safely           | Buffer management      |
-| `<leader>bo` | **Close Others**          | Close all buffers except current      | Workspace cleanup      |
+### Key Highlights
 
-#### 🚀 **Language-Specific Development**
-
-| Keybinding | Language        | Action                              | Terminal Output                                  |
-| ---------- | --------------- | ----------------------------------- | ------------------------------------------------ |
-| `<F5>`     | **🐍 Python**   | Save → Execute in vertical terminal | `python3 "file.py"`                              |
-| `<F6>`     | **⚡ C++**      | Save → Compile with g++ → Execute   | `g++ "file.cpp" -o "executable" && ./executable` |
-| `<F7>`     | **🔧 C**        | Save → Compile with Clang → Execute | `clang "file.c" -o "executable" && ./executable` |
-| `<F8>`     | **🔩 Assembly** | Save → Assemble → Link → Execute    | `nasm -f elf64 && ld && ./executable`            |
-| `<F9>`     | **Any**         | Add parentheses around word         | `ysiw()` surround operation                      |
-| `<F10>`    | **Any**         | Add quotes around word              | `ysiw"` surround operation                       |
-
-#### 🐛 **Debugging Controls**
-
-| Keybinding   | Action                | Function                        | DAP Integration     |
-| ------------ | --------------------- | ------------------------------- | ------------------- |
-| `<F1>`       | **Toggle Breakpoint** | Set/remove breakpoint at cursor | Visual indicator    |
-| `<F2>`       | **Continue**          | Resume program execution        | Full DAP support    |
-| `<F3>`       | **Step Into**         | Step into function calls        | Variable inspection |
-| `<F4>`       | **Step Over**         | Execute current line            | Scope awareness     |
-| `<Leader>du` | **Toggle DAP UI**     | Show/hide debug interface       | Visual debugging    |
-
-#### 📋 **Advanced Clipboard Management (Yanky)**
-
-| Keybinding   | Action                 | Behavior                         | Integration        |
-| ------------ | ---------------------- | -------------------------------- | ------------------ |
-| `<Leader>fp` | **History Picker**     | Open Telescope clipboard browser | Visual selection   |
-| `p`          | **Smart Paste After**  | Enhanced paste with history      | Context-aware      |
-| `P`          | **Smart Paste Before** | Enhanced paste before cursor     | Position-aware     |
-| `<C-p>`      | **Previous Entry**     | Cycle to previous clipboard item | Post-paste cycling |
-| `<C-n>`      | **Next Entry**         | Cycle to next clipboard item     | Post-paste cycling |
-
-#### 🔄 **Text Manipulation (Surround)**
-
-| Operation           | Keybinding                        | Example            | Result            |
-| ------------------- | --------------------------------- | ------------------ | ----------------- |
-| **Add Surround**    | `<Leader>sa` → `ys{motion}{char}` | `ysiw"` on `word`  | `"word"`          |
-| **Change Surround** | `<Leader>sc` → `cs{old}{new}`     | `cs'"` on `'text'` | `"text"`          |
-| **Delete Surround** | `<Leader>sd` → `ds{char}`         | `ds"` on `"text"`  | `text`            |
-| **Visual Mode**     | Select → `S{char}`                | Select text → `S)` | `(selected text)` |
-
-#### 🎯 **Code Intelligence**
-
-| Keybinding   | LSP Action              | Function                      | Availability      |
-| ------------ | ----------------------- | ----------------------------- | ----------------- |
-| `gd`         | **Go to Definition**    | Navigate to symbol definition | All LSP languages |
-| `K`          | **Hover Documentation** | Show symbol information       | Context-sensitive |
-| `<C-k>`      | **Signature Help**      | Show function signature       | Function calls    |
-| `<Leader>f`  | **Format Document**     | Auto-format current file      | Language-specific |
-| `<Leader>rn` | **Rename Symbol**       | Intelligent symbol renaming   | Project-wide      |
-| `<Leader>ca` | **Code Actions**        | Show available code actions   | Context-aware     |
-| `gr`         | **Go to References**    | Find all symbol references    | Cross-file search |
-
-#### 🪟 **Smart Window Management**
-
-| Keybinding     | Action                    | Function                          | Smart Features        |
-| -------------- | ------------------------- | --------------------------------- | --------------------- |
-| `Ctrl+h/j/k/l`    | **Smart Navigation**      | Move between windows intelligently | Tmux integration      |
-| `Alt+h/j/k/l`     | **Resize Windows**        | Intuitive window resizing         | Real-time feedback    |
-| `Ctrl+Arrows`  | **Resize (Alternative)**  | Arrow key window resizing         | Ergonomic option      |
-| `<leader>Wh/j/k/l` | **Swap Windows**         | Move windows around splits        | Buffer preservation   |
-
-#### 🔧 **Terminal & Git Integration**
-
-| Keybinding    | Tool           | Action                         | Interface         |
-| ------------- | -------------- | ------------------------------ | ----------------- |
-| `<F11>`       | **Lazygit**    | Open Git interface in terminal | Full-screen TUI   |
-| `<F12>`       | **ToggleTerm** | Open terminal on right side    | Vertical split    |
-| `<C-h/j/k/l>` | **Window Nav** | Navigate between panes         | Works in terminal |
-| Git signs     | **Automatic**  | Show changes in sign column    | Real-time updates |
-
-#### 🎨 **Character Utilities (Blink)**
-
-| Keybinding   | Function             | Behavior                   | Use Case        |
-| ------------ | -------------------- | -------------------------- | --------------- |
-| `<Leader>B;` | **Toggle Semicolon** | Add/remove `;` at line end | Code formatting |
-| `<Leader>B,` | **Toggle Comma**     | Add/remove `,` at line end | List formatting |
-
-#### 📝 **Text Editing Helpers**
-
-| Keybinding   | Action                 | Behavior                        | Context      |
-| ------------ | ---------------------- | ------------------------------- | ------------ |
-| `<Leader>j`  | **Insert Line Below**  | Add empty line after cursor     | Any mode     |
-| `<Leader>k`  | **Insert Line Above**  | Add empty line before cursor    | Any mode     |
-| `<C-Space>`  | **Trigger Completion** | Force completion menu           | Insert mode  |
-| `/` → `<CR>` | **Search**             | Enhanced search with Telescope  | Search mode  |
-| `:`          | **Command Mode**       | Command palette with completion | Command mode |
+- **Leader Key**: `<Space>` (spacebar)
+- **Universal Code Runner**: `<F8>` - automatically detects and runs any file type
+- **File Operations**: `<leader>ff` (find files), `<leader>fg` (grep), `<leader>e` (explorer)
+- **Debugging**: `<F1-F4>` for breakpoints and stepping
+- **Terminal**: `<F11>` (Lazygit), `<F12>` (Terminal)
 
 ### 🎛️ **Administrative Commands**
 
-#### **🎯 NDE Beginner's Dream System**
+#### **🚀 NDE Command Suite & Dynamic Systems**
 
-The revolutionary learning assistance system that helps newcomers master Neovim:
+Comprehensive command system with intelligent performance management:
 
 ```vim
-:NDE help             " Show all available NDE commands
-:NDE tips on/off      " Enable/disable the automatic tips system
-:NDE tip show         " Display the current tip immediately
-:NDE tip next         " Jump to the next tip in sequence
-:NDE tip random       " Show a random tip (never repeats consecutively)
-:NDE welcome          " Show the epic welcome message
-:NDE status           " Display system status and statistics
+:NDE help                     " Show all available NDE commands
+:NDE tips on/off              " Toggle the automatic tips system
+:NDE tip show/next/random     " Control tip display
+:NDE dynamicloader stats      " Performance overview and statistics
+:NDE dynamicloader languages  " Show loaded/available languages
+:NDE dynamicloader formatters " Show formatter status
+:NDE dynamicloader clearcache " Clear all performance caches
+:NDE welcome                  " Show the epic welcome message
+:NDE status                   " Display system status and statistics
 ```
 
-**🌟 Features:**
-- **🎉 Smart Tips**: Contextual tips appear every 45 seconds
-- **🚫 No Duplicates**: Anti-duplicate system prevents consecutive repeats
-- **🎲 Random Variety**: Intelligent random selection ensures learning diversity
-- **📚 8 Categories**: Navigation, Files, Editing, Code, Windows, Terminal, Pro Tips, Advanced
-- **🎨 Emoji Interface**: Engaging, colorful, and fun learning experience
-- **⚡ Full Control**: Manual tip navigation and system toggle
+**🚀 Dynamic Performance Commands:**
+- **📊 Stats Monitoring**: Real-time efficiency tracking and cache status
+- **🎯 Language Status**: See which languages are loaded vs available
+- **✨ Formatter Status**: Monitor loaded formatters and their Mason packages
+- **🧹 Cache Management**: Clear all caches to reset the dynamic loading system
+- **🔧 Zero Startup Impact**: Languages only load when you open matching file types
 
-**📖 Tip Categories:**
-1. 🚀 **Navigation Basics** - h/j/k/l movement, Insert mode, word jumping
-2. 📁 **File Operations** - Save, quit, find files, search content, file explorer
-3. ⚡ **Editing Power** - Copy/paste, undo/redo, visual modes, word operations
-4. 🧭 **Code Navigation** - Go to definition, references, hover docs, diagnostics
-5. 🪟 **Window Management** - Splits, navigation, resizing, window operations
-6. 💻 **Terminal & Tasks** - Terminal integration, shell commands, workspace tools
-7. 🎨 **Pro Tips** - Repeat commands, jump navigation, line creation, character finding
-8. 🚀 **Advanced Moves** - Text objects, change operations, advanced editing
+**🎨 NDE Beginner's Dream Commands:**
+- **💡 Interactive Tips**: Smart contextual tips every 45 seconds with 8 categories
+- **🚫 Anti-Duplicate System**: Intelligent tip rotation with variety guarantee
+- **🎲 Manual Control**: Show tips on demand, cycle through categories
+- **📚 Learning Categories**: Navigation, Files, Editing, Code, Windows, Terminal, Pro Tips, Advanced
 
 #### **Plugin Management**
 
@@ -782,39 +655,31 @@ The revolutionary learning assistance system that helps newcomers master Neovim:
 :lua vim.diagnostic.reset()       " Clear diagnostics
 ```
 
-### 🚀 **Advanced Workflows**
+### 🚀 **Advanced Development Features**
 
-#### **🐍 Python Development Workflow**
+#### **🎮 Code Playground Integration**
 
-1. Open Python file → `<Leader>ff` → `main.py`
-2. Write code with intelligent completion
-3. Press `<F5>` for instant execution
-4. Use `<F1>` to set breakpoints for debugging
-5. `<Leader>f` to format code with Black
+Interactive code experimentation environment:
+- **:PlaygroundToggle** - Toggle code playground for rapid prototyping
+- **Vertical Split Layout** - Side-by-side editing and testing
+- **Multi-Language Support** - Experiment with different programming languages
+- **Save/Load Sessions** - Persist your playground experiments
 
-#### **🦀 Rust Development Workflow**
+#### **📝 Enhanced Markdown Experience**
 
-1. Open Rust project → `:Neotree`
-2. Navigate to `src/main.rs`
-3. Use `rust-analyzer` for intelligent features
-4. Run with Cargo commands in `:ToggleTerm`
-5. Debug with integrated DAP support
+Professional markdown rendering and editing:
+- **Live Rendering** - Real-time markdown preview with render-markdown.nvim
+- **Syntax Highlighting** - Beautiful code blocks and formatting
+- **Treesitter Integration** - Advanced syntax awareness
+- **Export Options** - Generate beautiful documentation
 
-#### **🌐 Web Development Workflow**
+#### **⚡ Universal Development Workflow**
 
-1. Open project → `<Leader>e`
-2. Navigate between HTML/CSS/JS files
-3. Use Emmet for rapid HTML development
-4. Auto-format with Prettier → `<Leader>f`
-5. Live preview in browser
-
-#### **🔧 C/C++ Development Workflow**
-
-1. Create/open `.cpp` or `.c` file
-2. Write code with Clangd assistance
-3. `<F6>` (C++) or `<F7>` (C) for compile & run
-4. Use `<F1-F4>` for debugging session
-5. Format with clang-format
+1. **Open any file** → NDE automatically detects language and loads appropriate tools on-demand
+2. **Press `<F8>`** → Universal runner executes with optimal settings for detected file type
+3. **Dynamic Loading** → Only necessary components load when needed, maintaining instant startup
+4. **Intelligent Formatting** → Context-aware formatting with `<Leader>f`
+5. **Performance Monitoring** → Use `:NDE dynamicloader stats` to check system efficiency and loaded components
 
 ### 📊 **Productivity Tips & Tricks**
 
@@ -851,89 +716,6 @@ The system will automatically:
 3. Apply the Kanagawa theme configuration
 4. Prepare the development environment
 
-### Key Bindings
-
-#### File Navigation & Management
-
-| Keybinding   | Function              | Description                                  |
-| ------------ | --------------------- | -------------------------------------------- |
-| `<leader>ff` | File Search           | Search files using Telescope                 |
-| `<leader>fg` | Content Search        | Live grep in files                           |
-| `<leader>fb` | Buffer List           | Display open buffers                         |
-| `<leader>fh` | Help Search           | Search help documentation                    |
-| `<leader>fp` | Clipboard History     | Access yanky clipboard history via Telescope |
-| `<leader>e`  | File Explorer (Root)  | Toggle Neo-tree from filesystem root         |
-| `<leader>n`  | File Explorer (Local) | Toggle Neo-tree (smart focus switching)      |
-| `<leader>bc` | Close Buffer          | Close current buffer                         |
-| `<leader>bo` | Close Others          | Close all other buffers                      |
-
-#### Language-Specific Quick Actions
-
-| Keybinding | Function          | Description                                         |
-| ---------- | ----------------- | --------------------------------------------------- |
-| `<F5>`     | Run Python        | Save and execute Python file in vertical terminal   |
-| `<F6>`     | Compile & Run C++ | Compile with g++ and execute in vertical terminal   |
-| `<F7>`     | Compile & Run C   | Compile with clang and execute in vertical terminal |
-| `<F8>`     | Assemble & Run    | Assemble with NASM, link with ld, execute           |
-| `<F9>`     | Add Parentheses   | Add parentheses around current word (ysiw()         |
-| `<F10>`    | Add Quotes        | Add quotes around current word (ysiw")              |
-
-#### Debugging
-
-| Keybinding   | Function          | Description                           |
-| ------------ | ----------------- | ------------------------------------- |
-| `<F1>`       | Toggle Breakpoint | Set/remove breakpoint at current line |
-| `<F2>`       | Continue          | Continue debugging execution          |
-| `<F3>`       | Step Into         | Step into function calls              |
-| `<F4>`       | Step Over         | Step over current line                |
-| `<leader>du` | Toggle DAP UI     | Show/hide debug interface             |
-
-#### Clipboard Management (Yanky)
-
-| Keybinding   | Function          | Description                                     |
-| ------------ | ----------------- | ----------------------------------------------- |
-| `<leader>fp` | Clipboard History | Open Telescope clipboard history picker         |
-| `p`          | Yanky Put After   | Enhanced paste after cursor                     |
-| `P`          | Yanky Put Before  | Enhanced paste before cursor                    |
-| `<C-p>`      | Previous Entry    | Cycle to previous clipboard entry (after paste) |
-| `<C-n>`      | Next Entry        | Cycle to next clipboard entry (after paste)     |
-
-#### Text Manipulation (Surround)
-
-| Keybinding           | Function        | Description                                      |
-| -------------------- | --------------- | ------------------------------------------------ |
-| `<leader>sa`         | Add Surround    | Add surrounding characters (ys + motion + char)  |
-| `<leader>sc`         | Change Surround | Change surrounding characters (cs + old + new)   |
-| `<leader>sd`         | Delete Surround | Delete surrounding characters (ds + char)        |
-| `ys` + motion + char | Add Surround    | Direct surround add (e.g., ysiw" for quotes)     |
-| `cs` + old + new     | Change Surround | Direct surround change (e.g., cs'" quotes)       |
-| `ds` + char          | Delete Surround | Direct surround delete (e.g., ds" remove quotes) |
-
-#### General Editing
-
-| Keybinding    | Function          | Description                                  |
-| ------------- | ----------------- | -------------------------------------------- |
-| `<leader>j`   | Insert Line Below | Add empty line below cursor                  |
-| `<leader>k`   | Insert Line Above | Add empty line above cursor                  |
-| `<C-h/j/k/l>` | Window Navigation | Move between windows (works in terminal too) |
-| `<C-Space>`   | Completion        | Trigger auto-completion                      |
-| `<leader>f`   | Format Code       | Format current file                          |
-| `<leader>B;`  | Insert ; eol      | Insert semicolon at the end of the line      |
-| `<leader>B,`  | Insert , eol      | Insert comma at the end of the line          |
-
-#### Others
-
-| Keybinding  | Function        | Description                                     |
-| ----------- | --------------- | ----------------------------------------------- |
-| `<F11>`     | Open Lazygit    | Open Lazygit in toggleterm                      |
-| `<F12>`     | Open Toggleterm | Open toggleterm at the right side of the screen |
-| `s`         | Leap Forward    | Jump to location with 2 characters (leap.nvim)  |
-| `S`         | Leap Backward   | Jump backwards with 2 characters (leap.nvim)    |
-| `gs`        | Leap Windows    | Jump across windows (leap.nvim)                 |
-| `<leader>;` | Symbol Picker   | Interactive symbol picker in winbar (dropbar)   |
-| `[;`        | Context Start   | Go to start of current context (dropbar)        |
-| `];`        | Next Context    | Select next context (dropbar)                   |
-| `<leader>vt`| Toggle VimBeGood| Toggle Vim Training mode                        |
 
 ### Administrative Commands
 
