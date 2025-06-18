@@ -294,13 +294,6 @@ _Kanagawa Dragon theme integrated across every component_
 
 **For complete installation instructions, requirements, and platform-specific setup guides, see [INSTALL.md](INSTALL.md)**
 
-### ⚡ Quick Start
-
-```bash
-# Clone and install in one step
-git clone https://github.com/Sckab/NDE.git ~/.config/nvim && nvim
-```
-
 ## Installed Components
 
 ### Core Development Environment
@@ -392,48 +385,67 @@ git clone https://github.com/Sckab/NDE.git ~/.config/nvim && nvim
 
 ```
 ~/.config/nvim/                        # 🏠 Root Configuration Directory
+├── 📄 .gitignore                      # 🚫 Git ignore rules
 ├── 📄 init.lua                        # 🚀 Entry Point & Python Environment Setup
 ├── 📄 LICENSE                         # ⚖️ MIT License
 ├── 📄 README.md                       # 📖 This comprehensive documentation
 ├── 📄 CHANGELOG.md                    # 📝 Version history and feature updates
+├── 📄 INSTALL.md                      # 📥 Installation guide and setup instructions
+├── 📄 KEYBINDINGS.md                  # ⌨️ Complete keybinding reference
 ├── 📁 .github/                        # 🐙 GitHub templates and assets
 │   ├── 📁 assets/                     # 🎨 Documentation images and banners
+│   │   ├── 📄 banner_ui.png           # 🖼️ UI banner image
+│   │   ├── 📄 banner_ui_readme.png    # 📖 README banner image
+│   │   └── 📄 logo_ui.png             # 🏷️ UI logo image
 │   └── 📁 ISSUE_TEMPLATE/             # 📋 Bug report and feature request templates
+│       ├── 📄 bug_report.yml          # 🐛 Bug report template
+│       └── 📄 feature_request.yml     # 💡 Feature request template
 └── 📁 lua/                            # 🌙 Core Lua Configuration
     ├── 📄 keymaps.lua                  # ⌨️ Global keybindings & language-specific shortcuts
     ├── 📄 launch.lua                   # 🏁 Orchestrated startup sequence
     ├── 📄 opts.lua                     # ⚙️ Core editor options & performance settings
-    │
-    ├── 📁 GUI/                        # 🎨 User Interface Components
-    │   └── 📄 theme.lua               # 🌈 Kanagawa Dragon theme with custom overrides
-    │
     ├── 📁 formatters/                  # 🔧 Code Formatting Configurations
-    │   ├── 📄 init.lua                 # 🚀 Formatter loader and registry
     │   ├── 📄 black.lua                # 🐍 Python Black formatter
     │   ├── 📄 clang-format.lua         # 🔧 C/C++ clang-format
     │   ├── 📄 gofmt.lua                # 🐹 Go formatting
+    │   ├── 📄 goimports.lua            # 🐹 Go imports formatter
     │   ├── 📄 google-java-format.lua   # ☕ Java Google formatter
+    │   ├── 📄 init.lua                 # 🚀 Formatter loader and registry
+    │   ├── 📄 isort.lua                # 🐍 Python import sorting
+    │   ├── 📄 phpcbf.lua               # 🐘 PHP Code Beautifier
+    │   ├── 📄 php-cs-fixer.lua         # 🐘 PHP CS Fixer
     │   ├── 📄 prettierd.lua            # 🌐 Web technologies formatter
     │   ├── 📄 rustfmt.lua              # 🦀 Rust formatting
     │   ├── 📄 shfmt.lua                # 🐚 Shell script formatter
-    │   └── 📄 stylua.lua               # 🌙 Lua stylua formatter
-    │
+    │   ├── 📄 stylua.lua               # 🌙 Lua stylua formatter
+    │   └── 📄 zig_fmt.lua              # ⚡ Zig formatter
+    ├── 📁 GUI/                         # 🎨 User Interface Components
+    │   └── 📄 theme.lua                # 🌈 Kanagawa Dragon theme with custom overrides
     ├── 📁 langs/                       # 🌍 Language-Specific Configurations
-    │   ├── 📄 init.lua                 # 🚀 Language configuration loader
     │   ├── 📄 c_cpp.lua                # 🔧 C/C++ language setup
     │   ├── 📄 go.lua                   # 🐹 Go language configuration
+    │   ├── 📄 init.lua                 # 🚀 Language configuration loader
     │   ├── 📄 java.lua                 # ☕ Java language setup
     │   ├── 📄 javascript_typescript.lua # ⚡ JS/TS configuration
     │   ├── 📄 lua.lua                  # 🌙 Lua language setup
+    │   ├── 📄 php.lua                  # 🐘 PHP language setup
     │   ├── 📄 python.lua               # 🐍 Python language configuration
-    │   └── 📄 rust.lua                 # 🦀 Rust language setup
-    │
+    │   ├── 📄 rust.lua                 # 🦀 Rust language setup
+    │   ├── 📄 shell.lua                # 🐚 Shell scripting setup
+    │   └── 📄 zig.lua                  # ⚡ Zig language setup
     ├── 📁 lazynvim/                    # 📦 Plugin Management
     │   └── 📄 lazy.lua                 # 🔄 Lazy.nvim configuration & plugin loader
-    │
-    ├── 📁 nde/                         # 🎯 NDE Learning System
+    ├── 📁 nde/                         # 🎯 NDE System
+    │   ├── 📄 command-suite.lua        # 🎮 NDE command system
+    │   ├── 📄 README.md               # 📖 NDE system documentation
     │   └── 📄 tips.lua                 # 💡 Beginner's Dream tips engine
-    │
+    ├── 📁 performance/                 # ⚡ Performance System
+    │   ├── 📄 dynamic_loader.lua       # 🎯 Dynamic language loading
+    │   ├── 📄 formatters.lua           # 🔧 Formatter performance management
+    │   ├── 📄 init.lua                 # 🚀 Performance system loader
+    │   ├── 📁 langs/                   # 🌍 Language performance configs
+    │   │   └── 📄 init.lua             # 🚀 Language performance loader
+    │   └── 📄 README.md               # 📖 Performance system docs
     ├── 📁 utils/                       # 🛠️ Utility Functions
     │   └── 📄 lazy_loader.lua          # 🔄 Smart plugin loading utilities
     │
@@ -466,10 +478,9 @@ git clone https://github.com/Sckab/NDE.git ~/.config/nvim && nvim
         │   └── 📄 smart-splits.lua     # 🪟 Intelligent window management
         │
         ├── 📁 editing/                 # ✏️ Text Editing & Manipulation
-        │   ├── 📄 autopairs.lua        # 🔗 Intelligent bracket pairing
+        │   ├── 📄 mini.lua             # 🔗 Mini modules (surround & pairs)
         │   ├── 📄 autotag.lua          # 🏷️ Smart HTML/XML tag completion
-        │   ├── 📄 surround.lua         # 🔄 Text object manipulation
-        │   ├── 📄 comment.lua          # 💬 Smart commenting system
+        │   ├── 📄 comment.lua          # 💬 Smart commenting system (mini.comment)
         │   ├── 📄 yanky.lua            # 📋 Advanced clipboard management
         │   ├── 📄 blink.lua            # ✨ Modern completion framework
         │   ├── 📄 cmp.lua              # 🔤 Legacy completion (fallback)
@@ -501,33 +512,6 @@ git clone https://github.com/Sckab/NDE.git ~/.config/nvim && nvim
             └── 📄 toggleterm.lua       # 🖥️ Smart terminal management
 ```
 
-### 🔍 **Component Interaction Diagram**
-
-```mermaid
-graph TD
-    A[init.lua] --> B[launch.lua]
-    B --> C[opts.lua]
-    B --> D[lazy.lua]
-    B --> E[theme.lua]
-    B --> F[keymaps.lua]
-
-    D --> G[Plugin Ecosystem]
-    G --> H[LSP System]
-    G --> I[UI Components]
-    G --> J[Development Tools]
-
-    H --> K[Nuclear Diagnostics]
-    H --> L[Language Servers]
-    H --> M[Auto-completion]
-
-    I --> N[Telescope]
-    I --> O[Neo-tree]
-    I --> P[Which-key]
-
-    J --> Q[Debug Adapters]
-    J --> R[Terminal Integration]
-    J --> S[Git Tools]
-```
 
 ### 🎯 **Performance Metrics**
 
@@ -1207,77 +1191,6 @@ Custom keybindings can be added to `lua/keymaps.lua`. Follow the existing patter
 
 Individual plugin configurations are modularized in `lua/plugins/`. Each file corresponds to a specific plugin or feature set.
 
-## Troubleshooting
-
-### Neovim Version Compatibility
-
-```bash
-# Check Neovim version
-nvim --version
-
-# If version is below 0.10.0, update Neovim:
-# Arch Linux
-sudo pacman -S neovim
-
-# Ubuntu/Debian (you may need to add the unstable PPA)
-sudo add-apt-repository ppa:neovim-ppa/unstable
-sudo apt update
-sudo apt install neovim
-```
-
-### Plugin Management Issues
-
-```vim
-" In Neovim, reset plugins
-:Lazy clean
-:Lazy sync
-
-" Reset language servers
-:Mason
-:MasonUninstallAll
-:MasonInstall pyright typescript-language-server
-```
-
-### Dependency Resolution
-
-If you're missing dependencies, install them manually:
-
-```bash
-# Check what's installed
-which nvim node python3 git rg fd
-
-# Install missing dependencies
-# Arch Linux
-sudo pacman -S ripgrep fd
-
-# Ubuntu/Debian
-sudo apt install ripgrep fd-find
-```
-
-### Manual Neovim Installation
-
-If the automatic installation fails, you can install manually:
-
-**Ubuntu/Debian:**
-
-```bash
-sudo add-apt-repository ppa:neovim-ppa/unstable
-sudo apt-get update
-sudo apt-get install neovim
-```
-
-**Fedora:**
-
-```bash
-sudo dnf copr enable agriffis/neovim-nightly
-sudo dnf install neovim
-```
-
-**Arch Linux:**
-
-```bash
-sudo pacman -S neovim  # Usually has latest version
-```
 
 ## Contributing
 

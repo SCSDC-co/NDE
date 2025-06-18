@@ -18,7 +18,7 @@ return {
 				offsets = {
 					{
 						filetype = 'neo-tree',
-						text = ' NeoTree',
+						text = ' NeoTree',
 						text_align = 'left',
 						separator = true,
 						highlight = 'BufferLineOffset',

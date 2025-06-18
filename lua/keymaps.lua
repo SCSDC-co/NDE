@@ -64,7 +64,7 @@ vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = "Go to right window" })
 vim.keymap.set('n', '<leader>bc', ':bdelete<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>bo', ':BufferLineCloseOthers<CR>', { noremap = true, silent = true })
 
--- Surround shortcuts
+-- Surround shortcuts (mini.surround)
 vim.keymap.set('n', '<F9>', 'ysiw)', { desc = "Add parentheses around word", remap = true })
 vim.keymap.set('n', '<F10>', 'ysiw"', { desc = "Add quotes around word", remap = true })
 
