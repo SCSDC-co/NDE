@@ -7,6 +7,56 @@ local M = {}
 local tips = require('nde.tips')
 local dynamic_loader = require('performance.dynamic_loader')
 
+-- Snippets functionality
+local function list_snippets()
+  -- Check if LuaSnip is available
+  local ok, ls = pcall(require, 'luasnip')
+  if not ok then
+    vim.notify(
+      '❌ LuaSnip not available\n\n' ..
+      'Install LuaSnip to use snippets functionality',
+      vim.log.levels.ERROR,
+      { title = '🚀 NDE Snippets' }
+    )
+    return
+  end
+  
+  local ft = vim.bo.filetype
+  if ft == '' then
+    vim.notify(
+      '⚠️  No filetype detected\n\n' ..
+      'Open a file with a recognized filetype to see available snippets',
+      vim.log.levels.WARN,
+      { title = '🚀 NDE Snippets' }
+    )
+    return
+  end
+  
+  local snippets = ls.get_snippets(ft)
+  if not snippets or vim.tbl_isempty(snippets) then
+    vim.notify(
+      '📝 No snippets available for filetype: ' .. ft .. '\n\n' ..
+      'Supported languages include: Python, JavaScript/TypeScript, Rust, Go, C/C++, Lua, HTML, SQL',
+      vim.log.levels.INFO,
+      { title = '🚀 NDE Snippets' }
+    )
+    return
+  end
+  
+  local snippet_list = {}
+  for _, snippet in pairs(snippets) do
+    table.insert(snippet_list, '• ' .. snippet.trigger)
+  end
+  
+  vim.notify(
+    '🎯 Available snippets for ' .. ft .. ':\n\n' ..
+    table.concat(snippet_list, '\n') .. '\n\n' ..
+    '💡 Use <C-f> to expand snippets, <C-b>/<C-f> to navigate placeholders',
+    vim.log.levels.INFO,
+    { title = '🚀 NDE Snippets - ' .. ft:upper(), timeout = 10000 }
+  )
+end
+
 -- Main NDE command handler
 local function handle_nde_command(opts)
   local args = vim.split(opts.args, ' ', { trimempty = true })
@@ -59,6 +109,10 @@ local function handle_nde_command(opts)
       )
     end
     
+  -- Snippets commands
+  elseif cmd == 'snippetslist' then
+    list_snippets()
+    
   -- General commands
   elseif cmd == 'welcome' then
     tips.show_welcome()
@@ -78,6 +132,8 @@ local function handle_nde_command(opts)
       '   :NDE dynamicloader languages - Language status\n' ..
       '   :NDE dynamicloader formatters - Formatter status\n' ..
       '   :NDE dynamicloader clearcache - Clear caches\n\n' ..
+      '📝 SNIPPETS:\n' ..
+      '   :NDE snippetslist - List available snippets for current file\n\n' ..
       '🎉 GENERAL:\n' ..
       '   :NDE welcome - Show welcome message\n' ..
       '   :NDE status - Show NDE status\n\n' ..
@@ -111,7 +167,7 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
     -- First level commands
     local commands = {
       'help', 'tips', 'tip', 'dynamicloader', 
-      'welcome', 'status'
+      'snippetslist', 'welcome', 'status'
     }
     return vim.tbl_filter(function(cmd)
       return cmd:match('^' .. vim.pesc(ArgLead))

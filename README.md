@@ -6,12 +6,38 @@
 
 A meticulously crafted, enterprise-grade Neovim configuration featuring revolutionary diagnostic management, beautiful theming, and unparalleled developer productivity. Built for systems programming, web development, and professional coding workflows with cutting-edge language support and intelligent automation.
 
-[![Platform Support](https://img.shields.io/badge/Platform-Linux%20%7C%20macOS%20%7C%20Windows-blue)](#platform-support)
-[![Neovim Version](https://img.shields.io/badge/Neovim-0.10.0+-green)](#requirements)
-[![Languages](https://img.shields.io/badge/Languages-15+-orange)](#language-support)
-[![License](https://img.shields.io/badge/License-MIT-blue)](#license)
-[![Documentation](https://img.shields.io/badge/Documentation-Comprehensive-brightgreen)](#documentation)
-[![Code Quality](https://img.shields.io/badge/Code_Quality-A+-gold)](#features)
+<p>
+    <a href="https://github.com/Sckab/NDE/stargazers">
+      <img alt="Stars" src="https://img.shields.io/github/stars/Sckab/NDE?style=for-the-badge&logo=starship&color=c69ff5&logoColor=D9E0EE&labelColor=302D41" />
+    </a>
+    <a href="https://github.com/Sckab/NDE/network/members">
+      <img alt="Forks" src="https://img.shields.io/github/forks/Sckab/NDE?style=for-the-badge&logo=starship&color=8bd5ca&logoColor=D9E0EE&labelColor=302D41" />
+    </a>
+    <a href="https://github.com/Sckab/NDE/watchers">
+      <img alt="Watchers" src="https://img.shields.io/github/watchers/Sckab/NDE?style=for-the-badge&logo=starship&color=ee999f&logoColor=D9E0EE&labelColor=302D41" />
+    </a>
+    <a href="https://github.com/Sckab/NDE/pulse">
+      <img alt="Last commit" src="https://img.shields.io/github/last-commit/Sckab/NDE?style=for-the-badge&logo=starship&color=8bd5ca&logoColor=D9E0EE&labelColor=302D41"/>
+    </a>
+    <a href="https://github.com/Sckab/NDE/blob/main/LICENSE">
+      <img alt="License" src="https://img.shields.io/github/license/Sckab/NDE?style=for-the-badge&logo=starship&color=ee999f&logoColor=D9E0EE&labelColor=302D41" />
+    </a>
+    <a href="https://github.com/Sckab/NDE/issues">
+      <img alt="Issues" src="https://img.shields.io/github/issues/Sckab/NDE?style=for-the-badge&logo=gitbook&color=F5E0DC&logoColor=D9E0EE&labelColor=302D41" />
+    </a>
+    <a href="https://github.com/Sckab/NDE">
+      <img alt="Repo Size" src="https://img.shields.io/github/repo-size/Sckab/NDE?color=%23DDB6F2&label=SIZE&logo=codesandbox&style=for-the-badge&logoColor=D9E0EE&labelColor=302D41" />
+    </a>
+    <a href="#requirements">
+      <img alt="Neovim Version" src="https://img.shields.io/badge/Neovim-0.10.0+-green?style=for-the-badge&logo=neovim&color=8aadf3&logoColor=D9E0EE&labelColor=302D41" />
+    </a>
+    <a href="#language-support">
+      <img alt="Languages" src="https://img.shields.io/badge/Languages-46+-orange?style=for-the-badge&logo=polyglot&color=f5a97f&logoColor=D9E0EE&labelColor=302D41" />
+    </a>
+    <a href="#platform-support">
+      <img alt="Platform Support" src="https://img.shields.io/badge/Platform-Linux%20%7C%20macOS%20%7C%20Windows-blue?style=for-the-badge&logo=linux&color=91d7e3&logoColor=D9E0EE&labelColor=302D41" />
+    </a>
+</p>
 
 </div>
 
@@ -266,7 +292,7 @@ _Kanagawa Dragon theme integrated across every component_
 - **File Navigation:** Telescope fuzzy finder + Neo-tree file explorer
 - **Auto-completion:** nvim-cmp with multiple sources (LSP, buffer, path, calc, emoji, spell)
 - **Syntax Highlighting:** Treesitter with context awareness and textobjects
-- **Terminal Integration:** ToggleTerm with custom compile/run shortcuts (F5-F8)
+- **Terminal Integration:** VSCode-style terminal (F7) + Universal Code Runner (F8)
 - **Git Integration:** Gitsigns + Lazygit TUI
 - **Status & UI:** Lualine status line, Bufferline tabs, Noice enhanced UI
 - **Code Intelligence:** Auto-pairs, auto-tags, todo-comments highlighting
@@ -283,7 +309,7 @@ _Kanagawa Dragon theme integrated across every component_
 - **Debug Adapter Protocol:** Comprehensive debugging with DAP UI and virtual text
 - **Code Quality:** Automatic formatting on save via conform.nvim with Mason Tool Installer
 - **Plugin Management:** Lazy.nvim with performance optimization and lazy loading
-- **Quick Compilation:** Language-specific compile/run shortcuts (Python: F5, C++: F6, C: F7, ASM: F8)
+- **Quick Compilation:** Universal code runner (F8) + VSCode-style terminal (F7)
 - **Intelligent Navigation:** Custom Neo-tree toggles, smooth window management
 - **Productivity Tools:** Comment toggling, trouble diagnostics, scroll indicators
 - **Enhanced Markdown:** Live rendering and preview with render-markdown.nvim
@@ -343,34 +369,71 @@ _Kanagawa Dragon theme integrated across every component_
 
 ## Language Support
 
-| Language                  | LSP Server                 | Code Formatter | Linter/Diagnostics        | Debugger    | Quick Run        | Status   |
-| ------------------------- | -------------------------- | -------------- | ------------------------- | ----------- | ---------------- | -------- |
-| **Python**                | Pyright + ruff             | Black + isort  | mypy (conditional) + ruff | debugpy     | F5               | Complete |
-| **JavaScript/TypeScript** | ts_ls + eslint             | Prettier       | ESLint                    | DAP support | -                | Complete |
-| **C/C++**                 | Clangd                     | clang-format   | Built-in                  | DAP support | F6 (C++), F7 (C) | Complete |
-| **Rust**                  | rust_analyzer              | Built-in       | Built-in                  | DAP support | rust-tools       | Complete |
-| **Assembly**              | asm_lsp                    | -              | -                         | DAP support | F8 (NASM)        | Complete |
-| **C#**                    | OmniSharp                  | Built-in       | Built-in                  | DAP support | -                | Complete |
-| **Go**                    | gopls                      | Built-in       | Built-in                  | DAP support | -                | Complete |
-| **Java**                  | jdtls                      | Built-in       | Built-in                  | DAP support | -                | Complete |
-| **Lua**                   | lua_ls                     | stylua         | Built-in                  | -           | -                | Complete |
-| **HTML**                  | html + emmet_ls            | Prettier       | Built-in                  | -           | -                | Complete |
-| **CSS**                   | cssls + tailwindcss        | Prettier       | Built-in                  | -           | -                | Complete |
-| **Bash/Shell**            | bashls                     | shfmt          | shellcheck                | -           | -                | Complete |
-| **JSON**                  | jsonls                     | Prettier       | Built-in                  | -           | -                | Complete |
-| **YAML**                  | yamlls                     | Prettier       | Built-in                  | -           | -                | Complete |
-| **Markdown**              | marksman + render-markdown | Prettier       | Built-in                  | -           | -                | Complete |
-| **TOML**                  | taplo                      | Built-in       | Built-in                  | -           | -                | Complete |
-| **Docker**                | dockerls + docker_compose  | Built-in       | Built-in                  | -           | -                | Complete |
+| Language                  | LSP Server                 | Code Formatter | Linter/Diagnostics        | Debugger    | Status   |
+| ------------------------- | -------------------------- | -------------- | ------------------------- | ----------- | -------- |
+| **Python**                | Pyright + ruff             | Black + isort  | mypy (conditional) + ruff | debugpy     | Complete |
+| **C/C++**                 | Clangd                     | clang-format   | Built-in                  | DAP support | Complete |
+| **Rust**                  | rust_analyzer              | Built-in       | Built-in                  | DAP support | Complete |
+| **Go**                    | gopls                      | Built-in       | Built-in                  | DAP support | Complete |
+| **Java**                  | jdtls                      | google-java-format | Built-in              | DAP support | Complete |
+| **Kotlin**                | kotlin_language_server     | ktlint         | Built-in                  | DAP support | Complete |
+| **JavaScript/TypeScript** | ts_ls + eslint             | Prettierd      | ESLint                    | DAP support | Complete |
+| **C/C++**                 | Clangd                     | clang-format   | Built-in                  | DAP support | Complete |
+| **Rust**                  | rust_analyzer              | Built-in       | Built-in                  | DAP support | Complete |
+| **Go**                    | gopls                      | Built-in       | Built-in                  | DAP support | Complete |
+| **Java**                  | jdtls                      | google-java-format | Built-in              | DAP support | Complete |
+| **Kotlin**                | kotlin_language_server     | ktlint         | Built-in                  | DAP support | Complete |
+| **Scala**                 | scala_ls                   | scalafmt       | Built-in                  | DAP support | Complete |
+| **C#**                    | OmniSharp                  | Built-in       | Built-in                  | DAP support | Complete |
+| **PHP**                   | phpactor                   | php-cs-fixer   | Built-in                  | DAP support | Complete |
+| **Ruby**                  | ruby_ls                    | Built-in       | Built-in                  | DAP support | Complete |
+| **Haskell**               | haskell-language-server    | Built-in       | Built-in                  | DAP support | Complete |
+| **Elixir**                | elixir_ls                  | Built-in       | Built-in                  | DAP support | Complete |
+| **Erlang**                | erlang_ls                  | Built-in       | Built-in                  | DAP support | Complete |
+| **OCaml**                 | ocaml_lsp                  | ocamlformat    | Built-in                  | DAP support | Complete |
+| **Clojure**               | clojure_lsp                | Built-in       | Built-in                  | DAP support | Complete |
+| **Gleam**                 | gleam                      | Built-in       | Built-in                  | -           | Complete |
+| **Nix**                   | nil                        | nixfmt         | Built-in                  | -           | Complete |
+| **Zig**                   | zls                        | zig fmt        | Built-in                  | DAP support | Complete |
+| **Lean**                  | lean_ls                    | Built-in       | Built-in                  | -           | Complete |
+| **R**                     | r_language_server          | Built-in       | Built-in                  | DAP support | Complete |
+| **Lua**                   | lua_ls                     | stylua         | Built-in                  | -           | Complete |
+| **Assembly**              | asm_lsp                    | -              | -                         | DAP support | Complete |
+| **Nushell**               | nushell                    | Built-in       | Built-in                  | -           | Complete |
+| **SQL**                   | sqlls                      | Built-in       | Built-in                  | -           | Complete |
+| **Prisma**                | prisma_ls                  | Built-in       | Built-in                  | -           | Complete |
+| **HTML**                  | html + emmet_ls            | Prettierd      | Built-in                  | -           | Complete |
+| **CSS**                   | cssls + tailwindcss        | Prettierd      | Built-in                  | -           | Complete |
+| **Svelte**                | svelte                     | Prettierd      | Built-in                  | -           | Complete |
+| **Vue**                   | volar                      | Prettierd      | Built-in                  | -           | Complete |
+| **Angular**               | angularls                  | Prettierd      | Built-in                  | -           | Complete |
+| **Astro**                 | astro                      | Prettierd      | Built-in                  | -           | Complete |
+| **Tailwind CSS**          | tailwindcss                | Prettierd      | Built-in                  | -           | Complete |
+| **JSON**                  | jsonls                     | Prettierd      | Built-in                  | -           | Complete |
+| **YAML**                  | yamlls                     | Prettierd      | Built-in                  | -           | Complete |
+| **TOML**                  | taplo                      | Built-in       | Built-in                  | -           | Complete |
+| **Markdown**              | marksman + render-markdown | Prettierd      | Built-in                  | -           | Complete |
+| **LaTeX**                 | texlab                     | Built-in       | Built-in                  | -           | Complete |
+| **CMake**                 | cmake                      | Built-in       | Built-in                  | -           | Complete |
+| **Dockerfile**            | dockerls                   | Built-in       | Built-in                  | -           | Complete |
+| **Docker Compose**        | docker_compose_language_service | Built-in  | Built-in                  | -           | Complete |
+| **Ansible**               | ansiblels                  | Built-in       | Built-in                  | -           | Complete |
+| **Terraform**             | terraformls                | terraform fmt  | Built-in                  | -           | Complete |
+| **Helm**                  | helm_ls                    | Built-in       | Built-in                  | -           | Complete |
+| **Git**                   | -                          | Built-in       | Built-in                  | -           | Complete |
+| **Bash/Shell**            | bashls                     | shfmt          | shellcheck                | -           | Complete |
+| **Elm**                   | elmls                      | elm-format     | Built-in                  | -           | Complete |
+| **Rego (OPA)**            | rego                       | Built-in       | Built-in                  | -           | Complete |
+| **Thrift**                | thrift                     | Built-in       | Built-in                  | -           | Complete |
 
 ## 🏗️ **Advanced Configuration Architecture**
 
 ### 📊 **Project Statistics**
 
-- **Total Configuration Size**: 2,850+ lines of carefully crafted Lua code
-- **Plugin Count**: 39+ professionally selected and configured plugins
-- **Language Support**: 15+ programming languages with full toolchain integration
-- **Configuration Files**: 44 modular files for maximum maintainability
+- **Total Configuration Size**: **12,950+ lines** of carefully crafted Lua code
+- **Plugin Count**: 44+ professionally selected and configured plugins
+- **Language Support**: **46 programming languages** with full toolchain integration
+- **Configuration Files**: **142+ modular files** for maximum maintainability
 - **Performance**: Enhanced startup time with intelligent lazy loading and optimizations
 
 ### 🎯 **Design Philosophy**
@@ -384,68 +447,120 @@ _Kanagawa Dragon theme integrated across every component_
 ### 📁 **File Structure & Responsibility Matrix**
 
 ```
-~/.config/nvim/                        # 🏠 Root Configuration Directory
-├── 📄 .gitignore                      # 🚫 Git ignore rules
-├── 📄 init.lua                        # 🚀 Entry Point & Python Environment Setup
-├── 📄 LICENSE                         # ⚖️ MIT License
-├── 📄 README.md                       # 📖 This comprehensive documentation
-├── 📄 CHANGELOG.md                    # 📝 Version history and feature updates
-├── 📄 INSTALL.md                      # 📥 Installation guide and setup instructions
-├── 📄 KEYBINDINGS.md                  # ⌨️ Complete keybinding reference
-├── 📁 .github/                        # 🐙 GitHub templates and assets
-│   ├── 📁 assets/                     # 🎨 Documentation images and banners
-│   │   ├── 📄 banner_ui.png           # 🖼️ UI banner image
-│   │   ├── 📄 banner_ui_readme.png    # 📖 README banner image
-│   │   └── 📄 logo_ui.png             # 🏷️ UI logo image
-│   └── 📁 ISSUE_TEMPLATE/             # 📋 Bug report and feature request templates
-│       ├── 📄 bug_report.yml          # 🐛 Bug report template
-│       └── 📄 feature_request.yml     # 💡 Feature request template
-└── 📁 lua/                            # 🌙 Core Lua Configuration
-    ├── 📄 keymaps.lua                  # ⌨️ Global keybindings & language-specific shortcuts
+~/.config/nvim/                         # 🏠 Root Configuration Directory
+├── 📄 .gitignore                       # 🚫 Git ignore rules
+├── 📄 init.lua                         # 🚀 Entry Point & Python Environment Setup
+├── 📄 LICENSE                          # ⚖️ MIT License
+├── 📄 README.md                        # 📖 This comprehensive documentation
+├── 📄 CHANGELOG.md                     # 📝 Version history and feature updates
+├── 📄 INSTALL.md                       # 📥 Installation guide and setup instructions
+├── 📄 KEYBINDINGS.md                   # ⌨️ Complete keybinding reference
+├── 📁 .github/                         # 🐙 GitHub templates and assets
+│   ├── 📁 assets/                      # 🎨 Documentation images and banners
+│   │   ├── 📄 banner_ui.png            # 🖼️ UI banner image
+│   │   ├── 📄 banner_ui_readme.png     # 📖 README banner image
+│   │   └── 📄 logo_ui.png              # 🏷️ UI logo image
+│   └── 📁 ISSUE_TEMPLATE/              # 📋 Bug report and feature request templates
+│       ├── 📄 bug_report.yml           # 🐛 Bug report template
+│       └── 📄 feature_request.yml      # 💡 Feature request template
+└── 📁 lua/                             # 🌙 Core Lua Configuration
+    ├── 📄 keymaps.lua                  # ⌨️  Global keybindings & language-specific shortcuts
     ├── 📄 launch.lua                   # 🏁 Orchestrated startup sequence
     ├── 📄 opts.lua                     # ⚙️ Core editor options & performance settings
-    ├── 📁 formatters/                  # 🔧 Code Formatting Configurations
+    ├── 📁 formatters/                  # 🔧 Code Formatting Configurations (31 formatters)
+    │   ├── 📄 alejandra.lua            # ❄️ Nix formatter
     │   ├── 📄 black.lua                # 🐍 Python Black formatter
     │   ├── 📄 clang-format.lua         # 🔧 C/C++ clang-format
+    │   ├── 📄 cmake-format.lua         # 🏗️ CMake formatter
+    │   ├── 📄 csharpier.lua            # #️⃣  C# formatter
+    │   ├── 📄 elm-format.lua           # 🌳 Elm formatter
+    │   ├── 📄 erlfmt.lua               # 📞 Erlang formatter
+    │   ├── 📄 fourmolu.lua             # λ  Haskell formatter
     │   ├── 📄 gofmt.lua                # 🐹 Go formatting
     │   ├── 📄 goimports.lua            # 🐹 Go imports formatter
     │   ├── 📄 google-java-format.lua   # ☕ Java Google formatter
     │   ├── 📄 init.lua                 # 🚀 Formatter loader and registry
     │   ├── 📄 isort.lua                # 🐍 Python import sorting
+    │   ├── 📄 ktlint.lua               # 🎯 Kotlin formatter
+    │   ├── 📄 latexindent.lua          # 📄 LaTeX formatter
+    │   ├── 📄 ocamlformat.lua          # 🐫 OCaml formatter
     │   ├── 📄 phpcbf.lua               # 🐘 PHP Code Beautifier
     │   ├── 📄 php-cs-fixer.lua         # 🐘 PHP CS Fixer
-    │   ├── 📄 prettierd.lua            # 🌐 Web technologies formatter
+    │   ├── 📄 prettierd.lua            # 🌐  Web technologies formatter
+    │   ├── 📄 prisma-fmt.lua           # 💎 Prisma formatter
+    │   ├── 📄 rubocop.lua              # 💎 Ruby formatter
     │   ├── 📄 rustfmt.lua              # 🦀 Rust formatting
+    │   ├── 📄 scalafmt.lua             # 🎭 Scala formatter
     │   ├── 📄 shfmt.lua                # 🐚 Shell script formatter
+    │   ├── 📄 sql-formatter.lua        # 🗄️ SQL formatter
+    │   ├── 📄 styler.lua               # 📊 R formatter
     │   ├── 📄 stylua.lua               # 🌙 Lua stylua formatter
-    │   └── 📄 zig_fmt.lua              # ⚡ Zig formatter
+    │   ├── 📄 taplo.lua                # ⚙️ TOML formatter
+    │   ├── 📄 terraform-fmt.lua        # 🏗️ Terraform formatter
+    │   ├── 📄 zig_fmt.lua              # ⚡  Zig formatter
+    │   └── 📄 zprint.lua               # 🌀 Clojure formatter
     ├── 📁 GUI/                         # 🎨 User Interface Components
     │   └── 📄 theme.lua                # 🌈 Kanagawa Dragon theme with custom overrides
-    ├── 📁 langs/                       # 🌍 Language-Specific Configurations
+    ├── 📁 langs/                       # 🌍 Language-Specific Configurations (46 languages)
+    │   ├── 📄 angular.lua              # 🅰️ Angular framework
+    │   ├── 📄 ansible.lua              # 🤖 Ansible automation
+    │   ├── 📄 astro.lua                # 🚀 Astro framework
     │   ├── 📄 c_cpp.lua                # 🔧 C/C++ language setup
+    │   ├── 📄 clojure.lua              # 🌀 Clojure functional language
+    │   ├── 📄 cmake.lua                # 🏗️ CMake build system
+    │   ├── 📄 csharp.lua               # #️⃣  C# language setup
+    │   ├── 📄 docker.lua               # 🐳 Docker containerization
+    │   ├── 📄 elixir.lua               # ⚗️  Elixir language
+    │   ├── 📄 elm.lua                  # 🌳 Elm functional language
+    │   ├── 📄 erlang.lua               # 📞 Erlang language
+    │   ├── 📄 git.lua                  # 📊 Git version control
+    │   ├── 📄 gleam.lua                # ✨ Gleam language
     │   ├── 📄 go.lua                   # 🐹 Go language configuration
+    │   ├── 📄 haskell.lua              # λ  Haskell functional language
+    │   ├── 📄 helm.lua                 # ⎈  Helm Kubernetes
     │   ├── 📄 init.lua                 # 🚀 Language configuration loader
     │   ├── 📄 java.lua                 # ☕ Java language setup
     │   ├── 📄 javascript_typescript.lua # ⚡ JS/TS configuration
+    │   ├── 📄 json.lua                 # 📋 JSON data format
+    │   ├── 📄 kotlin.lua               # 🎯 Kotlin language
+    │   ├── 📄 lean.lua                 # 🧮 Lean theorem prover
     │   ├── 📄 lua.lua                  # 🌙 Lua language setup
+    │   ├── 📄 markdown.lua             # 📝 Markdown documentation
+    │   ├── 📄 nix.lua                  # ❄️ Nix package manager
+    │   ├── 📄 nushell.lua              # 🐚 Nu shell
+    │   ├── 📄 ocaml.lua                # 🐫 OCaml functional language
     │   ├── 📄 php.lua                  # 🐘 PHP language setup
+    │   ├── 📄 prisma.lua               # 💎 Prisma ORM
     │   ├── 📄 python.lua               # 🐍 Python language configuration
+    │   ├── 📄 r.lua                    # 📊 R statistical language
+    │   ├── 📄 rego.lua                 # 🛡️ Rego policy language
+    │   ├── 📄 ruby.lua                 # 💎 Ruby language
     │   ├── 📄 rust.lua                 # 🦀 Rust language setup
+    │   ├── 📄 scala.lua                # 🎭 Scala language
     │   ├── 📄 shell.lua                # 🐚 Shell scripting setup
-    │   └── 📄 zig.lua                  # ⚡ Zig language setup
+    │   ├── 📄 sql.lua                  # 🗄️ SQL database language
+    │   ├── 📄 svelte.lua               # 🔥 Svelte framework
+    │   ├── 📄 tailwind.lua             # 🎨 Tailwind CSS
+    │   ├── 📄 terraform.lua            # 🏗️ Terraform infrastructure
+    │   ├── 📄 tex.lua                  # 📄 LaTeX document system
+    │   ├── 📄 thrift.lua               # 🔄 Apache Thrift
+    │   ├── 📄 toml.lua                 # ⚙️ TOML configuration
+    │   ├── 📄 vue.lua                  # 💚 Vue.js framework
+    │   ├── 📄 yaml.lua                 # 📋 YAML data format
+    │   └── 📄 zig.lua                  # ⚡  Zig language setup
     ├── 📁 lazynvim/                    # 📦 Plugin Management
     │   └── 📄 lazy.lua                 # 🔄 Lazy.nvim configuration & plugin loader
     ├── 📁 nde/                         # 🎯 NDE System
     │   ├── 📄 command-suite.lua        # 🎮 NDE command system
-    │   ├── 📄 README.md               # 📖 NDE system documentation
+    │   ├── 📄 README.md                # 📖 NDE system documentation
     │   └── 📄 tips.lua                 # 💡 Beginner's Dream tips engine
-    ├── 📁 performance/                 # ⚡ Performance System
+    ├── 📁 performance/                 # ⚡  Performance System
     │   ├── 📄 dynamic_loader.lua       # 🎯 Dynamic language loading
     │   ├── 📄 formatters.lua           # 🔧 Formatter performance management
     │   ├── 📄 init.lua                 # 🚀 Performance system loader
     │   ├── 📁 langs/                   # 🌍 Language performance configs
     │   │   └── 📄 init.lua             # 🚀 Language performance loader
-    │   └── 📄 README.md               # 📖 Performance system docs
+    │   └── 📄 README.md                # 📖 Performance system docs
     ├── 📁 utils/                       # 🛠️ Utility Functions
     │   └── 📄 lazy_loader.lua          # 🔄 Smart plugin loading utilities
     │
@@ -454,7 +569,7 @@ _Kanagawa Dragon theme integrated across every component_
         │
         ├── 📁 core/                    # 🧠 Core Functionality
         │   ├── 📄 treesitter.lua       # 🌳 Syntax highlighting & code understanding
-        │   ├── 📄 which-key.lua        # ⌨️ Interactive keybinding help
+        │   ├── 📄 which-key.lua        # ⌨️  Interactive keybinding help
         │   ├── 📄 dashboard.lua        # 🎛️ Welcome screen & quick actions
         │   └── 📄 vim-be-good.lua      # 🎮 Vim skill practice game
         │
@@ -474,7 +589,7 @@ _Kanagawa Dragon theme integrated across every component_
         │   ├── 📄 telescope.lua        # 🔭 Fuzzy finder with live preview
         │   ├── 📄 neotree.lua          # 🌲 File explorer with Git integration
         │   ├── 📄 oil.lua              # 🛢️ Buffer-like file editor
-        │   ├── 📄 leap.lua             # ⚡ Fast two-character navigation
+        │   ├── 📄 leap.lua             # ⚡  Fast two-character navigation
         │   └── 📄 smart-splits.lua     # 🪟 Intelligent window management
         │
         ├── 📁 editing/                 # ✏️ Text Editing & Manipulation
@@ -484,17 +599,17 @@ _Kanagawa Dragon theme integrated across every component_
         │   ├── 📄 yanky.lua            # 📋 Advanced clipboard management
         │   ├── 📄 blink.lua            # ✨ Modern completion framework
         │   ├── 📄 cmp.lua              # 🔤 Legacy completion (fallback)
+        │   ├── 📄 snippet.lua          # ✂️ Smart snippet management
         │   └── 📄 spectre.lua          # 🔍 Project-wide search & replace
         │
         ├── 📁 development/             # 🛠️ Development Tools
         │   ├── 📄 autoformat.lua       # 📐 Multi-language formatting
+        │   ├── 📄 code-runner.lua      # 🚀 Universal code execution
+        │   ├── 📄 codeium.lua          # 🤖 AI-powered code completion
         │   ├── 📄 lint.lua             # 🔍 Code quality analysis
         │   ├── 📄 null-ls.lua          # 🔧 Additional LSP sources
-        │   ├── 📄 codeium.lua          # 🤖 AI-powered code completion
         │   ├── 📄 playground.lua       # 🎮 Code experimentation environment
         │   ├── 📄 render-markdown.lua  # 📝 Live Markdown rendering
-        │   ├── 📄 rust-tools.lua       # 🦀 Enhanced Rust development
-        │   ├── 📄 java.lua             # ☕ Java development environment
         │   ├── 📄 todo-comments.lua    # 📝 TODO/FIXME highlighting
         │   └── 📄 trouble.lua          # 🚨 Diagnostic management
         │
@@ -509,6 +624,7 @@ _Kanagawa Dragon theme integrated across every component_
         │   └── 📄 gitsigns.lua         # 📈 Git integration & visual indicators
         │
         └── 📁 terminal/                # 💻 Terminal Integration
+            ├── 📄 betterterm.lua       # 🚀 Enhanced terminal features
             └── 📄 toggleterm.lua       # 🖥️ Smart terminal management
 ```
 
@@ -1247,14 +1363,14 @@ This project is licensed under the [MIT License](LICENSE).
 
 ### 📊 **Success Metrics**
 
-| Metric                | Achievement              |
-| --------------------- | ------------------------ |
-| **Startup Time**      | 25.4ms cold start     |
-| **Plugin Count**      | 43+ carefully curated    |
-| **Language Support**  | 15+ with full toolchains |
-| **Documentation**     | 100% coverage            |
-| **User Satisfaction** | Professional grade       |
-| **Maintenance**       | Self-optimizing          |
+| Metric                | Achievement                    |
+| --------------------- | ------------------------------ |
+| **Startup Time**      | 25.4ms cold start              |
+| **Plugin Count**      | 44+ professionally selected    |
+| **Language Support**  | 15+ with full toolchains       |
+| **Documentation**     | 100% coverage                  |
+| **User Satisfaction** | Professional grade             |
+| **Maintenance**       | Self-optimizing                |
 
 ### 🤝 **Community & Support**
 
@@ -1272,10 +1388,6 @@ This project is licensed under the [MIT License](LICENSE).
 
 **This configuration represents hundreds of hours of careful development,**  
 **testing, and optimization to create the ultimate Neovim experience.**
-
-[![GitHub stars](https://img.shields.io/github/stars/Sckab/NDE?style=social)](https://github.com/Sckab/NDE/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/Sckab/NDE?style=social)](https://github.com/Sckab/NDE/network/members)
-[![GitHub watchers](https://img.shields.io/github/watchers/Sckab/NDE?style=social)](https://github.com/Sckab/NDE/watchers)
 
 **🔗 Project Links:**  
 [📖 Documentation](https://github.com/Sckab/NDE/blob/main/README.md) •

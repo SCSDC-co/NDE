@@ -35,8 +35,21 @@ git clone https://github.com/Sckab/NDE.git ~/.config/nvim && nvim
 ### 🐧 Arch Linux
 
 ```bash
-# Install dependencies
+# Install core dependencies
 sudo pacman -S neovim git nodejs npm python python-pip go rustup lazygit ripgrep fd
+
+# Install language-specific dependencies
+sudo pacman -S dotnet-sdk ocaml opam dune lean kotlin ruby erlang elixir
+
+# Install additional formatters and tools (AUR helper like yay recommended)
+yay -S nix alejandra gleam cmake terraform ktlint
+
+# Setup OCaml environment
+opam init
+opam install ocamlformat
+
+# Setup Nix (if using Nix packages)
+sh <(curl -L https://nixos.org/nix/install)
 
 # Clone NDE
 git clone https://github.com/Sckab/NDE.git ~/.config/nvim
@@ -51,8 +64,34 @@ nvim
 # Update package list
 sudo apt update
 
-# Install dependencies
+# Install core dependencies
 sudo apt install neovim git nodejs npm python3 python3-pip golang-go rustup ripgrep fd-find
+
+# Install language-specific dependencies
+sudo apt install dotnet-sdk-8.0 ocaml opam kotlin ruby-dev erlang elixir cmake
+
+# Install additional tools via snap or manual installation
+sudo snap install terraform ktlint
+
+# Setup OCaml environment
+opam init --disable-sandboxing  # Use --disable-sandboxing if in containers
+eval $(opam env)
+opam install ocamlformat dune
+
+# Install Gleam (manual installation)
+wget https://github.com/gleam-lang/gleam/releases/latest/download/gleam-v1.0.0-x86_64-unknown-linux-musl.tar.gz
+tar -xzf gleam-*.tar.gz
+sudo mv gleam /usr/local/bin/
+
+# Install Lean 4
+wget -O - https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh
+source ~/.profile
+elan default leanprover/lean4:stable
+
+# Install Nix (optional, for Nix development)
+sh <(curl -L https://nixos.org/nix/install) --daemon
+# After Nix installation:
+nix-env -iA nixpkgs.alejandra
 
 # Install Lazygit (choose one method)
 # Method 1: Snap
@@ -71,8 +110,28 @@ nvim
 ### 🍎 macOS (with Homebrew)
 
 ```bash
-# Install dependencies
+# Install core dependencies
 brew install neovim git node python go rustup-init lazygit ripgrep fd
+
+# Install language-specific dependencies
+brew install dotnet kotlin ruby erlang elixir cmake ocaml opam terraform lean
+
+# Install additional formatters and tools
+brew install ktlint gleam
+
+# Setup OCaml environment
+opam init
+eval $(opam env)
+opam install ocamlformat dune
+
+# Install Nix (optional, for Nix development)
+sh <(curl -L https://nixos.org/nix/install)
+# After Nix installation:
+nix-env -iA nixpkgs.alejandra
+
+# Setup Rust toolchain
+rustup-init -y
+source ~/.cargo/env
 
 # Clone NDE
 git clone https://github.com/Sckab/NDE.git ~/.config/nvim

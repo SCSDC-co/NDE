@@ -2,15 +2,31 @@ local M = {}
 
 -- Available language modules
 local languages = {
-  "python",
-  "rust", 
-  "c_cpp",
-  "javascript_typescript",
-  "lua",
-  "go",
-  "java",
-  "zig",
-  "php",
+  -- Core languages
+  "python", "rust", "c_cpp", "javascript_typescript", "lua",
+  "go", "java", "zig", "php", "json", "yaml", "markdown",
+  
+  -- Web/Frontend
+  "angular", "astro", "svelte", "vue",
+  
+  -- System/Infrastructure
+  "ansible", "docker", "terraform", "nix",
+  
+  -- Infrastructure/Config
+  "helm", "prisma", "toml",
+  
+  -- Functional languages
+  "clojure", "elm", "erlang", "gleam", "haskell", "ocaml",
+  
+  -- JVM languages
+  "kotlin", "scala",
+  
+  -- Other languages
+  "cmake", "csharp", "elixir", "lean", "nushell",
+  "r", "rego", "ruby", "sql", "tex", "thrift",
+  
+  -- Tools/Utils
+  "git", "tailwind"
 }
 
 -- Cache for loaded configurations

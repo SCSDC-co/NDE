@@ -2,137 +2,129 @@
 -- Automatically detects file type and runs with appropriate compiler/interpreter
 
 return {
-	"CRAG666/code_runner.nvim",
-	event = "VeryLazy",
+	'CRAG666/code_runner.nvim',
+	event = 'VeryLazy',
 	keys = {
-		{ "<F8>", ":RunCode<CR>", desc = "🚀 Universal Code Runner" },
+		{ '<F8>', ':RunCode<CR>', desc = '🚀 Universal Code Runner' },
 	},
 	config = function()
-		require("code_runner").setup({
-			-- Use toggleterm for consistency with NDE
-			mode = "toggleterm", -- Use toggleterm instead of built-in term
+		require('code_runner').setup({
+			-- Use betterTerm integration for VSCode-style experience
+			mode = 'term', -- Use terminal mode to integrate with betterTerm
 			focus = true, -- Focus on terminal when running
-			startinsert = false, -- Don't auto-enter insert mode
+			startinsert = true, -- Auto-enter insert mode like VSCode
 			term = {
-				position = "vertical", -- Vertical split like old F5-F8 shortcuts
-				size = 70, -- Terminal width
-			},
-			float = {
-				border = "rounded", -- Rounded borders for consistency
-				height = 0.8,
-				width = 0.8,
-				x = 0.5,
-				y = 0.5,
-				border_hl = "FloatBorder",
-				float_hl = "Normal",
+				position = 'bot', -- Bottom terminal like VSCode
+				size = 15, -- Same size as betterTerm
 			},
 			-- Language-specific runners with NDE enhancements
 			filetype = {
 				-- Python: Enhanced with proper path handling
-				python = "cd $dir && python3 $fileName",
+				python = 'cd $dir && python3 $fileName',
 				-- JavaScript/Node.js
-				javascript = "cd $dir && node $fileName",
-				typescript = "cd $dir && ts-node $fileName",
+				javascript = 'cd $dir && node $fileName',
+				typescript = 'cd $dir && ts-node $fileName',
 				-- C/C++: Optimized compilation with better flags
-				c = "cd $dir && clang $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt",
-				cpp = "cd $dir && g++ -std=c++17 $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt",
+				c = 'cd $dir && clang $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt',
+				cpp = 'cd $dir && g++ -std=c++17 $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt',
 				-- Rust: Use cargo or rustc
 				rust = {
-					"cd $dir &&",
-					"if [ -f Cargo.toml ]; then",
-					"cargo run;",
-					"else",
-					"rustc $fileName && ./$fileNameWithoutExt;",
-					"fi",
+					'cd $dir &&',
+					'if [ -f Cargo.toml ]; then',
+					'cargo run;',
+					'else',
+					'rustc $fileName && ./$fileNameWithoutExt;',
+					'fi',
 				},
 				-- Go: Smart project detection
 				go = {
-					"cd $dir &&",
-					"if [ -f go.mod ]; then",
-					"go run .;",
-					"else",
-					"go run $fileName;",
-					"fi",
+					'cd $dir &&',
+					'if [ -f go.mod ]; then',
+					'go run .;',
+					'else',
+					'go run $fileName;',
+					'fi',
 				},
 				-- Java: Automatic compilation and execution
-				java = "cd $dir && javac $fileName && java $fileNameWithoutExt",
+				java = 'cd $dir && javac $fileName && java $fileNameWithoutExt',
 				-- Assembly: NASM for x86_64
-				asm = "cd $dir && nasm -f elf64 $fileName -o $fileNameWithoutExt.o && ld $fileNameWithoutExt.o -o $fileNameWithoutExt && ./$fileNameWithoutExt",
-				nasm = "cd $dir && nasm -f elf64 $fileName -o $fileNameWithoutExt.o && ld $fileNameWithoutExt.o -o $fileNameWithoutExt && ./$fileNameWithoutExt",
+				asm = 'cd $dir && nasm -f elf64 $fileName -o $fileNameWithoutExt.o && ld $fileNameWithoutExt.o -o $fileNameWithoutExt && ./$fileNameWithoutExt',
+				nasm = 'cd $dir && nasm -f elf64 $fileName -o $fileNameWithoutExt.o && ld $fileNameWithoutExt.o -o $fileNameWithoutExt && ./$fileNameWithoutExt',
 				-- Shell scripting
-				sh = "cd $dir && bash $fileName",
-				bash = "cd $dir && bash $fileName",
-				zsh = "cd $dir && zsh $fileName",
+				sh = 'cd $dir && bash $fileName',
+				bash = 'cd $dir && bash $fileName',
+				zsh = 'cd $dir && zsh $fileName',
 				-- Lua
-				lua = "cd $dir && lua $fileName",
+				lua = 'cd $dir && lua $fileName',
 				-- Ruby
-				ruby = "cd $dir && ruby $fileName",
+				ruby = 'cd $dir && ruby $fileName',
 				-- PHP
-				php = "cd $dir && php $fileName",
+				php = 'cd $dir && php $fileName',
 				-- Perl
-				perl = "cd $dir && perl $fileName",
+				perl = 'cd $dir && perl $fileName',
 				-- R
-				r = "cd $dir && Rscript $fileName",
+				r = 'cd $dir && Rscript $fileName',
 				-- Julia
-				julia = "cd $dir && julia $fileName",
+				julia = 'cd $dir && julia $fileName',
 				-- Dart
-				dart = "cd $dir && dart $fileName",
+				dart = 'cd $dir && dart $fileName',
 				-- Kotlin (requires kotlinc)
-				kotlin = "cd $dir && kotlinc $fileName -include-runtime -d $fileNameWithoutExt.jar && java -jar $fileNameWithoutExt.jar",
+				kotlin = 'cd $dir && kotlinc $fileName -include-runtime -d $fileNameWithoutExt.jar && java -jar $fileNameWithoutExt.jar',
 				-- Scala
-				scala = "cd $dir && scala $fileName",
+				scala = 'cd $dir && scala $fileName',
 				-- Swift
-				swift = "cd $dir && swift $fileName",
+				swift = 'cd $dir && swift $fileName',
 				-- Haskell
-				haskell = "cd $dir && ghc $fileName && ./$fileNameWithoutExt",
+				haskell = 'cd $dir && ghc $fileName && ./$fileNameWithoutExt',
 				-- Nim
-				nim = "cd $dir && nim compile --run $fileName",
+				nim = 'cd $dir && nim compile --run $fileName',
 				-- Zig
-				zig = "cd $dir && zig run $fileName",
+				zig = 'cd $dir && zig run $fileName',
 				-- Markdown: Preview with glow (if available)
-				markdown = "cd $dir && glow $fileName || cat $fileName",
+				markdown = 'cd $dir && glow $fileName || cat $fileName',
 				-- HTML: Open in browser
-				html = "cd $dir && xdg-open $fileName || open $fileName",
+				html = 'cd $dir && xdg-open $fileName || open $fileName',
 			},
 			-- Project-level runners
 			project = {
 				-- Node.js projects
-				["package.json"] = "npm start",
+				['package.json'] = 'npm start',
 				-- Rust projects
-				["Cargo.toml"] = "cargo run",
+				['Cargo.toml'] = 'cargo run',
 				-- Go projects
-				["go.mod"] = "go run .",
+				['go.mod'] = 'go run .',
 				-- Python projects with requirements
-				["requirements.txt"] = "python3 main.py",
+				['requirements.txt'] = 'python3 main.py',
 				-- Makefile projects
-				["Makefile"] = "make run",
-				["makefile"] = "make run",
+				['Makefile'] = 'make run',
+				['makefile'] = 'make run',
 				-- CMake projects
-				["CMakeLists.txt"] = "mkdir -p build && cd build && cmake .. && make && ./main",
+				['CMakeLists.txt'] = 'mkdir -p build && cd build && cmake .. && make && ./main',
 				-- Gradle projects
-				["build.gradle"] = "gradle run",
-				["build.gradle.kts"] = "gradle run",
+				['build.gradle'] = 'gradle run',
+				['build.gradle.kts'] = 'gradle run',
 				-- Maven projects
-				["pom.xml"] = "mvn exec:java",
+				['pom.xml'] = 'mvn exec:java',
 			},
 		})
 
-		-- Enhanced notifications for NDE
-		local original_run = require("code_runner.commands").run_code
-		require("code_runner.commands").run_code = function()
+
+		-- Enhanced notifications for NDE (fallback to original)
+		local original_run = require('code_runner.commands').run_code
+		require('code_runner.commands').run_code = function()
 			local filetype = vim.bo.filetype
-			local filename = vim.fn.expand("%:t")
-			
+			local filename = vim.fn.expand('%:t')
+
 			-- Show start notification
 			vim.notify(
-				"🚀 Running " .. filename .. " (" .. filetype .. ")",
+				'🚀 Running ' .. filename .. ' (' .. filetype .. ')',
 				vim.log.levels.INFO,
-				{ title = "Universal Code Runner", timeout = 2000 }
+				{ title = 'Universal Code Runner', timeout = 2000 }
 			)
-			
+
 			-- Run the original function
 			original_run()
 		end
+
 	end,
 }
-

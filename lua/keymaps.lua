@@ -33,8 +33,10 @@ end, { desc = "Nuova riga sopra", noremap = true, silent = true })
 
 -- Neotree keymaps are now handled by which-key.lua to avoid conflicts
 
--- Universal Code Runner (F8) - Handled by code-runner plugin
--- The plugin automatically detects file types and runs appropriate commands
+-- Terminal and Code Execution Setup:
+-- F7: VSCode-style Terminal (betterTerm) - Interactive terminal work
+-- F8: Universal Code Runner - Automatic code compilation and execution
+-- The code runner automatically detects file types and runs appropriate commands
 -- See lua/plugins/development/code-runner.lua for configuration
 
 -- debug - LAZY LOADED for performance

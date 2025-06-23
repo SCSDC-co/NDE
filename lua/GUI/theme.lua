@@ -22,6 +22,9 @@ kanagawa.setup({
 			WinSeparator = { fg = '#0D0C0C', bg = '#0D0C0C' },
 			BufferLineOffset = { bg = '#0d0c0c', fg = '#8BA4B0', bold = true },
 			BufferLineOffsetSeparator = { bg = '#0d0c0c', fg = '#0d0c0c' },
+			TerminalNormal = { bg = '#181616' },
+			TerminalBorder = { fg = '#0d0c0c', bg = '#0d0c0c' },
+			Terminal = { bg = '#181616' },
 		}
 	end,
 })

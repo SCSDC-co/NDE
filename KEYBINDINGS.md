@@ -31,15 +31,23 @@ The leader key is set to **`<Space>`** (spacebar). All leader-based commands sta
 
 **Supported Languages:**
 - 🐍 **Python**: `python3 file.py`
-- ⚡  **C++**: `g++ file.cpp -o executable && ./executable`
+- ⚡  **C++**: `g++ -std=c++17 file.cpp -o executable && ./executable`
 - 🔧 **C**: `clang file.c -o executable && ./executable`
-- 🔩 **Assembly**: `nasm + ld + execute`
-- 🦀 **Rust**: `cargo run` or `rustc`
-- 🐹 **Go**: `go run` (smart project detection)
+- 🔩 **Assembly**: `nasm -f elf64 + ld + execute`
+- 🦀 **Rust**: `cargo run` or `rustc` (smart project detection)
+- 🐹 **Go**: `go run .` or `go run file.go` (smart project detection)
 - ☕ **Java**: `javac + java`
 - 🌐  **JavaScript**: `node file.js`
 - 📘 **TypeScript**: `ts-node file.ts`
 - 🌙 **Lua**: `lua file.lua`
+- 💎 **Ruby**: `ruby file.rb`
+- 🐘 **PHP**: `php file.php`
+- 🔥 **Haskell**: `ghc + execute`
+- ⚡ **Zig**: `zig run file.zig`
+- 🦎 **Scala**: `scala file.scala`
+- 🔷 **Kotlin**: `kotlinc + java`
+- 🍃 **Swift**: `swift file.swift`
+- 🎯 **Dart**: `dart file.dart`
 - And many more!
 
 ## 🐛 Debugging Controls
@@ -118,6 +126,17 @@ The leader key is set to **`<Space>`** (spacebar). All leader-based commands sta
 | `<Leader>B;` | **Toggle Semicolon** | Add/remove `;` at line end | Code formatting |
 | `<Leader>B,` | **Toggle Comma**     | Add/remove `,` at line end | List formatting |
 
+## 🗂️ Code Structure Navigation (Aerial)
+
+| Keybinding   | Function             | Behavior                        | Context      |
+| ------------ | -------------------- | ------------------------------- | ------------ |
+| `<Leader>a`  | **Toggle Aerial**    | Show/hide code structure panel | Any file     |
+| `<CR>`       | **Jump to Symbol**   | Navigate to symbol definition   | Aerial panel |
+| `<C-v>`      | **Vertical Split**   | Open symbol in vertical split   | Aerial panel |
+| `<C-s>`      | **Horizontal Split** | Open symbol in horizontal split | Aerial panel |
+| `p`          | **Preview**          | Preview symbol without jumping  | Aerial panel |
+| `<C-j/k>`    | **Navigate & Scroll**| Move through symbols with scroll | Aerial panel |
+
 ## 📝 Text Editing Helpers
 
 | Keybinding   | Action                 | Behavior                        | Context      |
@@ -127,6 +146,49 @@ The leader key is set to **`<Space>`** (spacebar). All leader-based commands sta
 | `<C-Space>`  | **Trigger Completion** | Force completion menu           | Insert mode  |
 | `/` → `<CR>` | **Search**             | Enhanced search with Telescope  | Search mode  |
 | `:`          | **Command Mode**       | Command palette with completion | Command mode |
+
+## 🎯 Smart Snippets (LuaSnip)
+
+| Keybinding   | Action                   | Description                          | Mode         |
+| ------------ | ------------------------ | ------------------------------------ | ------------ |
+| `<C-f>`      | **Expand/Jump Next**     | Expand snippet or jump to next placeholder | Insert/Select |
+| `<C-b>`      | **Jump Previous**        | Jump to previous snippet placeholder | Insert/Select |
+| `<C-e>`      | **Cycle Choices**        | Cycle through snippet choice nodes   | Insert mode  |
+
+## 🤖 AI Integration (GP.nvim)
+
+| Keybinding     | Action                 | Description                     | Mode   |
+| -------------- | ---------------------- | ------------------------------- | ------ |
+| `<Leader>ge`   | **Explain Code**       | AI explains selected code       | Visual |
+| `<Leader>gr`   | **Rewrite Code**       | AI rewrites selected code       | Visual |
+| `<Leader>gc`   | **New Chat**           | Start new AI chat session      | Normal |
+
+## 📚 Documentation & Help
+
+| Keybinding   | Function           | Description                        | Context      |
+| ------------ | ------------------ | ---------------------------------- | ------------ |
+| `K`          | **Hover Info**     | Show symbol documentation          | LSP enabled  |
+| `<C-k>`      | **Signature Help** | Show function signature            | Insert mode  |
+| `:help`      | **Vim Help**       | Access Neovim documentation       | Command mode |
+| `<Leader>fh` | **Help Search**    | Search help with Telescope        | Any mode     |
+| `:NDE snippetslist` | **List Snippets**     | Show available snippets for current filetype | Command |
+| `:NDE help`         | **NDE Help**          | Show complete NDE command reference          | Command |
+| `:NDE status`       | **NDE Status**        | Show comprehensive NDE system status         | Command |
+| `:NDE welcome`      | **NDE Welcome**       | Display NDE welcome message                  | Command |
+| `:NDE tips on/off`  | **Tips Control**      | Enable/disable automatic tips system         | Command |
+| `:NDE tip random`   | **Random Tip**        | Show a random helpful tip                    | Command |
+| `:NDE dynamicloader stats` | **Performance Stats** | Show dynamic loader performance statistics | Command |
+
+### 🚀 Available Snippets by Language
+
+**Python:** `class`, `def`, `dataclass`, `async`, `main`, `try`  
+**JavaScript/TypeScript:** `rfc` (React component), `hook`, `interface`, `arrow`  
+**Rust:** `struct`, `error`, `async`, `main`  
+**Go:** `struct`, `handler`, `iferr`  
+**C/C++:** `class`, `guard`  
+**Lua:** `module`, `plugin`, `autocmd`  
+**HTML:** `html5`, `component`  
+**SQL:** `select`, `table`
 
 ## 🎭 Advanced Navigation
 
@@ -145,6 +207,17 @@ The leader key is set to **`<Space>`** (spacebar). All leader-based commands sta
 | ------------ | --------------- | ---------------------------- |
 | `<leader>vt` | Toggle VimBeGood| Toggle Vim Training mode     |
 | `:ZenMode`   | Focus Mode      | Distraction-free coding      |
+
+## 🎯 NDE Command Suite
+
+| Command Category | Description | Example Commands |
+| ---------------- | ----------- | ---------------- |
+| **Tips System** | Smart learning assistance | `:NDE tips on`, `:NDE tip random` |
+| **Performance** | System monitoring | `:NDE dynamicloader stats` |
+| **Snippets** | Code template discovery | `:NDE snippetslist` |
+| **Navigation** | Quick help access | `:NDE help`, `:NDE status` |
+
+*💡 All NDE commands support tab completion! Type `:NDE <Tab>` to explore.*
 
 ## 🎯 Pro Tips for Efficiency
 
@@ -168,8 +241,9 @@ The leader key is set to **`<Space>`** (spacebar). All leader-based commands sta
 ### 🧠 Memory Aids
 
 - **F-keys for actions**: F1-F4 for debugging, **F8 for universal code running**, F9-F10 for text manipulation, F11-F12 for terminals
-- **Leader patterns**: `f` prefix for finding, `b` prefix for buffers, `B` prefix for text utilities
-- **Logical groupings**: Window management with Ctrl/Alt, file operations with leader+f
+- **Leader patterns**: `f` prefix for finding, `b` prefix for buffers, `B` prefix for text utilities, `a` for aerial
+- **Logical groupings**: Window management with Ctrl/Alt, file operations with leader+f, AI commands with leader+g
+- **NDE Commands**: Use `:NDE` prefix for all NDE suite functionality with tab completion
 
 ---
 

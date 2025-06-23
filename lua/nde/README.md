@@ -1,4 +1,4 @@
-# 🚀 NDE Command Suite v2.1.0
+# 🚀 NDE Command Suite v2.2.0
 
 > **N**eovim **D**evelopment **E**nvironment - Your complete coding companion!
 
@@ -72,13 +72,42 @@ NDE features an intelligent dynamic loader that optimizes performance and provid
 - ✨ **Smart Formatting**: Context-aware formatter selection
 - 🧹 **Cache Management**: Efficient caching with manual clear option
 
+## 📝 Snippets System
+
+Quickly access and use code snippets with intelligent language detection.
+
+### Commands
+
+| Command               | Description                     |
+|-----------------------|---------------------------------|
+| `:NDE snippetslist`   | List available snippets for current filetype |
+
+### Features
+
+- 🎯 **Language Detection**: Automatically shows snippets for current filetype
+- 📚 **Rich Library**: Comprehensive snippets for 8+ programming languages
+- 🔍 **Smart Search**: Easy discovery of available snippets
+- ⚡  **Quick Access**: Instant snippet listing with usage instructions
+
+### Supported Languages
+
+- 🐍 **Python**: Classes, functions, dataclasses, async functions
+- ⚡  **JavaScript/TypeScript**: React components, hooks, interfaces, arrow functions
+- 🦀 **Rust**: Structs, error handling, async functions
+- 🐹 **Go**: Structs, HTTP handlers, error handling
+- 🔧 **C/C++**: Classes, header guards
+- 🌙 **Lua**: Modules, Neovim plugins, autocmds
+- 🌐  **HTML**: HTML5 boilerplate, component templates
+- 🗄️ **SQL**: SELECT queries, table creation
+
 ## 🎉 General Commands
 
-| Command        | Description                     |
-|----------------|---------------------------------|
-| `:NDE help`    | Show complete command reference |
-| `:NDE welcome` | Display welcome message         |
-| `:NDE status`  | Show comprehensive NDE status   |
+| Command              | Description                     |
+|----------------------|---------------------------------|
+| `:NDE help`          | Show complete command reference |
+| `:NDE snippetslist`  | List available snippets for current file |
+| `:NDE welcome`       | Display welcome message         |
+| `:NDE status`        | Show comprehensive NDE status   |
 
 ## ✨ Features
 
@@ -86,7 +115,7 @@ NDE features an intelligent dynamic loader that optimizes performance and provid
 All NDE commands support intelligent tab completion:
 
 ```vim
-:NDE <Tab>           " Shows: help, tips, tip, dynamicloader, welcome, status
+:NDE <Tab>           " Shows: help, tips, tip, dynamicloader, snippetslist, welcome, status
 :NDE tips <Tab>      " Shows: on, off
 :NDE tip <Tab>       " Shows: show, next, random
 :NDE dynamicloader <Tab>  " Shows: stats, languages, formatters, clearcache
@@ -145,6 +174,12 @@ require("nde.tips").setup({
 " Get a random helpful tip instantly
 ```
 
+### Check Available Snippets
+```vim
+:NDE snippetslist
+" See all snippets for your current file type
+```
+
 ### Check System Performance
 ```vim
 :NDE dynamicloader stats
@@ -157,14 +192,16 @@ require("nde.tips").setup({
 " See complete NDE status dashboard
 ```
 
-## 🎊 What's New in v2.1.0
+## 🎊 What's New in v2.2.0
 
-- 🚀 **Complete Command Suite**: Unified `:NDE` command interface
+- 📝 **Snippets Integration**: New `:NDE snippetslist` command for quick snippet discovery
+- 🔧 **LuaSnip Fix**: Resolved filetype handling issues in snippet configuration
+- 🎯 **Enhanced Documentation**: Updated README and keybinding documentation
+- 🚀 **Expanded Language Support**: Added support for more programming languages
+- ✨ **Arial.nvim Integration**: Enhanced UI components and styling
 - 💡 **Enhanced Tips System**: Smarter context detection and persistence
-- ⚡ **Dynamic Loader Integration**: Performance monitoring and control
+- ⚡  **Dynamic Loader Integration**: Performance monitoring and control
 - 🎯 **Tab Completion**: Full autocomplete support for all commands
-- 🎨 **Improved UX**: Better notifications and user feedback
-- 🔧 **Bug Fixes**: Resolved command setup issues and improved stability
 
 ## 🤝 Contributing
 

@@ -1,3 +1,68 @@
+-- Rust language support configuration and plugin specification
+-- This file contains both the plugin setup and language configuration
+
+-- Plugin specification
+local plugin_spec = {
+  "mrcjkb/rustaceanvim",
+  version = "^4", -- Recommended
+  ft = { "rust" },
+  dependencies = { "williamboman/mason.nvim" },
+  config = function()
+    -- Setup rustaceanvim with our configuration (defined below)
+    vim.g.rustaceanvim = M.rustaceanvim_config
+    
+    -- Additional Rust-specific keymaps
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = 'rust',
+      callback = function(args)
+        local bufnr = args.buf
+        
+        -- Hover actions
+        vim.keymap.set("n", "<C-space>", function()
+          vim.cmd.RustLsp({'hover', 'actions'})
+        end, { buffer = bufnr, desc = "Rust hover actions" })
+        
+        -- Code action groups
+        vim.keymap.set("n", "<leader>a", function()
+          vim.cmd.RustLsp('codeAction')
+        end, { buffer = bufnr, desc = "Rust code actions" })
+        
+        -- Rust-specific keymaps
+        vim.keymap.set("n", "<leader>rr", function()
+          vim.cmd.RustLsp('runnables')
+        end, { buffer = bufnr, desc = "Rust runnables" })
+        
+        vim.keymap.set("n", "<leader>rd", function()
+          vim.cmd.RustLsp('debuggables')
+        end, { buffer = bufnr, desc = "Rust debuggables" })
+        
+        vim.keymap.set("n", "<leader>rm", function()
+          vim.cmd.RustLsp('expandMacro')
+        end, { buffer = bufnr, desc = "Expand macro" })
+        
+        vim.keymap.set("n", "<leader>rc", function()
+          vim.cmd.RustLsp('openCargo')
+        end, { buffer = bufnr, desc = "Open Cargo.toml" })
+        
+        vim.keymap.set("n", "<leader>rp", function()
+          vim.cmd.RustLsp('parentModule')
+        end, { buffer = bufnr, desc = "Parent module" })
+        
+        vim.keymap.set("n", "<leader>rg", function()
+          vim.cmd.RustLsp('crateGraph')
+        end, { buffer = bufnr, desc = "View crate graph" })
+      end,
+    })
+    
+    -- Notify performance framework that rust is loaded
+    local dynamic_loader = require('performance.dynamic_loader')
+    if dynamic_loader and dynamic_loader.register_plugin then
+      dynamic_loader.register_plugin("rustaceanvim", "languages")
+    end
+  end,
+}
+
+-- Language configuration
 local M = {}
 
 -- Rust Language Server configuration (using rustaceanvim)
@@ -145,5 +210,10 @@ M.rustaceanvim_config = {
   },
 }
 
-return M
-
+-- Return both the plugin spec and the language configuration
+return {
+  -- Plugin specification for plugin manager
+  plugin = plugin_spec,
+  -- Language configuration for internal use
+  config = M
+}

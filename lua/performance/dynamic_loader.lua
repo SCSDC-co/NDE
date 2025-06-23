@@ -26,6 +26,42 @@ local EXTENSION_MAP = {
   ["pyi"] = { lang = "python", priority = 1 },
   ["c"] = { lang = "c_cpp", priority = 1 },
   ["h"] = { lang = "c_cpp", priority = 1 },
+  ["json"] = { lang = "json", priority = 1 },
+  ["jsonc"] = { lang = "json", priority = 1 },
+  ["json5"] = { lang = "json", priority = 1 },
+  ["yaml"] = { lang = "yaml", priority = 1 },
+  ["yml"] = { lang = "yaml", priority = 1 },
+  ["md"] = { lang = "markdown", priority = 1 },
+  ["markdown"] = { lang = "markdown", priority = 1 },
+  ["mdx"] = { lang = "markdown", priority = 1 },
+  ["gleam"] = { lang = "gleam", priority = 1 },
+  ["hs"] = { lang = "haskell", priority = 1 },
+  ["lhs"] = { lang = "haskell", priority = 1 },
+  ["helm"] = { lang = "helm", priority = 1 },
+  ["kt"] = { lang = "kotlin", priority = 1 },
+  ["kts"] = { lang = "kotlin", priority = 1 },
+  ["lean"] = { lang = "lean", priority = 1 },
+  ["nix"] = { lang = "nix", priority = 1 },
+  ["nu"] = { lang = "nushell", priority = 1 },
+  ["ml"] = { lang = "ocaml", priority = 1 },
+  ["mli"] = { lang = "ocaml", priority = 1 },
+  ["cs"] = { lang = "csharp", priority = 1 },
+  ["prisma"] = { lang = "prisma", priority = 1 },
+  ["r"] = { lang = "r", priority = 1 },
+  ["rmd"] = { lang = "r", priority = 1 },
+  ["rego"] = { lang = "rego", priority = 1 },
+  ["rb"] = { lang = "ruby", priority = 1 },
+  ["scala"] = { lang = "scala", priority = 1 },
+  ["sql"] = { lang = "sql", priority = 1 },
+  ["svelte"] = { lang = "svelte", priority = 1 },
+  ["tf"] = { lang = "terraform", priority = 1 },
+  ["tfvars"] = { lang = "terraform", priority = 1 },
+  ["tex"] = { lang = "tex", priority = 1 },
+  ["cls"] = { lang = "tex", priority = 1 },
+  ["sty"] = { lang = "tex", priority = 1 },
+  ["thrift"] = { lang = "thrift", priority = 1 },
+  ["toml"] = { lang = "toml", priority = 1 },
+  ["vue"] = { lang = "vue", priority = 1 },
   
   -- Medium Priority (small delay) - Moderate complexity
   ["rs"] = { lang = "rust", priority = 2, delay_ms = 30 },
@@ -70,7 +106,10 @@ local PERFORMANCE_CONFIG = {
 -- Available languages (from existing config)
 local AVAILABLE_LANGUAGES = {
   "python", "rust", "c_cpp", "javascript_typescript", "lua",
-  "go", "java", "zig", "php"
+  "go", "java", "zig", "php", "json", "yaml", "markdown",
+  "gleam", "haskell", "helm", "kotlin", "lean", "nix", "nushell",
+  "ocaml", "csharp", "prisma", "r", "rego", "ruby", "scala",
+  "sql", "svelte", "terraform", "tex", "thrift", "toml", "vue"
 }
 
 -- Available formatters (from existing config)

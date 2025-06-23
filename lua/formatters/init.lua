@@ -2,6 +2,7 @@ local M = {}
 
 -- Available formatters
 local formatters = {
+  -- Existing formatters
   "black",
   "isort",
   "rustfmt",
@@ -15,6 +16,21 @@ local formatters = {
   "zig_fmt",
   "php-cs-fixer",
   "phpcbf",
+  
+  -- New formatters
+  "fourmolu",     -- Haskell
+  "ktlint",       -- Kotlin
+  "alejandra",    -- Nix
+  "ocamlformat",  -- OCaml
+  "csharpier",    -- C#
+  "prisma-fmt",   -- Prisma
+  "styler",       -- R
+  "rubocop",      -- Ruby
+  "scalafmt",     -- Scala
+  "sql-formatter", -- SQL
+  "terraform-fmt", -- Terraform
+  "latexindent",  -- LaTeX
+  "taplo",        -- TOML
 }
 
 -- Cache for loaded configurations
@@ -63,13 +79,40 @@ M.get_formatters_by_ft = function()
   if success then
     local lang_configs = langs.setup()
     -- Load individual language configs to get their formatter preferences
-    local languages = { "python", "rust", "c_cpp", "javascript_typescript", "lua", "go", "java", "zig", "php", "shell" }
+    local languages = {
+      -- Core languages
+      "python", "rust", "c_cpp", "javascript_typescript", "lua",
+      "go", "java", "zig", "php", "json", "yaml", "markdown",
+      
+      -- Web/Frontend
+      "angular", "astro", "svelte", "vue",
+      
+      -- System/Infrastructure
+      "ansible", "docker", "terraform", "nix",
+      
+      -- Infrastructure/Config
+      "helm", "prisma", "toml",
+      
+      -- Functional languages
+      "clojure", "elm", "erlang", "gleam", "haskell", "ocaml",
+      
+      -- JVM languages
+      "kotlin", "scala",
+      
+      -- Other languages
+      "cmake", "csharp", "elixir", "lean", "nushell",
+      "r", "rego", "ruby", "sql", "tex", "thrift",
+      
+      -- Tools/Utils
+      "git", "tailwind", "shell"
+    }
     
     for _, lang_name in ipairs(languages) do
       local lang_success, lang_config = pcall(require, 'langs.' .. lang_name)
       if lang_success and lang_config.formatters then
         -- Map language names to file types
         local lang_to_ft = {
+          -- Existing mappings
           python = "python",
           rust = "rust",
           c_cpp = { "c", "cpp", "h", "hpp" },
@@ -79,7 +122,36 @@ M.get_formatters_by_ft = function()
           java = "java",
           zig = "zig",
           php = "php",
-          shell = { "sh", "bash", "zsh" }
+          shell = { "sh", "bash", "zsh" },
+          
+          -- New mappings
+          haskell = { "haskell", "hs", "lhs" },
+          kotlin = { "kotlin", "kt", "kts" },
+          nix = "nix",
+          ocaml = { "ocaml", "ml", "mli" },
+          csharp = { "cs", "csharp" },
+          prisma = "prisma",
+          r = { "r", "rmd" },
+          ruby = { "ruby", "rb" },
+          scala = "scala",
+          sql = "sql",
+          tex = { "tex", "cls", "sty" },
+          toml = "toml",
+          
+          -- Prettierd handled
+          json = { "json", "jsonc", "json5" },
+          yaml = { "yaml", "yml" },
+          markdown = { "markdown", "md", "mdx" },
+          svelte = "svelte",
+          vue = "vue",
+          
+          -- Other languages
+          gleam = "gleam",
+          helm = "helm",
+          lean = "lean",
+          nushell = { "nu", "nushell" },
+          rego = "rego",
+          thrift = "thrift"
         }
         
         local filetypes = lang_to_ft[lang_name]
