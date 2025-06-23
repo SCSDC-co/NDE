@@ -94,10 +94,5 @@ return {
       dynamic_loader.register_plugin("betterterm", "terminal")
     end
     
-    vim.notify(
-      "🔧 VSCode-style terminal loaded! Press F7 to toggle",
-      vim.log.levels.INFO,
-      { title = "🚀 NDE Terminal", timeout = 3000 }
-    )
   end,
 }

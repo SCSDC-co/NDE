@@ -1,4 +1,4 @@
-# 🚀 NDE Command Suite v2.2.0
+# 🚀 NDE Command Suite v2.4.0
 
 > **N**eovim **D**evelopment **E**nvironment - Your complete coding companion!
 
@@ -100,14 +100,20 @@ Quickly access and use code snippets with intelligent language detection.
 - 🌐  **HTML**: HTML5 boilerplate, component templates
 - 🗄️ **SQL**: SELECT queries, table creation
 
+## 🤖 AI Integration Commands
+
+| Command                 | Description                                 |
+|-------------------------|---------------------------------------------|
+| `:NDE codeiumauth help` | Show Codeium authentication help and status |
+
 ## 🎉 General Commands
 
-| Command              | Description                     |
-|----------------------|---------------------------------|
-| `:NDE help`          | Show complete command reference |
+| Command              | Description                              |
+|----------------------|------------------------------------------|
+| `:NDE help`          | Show complete command reference          |
 | `:NDE snippetslist`  | List available snippets for current file |
-| `:NDE welcome`       | Display welcome message         |
-| `:NDE status`        | Show comprehensive NDE status   |
+| `:NDE welcome`       | Display welcome message                  |
+| `:NDE status`        | Show comprehensive NDE status            |
 
 ## ✨ Features
 

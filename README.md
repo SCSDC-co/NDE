@@ -2,9 +2,9 @@
 
 ![NDE Banner](.github/assets/banner_ui_readme.png)
 
-**The Ultimate Neovim Development Environment**
+**The Ultimate Neovim Development Environment - v2.4.0**
 
-A meticulously crafted, enterprise-grade Neovim configuration featuring revolutionary diagnostic management, beautiful theming, and unparalleled developer productivity. Built for systems programming, web development, and professional coding workflows with cutting-edge language support and intelligent automation.
+A meticulously crafted, enterprise-grade Neovim configuration featuring the **Ultimate Productivity Arsenal** - revolutionary workflow enhancement suite with VSCode-style command palette, intelligent session management, lightning file bookmarking, and modern AI integration. Built for professional developers with cutting-edge productivity tools, 50+ plugins, and zero-conflict architecture.
 
 <p>
     <a href="https://github.com/Sckab/NDE/stargazers">
@@ -45,18 +45,31 @@ A meticulously crafted, enterprise-grade Neovim configuration featuring revoluti
 
 ### 🎯 **Revolutionary Features**
 
+#### 🏆 **Ultimate Productivity Arsenal** ⭐
+
+_Revolutionary workflow enhancement suite for professional developers_
+
+- **🏆 Legendary Command Palette**: VSCode-style command discovery with fuzzy search and frecency
+- **💾 Intelligent Session Management**: Auto-saves project state with clean restoration hooks
+- **🎣 Lightning File Bookmarking**: Instant access to 4 most important files via Harpoon
+- **💡 Smart Symbol Highlighting**: Auto-highlights references with multi-provider support
+- **📊 Advanced Code Visualization**: Enhanced chunk highlighting replacing basic indent guides
+- **🔄 Universal Action Repeat**: Makes all plugin actions repeatable with vim's `.` command
+- **🤖 Modern AI Integration**: Seamless Codeium CMP integration with conflict resolution
+- **⚡  Professional Polish**: Reduced noise, enhanced functionality, zero conflicts
+
 #### 🚀 **Dynamic Performance System** ⚡
 
 _World's first adaptive language loading with zero startup impact_
 
 - **📁 File-Triggered Loading**: Languages and formatters load only when you open matching file types
 - **🎯 Priority-Based System**: Critical languages (Lua, Go, Python) load with zero delay
-- **⚡ Smart Delays**: Slower languages (TypeScript, C++) load with intelligent delays (30-100ms)
+- **⚡  Smart Delays**: Slower languages (TypeScript, C++) load with intelligent delays (30-100ms)
 - **💾 Aggressive Caching**: Multi-layer caching system prevents redundant loading
 - **📊 Performance Monitoring**: Real-time stats with `:NDE dynamicloader stats`
 - **🔧 Fully Configurable**: Customize delays, priorities, and file extension mappings
 - **🧹 Cache Management**: Clear and reset performance caches with `:NDE dynamicloader clearcache`
-- **🌐 Zero Startup Cost**: No languages load during Neovim startup - everything is on-demand
+- **🌐  Zero Startup Cost**: No languages load during Neovim startup - everything is on-demand
 
 #### 🎯 **NDE Beginner's Dream System** ✨
 
@@ -65,21 +78,34 @@ _Revolutionary learning assistance for Neovim newcomers_
 - **🎉 Interactive Tips Engine**: Smart contextual tips that appear every 45 seconds
 - **🚫 Anti-Duplicate Intelligence**: Never shows the same tip twice in a row
 - **🎲 Smart Random Selection**: Intelligent tip rotation with variety guarantee
-- **⚡ Full Command Integration**: `:NDE` command suite for complete control
+- **⚡  Full Command Integration**: `:NDE` command suite for complete control
 - **🎨 Emoji-Powered Interface**: Engaging, colorful, and fun learning experience
 - **📚 8 Comprehensive Categories**: From basics to advanced Vim wizardry
 - **📁 File-Only Display**: Tips only appear when editing actual files (not terminals/help)
 - **💾 Settings Persistence**: Your tip preferences persist across Neovim restarts
 - **🎭 Dynamic Welcome**: Different welcome messages for enabled/disabled states
 
-#### 🎮 **Universal Code Runner** 🚀
+#### **🎣 Lightning Navigation & Productivity** 🚀
+
+_Revolutionary workflow tools for professional developers_
+
+- **🏆 Legendary Command Palette**: VSCode-style command discovery with fuzzy search and frecency tracking
+- **💾 Intelligent Session Management**: Auto-saves project state with clean restoration and smart hooks
+- **🎣 Harpoon File Bookmarking**: Instant access to 4 most important files with lightning-fast switching
+- **💡 Smart Symbol Highlighting**: Auto-highlights references with LSP, Treesitter, and regex providers
+- **📊 Advanced Code Visualization**: Enhanced chunk highlighting with context-aware line number highlighting
+- **🔄 Universal Action Repeat**: Makes all plugin actions repeatable with vim's `.` command
+- **🤖 Modern AI Integration**: Seamless Codeium CMP integration with conflict resolution
+- **⚡  Professional Polish**: Reduced notification noise with enhanced functionality
+
+#### **🎮 Universal Code Runner** 🚀
 
 _One-key execution for 20+ programming languages with smart project detection_
 
 - **F8 Universal Runner**: Automatically detects file type and runs with optimal settings
 - **🔍 Smart Project Detection**: Recognizes Cargo.toml, package.json, Makefile, and uses project commands
-- **⚡ Optimized Compilation**: Enhanced flags for C/C++, intelligent Rust/Go project handling
-- **🌐 Multi-Language Support**: Python, JS/TS, C/C++, Rust, Go, Java, Assembly, Lua, Ruby, PHP, and more
+- **⚡  Optimized Compilation**: Enhanced flags for C/C++, intelligent Rust/Go project handling
+- **🌐  Multi-Language Support**: Python, JS/TS, C/C++, Rust, Go, Java, Assembly, Lua, Ruby, PHP, and more
 - **📢 Performance Notifications**: Beautiful execution notifications with file type and status
 - **🔧 Terminal Integration**: Consistent ToggleTerm vertical split experience
 
@@ -430,10 +456,10 @@ _Kanagawa Dragon theme integrated across every component_
 
 ### 📊 **Project Statistics**
 
-- **Total Configuration Size**: **12,950+ lines** of carefully crafted Lua code
-- **Plugin Count**: 44+ professionally selected and configured plugins
+- **Total Configuration Size**: **13,400+ lines** of carefully crafted Lua code
+- **Plugin Count**: **50+ professionally selected** and configured plugins
 - **Language Support**: **46 programming languages** with full toolchain integration
-- **Configuration Files**: **142+ modular files** for maximum maintainability
+- **Configuration Files**: **148+ modular files** for maximum maintainability
 - **Performance**: Enhanced startup time with intelligent lazy loading and optimizations
 
 ### 🎯 **Design Philosophy**
@@ -447,14 +473,7 @@ _Kanagawa Dragon theme integrated across every component_
 ### 📁 **File Structure & Responsibility Matrix**
 
 ```
-~/.config/nvim/                         # 🏠 Root Configuration Directory
-├── 📄 .gitignore                       # 🚫 Git ignore rules
-├── 📄 init.lua                         # 🚀 Entry Point & Python Environment Setup
-├── 📄 LICENSE                          # ⚖️ MIT License
-├── 📄 README.md                        # 📖 This comprehensive documentation
-├── 📄 CHANGELOG.md                     # 📝 Version history and feature updates
-├── 📄 INSTALL.md                       # 📥 Installation guide and setup instructions
-├── 📄 KEYBINDINGS.md                   # ⌨️ Complete keybinding reference
+~/.config/nvim/                         # 🏠 Root Configuration Directory (v2.4.0 - 153 files)
 ├── 📁 .github/                         # 🐙 GitHub templates and assets
 │   ├── 📁 assets/                      # 🎨 Documentation images and banners
 │   │   ├── 📄 banner_ui.png            # 🖼️ UI banner image
@@ -463,169 +482,173 @@ _Kanagawa Dragon theme integrated across every component_
 │   └── 📁 ISSUE_TEMPLATE/              # 📋 Bug report and feature request templates
 │       ├── 📄 bug_report.yml           # 🐛 Bug report template
 │       └── 📄 feature_request.yml      # 💡 Feature request template
-└── 📁 lua/                             # 🌙 Core Lua Configuration
-    ├── 📄 keymaps.lua                  # ⌨️  Global keybindings & language-specific shortcuts
-    ├── 📄 launch.lua                   # 🏁 Orchestrated startup sequence
-    ├── 📄 opts.lua                     # ⚙️ Core editor options & performance settings
-    ├── 📁 formatters/                  # 🔧 Code Formatting Configurations (31 formatters)
-    │   ├── 📄 alejandra.lua            # ❄️ Nix formatter
-    │   ├── 📄 black.lua                # 🐍 Python Black formatter
-    │   ├── 📄 clang-format.lua         # 🔧 C/C++ clang-format
-    │   ├── 📄 cmake-format.lua         # 🏗️ CMake formatter
-    │   ├── 📄 csharpier.lua            # #️⃣  C# formatter
-    │   ├── 📄 elm-format.lua           # 🌳 Elm formatter
-    │   ├── 📄 erlfmt.lua               # 📞 Erlang formatter
-    │   ├── 📄 fourmolu.lua             # λ  Haskell formatter
-    │   ├── 📄 gofmt.lua                # 🐹 Go formatting
-    │   ├── 📄 goimports.lua            # 🐹 Go imports formatter
-    │   ├── 📄 google-java-format.lua   # ☕ Java Google formatter
-    │   ├── 📄 init.lua                 # 🚀 Formatter loader and registry
-    │   ├── 📄 isort.lua                # 🐍 Python import sorting
-    │   ├── 📄 ktlint.lua               # 🎯 Kotlin formatter
-    │   ├── 📄 latexindent.lua          # 📄 LaTeX formatter
-    │   ├── 📄 ocamlformat.lua          # 🐫 OCaml formatter
-    │   ├── 📄 phpcbf.lua               # 🐘 PHP Code Beautifier
-    │   ├── 📄 php-cs-fixer.lua         # 🐘 PHP CS Fixer
-    │   ├── 📄 prettierd.lua            # 🌐  Web technologies formatter
-    │   ├── 📄 prisma-fmt.lua           # 💎 Prisma formatter
-    │   ├── 📄 rubocop.lua              # 💎 Ruby formatter
-    │   ├── 📄 rustfmt.lua              # 🦀 Rust formatting
-    │   ├── 📄 scalafmt.lua             # 🎭 Scala formatter
-    │   ├── 📄 shfmt.lua                # 🐚 Shell script formatter
-    │   ├── 📄 sql-formatter.lua        # 🗄️ SQL formatter
-    │   ├── 📄 styler.lua               # 📊 R formatter
-    │   ├── 📄 stylua.lua               # 🌙 Lua stylua formatter
-    │   ├── 📄 taplo.lua                # ⚙️ TOML formatter
-    │   ├── 📄 terraform-fmt.lua        # 🏗️ Terraform formatter
-    │   ├── 📄 zig_fmt.lua              # ⚡  Zig formatter
-    │   └── 📄 zprint.lua               # 🌀 Clojure formatter
-    ├── 📁 GUI/                         # 🎨 User Interface Components
-    │   └── 📄 theme.lua                # 🌈 Kanagawa Dragon theme with custom overrides
-    ├── 📁 langs/                       # 🌍 Language-Specific Configurations (46 languages)
-    │   ├── 📄 angular.lua              # 🅰️ Angular framework
-    │   ├── 📄 ansible.lua              # 🤖 Ansible automation
-    │   ├── 📄 astro.lua                # 🚀 Astro framework
-    │   ├── 📄 c_cpp.lua                # 🔧 C/C++ language setup
-    │   ├── 📄 clojure.lua              # 🌀 Clojure functional language
-    │   ├── 📄 cmake.lua                # 🏗️ CMake build system
-    │   ├── 📄 csharp.lua               # #️⃣  C# language setup
-    │   ├── 📄 docker.lua               # 🐳 Docker containerization
-    │   ├── 📄 elixir.lua               # ⚗️  Elixir language
-    │   ├── 📄 elm.lua                  # 🌳 Elm functional language
-    │   ├── 📄 erlang.lua               # 📞 Erlang language
-    │   ├── 📄 git.lua                  # 📊 Git version control
-    │   ├── 📄 gleam.lua                # ✨ Gleam language
-    │   ├── 📄 go.lua                   # 🐹 Go language configuration
-    │   ├── 📄 haskell.lua              # λ  Haskell functional language
-    │   ├── 📄 helm.lua                 # ⎈  Helm Kubernetes
-    │   ├── 📄 init.lua                 # 🚀 Language configuration loader
-    │   ├── 📄 java.lua                 # ☕ Java language setup
-    │   ├── 📄 javascript_typescript.lua # ⚡ JS/TS configuration
-    │   ├── 📄 json.lua                 # 📋 JSON data format
-    │   ├── 📄 kotlin.lua               # 🎯 Kotlin language
-    │   ├── 📄 lean.lua                 # 🧮 Lean theorem prover
-    │   ├── 📄 lua.lua                  # 🌙 Lua language setup
-    │   ├── 📄 markdown.lua             # 📝 Markdown documentation
-    │   ├── 📄 nix.lua                  # ❄️ Nix package manager
-    │   ├── 📄 nushell.lua              # 🐚 Nu shell
-    │   ├── 📄 ocaml.lua                # 🐫 OCaml functional language
-    │   ├── 📄 php.lua                  # 🐘 PHP language setup
-    │   ├── 📄 prisma.lua               # 💎 Prisma ORM
-    │   ├── 📄 python.lua               # 🐍 Python language configuration
-    │   ├── 📄 r.lua                    # 📊 R statistical language
-    │   ├── 📄 rego.lua                 # 🛡️ Rego policy language
-    │   ├── 📄 ruby.lua                 # 💎 Ruby language
-    │   ├── 📄 rust.lua                 # 🦀 Rust language setup
-    │   ├── 📄 scala.lua                # 🎭 Scala language
-    │   ├── 📄 shell.lua                # 🐚 Shell scripting setup
-    │   ├── 📄 sql.lua                  # 🗄️ SQL database language
-    │   ├── 📄 svelte.lua               # 🔥 Svelte framework
-    │   ├── 📄 tailwind.lua             # 🎨 Tailwind CSS
-    │   ├── 📄 terraform.lua            # 🏗️ Terraform infrastructure
-    │   ├── 📄 tex.lua                  # 📄 LaTeX document system
-    │   ├── 📄 thrift.lua               # 🔄 Apache Thrift
-    │   ├── 📄 toml.lua                 # ⚙️ TOML configuration
-    │   ├── 📄 vue.lua                  # 💚 Vue.js framework
-    │   ├── 📄 yaml.lua                 # 📋 YAML data format
-    │   └── 📄 zig.lua                  # ⚡  Zig language setup
-    ├── 📁 lazynvim/                    # 📦 Plugin Management
-    │   └── 📄 lazy.lua                 # 🔄 Lazy.nvim configuration & plugin loader
-    ├── 📁 nde/                         # 🎯 NDE System
-    │   ├── 📄 command-suite.lua        # 🎮 NDE command system
-    │   ├── 📄 README.md                # 📖 NDE system documentation
-    │   └── 📄 tips.lua                 # 💡 Beginner's Dream tips engine
-    ├── 📁 performance/                 # ⚡  Performance System
-    │   ├── 📄 dynamic_loader.lua       # 🎯 Dynamic language loading
-    │   ├── 📄 formatters.lua           # 🔧 Formatter performance management
-    │   ├── 📄 init.lua                 # 🚀 Performance system loader
-    │   ├── 📁 langs/                   # 🌍 Language performance configs
-    │   │   └── 📄 init.lua             # 🚀 Language performance loader
-    │   └── 📄 README.md                # 📖 Performance system docs
-    ├── 📁 utils/                       # 🛠️ Utility Functions
-    │   └── 📄 lazy_loader.lua          # 🔄 Smart plugin loading utilities
-    │
-    └── 📁 plugins/                     # 🔌 Plugin Ecosystem (43+ plugins)
-        ├── 📄 init.lua                 # 🚀 Plugin loader for organized directories
-        │
-        ├── 📁 core/                    # 🧠 Core Functionality
-        │   ├── 📄 treesitter.lua       # 🌳 Syntax highlighting & code understanding
-        │   ├── 📄 which-key.lua        # ⌨️  Interactive keybinding help
-        │   ├── 📄 dashboard.lua        # 🎛️ Welcome screen & quick actions
-        │   └── 📄 vim-be-good.lua      # 🎮 Vim skill practice game
-        │
-        ├── 📁 ui/                      # 🎨 User Interface Components
-        │   ├── 📄 lualine.lua          # 📊 Status line with Git & time
-        │   ├── 📄 bufferline.lua       # 📑 Buffer tabs with close controls
-        │   ├── 📄 noice.lua            # 🔔 Enhanced notifications
-        │   ├── 📄 highlight-colors.lua # 🎨 Color code visualization
-        │   ├── 📄 rainbow-delimiters.lua # 🌈 Rainbow parentheses
-        │   ├── 📄 indent-blankline.lua # ┃ Visual indent guides
-        │   ├── 📄 dropbar.lua          # 🧭 IDE-like breadcrumb navigation
-        │   ├── 📄 zen.lua              # 🧘 Distraction-free coding mode
-        │   ├── 📄 satellite.lua        # 🛰️ Visual scrollbar with indicators
-        │   └── 📄 animate.lua          # 🎬 Smooth animations system
-        │
-        ├── 📁 navigation/              # 🔍 Navigation & Search
-        │   ├── 📄 telescope.lua        # 🔭 Fuzzy finder with live preview
-        │   ├── 📄 neotree.lua          # 🌲 File explorer with Git integration
-        │   ├── 📄 oil.lua              # 🛢️ Buffer-like file editor
-        │   ├── 📄 leap.lua             # ⚡  Fast two-character navigation
-        │   └── 📄 smart-splits.lua     # 🪟 Intelligent window management
-        │
-        ├── 📁 editing/                 # ✏️ Text Editing & Manipulation
-        │   ├── 📄 mini.lua             # 🔗 Mini modules (surround & pairs)
-        │   ├── 📄 autotag.lua          # 🏷️ Smart HTML/XML tag completion
-        │   ├── 📄 comment.lua          # 💬 Smart commenting system (mini.comment)
-        │   ├── 📄 yanky.lua            # 📋 Advanced clipboard management
-        │   ├── 📄 blink.lua            # ✨ Modern completion framework
-        │   ├── 📄 cmp.lua              # 🔤 Legacy completion (fallback)
-        │   ├── 📄 snippet.lua          # ✂️ Smart snippet management
-        │   └── 📄 spectre.lua          # 🔍 Project-wide search & replace
-        │
-        ├── 📁 development/             # 🛠️ Development Tools
-        │   ├── 📄 autoformat.lua       # 📐 Multi-language formatting
-        │   ├── 📄 code-runner.lua      # 🚀 Universal code execution
-        │   ├── 📄 codeium.lua          # 🤖 AI-powered code completion
-        │   ├── 📄 lint.lua             # 🔍 Code quality analysis
-        │   ├── 📄 null-ls.lua          # 🔧 Additional LSP sources
-        │   ├── 📄 playground.lua       # 🎮 Code experimentation environment
-        │   ├── 📄 render-markdown.lua  # 📝 Live Markdown rendering
-        │   ├── 📄 todo-comments.lua    # 📝 TODO/FIXME highlighting
-        │   └── 📄 trouble.lua          # 🚨 Diagnostic management
-        │
-        ├── 📁 lsp/                     # 🧠 Language Server Protocol
-        │   └── 📄 lsp.lua              # 🔌 LSP configuration & setup
-        │
-        ├── 📁 debugging/               # 🐛 Debug Adapter Protocol
-        │   ├── 📄 dap.lua              # 🔍 Debug adapter configuration
-        │   └── 📄 debug.lua            # 🛠️ Debugging UI & controls
-        │
-        ├── 📁 git/                     # 📊 Version Control
-        │   └── 📄 gitsigns.lua         # 📈 Git integration & visual indicators
-        │
-        └── 📁 terminal/                # 💻 Terminal Integration
-            ├── 📄 betterterm.lua       # 🚀 Enhanced terminal features
-            └── 📄 toggleterm.lua       # 🖥️ Smart terminal management
+├── 📁 lua/                             # 🌙 Core Lua Configuration (50+ plugins)
+│   ├── 📁 formatters/                  # 🔧 Code Formatting Configurations (31 formatters)
+│   │   ├── 📄 alejandra.lua            # ❄️ Nix formatter
+│   │   ├── 📄 black.lua                # 🐍 Python Black formatter
+│   │   ├── 📄 clang-format.lua         # 🔧 C/C++ clang-format
+│   │   ├── 📄 cmake-format.lua         # 🏗️ CMake formatter
+│   │   ├── 📄 csharpier.lua            # #️⃣  C# formatter
+│   │   ├── 📄 elm-format.lua           # 🌳 Elm formatter
+│   │   ├── 📄 erlfmt.lua               # 📞 Erlang formatter
+│   │   ├── 📄 fourmolu.lua             # λ  Haskell formatter
+│   │   ├── 📄 gofmt.lua                # 🐹 Go formatting
+│   │   ├── 📄 goimports.lua            # 🐹 Go imports formatter
+│   │   ├── 📄 google-java-format.lua   # ☕ Java Google formatter
+│   │   ├── 📄 init.lua                 # 🚀 Formatter loader and registry
+│   │   ├── 📄 isort.lua                # 🐍 Python import sorting
+│   │   ├── 📄 ktlint.lua               # 🎯 Kotlin formatter
+│   │   ├── 📄 latexindent.lua          # 📄 LaTeX formatter
+│   │   ├── 📄 ocamlformat.lua          # 🐫 OCaml formatter
+│   │   ├── 📄 phpcbf.lua               # 🐘 PHP Code Beautifier
+│   │   ├── 📄 php-cs-fixer.lua         # 🐘 PHP CS Fixer
+│   │   ├── 📄 prettierd.lua            # 🌐  Web technologies formatter
+│   │   ├── 📄 prisma-fmt.lua           # 💎 Prisma formatter
+│   │   ├── 📄 rubocop.lua              # 💎 Ruby formatter
+│   │   ├── 📄 rustfmt.lua              # 🦀 Rust formatting
+│   │   ├── 📄 scalafmt.lua             # 🎭 Scala formatter
+│   │   ├── 📄 shfmt.lua                # 🐚 Shell script formatter
+│   │   ├── 📄 sql-formatter.lua        # 🗄️ SQL formatter
+│   │   ├── 📄 styler.lua               # 📊 R formatter
+│   │   ├── 📄 stylua.lua               # 🌙 Lua stylua formatter
+│   │   ├── 📄 taplo.lua                # ⚙️ TOML formatter
+│   │   ├── 📄 terraform-fmt.lua        # 🏗️ Terraform formatter
+│   │   ├── 📄 zig_fmt.lua              # ⚡  Zig formatter
+│   │   └── 📄 zprint.lua               # 🌀 Clojure formatter
+│   ├── 📁 GUI/                         # 🎨 User Interface Components
+│   │   └── 📄 theme.lua                # 🌈 Kanagawa Dragon theme with custom overrides
+│   ├── 📁 langs/                       # 🌍 Language-Specific Configurations (46 languages)
+│   │   ├── 📄 angular.lua              # 🅰️ Angular framework
+│   │   ├── 📄 ansible.lua              # 🤖 Ansible automation
+│   │   ├── 📄 astro.lua                # 🚀 Astro framework
+│   │   ├── 📄 c_cpp.lua                # 🔧 C/C++ language setup
+│   │   ├── 📄 clojure.lua              # 🌀 Clojure functional language
+│   │   ├── 📄 cmake.lua                # 🏗️ CMake build system
+│   │   ├── 📄 csharp.lua               # #️⃣  C# language setup
+│   │   ├── 📄 docker.lua               # 🐳 Docker containerization
+│   │   ├── 📄 elixir.lua               # ⚗️  Elixir language
+│   │   ├── 📄 elm.lua                  # 🌳 Elm functional language
+│   │   ├── 📄 erlang.lua               # 📞 Erlang language
+│   │   ├── 📄 git.lua                  # 📊 Git version control
+│   │   ├── 📄 gleam.lua                # ✨ Gleam language
+│   │   ├── 📄 go.lua                   # 🐹 Go language configuration
+│   │   ├── 📄 haskell.lua              # λ  Haskell functional language
+│   │   ├── 📄 helm.lua                 # ⎈  Helm Kubernetes
+│   │   ├── 📄 init.lua                 # 🚀 Language configuration loader
+│   │   ├── 📄 java.lua                 # ☕ Java language setup
+│   │   ├── 📄 javascript_typescript.lua # ⚡ JS/TS configuration
+│   │   ├── 📄 json.lua                 # 📋 JSON data format
+│   │   ├── 📄 kotlin.lua               # 🎯 Kotlin language
+│   │   ├── 📄 lean.lua                 # 🧮 Lean theorem prover
+│   │   ├── 📄 lua.lua                  # 🌙 Lua language setup
+│   │   ├── 📄 markdown.lua             # 📝 Markdown documentation
+│   │   ├── 📄 nix.lua                  # ❄️ Nix package manager
+│   │   ├── 📄 nushell.lua              # 🐚 Nu shell
+│   │   ├── 📄 ocaml.lua                # 🐫 OCaml functional language
+│   │   ├── 📄 php.lua                  # 🐘 PHP language setup
+│   │   ├── 📄 prisma.lua               # 💎 Prisma ORM
+│   │   ├── 📄 python.lua               # 🐍 Python language configuration
+│   │   ├── 📄 r.lua                    # 📊 R statistical language
+│   │   ├── 📄 rego.lua                 # 🛡️ Rego policy language
+│   │   ├── 📄 ruby.lua                 # 💎 Ruby language
+│   │   ├── 📄 rust.lua                 # 🦀 Rust language setup
+│   │   ├── 📄 scala.lua                # 🎭 Scala language
+│   │   ├── 📄 shell.lua                # 🐚 Shell scripting setup
+│   │   ├── 📄 sql.lua                  # 🗄️ SQL database language
+│   │   ├── 📄 svelte.lua               # 🔥 Svelte framework
+│   │   ├── 📄 tailwind.lua             # 🎨 Tailwind CSS
+│   │   ├── 📄 terraform.lua            # 🏗️ Terraform infrastructure
+│   │   ├── 📄 tex.lua                  # 📄 LaTeX document system
+│   │   ├── 📄 thrift.lua               # 🔄 Apache Thrift
+│   │   ├── 📄 toml.lua                 # ⚙️ TOML configuration
+│   │   ├── 📄 vue.lua                  # 💚 Vue.js framework
+│   │   ├── 📄 yaml.lua                 # 📋 YAML data format
+│   │   └── 📄 zig.lua                  # ⚡  Zig language setup
+│   ├── 📁 lazynvim/                    # 📦 Plugin Management
+│   │   └── 📄 lazy.lua                 # 🔄 Lazy.nvim configuration & plugin loader
+│   ├── 📁 nde/                         # 🎯 NDE System
+│   │   ├── 📄 command-suite.lua        # 🎮 NDE command system
+│   │   ├── 📄 README.md                # 📖 NDE system documentation
+│   │   └── 📄 tips.lua                 # 💡 Beginner's Dream tips engine
+│   ├── 📁 performance/                 # ⚡  Performance System
+│   │   ├── 📁 langs/                   # 🌍 Language performance configs
+│   │   │   └── 📄 init.lua             # 🚀 Language performance loader
+│   │   ├── 📄 dynamic_loader.lua       # 🎯 Dynamic language loading
+│   │   ├── 📄 formatters.lua           # 🔧 Formatter performance management
+│   │   ├── 📄 init.lua                 # 🚀 Performance system loader
+│   │   └── 📄 README.md                # 📖 Performance system docs
+│   ├── 📁 plugins/                     # 🔌 Plugin Ecosystem (50+ plugins)
+│   │   ├── 📁 core/                    # 🧠 Core Functionality (🆕 v2.4.0 additions)
+│   │   │   ├── 📄 dashboard.lua        # 🎛️ Welcome screen & quick actions
+│   │   │   ├── 📄 legendary.lua        # 🏆 NEW: Command palette & discoverability
+│   │   │   ├── 📄 persistence.lua      # 💾 NEW: Intelligent session management
+│   │   │   ├── 📄 treesitter.lua       # 🌳 Syntax highlighting & code understanding
+│   │   │   ├── 📄 vim-be-good.lua      # 🎮 Vim skill practice game
+│   │   │   └── 📄 which-key.lua        # ⌨️  Interactive keybinding help
+│   │   ├── 📁 debugging/               # 🐛 Debug Adapter Protocol
+│   │   │   ├── 📄 dap.lua              # 🔍 Debug adapter configuration
+│   │   │   └── 📄 debug.lua            # 🛠️ Debugging UI & controls
+│   │   ├── 📁 development/             # 🛠️ Development Tools
+│   │   │   ├── 📄 autoformat.lua       # 📐 Multi-language formatting
+│   │   │   ├── 📄 codeium.lua          # 🤖 ENHANCED: Modern AI integration
+│   │   │   ├── 📄 code-runner.lua      # 🚀 Universal code execution
+│   │   │   ├── 📄 lint.lua             # 🔍 Code quality analysis
+│   │   │   ├── 📄 null-ls.lua          # 🔧 Additional LSP sources
+│   │   │   ├── 📄 playground.lua       # 🎮 Code experimentation environment
+│   │   │   ├── 📄 render-markdown.lua  # 📝 Live Markdown rendering
+│   │   │   ├── 📄 todo-comments.lua    # 📝 TODO/FIXME highlighting
+│   │   │   └── 📄 trouble.lua          # 🚨 Diagnostic management
+│   │   ├── 📁 editing/                 # ✏️ Text Editing & Manipulation (🆕 v2.4.0 additions)
+│   │   │   ├── 📄 autotag.lua          # 🏷️ Smart HTML/XML tag completion
+│   │   │   ├── 📄 blink.lua            # ✨ Modern completion framework
+│   │   │   ├── 📄 cmp.lua              # 🔤 ENHANCED: Codeium integration
+│   │   │   ├── 📄 comment.lua          # 💬 Smart commenting system
+│   │   │   ├── 📄 illuminate.lua       # 💡 NEW: Smart symbol highlighting
+│   │   │   ├── 📄 mini.lua             # 🔗 Mini modules (surround & pairs)
+│   │   │   ├── 📄 repeat.lua           # 🔄 NEW: Universal action repeat
+│   │   │   ├── 📄 snippet.lua          # ✂️ ENHANCED: Cleaner snippet system
+│   │   │   ├── 📄 spectre.lua          # 🔍 Project-wide search & replace
+│   │   │   └── 📄 yanky.lua            # 📋 Advanced clipboard management
+│   │   ├── 📁 git/                     # 📊 Version Control
+│   │   │   └── 📄 gitsigns.lua         # 📈 Git integration & visual indicators
+│   │   ├── 📁 lsp/                     # 🧠 Language Server Protocol
+│   │   │   └── 📄 lsp.lua              # 🔌 LSP configuration & setup
+│   │   ├── 📁 navigation/              # 🔍 Navigation & Search (🆕 v2.4.0 additions)
+│   │   │   ├── 📄 harpoon.lua          # 🎣 NEW: Lightning-fast file bookmarking
+│   │   │   ├── 📄 leap.lua             # ⚡  Fast two-character navigation
+│   │   │   ├── 📄 neotree.lua          # 🌲 File explorer with Git integration
+│   │   │   ├── 📄 oil.lua              # 🛢️ Buffer-like file editor
+│   │   │   ├── 📄 smart-splits.lua     # 🪟 Intelligent window management
+│   │   │   └── 📄 telescope.lua        # 🔭 Fuzzy finder with live preview
+│   │   ├── 📁 terminal/                # 💻 Terminal Integration
+│   │   │   ├── 📄 betterterm.lua       # 🚀 ENHANCED: Cleaner terminal experience
+│   │   │   └── 📄 toggleterm.lua       # 🖥️ Smart terminal management
+│   │   ├── 📁 ui/                      # 🎨 User Interface Components (🆕 v2.4.0 additions)
+│   │   │   ├── 📄 animate.lua          # 🎬 Smooth animations system
+│   │   │   ├── 📄 bufferline.lua       # 📑 Buffer tabs with close controls
+│   │   │   ├── 📄 dropbar.lua          # 🧭 IDE-like breadcrumb navigation
+│   │   │   ├── 📄 highlight-colors.lua # 🎨 Color code visualization
+│   │   │   ├── 📄 hlchunk.lua          # 📊 NEW: Advanced code chunk visualization
+│   │   │   ├── 📄 lualine.lua          # 📊 Status line with Git & time
+│   │   │   ├── 📄 noice.lua            # 🔔 Enhanced notifications
+│   │   │   ├── 📄 rainbow-delimiters.lua # 🌈 Rainbow parentheses
+│   │   │   ├── 📄 satellite.lua        # 🛰️ Visual scrollbar with indicators
+│   │   │   └── 📄 zen.lua              # 🧘 Distraction-free coding mode
+│   │   ├── 📄 aerial.lua               # 🗂️ Code structure navigation
+│   │   └── 📄 init.lua                 # 🚀 Plugin loader for organized directories
+│   ├── 📁 utils/                       # 🛠️ Utility Functions
+│   │   └── 📄 lazy_loader.lua          # 🔄 Smart plugin loading utilities
+│   ├── 📄 keymaps.lua                  # ⌨️  Global keybindings & language-specific shortcuts
+│   ├── 📄 launch.lua                   # 🏁 Orchestrated startup sequence
+│   └── 📄 opts.lua                     # ⚙️ Core editor options & performance settings
+├── 📄 CHANGELOG.md                     # 📝 Version history and feature updates (v2.4.0)
+├── 📄 .gitignore                       # 🚫 Git ignore rules
+├── 📄 init.lua                         # 🚀 Entry Point & Python Environment Setup
+├── 📄 INSTALL.md                       # 📥 Installation guide and setup instructions
+├── 📄 KEYBINDINGS.md                   # ⌨️ Complete keybinding reference (updated v2.4.0)
+├── 📄 lazy-lock.json                   # 🔒 Plugin version lock file
+├── 📄 LICENSE                          # ⚖️ MIT License
+└── 📄 README.md                        # 📖 This comprehensive documentation (v2.4.0)
 ```
 
 
@@ -674,6 +697,17 @@ When you first launch Neovim after installation:
 ## ⌨️ Keybindings & Usage
 
 **For comprehensive keybinding reference, shortcuts, and usage examples, see [KEYBINDINGS.md](KEYBINDINGS.md)**
+
+### 🏆 **New in v2.4.0 - Ultimate Productivity Arsenal**
+
+- **🏆 Legendary Command Palette**: VSCode-style command discovery with frecency tracking
+- **💾 Intelligent Session Management**: Auto-saves project state with persistence.nvim
+- **🎣 Harpoon File Bookmarking**: Lightning-fast access to your 4 most important files
+- **💡 Smart Symbol Highlighting**: Auto-highlights references with vim-illuminate
+- **📊 Advanced Code Visualization**: Enhanced chunk highlighting with hlchunk.nvim
+- **🔄 Universal Action Repeat**: Makes all plugin actions repeatable with vim-repeat
+- **🤖 Modern AI Integration**: Seamless Codeium CMP integration with conflict resolution
+- **⚡  Professional Polish**: Reduced notification noise, enhanced functionality
 
 ### Key Highlights
 
@@ -1366,7 +1400,7 @@ This project is licensed under the [MIT License](LICENSE).
 | Metric                | Achievement                    |
 | --------------------- | ------------------------------ |
 | **Startup Time**      | 25.4ms cold start              |
-| **Plugin Count**      | 44+ professionally selected    |
+| **Plugin Count**      | 50+ professionally selected    |
 | **Language Support**  | 15+ with full toolchains       |
 | **Documentation**     | 100% coverage                  |
 | **User Satisfaction** | Professional grade             |

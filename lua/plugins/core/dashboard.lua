@@ -57,14 +57,15 @@ return {
 			return "⚡ Loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. startup_time .. "ms"
 		end
 
-		dashboard.section.footer.val = {
+	dashboard.section.footer.val = {
 			"",
 			get_startup_time(),
-			"🚀 NDE v2.0.0",
+			"🚀 NDE v2.4.0",
 		}
-
-		dashboard.section.header.opts.hl = "DashboardHeader"
-		dashboard.section.buttons.opts.hl = "DashboardButtons"
+		
+	dashboard.section.header.opts.hl = "DashboardHeader"
+	dashboard.section.buttons.opts.hl = "DashboardButtons"
+	dashboard.section.footer.opts.hl = "DashboardFooter"
 
 		require("alpha").setup(dashboard.config)
 

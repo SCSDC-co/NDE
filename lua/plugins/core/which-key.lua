@@ -167,10 +167,9 @@ return {
 			{ "<leader>bc", "<cmd>bdelete<cr>", desc = "Close Buffer" },
 			{ "<leader>bo", "<cmd>BufferLineCloseOthers<cr>", desc = "Close Others" },
 
-			{ "<leader>g", group = "🤖 AI" },
-			{ "<leader>ge", ":GpExplain<cr>", desc = "Explain Code", mode = "v" },
-			{ "<leader>gr", ":GpRewrite<cr>", desc = "Rewrite Code", mode = "v" },
-			{ "<leader>gc", ":GpChatNew<cr>", desc = "New Chat" },
+			{ "<leader>g", group = "💾 Session" },
+			{ "<leader>m", group = "🎣 Harpoon" },
+			{ "<leader>L", group = "🏆 Legendary" },
 
 			{ "<leader>d", group = "🐛 Debug" },
 			{
@@ -198,8 +197,6 @@ return {
 			{ "<F2>", desc = "▶️ Debug Continue" },
 			{ "<F3>", desc = "⬇️ Debug Step Into" },
 			{ "<F4>", desc = "➡️ Debug Step Over" },
-			{ "<F5>", desc = "🐍 Run Python" },
-			{ "<F6>", desc = "⚡ Compile & Run C++" },
 			{ "<F7>", desc = "🔧 VSCode-style Terminal" },
 			{ "<F8>", desc = "🚀 Universal Code Runner" },
 			{ "<F9>", desc = "🔗 Add Parentheses (ysiw()" },

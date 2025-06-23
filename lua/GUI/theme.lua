@@ -25,6 +25,15 @@ kanagawa.setup({
 			TerminalNormal = { bg = '#181616' },
 			TerminalBorder = { fg = '#0d0c0c', bg = '#0d0c0c' },
 			Terminal = { bg = '#181616' },
+			WhichKey = { fg = '#B7B39B', bg = '#181616' },
+			WhichKeyGroup = { fg = '#54546D', bg = '#181616' },
+			WhichKeyDesc = { fg = '#7FA5A6', bg = '#181616' },
+			WhichKeyValue = { fg = '#7FA5A6', bg = '#181616' },
+			WhichKeySeparator = { fg = '#54546D', bg = '#181616' },
+			WhichKeyFloat = { bg = '#181616' },
+			WhichKeyBorder = { fg = '#54546D', bg = '#181616' },
+			WhichKeyTitle = { fg = '#54546D', bg = '#181616' },
+			WhichKeyNormal = { bg = '#181616' },
 		}
 	end,
 })

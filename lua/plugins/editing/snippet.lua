@@ -741,6 +741,5 @@ return {
       end
     end, { desc = "Cycle through snippet choices" })
 
-    vim.notify("🎯 Awesome snippets loaded! Use <C-f>/<C-b> to navigate, <C-e> for choices", vim.log.levels.INFO)
   end,
 }

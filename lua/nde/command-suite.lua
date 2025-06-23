@@ -109,6 +109,32 @@ local function handle_nde_command(opts)
       )
     end
     
+  -- Codeium commands
+  elseif cmd == 'codeiumauth' then
+    if subcmd == 'help' then
+      vim.notify(
+        "💡 Codeium Authentication Help:\n\n" ..
+        "When you run :Codeium Auth, you'll see options like:\n" ..
+        "1: Open Default Browser\n" ..
+        "2: Copy URL to Clipboard\n" ..
+        "3: Display URL\n" ..
+        "4: I already have a key\n\n" ..
+        "🔥 IMPORTANT: Type a NUMBER (1-4) and press ENTER!\n\n" ..
+        "💡 TIP: Option 1 (browser) is usually the easiest",
+        vim.log.levels.INFO,
+        { title = "🤖 Codeium Auth Help", timeout = 8000 }
+      )
+    else
+      -- Show codeiumauth help
+      vim.notify(
+        "🤖 NDE Codeium Commands:\n\n" ..
+        "📚 :NDE codeiumauth help - Show authentication help\n\n" ..
+        "💡 TIP: Run :Codeium Auth to authenticate with Codeium",
+        vim.log.levels.INFO,
+        { title = "🤖 NDE Codeium Help", timeout = 5000 }
+      )
+    end
+    
   -- Snippets commands
   elseif cmd == 'snippetslist' then
     list_snippets()
@@ -132,6 +158,8 @@ local function handle_nde_command(opts)
       '   :NDE dynamicloader languages - Language status\n' ..
       '   :NDE dynamicloader formatters - Formatter status\n' ..
       '   :NDE dynamicloader clearcache - Clear caches\n\n' ..
+      '🤖 CODEIUM:\n' ..
+      '   :NDE codeiumauth help - Codeium authentication help\n\n' ..
       '📝 SNIPPETS:\n' ..
       '   :NDE snippetslist - List available snippets for current file\n\n' ..
       '🎉 GENERAL:\n' ..
@@ -166,7 +194,7 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
   if arg_count == 1 then
     -- First level commands
     local commands = {
-      'help', 'tips', 'tip', 'dynamicloader', 
+      'help', 'tips', 'tip', 'dynamicloader', 'codeiumauth',
       'snippetslist', 'welcome', 'status'
     }
     return vim.tbl_filter(function(cmd)
@@ -181,6 +209,8 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
       return { 'show', 'next', 'random' }
     elseif cmd == 'dynamicloader' then
       return { 'stats', 'languages', 'formatters', 'clearcache' }
+    elseif cmd == 'codeiumauth' then
+      return { 'help' }
     end
   end
   

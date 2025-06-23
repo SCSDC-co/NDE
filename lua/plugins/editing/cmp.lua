@@ -16,6 +16,8 @@ return {
       "saadparwaiz1/cmp_luasnip",
       "rafamadriz/friendly-snippets",
       "onsails/lspkind.nvim",
+      "Exafunction/codeium.nvim",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
     },
     config = function()
       local cmp = require("cmp")
@@ -66,6 +68,7 @@ return {
                 calc = "🖩",
                 emoji = "😀",
                 spell = "✓",
+                codeium = "🤖",
               }
               vim_item.menu = menu_icon[entry.source.name]
               return vim_item
@@ -98,6 +101,7 @@ return {
           end, { "i", "s" }),
         },
         sources = cmp.config.sources({
+          { name = "codeium", priority = 1100 },
           { name = "nvim_lsp", priority = 1000 },
           { name = "luasnip", priority = 750 },
           { name = "nvim_lua", priority = 500 },

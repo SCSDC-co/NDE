@@ -192,14 +192,53 @@ The leader key is set to **`<Space>`** (spacebar). All leader-based commands sta
 
 ## 🎭 Advanced Navigation
 
-| Keybinding  | Function        | Description                                     |
-| ----------- | --------------- | ----------------------------------------------- |
-| `s`         | Leap Forward    | Jump to location with 2 characters (leap.nvim)  |
-| `S`         | Leap Backward   | Jump backwards with 2 characters (leap.nvim)    |
-| `gs`        | Leap Windows    | Jump across windows (leap.nvim)                 |
-| `<leader>;` | Symbol Picker   | Interactive symbol picker in winbar (dropbar)   |
-| `[;`        | Context Start   | Go to start of current context (dropbar)        |
-| `];`        | Next Context    | Select next context (dropbar)                   |
+| Keybinding  | Function                 | Description                                    |
+| ----------- | ------------------------ | ---------------------------------------------- |
+| `s`         | Leap Forward             | Jump to location with 2 characters (leap.nvim) |
+| `S`         | Leap Backward            | Jump backwards with 2 characters (leap.nvim)   |
+| `gs`        | Leap Windows             | Jump across windows (leap.nvim)                |
+| `<leader>;` | Symbol Picker            | Interactive symbol picker in winbar (dropbar)  |
+| `[[`        | Previous Reference       | Jump to previous symbol reference (illuminate) |
+| `]]`        | Next Reference           | Jump to next symbol reference (illuminate)     |
+| `<leader>[` | Previous Reference (Alt) | Alternative binding for previous reference     |
+| `<leader>]` | Next Reference (Alt)     | Alternative binding for next reference         |
+
+## 🏆 Command Discovery (Legendary)
+
+| Keybinding   | Function            | Description                           |
+| ------------ | ------------------- | ------------------------------------- |
+| `<leader>L`  | **Command Palette** | Open Legendary command palette (main) |
+| `<C-p>`      | **Quick Palette**   | Quick access to command palette       |
+| `<leader>Lk` | **Find Keymaps**    | Search and execute keybindings        |
+| `<leader>Lc` | **Find Commands**   | Search and execute commands           |
+| `<leader>Lf` | **Find Functions**  | Search and execute functions          |
+| `<leader>La` | **Find Autocmds**   | Search and view autocmds              |
+
+## 💾 Session Management (Persistence)
+
+| Keybinding    | Function              | Description                                     |
+| ------------- | --------------------- | ----------------------------------------------- |
+| `<leader>gs`   | **Save Session**      | Save current session state                     |
+| `<leader>gl`   | **Load Session**      | Load session for current directory             |
+| `<leader>gL`   | **Load Last Session** | Load the most recent session                   |
+| `<leader>gd`   | **Stop Session**      | Stop session saving on exit                    |
+
+## 🎣 Harpoon File Navigation
+
+| Keybinding    | Function              | Description                                     |
+| ------------- | --------------------- | ----------------------------------------------- |
+| `<leader>ma`   | **Add to Harpoon**    | Add current file to harpoon marks              |
+| `<leader>mt`   | **Toggle Quick Menu** | Open harpoon quick menu                        |
+| `<M-1>`        | **Harpoon File 1**    | Quick access to harpooned file 1               |
+| `<M-2>`        | **Harpoon File 2**    | Quick access to harpooned file 2               |
+| `<M-3>`        | **Harpoon File 3**    | Quick access to harpooned file 3               |
+| `<M-4>`        | **Harpoon File 4**    | Quick access to harpooned file 4               |
+| `<leader>mp`   | **Previous File**     | Navigate to previous harpoon file              |
+| `<leader>mn`   | **Next File**         | Navigate to next harpoon file                  |
+| `<leader>mc`   | **Clear All**         | Clear all harpoon marks                        |
+| `<leader>m1-4` | **Replace Mark**      | Replace specific harpoon mark (1-4)            |
+| `[;`           | Context Start         | Go to start of current context (dropbar)       |
+| `];`           | Next Context          | Select next context (dropbar)                  |
 
 ## 🎮 Special Modes
 
