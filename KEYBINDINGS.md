@@ -1,6 +1,6 @@
-# ⌨️ NDE Keybinding Reference
+# ⌨️ NDE Keybinding Reference v3.0.0
 
-> Complete keybinding guide for the Neovim Development Environment
+> Complete keybinding guide for the Neovim Development Environment - Renaissance Update
 
 ## 🎯 Leader Key
 
@@ -155,13 +155,101 @@ The leader key is set to **`<Space>`** (spacebar). All leader-based commands sta
 | `<C-b>`      | **Jump Previous**        | Jump to previous snippet placeholder | Insert/Select |
 | `<C-e>`      | **Cycle Choices**        | Cycle through snippet choice nodes   | Insert mode  |
 
-## 🤖 AI Integration (GP.nvim)
+## 🤖 AI Integration (Codeium.nvim)
 
 | Keybinding     | Action                 | Description                     | Mode   |
 | -------------- | ---------------------- | ------------------------------- | ------ |
-| `<Leader>ge`   | **Explain Code**       | AI explains selected code       | Visual |
-| `<Leader>gr`   | **Rewrite Code**       | AI rewrites selected code       | Visual |
-| `<Leader>gc`   | **New Chat**           | Start new AI chat session      | Normal |
+| `<C-Space>`    | **Trigger Completion** | Force AI completion menu        | Insert |
+| `<C-e>`        | **Abort Completion**   | Cancel completion               | Insert |
+| Auto-complete  | **AI Suggestions**     | Seamless CMP integration (🤖)   | Insert |
+
+## 👀 Multiple Cursors (Visual-Multi)
+
+| Keybinding     | Action                 | Description                     | Mode   |
+| -------------- | ---------------------- | ------------------------------- | ------ |
+| `<C-n>`        | **Find Under**         | Add cursor to next occurrence   | Normal/Visual |
+| `<C-A-n>`      | **Select All**         | Select all occurrences          | Normal |
+| `<leader>vm`   | **Regex Search**       | Start regex-based selection     | Normal |
+| `<C-jj>`       | **Add Cursor Down**    | Add cursor on line below        | Normal |
+| `<C-kk>`       | **Add Cursor Up**      | Add cursor on line above        | Normal |
+| `<C-ii>`       | **Add Cursor At Pos**  | Add cursor at current position  | Normal |
+| `q`            | **Remove Region**      | Remove current cursor/selection | Visual-Multi |
+| `<C-x>`        | **Skip Region**        | Skip current selection          | Visual-Multi |
+
+## 🔢 Smart Increment/Decrement (Dial.nvim)
+
+| Keybinding     | Action                 | Description                     | Mode   |
+| -------------- | ---------------------- | ------------------------------- | ------ |
+| `<C-a>`        | **Increment**          | Smart increment numbers/booleans| Normal/Visual |
+| `<C-x>`        | **Decrement**          | Smart decrement numbers/booleans| Normal/Visual |
+| `g<C-a>`       | **Global Increment**   | Increment all in selection      | Normal/Visual |
+| `g<C-x>`       | **Global Decrement**   | Decrement all in selection      | Normal/Visual |
+
+**Smart Values Supported:**
+- Numbers: `0, 1, 2, 3...` and `0x01, 0x1a1f...`
+- Dates: `2022/02/19`, `2022-02-19`, `02/19/2022`
+- Time: `14:30, 15:30...`
+- Booleans: `true ↔ false`, `yes ↔ no`, `on ↔ off`
+- Logic: `and ↔ or`, `&& ↔ ||`, `enable ↔ disable`
+- Directions: `left ↔ right`, `up ↔ down`, `horizontal ↔ vertical`
+
+## 📐 Text Alignment (Easy-Align)
+
+| Keybinding     | Action                 | Description                     | Mode   |
+| -------------- | ---------------------- | ------------------------------- | ------ |
+| `<leader>Ea`   | **Easy Align**         | Align text around delimiters    | Normal/Visual |
+| `<leader>EA`   | **Live Easy Align**    | Interactive real-time alignment | Normal/Visual |
+
+**Common Alignment Patterns:**
+- `=` - Align around equals signs
+- `:` - Align around colons
+- `|` - Align around pipes (tables)
+- `,` - Align around commas
+- `//` - Align around comments
+
+## 📊 Advanced Git Workflow
+
+### Git Fugitive
+
+| Keybinding     | Action                 | Description                     | Mode   |
+| -------------- | ---------------------- | ------------------------------- | ------ |
+| `<leader>gg`   | **Git Status**         | Open Git status window          | Normal |
+| `<leader>gd`   | **Git Diff Split**     | Show diff in split window       | Normal |
+| `<leader>gb`   | **Git Blame**          | Show git blame for current file | Normal |
+| `<leader>gw`   | **Git Write (Stage)**  | Stage current file              | Normal |
+| `<leader>gr`   | **Git Read (Checkout)**| Checkout file from HEAD         | Normal |
+| `<leader>gc`   | **Git Commit**         | Open commit window              | Normal |
+| `<leader>gp`   | **Git Push**           | Push to remote                  | Normal |
+| `<leader>gP`   | **Git Pull**           | Pull from remote                | Normal |
+
+**Within Fugitive Buffer:**
+- `=` or `<Space>` - Stage/unstage file
+- `s` - Stage file
+- `u` - Unstage file
+- `U` - Unstage all
+- `dd` - Vertical diff
+- `dh` - Horizontal diff
+- `cc` - Commit
+- `q` - Quit
+
+### Git Diffview
+
+| Keybinding     | Action                 | Description                     | Mode   |
+| -------------- | ---------------------- | ------------------------------- | ------ |
+| `<leader>gd`   | **Open Diffview**      | Open advanced diff interface    | Normal |
+| `<leader>gc`   | **Close Diffview**     | Close diff interface            | Normal |
+| `<leader>gh`   | **File History**       | Show file history               | Normal |
+| `<leader>gH`   | **Current File History**| Show current file history      | Normal |
+
+**Within Diffview:**
+- `<Tab>` - Next file
+- `<S-Tab>` - Previous file
+- `gf` - Go to file
+- `<leader>e` - Focus file panel
+- `<leader>b` - Toggle file panel
+- `[x` / `]x` - Navigate conflicts
+- `<leader>co` - Choose ours
+- `<leader>ct` - Choose theirs
 
 ## 📚 Documentation & Help
 

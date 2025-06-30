@@ -1,6 +1,6 @@
-# 🚀 NDE Installation Guide
+# 🚀 NDE Installation Guide v3.0.0
 
-> Complete installation and troubleshooting guide for the Neovim Development Environment
+> Complete installation and troubleshooting guide for the Neovim Development Environment - Renaissance Update with OptiSpec Language Management
 
 ## ⚡ Quick Installation
 
@@ -17,14 +17,18 @@ git clone https://github.com/Sckab/NDE.git ~/.config/nvim && nvim
 
 - **Neovim 0.10.0 or higher** (critical)
 - **Git** (for plugin management)
-- **Node.js and npm** (for language servers)
-- **Python 3 and pip** (for language servers)
+- **A C compiler** (gcc/clang - for treesitter)
+- **Node.js and npm** (for Discord presence integration via presence.nvim)
 - **Internet connection** (for downloading plugins)
+
+### OptiSpec Language Tools (Install via `:NDE optispec install`)
+
+- **Language-specific tools** are installed automatically via OptiSpec when needed (you may need to install some third party dependencies)
+- **LSP servers, formatters, debuggers** - managed by the OptiSpec system
+- **No manual setup required** - just open a file and install the language tools on demand
 
 ### Recommended Tools
 
-- **Go** (for Go language server and development)
-- **Rust toolchain via rustup** (for Rust development and tools)
 - **Lazygit** (Git TUI integration)
 - **A Nerd Font** (for proper icon display)
 - **Ripgrep** (ultra-fast search)
@@ -35,27 +39,20 @@ git clone https://github.com/Sckab/NDE.git ~/.config/nvim && nvim
 ### 🐧 Arch Linux
 
 ```bash
-# Install core dependencies
-sudo pacman -S neovim git nodejs npm python python-pip go rustup lazygit ripgrep fd
+# Install essential dependencies
+sudo pacman -S neovim git gcc nodejs npm
 
-# Install language-specific dependencies
-sudo pacman -S dotnet-sdk ocaml opam dune lean kotlin ruby erlang elixir
-
-# Install additional formatters and tools (AUR helper like yay recommended)
-yay -S nix alejandra gleam cmake terraform ktlint
-
-# Setup OCaml environment
-opam init
-opam install ocamlformat
-
-# Setup Nix (if using Nix packages)
-sh <(curl -L https://nixos.org/nix/install)
+# Optional: Install recommended tools
+sudo pacman -S lazygit ripgrep fd
 
 # Clone NDE
 git clone https://github.com/Sckab/NDE.git ~/.config/nvim
 
 # Launch Neovim (plugins will auto-install)
 nvim
+
+# Language tools are managed by OptiSpec - install on demand:
+# :NDE optispec browse
 ```
 
 ### 🌍 Ubuntu/Debian
@@ -64,96 +61,58 @@ nvim
 # Update package list
 sudo apt update
 
-# Install core dependencies
-sudo apt install neovim git nodejs npm python3 python3-pip golang-go rustup ripgrep fd-find
+# Install essential dependencies
+sudo apt install neovim git build-essential nodejs npm
 
-# Install language-specific dependencies
-sudo apt install dotnet-sdk-8.0 ocaml opam kotlin ruby-dev erlang elixir cmake
-
-# Install additional tools via snap or manual installation
-sudo snap install terraform ktlint
-
-# Setup OCaml environment
-opam init --disable-sandboxing  # Use --disable-sandboxing if in containers
-eval $(opam env)
-opam install ocamlformat dune
-
-# Install Gleam (manual installation)
-wget https://github.com/gleam-lang/gleam/releases/latest/download/gleam-v1.0.0-x86_64-unknown-linux-musl.tar.gz
-tar -xzf gleam-*.tar.gz
-sudo mv gleam /usr/local/bin/
-
-# Install Lean 4
-wget -O - https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh
-source ~/.profile
-elan default leanprover/lean4:stable
-
-# Install Nix (optional, for Nix development)
-sh <(curl -L https://nixos.org/nix/install) --daemon
-# After Nix installation:
-nix-env -iA nixpkgs.alejandra
-
-# Install Lazygit (choose one method)
-# Method 1: Snap
-sudo snap install lazygit
-
-# Method 2: Build from source (if snap not available)
-go install github.com/jesseduffield/lazygit@latest
+# Optional: Install recommended tools
+sudo apt install lazygit ripgrep fd-find
 
 # Clone NDE
 git clone https://github.com/Sckab/NDE.git ~/.config/nvim
 
-# Launch Neovim
+# Launch Neovim (plugins will auto-install)
 nvim
+
+# Language tools are managed by OptiSpec - install on demand:
+# :NDE optispec browse
 ```
 
 ### 🍎 macOS (with Homebrew)
 
 ```bash
-# Install core dependencies
-brew install neovim git node python go rustup-init lazygit ripgrep fd
+# Install essential dependencies
+brew install neovim git node
 
-# Install language-specific dependencies
-brew install dotnet kotlin ruby erlang elixir cmake ocaml opam terraform lean
-
-# Install additional formatters and tools
-brew install ktlint gleam
-
-# Setup OCaml environment
-opam init
-eval $(opam env)
-opam install ocamlformat dune
-
-# Install Nix (optional, for Nix development)
-sh <(curl -L https://nixos.org/nix/install)
-# After Nix installation:
-nix-env -iA nixpkgs.alejandra
-
-# Setup Rust toolchain
-rustup-init -y
-source ~/.cargo/env
+# Optional: Install recommended tools
+brew install lazygit ripgrep fd
 
 # Clone NDE
 git clone https://github.com/Sckab/NDE.git ~/.config/nvim
 
-# Launch Neovim
+# Launch Neovim (plugins will auto-install)
 nvim
+
+# Language tools are managed by OptiSpec - install on demand:
+# :NDE optispec browse
 ```
 
 ### 🚐 Fedora
 
 ```bash
-# Enable COPR for latest Neovim (if needed)
-sudo dnf copr enable agriffis/neovim-nightly
+# Install essential dependencies
+sudo dnf install neovim git gcc nodejs npm
 
-# Install dependencies
-sudo dnf install neovim git nodejs npm python3 python3-pip golang rust cargo lazygit ripgrep fd-find
+# Optional: Install recommended tools
+sudo dnf install lazygit ripgrep fd-find
 
 # Clone NDE
 git clone https://github.com/Sckab/NDE.git ~/.config/nvim
 
-# Launch Neovim
+# Launch Neovim (plugins will auto-install)
 nvim
+
+# Language tools are managed by OptiSpec - install on demand:
+# :NDE optispec browse
 ```
 
 ## 🔧 Manual Neovim Installation

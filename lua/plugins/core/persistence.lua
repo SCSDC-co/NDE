@@ -28,22 +28,22 @@ return {
   },
   keys = {
     {
-      "<leader>gs",
+      "<leader>ss",
       function() require("persistence").save() end,
       desc = "💾 Save Session"
     },
     {
-      "<leader>gl",
+      "<leader>sl",
       function() require("persistence").load() end,
       desc = "📂 Load Session (Current Dir)"
     },
     {
-      "<leader>gL",
+      "<leader>sL",
       function() require("persistence").load({ last = true }) end,
       desc = "📂 Load Last Session"
     },
     {
-      "<leader>gd",
+      "<leader>sd",
       function() require("persistence").stop() end,
       desc = "🚫 Stop Session (Don't Save on Exit)"
     },

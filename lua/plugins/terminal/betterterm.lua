@@ -87,12 +87,6 @@ return {
       end,
       desc = "Terminal setup"
     })
-    
-    -- Notify performance framework
-    local dynamic_loader = require('performance.dynamic_loader')
-    if dynamic_loader and dynamic_loader.register_plugin then
-      dynamic_loader.register_plugin("betterterm", "terminal")
-    end
-    
+
   end,
 }

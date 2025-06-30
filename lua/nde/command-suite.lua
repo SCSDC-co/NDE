@@ -5,7 +5,6 @@ local M = {}
 
 -- Import modules
 local tips = require('nde.tips')
-local dynamic_loader = require('performance.dynamic_loader')
 
 -- Snippets functionality
 local function list_snippets()
@@ -85,30 +84,6 @@ local function handle_nde_command(opts)
       tips.show_current()
     end
     
-  -- Dynamic loader commands
-  elseif cmd == 'dynamicloader' then
-    if subcmd == 'stats' then
-      dynamic_loader.nde_stats()
-    elseif subcmd == 'languages' then
-      dynamic_loader.nde_languages()
-    elseif subcmd == 'formatters' then
-      dynamic_loader.nde_formatters()
-    elseif subcmd == 'clearcache' then
-      dynamic_loader.nde_clearcache()
-    else
-      -- Show dynamic loader help
-      vim.notify(
-        '🚀 NDE Dynamic Loader Commands:\n\n' ..
-        '📊 :NDE dynamicloader stats - Performance overview\n' ..
-        '🎯 :NDE dynamicloader languages - Language status\n' ..
-        '✨ :NDE dynamicloader formatters - Formatter status\n' ..
-        '🧹 :NDE dynamicloader clearcache - Clear all caches\n\n' ..
-        '💡 TIP: Tab completion available!',
-        vim.log.levels.INFO,
-        { title = '🚀 NDE Dynamic Loader Help', timeout = 6000 }
-      )
-    end
-    
   -- Codeium commands
   elseif cmd == 'codeiumauth' then
     if subcmd == 'help' then
@@ -146,6 +121,80 @@ local function handle_nde_command(opts)
   elseif cmd == 'status' then
     tips.show_status()
     
+  -- OptiSpec commands
+  elseif cmd == 'optispec' then
+    if subcmd == 'status' then
+      -- Show OptiSpec status
+      local optispec = require('optispec')
+      optispec.status()
+      
+    elseif subcmd == 'browse' then
+      -- Open OptiSpec language browser
+      local optispec = require('optispec')
+      optispec.browse()
+      
+    elseif subcmd == 'install' then
+      -- Install a language
+      if action then
+        local optispec = require('optispec')
+        optispec.install(action)
+      else
+        vim.notify(
+          '📦 OptiSpec Install Command:\n\n' ..
+          'Usage: :NDE optispec install <language>\n\n' ..
+          'Examples:\n' ..
+          '• :NDE optispec install python\n' ..
+          '• :NDE optispec install javascript\n' ..
+          '• :NDE optispec install rust\n\n' ..
+          '💡 TIP: Use :NDE optispec browse to see all available languages',
+          vim.log.levels.INFO,
+          { title = '🚀 OptiSpec Install' }
+        )
+      end
+      
+    elseif subcmd == 'remove' then
+      -- Remove a language
+      if action then
+        local optispec = require('optispec')
+        optispec.remove(action)
+      else
+        vim.notify(
+          '🗑️  OptiSpec Remove Command:\n\n' ..
+          'Usage: :NDE optispec remove <language>\n\n' ..
+          'Examples:\n' ..
+          '• :NDE optispec remove python\n' ..
+          '• :NDE optispec remove javascript\n\n' ..
+          '⚠️  WARNING: This will remove all tools for the language!',
+          vim.log.levels.WARN,
+          { title = '🚀 OptiSpec Remove' }
+        )
+      end
+      
+    elseif subcmd == 'update' then
+      -- Update all OptiSpec tools
+      local optispec = require('optispec')
+      optispec.update()
+      
+    else
+      -- OptiSpec help menu
+      vim.notify(
+        '🚀 OptiSpec Commands:\n\n' ..
+        '📊 :NDE optispec status - Show installed languages\n' ..
+        '🌐 :NDE optispec browse - Browse available languages\n' ..
+        '📦 :NDE optispec install <lang> - Install language tools\n' ..
+        '🗑️ :NDE optispec remove <lang> - Remove language tools\n' ..
+        '🔄 :NDE optispec update - Update all tools\n\n' ..
+        '💡 FEATURES:\n' ..
+        '• 🎯 Zero-bloat start - install only what you need\n' ..
+        '• 🧠 Smart diagnostic merging (LSP + linters)\n' ..
+        '• ⚡ Auto-detection for 50+ languages\n' ..
+        '• 🎨 Beautiful NUI-powered interfaces\n\n' ..
+        '🎮 TIP: Open any file and OptiSpec will prompt to install tools!',
+        vim.log.levels.INFO,
+        { title = '🚀 OptiSpec Language Manager', timeout = 12000 }
+      )
+    end
+    
   elseif cmd == 'help' or cmd == '' then
     -- Main help menu
     vim.notify(
@@ -153,15 +202,14 @@ local function handle_nde_command(opts)
       '💡 TIPS SYSTEM:\n' ..
       '   :NDE tips on/off - Toggle tips\n' ..
       '   :NDE tip show/next/random - Control tips\n\n' ..
-      '🚀 DYNAMIC LOADER:\n' ..
-      '   :NDE dynamicloader stats - Performance stats\n' ..
-      '   :NDE dynamicloader languages - Language status\n' ..
-      '   :NDE dynamicloader formatters - Formatter status\n' ..
-      '   :NDE dynamicloader clearcache - Clear caches\n\n' ..
       '🤖 CODEIUM:\n' ..
       '   :NDE codeiumauth help - Codeium authentication help\n\n' ..
       '📝 SNIPPETS:\n' ..
       '   :NDE snippetslist - List available snippets for current file\n\n' ..
+      '🚀 OPTISPEC:\n' ..
+      '   :NDE optispec - Smart language management\n' ..
+      '   :NDE optispec status - Show installed languages\n' ..
+      '   :NDE optispec browse - Browse available languages\n\n' ..
       '🎉 GENERAL:\n' ..
       '   :NDE welcome - Show welcome message\n' ..
       '   :NDE status - Show NDE status\n\n' ..
@@ -194,8 +242,8 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
   if arg_count == 1 then
     -- First level commands
     local commands = {
-      'help', 'tips', 'tip', 'dynamicloader', 'codeiumauth',
-      'snippetslist', 'welcome', 'status'
+      'help', 'tips', 'tip', 'codeiumauth',
+      'snippetslist', 'welcome', 'status', 'optispec'
     }
     return vim.tbl_filter(function(cmd)
       return cmd:match('^' .. vim.pesc(ArgLead))
@@ -207,10 +255,26 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
       return { 'on', 'off' }
     elseif cmd == 'tip' then
       return { 'show', 'next', 'random' }
-    elseif cmd == 'dynamicloader' then
-      return { 'stats', 'languages', 'formatters', 'clearcache' }
     elseif cmd == 'codeiumauth' then
       return { 'help' }
+    elseif cmd == 'optispec' then
+      return { 'status', 'browse', 'install', 'remove', 'update' }
+    end
+    
+  elseif arg_count == 3 then
+    local cmd = args[2]
+    local subcmd = args[3]
+    if cmd == 'optispec' and (subcmd == 'install' or subcmd == 'remove') then
+      -- Get available languages for completion
+      local languages = {
+        'python', 'javascript', 'typescript', 'rust', 'go', 'c_cpp', 'java',
+        'lua', 'shell', 'yaml', 'json', 'markdown', 'html', 'css', 'vue',
+        'react', 'angular', 'svelte', 'php', 'ruby', 'elixir', 'haskell',
+        'scala', 'kotlin', 'clojure', 'docker', 'terraform', 'ansible'
+      }
+      return vim.tbl_filter(function(lang)
+        return lang:match('^' .. vim.pesc(ArgLead))
+      end, languages)
     end
   end
   

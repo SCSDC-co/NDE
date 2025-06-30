@@ -1,0 +1,122 @@
+local M = {}
+
+-- Language registry
+local languages = {}
+local installed_languages = {}
+
+-- Filetype to language mapping
+local filetype_map = {}
+
+-- Setup languages module
+function M.setup()
+  -- Load all built-in language configurations
+  M.load_builtin_languages()
+  
+  -- Store utilities globally
+  _G.OptiSpec = _G.OptiSpec or {}
+  _G.OptiSpec.languages = {
+    get_language_for_filetype = M.get_language_for_filetype,
+    is_language_installed = M.is_language_installed,
+    register_language = M.register_language,
+    get_all_languages = M.get_all_languages,
+  }
+end
+
+-- Load built-in language configurations
+function M.load_builtin_languages()
+  -- Load language categories
+  require("optispec.languages.web").setup()
+  require("optispec.languages.systems").setup()
+  require("optispec.languages.scripting").setup()
+  require("optispec.languages.config").setup()
+  require("optispec.languages.data").setup()
+  require("optispec.languages.devops").setup()
+  require("optispec.languages.functional").setup()
+end
+
+-- Register a language configuration
+function M.register_language(name, config)
+  languages[name] = config
+  
+  -- Build filetype mapping
+  for _, ft in ipairs(config.filetypes) do
+    filetype_map[ft] = name
+  end
+end
+
+-- Get language for filetype
+function M.get_language_for_filetype(filetype)
+  return filetype_map[filetype]
+end
+
+-- Check if language is installed
+function M.is_language_installed(language)
+  -- First check our internal tracking
+  if installed_languages[language] == true then
+    return true
+  end
+  
+  -- If not tracked internally, check if the language's tools are actually installed
+  local config = languages[language]
+  if not config or not config.mason_tools then
+    return false
+  end
+  
+  -- Check if Mason tools exist and at least one tool from each category is installed
+  local mason = _G.OptiSpec and _G.OptiSpec.mason
+  if not mason then
+    return false
+  end
+  
+  local has_any_tools = false
+  
+  for category, tools in pairs(config.mason_tools) do
+    if #tools > 0 then
+      -- Check if at least one tool from this category is installed
+      for _, tool in ipairs(tools) do
+        if mason.is_tool_installed(tool) then
+          has_any_tools = true
+          break
+        end
+      end
+    end
+  end
+  
+  -- If we found any required tools, mark as installed and return true
+  if has_any_tools then
+    installed_languages[language] = true
+    return true
+  end
+  
+  return false
+end
+
+-- Mark language as installed
+function M.mark_language_installed(language)
+  installed_languages[language] = true
+end
+
+-- Mark language as uninstalled
+function M.mark_language_uninstalled(language)
+  installed_languages[language] = false
+end
+
+-- Get language configuration
+function M.get_language_config(language)
+  return languages[language]
+end
+
+-- Get all available languages
+function M.get_all_languages()
+  local result = {}
+  for name, config in pairs(languages) do
+    table.insert(result, {
+      name = name,
+      config = config,
+      installed = M.is_language_installed(name)
+    })
+  end
+  return result
+end
+
+return M

@@ -131,43 +131,13 @@ return {
 				end,
 				desc = "🌲 File Explorer (Root)",
 			},
-			{
-				"<leader>n",
-				function()
-					local neotree_win = nil
-					local current_win = vim.api.nvim_get_current_win()
-					local last_win = vim.g.neotree_last_win
-					for _, win in ipairs(vim.api.nvim_list_wins()) do
-						local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(win))
-						if bufname:match("neo%-tree filesystem") then
-							neotree_win = win
-							break
-						end
-					end
-					if neotree_win then
-						if current_win == neotree_win then
-							if last_win and vim.api.nvim_win_is_valid(last_win) then
-								vim.api.nvim_set_current_win(last_win)
-							else
-								vim.cmd("wincmd p")
-							end
-						else
-							vim.g.neotree_last_win = current_win
-							vim.api.nvim_set_current_win(neotree_win)
-						end
-					else
-						vim.g.neotree_last_win = current_win
-						require("neo-tree.command").execute({ source = "filesystem", dir = "/" })
-					end
-				end,
-				desc = "📁 Toggle between Neotree and file",
-			},
 
 			{ "<leader>b", group = "📋 Buffer" },
 			{ "<leader>bc", "<cmd>bdelete<cr>", desc = "Close Buffer" },
 			{ "<leader>bo", "<cmd>BufferLineCloseOthers<cr>", desc = "Close Others" },
 
-			{ "<leader>g", group = "💾 Session" },
+			{ "<leader>g", group = "🌲 Git" },
+			{ "<leader>s", group = "💾 Sessions" },
 			{ "<leader>m", group = "🎣 Harpoon" },
 			{ "<leader>L", group = "🏆 Legendary" },
 
@@ -180,10 +150,10 @@ return {
 				desc = "Toggle DAP UI",
 			},
 
-			{ "<leader>s", group = "🔄 Surround" },
-			{ "<leader>sa", "ys", desc = "Add Surround", remap = true },
-			{ "<leader>sc", "cs", desc = "Change Surround", remap = true },
-			{ "<leader>sd", "ds", desc = "Delete Surround", remap = true },
+			{ "<leader>S", group = "🔄 Surround" },
+			{ "<leader>Sa", "ys", desc = "Add Surround", remap = true },
+			{ "<leader>Sc", "cs", desc = "Change Surround", remap = true },
+			{ "<leader>Sd", "ds", desc = "Delete Surround", remap = true },
 
 			{ "<leader>j", "<cmd>call append(line('.'), '')<cr>", desc = "➕ Insert Line Below" },
 			{ "<leader>k", "<cmd>call append(line('.') - 1, '')<cr>", desc = "➕ Insert Line Above" },

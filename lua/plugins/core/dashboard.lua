@@ -31,8 +31,9 @@ return {
 			dashboard.button("r", "🕘  Recent Files", ":Telescope oldfiles<CR>"),
 			dashboard.button("n", "📄  New File", ":ene <BAR> startinsert <CR>"),
 			dashboard.button("t", "🎮  Vim Training", ":VimBeGood<CR>"),
-			dashboard.button("p", "🔧  Plugins", ":Lazy<CR>"),
+            dashboard.button("p", "🔧  Plugins", ":Lazy<CR>"),
 			dashboard.button("l", "🔨  LSP Manager", ":Mason<CR>"),
+			dashboard.button("g", "🚀  OptiSpec Browser", ":NDE optispec browse<CR>"),
 			dashboard.button("q", "🚪  Quit", ":qa<CR>"),
 		}
 
@@ -60,7 +61,7 @@ return {
 	dashboard.section.footer.val = {
 			"",
 			get_startup_time(),
-			"🚀 NDE v2.4.0",
+			"🚀 NDE v3.0.0",
 		}
 		
 	dashboard.section.header.opts.hl = "DashboardHeader"

@@ -28,7 +28,6 @@ return {
       options = {
         theme = kanagawa_theme,
         icons_enabled = true,
-        section_separators = { left = "◗", right = "◖" },
         component_separators = "|",
         globalstatus = true,
       },
