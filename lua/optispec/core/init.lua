@@ -15,9 +15,6 @@ function M.setup(config)
   -- Initialize formatters
   require("optispec.core.formatters").setup()
   
-  -- Initialize linters
-  require("optispec.core.linters").setup(config)
-  
   -- Initialize debugger
   require("optispec.core.debugger").setup(config)
   

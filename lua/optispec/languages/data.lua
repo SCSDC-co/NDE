@@ -8,7 +8,6 @@ function M.setup()
     mason_tools = {
       lsp = { "sqlls" },
       formatters = { "sqlfluff" },
-      linters = { "sqlfluff" },
     },
     lsp = {
       name = "sqlls",
@@ -50,7 +49,6 @@ function M.setup()
     mason_tools = {
       lsp = { "phpactor" },
       formatters = { "php-cs-fixer" },
-      linters = { "phpcs" },
     },
     lsp = {
       name = "phpactor",

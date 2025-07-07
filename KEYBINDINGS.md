@@ -1,6 +1,6 @@
-# ⌨️ NDE Keybinding Reference v3.0.0
+# ⌨️ NDE Keybinding Reference v4.0.0
 
-> Complete keybinding guide for the Neovim Development Environment - Renaissance Update
+> Complete keybinding guide for the Neovim Development Environment - AI Revolution Update
 
 ## 🎯 Leader Key
 
@@ -147,21 +147,86 @@ The leader key is set to **`<Space>`** (spacebar). All leader-based commands sta
 | `/` → `<CR>` | **Search**             | Enhanced search with Telescope  | Search mode  |
 | `:`          | **Command Mode**       | Command palette with completion | Command mode |
 
+## 🔤 Code Completion (nvim-cmp)
+
+### Completion Navigation
+
+| Keybinding   | Action                   | Description                          | Mode         |
+| ------------ | ------------------------ | ------------------------------------ | ------------ |
+| `<C-Space>`  | **Trigger Completion**   | Manually trigger completion menu     | Insert       |
+| `<C-e>`      | **Abort Completion**     | Close completion menu               | Insert       |
+| `<C-CR>`     | **Confirm Selection**    | Accept selected completion item      | Insert       |
+| `<C-j>`      | **Next Item/Snippet**    | Select next item or jump to next snippet placeholder | Insert/Select |
+| `<C-k>`      | **Previous Item/Snippet**| Select previous item or jump to previous snippet placeholder | Insert/Select |
+
+### Documentation Scrolling
+
+| Keybinding   | Action                   | Description                          | Mode         |
+| ------------ | ------------------------ | ------------------------------------ | ------------ |
+| `<C-b>`      | **Scroll Docs Up**       | Scroll documentation window up       | Insert       |
+| `<C-f>`      | **Scroll Docs Down**     | Scroll documentation window down     | Insert       |
+
+### Command Line Completion
+
+| Context      | Keybinding   | Action                   | Description                          |
+| ------------ | ------------ | ------------------------ | ------------------------------------ |
+| Search (`/`, `?`) | `<Tab>`      | **Next Match**           | Navigate through search completions  |
+| Command (`:`)     | `<Tab>`      | **Next Command**         | Navigate through command completions |
+| Command (`:`)     | `<S-Tab>`    | **Previous Command**     | Navigate backward through commands   |
+
 ## 🎯 Smart Snippets (LuaSnip)
 
 | Keybinding   | Action                   | Description                          | Mode         |
 | ------------ | ------------------------ | ------------------------------------ | ------------ |
-| `<C-f>`      | **Expand/Jump Next**     | Expand snippet or jump to next placeholder | Insert/Select |
-| `<C-b>`      | **Jump Previous**        | Jump to previous snippet placeholder | Insert/Select |
+| `<C-j>`      | **Expand/Jump Next**     | Expand snippet or jump to next placeholder (in cmp) | Insert/Select |
+| `<C-k>`      | **Jump Previous**        | Jump to previous snippet placeholder (in cmp) | Insert/Select |
 | `<C-e>`      | **Cycle Choices**        | Cycle through snippet choice nodes   | Insert mode  |
 
-## 🤖 AI Integration (Codeium.nvim)
+## 🤖 AI Revolution (Triple AI System)
 
-| Keybinding     | Action                 | Description                     | Mode   |
-| -------------- | ---------------------- | ------------------------------- | ------ |
-| `<C-Space>`    | **Trigger Completion** | Force AI completion menu        | Insert |
-| `<C-e>`        | **Abort Completion**   | Cancel completion               | Insert |
-| Auto-complete  | **AI Suggestions**     | Seamless CMP integration (🤖)   | Insert |
+### AI Assistant Commands
+
+| Keybinding   | AI System    | Action                    | Description                                 | Mode   |
+| ------------ | ------------ | ------------------------- | ------------------------------------------- | ------ |
+| `<leader>a`  | **All**      | **AI Assistant Menu**     | Access all AI assistant commands           | Normal |
+| `<C-Space>`  | **All**      | **Trigger Completion**    | Force AI completion menu (Supermaven/Codeium) | Insert |
+| `<C-e>`      | **All**      | **Abort Completion**      | Cancel AI completion                        | Insert |
+
+### Avante AI Chat (Google Gemini)
+
+| Keybinding     | Action                 | Description                                    | Mode   |
+| -------------- | ---------------------- | ---------------------------------------------- | ------ |
+| `<leader>aa`   | **Start Chat**         | Open Avante AI chat sidebar (1M token context) | Normal |
+| `<leader>ae`   | **Explain Code**       | Get AI explanation of current code             | Normal/Visual |
+| `<leader>ar`   | **Refactor Code**      | AI-assisted code refactoring suggestions       | Normal/Visual |
+| `<leader>ad`   | **Debug Assist**       | AI debugging help and error analysis          | Normal |
+| `<CR>`         | **Submit Chat**        | Submit message in chat (normal mode)          | Normal |
+| `<C-s>`        | **Submit Chat**        | Submit message in chat (insert mode)          | Insert |
+| `<Tab>`        | **Switch Windows**     | Switch between chat and code windows          | Normal |
+| `<S-Tab>`      | **Reverse Switch**     | Reverse window switching                       | Normal |
+| `]]`           | **Next Block**         | Jump to next AI suggestion block              | Normal |
+| `[[`           | **Previous Block**     | Jump to previous AI suggestion block          | Normal |
+
+### AI Conflict Resolution (Avante)
+
+| Keybinding | Action              | Description                    | Mode   |
+| ---------- | ------------------- | ------------------------------ | ------ |
+| `co`       | **Choose Ours**     | Accept your version of code    | Normal |
+| `ct`       | **Choose Theirs**   | Accept AI suggested version    | Normal |
+| `ca`       | **Choose All Theirs** | Accept all AI suggestions    | Normal |
+| `cb`       | **Choose Both**     | Merge both versions            | Normal |
+| `cc`       | **Choose Cursor**   | Resolve at cursor position     | Normal |
+| `]x`       | **Next Conflict**   | Navigate to next conflict      | Normal |
+| `[x`       | **Previous Conflict** | Navigate to previous conflict | Normal |
+
+### AI Completion Integration
+
+| AI System      | Priority | Description                                | Integration |
+| -------------- | -------- | ------------------------------------------ | ----------- |
+| **Supermaven** | 1200     | Ultra-fast AI completions, minimal latency | CMP popup   |
+| **Codeium**    | 1100     | Comprehensive AI backup with fallback     | CMP popup   |
+| **LSP**        | 1000     | Language server completions               | CMP popup   |
+| **Snippets**   | 750      | Code snippets and templates               | CMP popup   |
 
 ## 👀 Multiple Cursors (Visual-Multi)
 

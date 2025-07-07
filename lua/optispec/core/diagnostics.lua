@@ -200,7 +200,7 @@ function M.setup(config)
 end
 
 -- Plugin definitions (diagnostics module doesn't need its own plugins)
--- It works by hooking into LSP and nvim-lint which are defined elsewhere
+-- It works by hooking into LSP diagnostics
 M.plugins = {}
 
 return M

@@ -7,7 +7,6 @@ function M.setup()
     filetypes = { "dockerfile" },
     mason_tools = {
       lsp = { "dockerls" },
-      linters = { "hadolint" },
     },
     lsp = {
       name = "dockerls",
@@ -22,7 +21,6 @@ function M.setup()
     mason_tools = {
       lsp = { "terraform-ls" },
       formatters = { "terraform_fmt" },
-      linters = { "tflint" },
     },
     lsp = {
       name = "terraformls",

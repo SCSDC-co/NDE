@@ -27,7 +27,6 @@ function M.setup()
     mason_tools = {
       lsp = { "gopls" },
       formatters = { "gofmt" },
-      linters = { "golangcilint" },
       dap = { "delve" },
     },
     lsp = {
@@ -43,7 +42,6 @@ function M.setup()
     mason_tools = {
       lsp = { "clangd" },
       formatters = { "clang-format" },
-      linters = { "cppcheck" },
       dap = { "codelldb" },
     },
     lsp = {

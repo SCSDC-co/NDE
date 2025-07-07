@@ -2,31 +2,31 @@
 
 ![NDE Banner](.github/assets/banner_ui_readme.png)
 
-**The Ultimate Neovim Development Environment - v3.0.0**
+**The Ultimate Neovim Development Environment - v4.0.0**
 
-A meticulously crafted, enterprise-grade Neovim configuration featuring the **Renaissance Update** - revolutionary architecture overhaul with **OptiSpec Language Management System**, modern plugin ecosystem, advanced editing tools, and professional Git workflow. Built for developers who want a powerful, extensible environment with **zero-bloat startup** and smart language toolchain management.
+A meticulously crafted, enterprise-grade Neovim configuration featuring the **AI Revolution Update** - groundbreaking triple AI integration with advanced OptiSpec Language Management System, modern plugin ecosystem, revolutionary editing tools, and complete professional workflow. Built for developers who want the most powerful, AI-enhanced environment with **zero-bloat startup** and intelligent development assistance.
 
 <p>
-    <a href="https://github.com/Sckab/NDE/stargazers">
-      <img alt="Stars" src="https://img.shields.io/github/stars/Sckab/NDE?style=for-the-badge&logo=starship&color=c69ff5&logoColor=D9E0EE&labelColor=302D41" />
+    <a href="https://github.com/SCSDC-co/NDE/stargazers">
+      <img alt="Stars" src="https://img.shields.io/github/stars/SCSDC-co/NDE?style=for-the-badge&logo=starship&color=c69ff5&logoColor=D9E0EE&labelColor=302D41" />
     </a>
-    <a href="https://github.com/Sckab/NDE/network/members">
-      <img alt="Forks" src="https://img.shields.io/github/forks/Sckab/NDE?style=for-the-badge&logo=starship&color=8bd5ca&logoColor=D9E0EE&labelColor=302D41" />
+    <a href="https://github.com/SCSDC-co/NDE/network/members">
+      <img alt="Forks" src="https://img.shields.io/github/forks/SCSDC-co/NDE?style=for-the-badge&logo=starship&color=8bd5ca&logoColor=D9E0EE&labelColor=302D41" />
     </a>
-    <a href="https://github.com/Sckab/NDE/watchers">
-      <img alt="Watchers" src="https://img.shields.io/github/watchers/Sckab/NDE?style=for-the-badge&logo=starship&color=ee999f&logoColor=D9E0EE&labelColor=302D41" />
+    <a href="https://github.com/SCSDC-co/NDE/watchers">
+      <img alt="Watchers" src="https://img.shields.io/github/watchers/SCSDC-co/NDE?style=for-the-badge&logo=starship&color=ee999f&logoColor=D9E0EE&labelColor=302D41" />
     </a>
-    <a href="https://github.com/Sckab/NDE/pulse">
-      <img alt="Last commit" src="https://img.shields.io/github/last-commit/Sckab/NDE?style=for-the-badge&logo=starship&color=8bd5ca&logoColor=D9E0EE&labelColor=302D41"/>
+    <a href="https://github.com/SCSDC-co/NDE/pulse">
+      <img alt="Last commit" src="https://img.shields.io/github/last-commit/SCSDC-co/NDE?style=for-the-badge&logo=starship&color=8bd5ca&logoColor=D9E0EE&labelColor=302D41"/>
     </a>
-    <a href="https://github.com/Sckab/NDE/blob/main/LICENSE">
-      <img alt="License" src="https://img.shields.io/github/license/Sckab/NDE?style=for-the-badge&logo=starship&color=ee999f&logoColor=D9E0EE&labelColor=302D41" />
+    <a href="https://github.com/SCSDC-co/NDE/blob/main/LICENSE">
+      <img alt="License" src="https://img.shields.io/github/license/SCSDC-co/NDE?style=for-the-badge&logo=starship&color=ee999f&logoColor=D9E0EE&labelColor=302D41" />
     </a>
-    <a href="https://github.com/Sckab/NDE/issues">
-      <img alt="Issues" src="https://img.shields.io/github/issues/Sckab/NDE?style=for-the-badge&logo=gitbook&color=F5E0DC&logoColor=D9E0EE&labelColor=302D41" />
+    <a href="https://github.com/SCSDC-co/NDE/issues">
+      <img alt="Issues" src="https://img.shields.io/github/issues/SCSDC-co/NDE?style=for-the-badge&logo=gitbook&color=F5E0DC&logoColor=D9E0EE&labelColor=302D41" />
     </a>
-    <a href="https://github.com/Sckab/NDE">
-      <img alt="Repo Size" src="https://img.shields.io/github/repo-size/Sckab/NDE?color=%23DDB6F2&label=SIZE&logo=codesandbox&style=for-the-badge&logoColor=D9E0EE&labelColor=302D41" />
+    <a href="https://github.com/SCSDC-co/NDE">
+      <img alt="Repo Size" src="https://img.shields.io/github/repo-size/SCSDC-co/NDE?color=%23DDB6F2&label=SIZE&logo=codesandbox&style=for-the-badge&logoColor=D9E0EE&labelColor=302D41" />
     </a>
     <a href="#requirements">
       <img alt="Neovim Version" src="https://img.shields.io/badge/Neovim-0.10.0+-green?style=for-the-badge&logo=neovim&color=8aadf3&logoColor=D9E0EE&labelColor=302D41" />
@@ -55,6 +55,36 @@ _Revolutionary smart language toolchain manager that transforms how you handle p
 - **💡 Intelligent Tips**: Context-aware guidance for language setup, usage, and best practices
 - **🎨 Beautiful UI**: Modern NUI-powered interfaces with full Kanagawa Dragon theme integration
 
+### 🤖 **Revolutionary AI Ecosystem** ⭐ *Ultimate Triple AI Integration*
+
+_The most advanced AI development experience ever created - three complementary AI systems working in perfect harmony_
+
+#### **🚀 Lightning-Fast Inline Completions**
+- **Supermaven**: Industry-leading ultra-fast AI completions (priority 1200)
+  - Intelligent code suggestions with minimal latency
+  - Advanced context awareness and code pattern recognition
+  - Seamless CMP integration without virtual text clutter
+- **Codeium**: Enterprise-grade backup AI completions (priority 1100)
+  - Comprehensive fallback coverage for maximum reliability
+  - Multi-language expertise with context preservation
+  - Clean integration through CMP popup interface
+
+#### **💬 Advanced Chat-Based AI Assistant** 
+- **Avante.nvim**: Revolutionary AI conversation interface
+  - **Google Gemini Flash**: Powered by 1M token context window (125x larger than typical 8k)
+  - **Free Tier Excellence**: 15 requests/minute, 1500 requests/day
+  - **`<leader>a` Command Group**: Complete AI assistant integration
+  - **Beautiful Interface**: Custom Kanagawa Dragon themed chat sidebar
+  - **Smart Workflow**: Chat-based code analysis, explanations, and refactoring
+
+#### **🎯 Intelligent Use Case Distribution**
+- **Daily Autocomplete**: Supermaven/Codeium handle instant inline suggestions
+- **Code Understanding**: Avante provides deep code explanations and documentation
+- **Complex Refactoring**: Chat-based assistance for architectural changes
+- **Debugging Sessions**: Interactive problem-solving with massive context
+- **Learning & Growth**: AI mentoring for new technologies and patterns
+- **Code Reviews**: Intelligent analysis and improvement suggestions
+
 ### 🎨 **Modern Plugin Ecosystem** ⭐ *Next-Generation Tools*
 
 _Professional development tools with intelligent organization and cutting-edge functionality_
@@ -76,7 +106,7 @@ _Professional workflow enhancement suite powered by the revolutionary OptiSpec s
 - **💡 Smart Symbol Highlighting**: Auto-highlights references with multi-provider support
 - **📊 Advanced Code Visualization**: Enhanced chunk highlighting replacing basic indent guides
 - **🔄 Universal Action Repeat**: Makes all plugin actions repeatable with vim's `.` command
-- **🤖 Modern AI Integration**: Seamless Codeium CMP integration with conflict resolution
+- **🤖 Ultimate AI Revolution**: Triple AI mastery - Supermaven + Codeium for instant intelligent completions, plus Avante.nvim with Google Gemini Flash (1M token context) for advanced code conversations, explanations, and architectural guidance
 - **⚡ Professional Polish**: Reduced noise, enhanced functionality, zero conflicts
 
 #### 🚀 **Dynamic Performance System** ⚡
@@ -116,7 +146,7 @@ _Revolutionary workflow tools for professional developers_
 - **💡 Smart Symbol Highlighting**: Auto-highlights references with LSP, Treesitter, and regex providers
 - **📊 Advanced Code Visualization**: Enhanced chunk highlighting with context-aware line number highlighting
 - **🔄 Universal Action Repeat**: Makes all plugin actions repeatable with vim's `.` command
-- **🤖 Modern AI Integration**: Seamless Codeium CMP integration with conflict resolution
+- **🤖 Ultimate AI Revolution**: Complete AI development ecosystem with Supermaven + Codeium for intelligent completions and Avante.nvim with Google Gemini Flash for advanced conversational coding assistance
 - **⚡  Professional Polish**: Reduced notification noise with enhanced functionality
 
 #### **🎮 Universal Code Runner** 🚀
@@ -263,7 +293,7 @@ _Kanagawa Dragon theme integrated across every component_
 - **📝 Git Integration**: Gitsigns for inline Git status + Lazygit for advanced operations
 - **📊 Status & UI**: Lualine status bar + Bufferline tabs + Noice enhanced notifications
 - **🐛 Debug Integration**: Full DAP support with UI overlay and virtual text debugging
-- **🤖 AI Assistance**: Codeium integration for intelligent code completion
+- **🤖 Ultimate AI Ecosystem**: Supermaven + Codeium for intelligent inline completions, plus Avante.nvim with Google Gemini for advanced chat-based code assistance
 
 #### **Productivity Tools**
 
@@ -344,7 +374,7 @@ _Kanagawa Dragon theme integrated across every component_
 - **Status & UI:** Lualine status line, Bufferline tabs, Noice enhanced UI
 - **Code Intelligence:** Auto-pairs, auto-tags, todo-comments highlighting
 - **Debugging:** Full DAP integration with UI and virtual text
-- **AI Assistance:** Codeium integration for AI-powered completion
+- **🤖 Ultimate AI Ecosystem**: Supermaven + Codeium for intelligent inline completions, plus Avante.nvim with Google Gemini for advanced chat-based code assistance
 - **Clipboard Management:** Yanky.nvim with history, cycling, and Telescope integration
 - **Text Manipulation:** nvim-surround with organized which-key shortcuts
 - **Markdown Rendering:** render-markdown.nvim for enhanced Markdown preview and display
@@ -908,7 +938,7 @@ git add lua/plugins/my-plugin.lua
 git commit -m "Add custom development workflow"
 
 # Keep track of upstream changes
-git remote add upstream https://github.com/Sckab/NDE.git
+git remote add upstream https://github.com/SCSDC-co/NDE.git
 git fetch upstream
 git rebase upstream/main
 ```

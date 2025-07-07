@@ -8,7 +8,6 @@ function M.setup()
     mason_tools = {
       lsp = { "json-lsp" },
       formatters = { "prettierd" },
-      linters = { "jsonlint" },
     },
     lsp = {
       name = "jsonls",
@@ -23,7 +22,6 @@ function M.setup()
     mason_tools = {
       lsp = { "yaml-language-server" },
       formatters = { "prettierd" },
-      linters = { "yamllint" },
     },
     lsp = {
       name = "yamlls",
@@ -52,7 +50,6 @@ function M.setup()
     mason_tools = {
       lsp = { "marksman" },
       formatters = { "prettierd" },
-      linters = { "markdownlint" },
     },
     lsp = {
       name = "marksman",
@@ -114,7 +111,6 @@ function M.setup()
     mason_tools = {
       lsp = { "lua_ls" },
       formatters = { "stylua" },
-      linters = { "luacheck" },
     },
     lsp = {
       name = "lua_ls",

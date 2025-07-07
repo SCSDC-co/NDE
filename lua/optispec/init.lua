@@ -99,7 +99,6 @@ function M.get_plugins()
     "mason",
     "lsp", 
     "formatters",
-    "linters",
     "debugger",
     "treesitter",
     "diagnostics"

@@ -8,7 +8,6 @@ function M.setup()
     mason_tools = {
       lsp = { "typescript-language-server" },
       formatters = { "prettierd" },
-      linters = { "eslint_d" },
       dap = { "node-debug2-adapter" },
     },
     lsp = {
@@ -24,7 +23,6 @@ function M.setup()
     mason_tools = {
       lsp = { "typescript-language-server" },
       formatters = { "prettierd" },
-      linters = { "eslint_d" },
       dap = { "node-debug2-adapter" },
     },
     lsp = {
@@ -54,7 +52,6 @@ function M.setup()
     mason_tools = {
       lsp = { "angular-language-server" },
       formatters = { "prettierd" },
-      linters = { "eslint_d" },
     },
     lsp = {
       name = "angular-language-server",
