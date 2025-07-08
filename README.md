@@ -2,7 +2,7 @@
 
 ![NDE Banner](.github/assets/banner_ui_readme.png)
 
-**The Ultimate Neovim Development Environment - v4.0.0**
+**The Ultimate Neovim Development Environment - v4.1.0**
 
 A meticulously crafted, enterprise-grade Neovim configuration featuring the **AI Revolution Update** - groundbreaking triple AI integration with advanced OptiSpec Language Management System, modern plugin ecosystem, revolutionary editing tools, and complete professional workflow. Built for developers who want the most powerful, AI-enhanced environment with **zero-bloat startup** and intelligent development assistance.
 
@@ -90,11 +90,15 @@ _The most advanced AI development experience ever created - three complementary 
 _Professional development tools with intelligent organization and cutting-edge functionality_
 
 - **🍿 Snacks.nvim**: Revolutionary UI framework with responsive design, smooth animations, and modular components
-- **👀 Advanced Editing**: Multiple cursors (visual-multi), smart alignment (easy-align), enhanced matching (matchup)
+- **👀 Advanced Editing**: Multiple cursors (visual-multi), smart alignment (mini.align), enhanced matching (matchup)
 - **🔢 Smart Operations**: Increment/decrement with dial.nvim, intelligent tab navigation (tabout)
 - **📊 Professional Git**: Advanced diff viewing (diffview), branch visualization (vim-flog), complete workflow (fugitive)
 - **🗺️ Enhanced Navigation**: Aerial code outline, intelligent layouts (edgy), floating winbar (incline)
 - **👻 Modern UI**: Discord presence integration and beautiful interface components
+- **🎯 Symbol Intelligence**: Real-time symbol usage display with text indicators (symbol-usage.nvim)
+- **💡 Enhanced Hover**: VSCode-like popup documentation with multiple providers (hover.nvim)
+- **🔥 Discipline Training**: Hardtime.nvim enforces Vim motion mastery with `:NDE hardmode` integration
+- **📐 Modern Alignment**: Lua-native mini.align replacing vim-easy-align for faster text alignment
 
 ### 🏆 **Ultimate Productivity Arsenal** ⭐ *Built on OptiSpec Foundation*
 

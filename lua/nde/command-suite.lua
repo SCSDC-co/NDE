@@ -110,6 +110,77 @@ local function handle_nde_command(opts)
       )
     end
     
+  -- Hardmode commands
+  elseif cmd == 'hardmode' then
+    if subcmd == 'on' then
+      local ok, hardtime = pcall(require, 'hardtime')
+      if ok then
+        hardtime.enable()
+        -- Save state persistently
+        vim.g.nde_hardmode_enabled = true
+        vim.notify(
+          '🔥 Hard Mode ENABLED! 💪\n\n' ..
+          'No more lazy hjkl movements!\n' ..
+          'Time to level up your Vim skills!\n\n' ..
+          '💡 Use :NDE hardmode off to disable\n' ..
+          vim.log.levels.INFO,
+          { title = '🚀 NDE Hard Mode' }
+        )
+      else
+        vim.notify(
+          '❌ Hardtime plugin not found\n\n' ..
+          'Install hardtime.nvim to use this feature',
+          vim.log.levels.ERROR,
+          { title = '🚀 NDE Hard Mode' }
+        )
+      end
+    elseif subcmd == 'off' then
+      local ok, hardtime = pcall(require, 'hardtime')
+      if ok then
+        hardtime.disable()
+        -- Save state persistently
+        vim.g.nde_hardmode_enabled = false
+        vim.notify(
+          '😌 Hard Mode DISABLED\n\n' ..
+          'Back to comfortable editing...\n\n' ..
+          '💡 Use :NDE hardmode on to re-enable\n' ..
+          vim.log.levels.INFO,
+          { title = '🚀 NDE Hard Mode' }
+        )
+      else
+        vim.notify(
+          '❌ Hardtime plugin not found\n\n' ..
+          'Install hardtime.nvim to use this feature',
+          vim.log.levels.ERROR,
+          { title = '🚀 NDE Hard Mode' }
+        )
+      end
+    else
+      -- Show current status and help
+      local ok, hardtime = pcall(require, 'hardtime')
+      local status = 'Unknown'
+      if ok then
+        local is_enabled = vim.g.nde_hardmode_enabled ~= false -- default to true
+        status = is_enabled and '🔥 ENABLED' or '😌 DISABLED'
+      end
+      
+      vim.notify(
+        '🔥 NDE Hard Mode Commands:\n\n' ..
+        '📊 CURRENT STATUS: ' .. status .. '\n\n' ..
+        '🚀 :NDE hardmode on - Enable hard mode (discipline mode)\n' ..
+        '😌 :NDE hardmode off - Disable hard mode\n\n' ..
+        '💡 WHAT IS HARD MODE?\n' ..
+        '• Prevents excessive use of hjkl movements (max 6 repeats)\n' ..
+        '• Forces you to use better Vim motions\n' ..
+        '• Helps build muscle memory for efficient editing\n' ..
+        '• Makes you a better Vim user! 💪\n\n' ..
+        '🎯 TIP: Use w, b, f, t, /, ?, etc. instead of hjkl spam!\n' ..
+        '💾 Settings are saved permanently between sessions!',
+        vim.log.levels.INFO,
+        { title = '🚀 NDE Hard Mode Help', timeout = 10000 }
+      )
+    end
+    
   -- Snippets commands
   elseif cmd == 'snippetslist' then
     list_snippets()
@@ -204,6 +275,8 @@ local function handle_nde_command(opts)
       '   :NDE tip show/next/random - Control tips\n\n' ..
       '🤖 CODEIUM:\n' ..
       '   :NDE codeiumauth help - Codeium authentication help\n\n' ..
+      '🔥 HARD MODE:\n' ..
+      '   :NDE hardmode on/off - Toggle Vim motion discipline\n\n' ..
       '📝 SNIPPETS:\n' ..
       '   :NDE snippetslist - List available snippets for current file\n\n' ..
       '🚀 OPTISPEC:\n' ..
@@ -242,7 +315,7 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
   if arg_count == 1 then
     -- First level commands
     local commands = {
-      'help', 'tips', 'tip', 'codeiumauth',
+      'help', 'tips', 'tip', 'codeiumauth', 'hardmode',
       'snippetslist', 'welcome', 'status', 'optispec'
     }
     return vim.tbl_filter(function(cmd)
@@ -257,6 +330,8 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
       return { 'show', 'next', 'random' }
     elseif cmd == 'codeiumauth' then
       return { 'help' }
+    elseif cmd == 'hardmode' then
+      return { 'on', 'off' }
     elseif cmd == 'optispec' then
       return { 'status', 'browse', 'install', 'remove', 'update' }
     end

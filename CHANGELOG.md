@@ -5,6 +5,46 @@ All notable changes to the NDE (Neovim Development Environment) project will be 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.1.0] - 2025-07-08
+
+### 🧠 **Discipline and Usability Update**
+
+#### **🎯 Enhanced Productivity Suite - Ultimate Editing Mastery**
+
+- **Added** `lua/plugins/ui/neodim.lua`: Unused variable dimming for clear focus
+  - ✨ **Visual Clarity**: Automatically dims unused code for better readability
+  - 📈 **Focus Boost**: Helps maintain focus on important code aspects
+
+- **Added** `lua/plugins/ui/symbol-usage.lua`: Inline symbol usage highlighting
+  - 🔍 **Bubble Usage Display**: Shows reference count with bubbles next to symbols
+  - 📎 **VSCode-like Experience**: Enhances code understanding with inline information
+  - 🎨 **Customizable Display**: Beautiful and meaningful symbol context
+
+- **Added** `lua/plugins/ui/deadcolumn.lua`: Column highlight after line-limit
+  - 📏 **Structure and Order**: Encourages clean code layout by highlighting overflow
+  - ⚡ **Zero Disruption**: Subtly shows boundaries of optimal line length
+
+- **Added** `lua/plugins/core/hardtime.lua`: Enforces Vim motion discipline
+  - 🎓 **Level Up Skills**: Reduces dependency on `hjkl`, guiding use of advanced motions
+  - 💪 **Built-in Hard Mode**: Engages professional editing habits
+  - 🎮 **Gamifies Editing**: Turns navigation into a mastery challenge
+
+- **Added** `lua/plugins/ui/hover.lua`: Popup hover documentation like VSCode
+  - 💬 **Instant Insight**: Displays inline context and function documentation
+  - 🤖 **AI-Like Feature**: Mirrors advanced editors with simplicity
+
+- **Replaced** `lua/plugins/editing/easy-align.lua` ➝ `lua/plugins/editing/mini-align.lua`
+  - 🚀 **Modern Alignment**: Lua-native replacement for faster text alignment
+  - 🔧 **Seamless Transition**: Maintains user experience with updated backend
+
+#### **⚡ The New Frontiers of Editing**
+
+- **Speed and Clarity**: Focus on minimalism and efficiency
+- **Discipline and Style**: Encourages structured and stylish coding practices
+- **Small Plugins, Big Impact**: Lightweight plugins with cutting-edge functionality
+
+---
+
 ## [4.0.0] - 2025-07-07
 
 ### 🤖 **AI Revolution Update - The Ultimate Intelligence Integration**

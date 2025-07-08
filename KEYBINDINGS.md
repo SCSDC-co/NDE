@@ -1,4 +1,4 @@
-# ⌨️ NDE Keybinding Reference v4.0.0
+# ⌨️ NDE Keybinding Reference v4.1.0
 
 > Complete keybinding guide for the Neovim Development Environment - AI Revolution Update
 
