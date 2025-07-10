@@ -164,7 +164,7 @@ return {
 					["<C-f>"] = cmp.mapping.scroll_docs(4),
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<C-e>"] = cmp.mapping.abort(),
-					["<C-CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+					["<C-y>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
 					["<C-j>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item()
@@ -222,7 +222,7 @@ return {
 
 			-- Note: Avante automatically registers its cmp sources:
 			-- - avante_commands (for /commands in Avante input)
-			-- - avante_mentions (for @mentions in Avante input) 
+			-- - avante_mentions (for @mentions in Avante input)
 			-- - avante_files (for file references in Avante input)
 			-- These work in AvanteInput and AvantePromptInput filetypes
 
