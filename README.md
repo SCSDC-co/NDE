@@ -2,7 +2,7 @@
 
 ![NDE Banner](.github/assets/banner_ui_readme.png)
 
-**The Ultimate Neovim Development Environment - v4.1.0**
+**The Ultimate Neovim Development Environment - v4.1.1**
 
 A meticulously crafted, enterprise-grade Neovim configuration featuring the **AI Revolution Update** - groundbreaking triple AI integration with advanced OptiSpec Language Management System, modern plugin ecosystem, revolutionary editing tools, and complete professional workflow. Built for developers who want the most powerful, AI-enhanced environment with **zero-bloat startup** and intelligent development assistance.
 
@@ -1099,9 +1099,9 @@ This project is licensed under the [MIT License](LICENSE).
 
 **🔗 Project Links:**  
 [📖 Documentation](https://github.com/Sckab/NDE/blob/main/README.md) •
-[🐛 Issues](https://github.com/Sckab/NDE/issues) •
-[💡 Discussions](https://github.com/Sckab/NDE/discussions) •
-[🔄 Releases](https://github.com/Sckab/NDE/releases)
+[🐛 Issues](https://github.com/SCSDC-co/NDE/issues) •
+[💡 Discussions](https://github.com/SCSDC-co/NDE/discussions) •
+[🔄 Releases](https://github.com/Sckab/SCSDC-co/releases)
 
 **💖 Created with passion for the developer community**
 

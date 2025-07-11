@@ -226,76 +226,6 @@ return {
 			-- - avante_files (for file references in Avante input)
 			-- These work in AvanteInput and AvantePromptInput filetypes
 
-			-- Kanagawa Dragon themed CMP highlight groups
-			vim.api.nvim_set_hl(0, "CmpPmenu", { bg = "#181616", fg = "#C5C9C5" })
-			vim.api.nvim_set_hl(0, "CmpSel", { bg = "#2D4F67", fg = "#C8C093" })
-			vim.api.nvim_set_hl(0, "CmpBorder", { fg = "#54546D", bg = "#181616" })
-			vim.api.nvim_set_hl(0, "CmpDoc", { bg = "#181616", fg = "#C5C9C5" })
-			vim.api.nvim_set_hl(0, "CmpDocBorder", { fg = "#54546D", bg = "#181616" })
-
-			-- Kind-specific highlights with Kanagawa Dragon colors
-			vim.api.nvim_set_hl(0, "CmpItemKindText", { fg = "#DCD7BA" })
-			vim.api.nvim_set_hl(0, "CmpItemKindMethod", { fg = "#7AA89F" })
-			vim.api.nvim_set_hl(0, "CmpItemKindFunction", { fg = "#7AA89F" })
-			vim.api.nvim_set_hl(0, "CmpItemKindConstructor", { fg = "#7AA89F" })
-			vim.api.nvim_set_hl(0, "CmpItemKindField", { fg = "#7E9CD8" })
-			vim.api.nvim_set_hl(0, "CmpItemKindVariable", { fg = "#DCD7BA" })
-			vim.api.nvim_set_hl(0, "CmpItemKindClass", { fg = "#E6C384" })
-			vim.api.nvim_set_hl(0, "CmpItemKindInterface", { fg = "#E6C384" })
-			vim.api.nvim_set_hl(0, "CmpItemKindModule", { fg = "#E6C384" })
-			vim.api.nvim_set_hl(0, "CmpItemKindProperty", { fg = "#7E9CD8" })
-			vim.api.nvim_set_hl(0, "CmpItemKindUnit", { fg = "#C0A36E" })
-			vim.api.nvim_set_hl(0, "CmpItemKindValue", { fg = "#C0A36E" })
-			vim.api.nvim_set_hl(0, "CmpItemKindEnum", { fg = "#E6C384" })
-			vim.api.nvim_set_hl(0, "CmpItemKindKeyword", { fg = "#957FB8" })
-			vim.api.nvim_set_hl(0, "CmpItemKindSnippet", { fg = "#98BB6C" })
-			vim.api.nvim_set_hl(0, "CmpItemKindColor", { fg = "#FF5D62" })
-			vim.api.nvim_set_hl(0, "CmpItemKindFile", { fg = "#7AA89F" })
-			vim.api.nvim_set_hl(0, "CmpItemKindReference", { fg = "#E6C384" })
-			vim.api.nvim_set_hl(0, "CmpItemKindFolder", { fg = "#7AA89F" })
-			vim.api.nvim_set_hl(0, "CmpItemKindEnumMember", { fg = "#C0A36E" })
-			vim.api.nvim_set_hl(0, "CmpItemKindConstant", { fg = "#C0A36E" })
-			vim.api.nvim_set_hl(0, "CmpItemKindStruct", { fg = "#E6C384" })
-			vim.api.nvim_set_hl(0, "CmpItemKindEvent", { fg = "#E6C384" })
-			vim.api.nvim_set_hl(0, "CmpItemKindOperator", { fg = "#957FB8" })
-			vim.api.nvim_set_hl(0, "CmpItemKindTypeParameter", { fg = "#E6C384" })
-			vim.api.nvim_set_hl(0, "CmpItemKindCodeium", { fg = "#7AA89F" })
-
-			-- 🌈 DYNAMIC SELECTION HIGHLIGHTS - Each kind gets its own selection color! 🌈
-			vim.api.nvim_set_hl(0, "CmpItemKindTextSel", { bg = "#DCD7BA", fg = "#181616", bold = true })
-			vim.api.nvim_set_hl(0, "CmpItemKindMethodSel", { bg = "#7AA89F", fg = "#181616", bold = true })
-			vim.api.nvim_set_hl(0, "CmpItemKindFunctionSel", { bg = "#7AA89F", fg = "#181616", bold = true })
-			vim.api.nvim_set_hl(0, "CmpItemKindConstructorSel", { bg = "#7AA89F", fg = "#181616", bold = true })
-			vim.api.nvim_set_hl(0, "CmpItemKindFieldSel", { bg = "#7E9CD8", fg = "#181616", bold = true })
-			vim.api.nvim_set_hl(0, "CmpItemKindVariableSel", { bg = "#DCD7BA", fg = "#181616", bold = true })
-			vim.api.nvim_set_hl(0, "CmpItemKindClassSel", { bg = "#E6C384", fg = "#181616", bold = true })
-			vim.api.nvim_set_hl(0, "CmpItemKindInterfaceSel", { bg = "#E6C384", fg = "#181616", bold = true })
-			vim.api.nvim_set_hl(0, "CmpItemKindModuleSel", { bg = "#E6C384", fg = "#181616", bold = true })
-			vim.api.nvim_set_hl(0, "CmpItemKindPropertySel", { bg = "#7E9CD8", fg = "#181616", bold = true })
-			vim.api.nvim_set_hl(0, "CmpItemKindUnitSel", { bg = "#C0A36E", fg = "#181616", bold = true })
-			vim.api.nvim_set_hl(0, "CmpItemKindValueSel", { bg = "#C0A36E", fg = "#181616", bold = true })
-			vim.api.nvim_set_hl(0, "CmpItemKindEnumSel", { bg = "#E6C384", fg = "#181616", bold = true })
-			vim.api.nvim_set_hl(0, "CmpItemKindKeywordSel", { bg = "#957FB8", fg = "#181616", bold = true })
-			vim.api.nvim_set_hl(0, "CmpItemKindSnippetSel", { bg = "#98BB6C", fg = "#181616", bold = true })
-			vim.api.nvim_set_hl(0, "CmpItemKindColorSel", { bg = "#FF5D62", fg = "#181616", bold = true })
-			vim.api.nvim_set_hl(0, "CmpItemKindFileSel", { bg = "#7AA89F", fg = "#181616", bold = true })
-			vim.api.nvim_set_hl(0, "CmpItemKindReferenceSel", { bg = "#E6C384", fg = "#181616", bold = true })
-			vim.api.nvim_set_hl(0, "CmpItemKindFolderSel", { bg = "#7AA89F", fg = "#181616", bold = true })
-			vim.api.nvim_set_hl(0, "CmpItemKindEnumMemberSel", { bg = "#C0A36E", fg = "#181616", bold = true })
-			vim.api.nvim_set_hl(0, "CmpItemKindConstantSel", { bg = "#C0A36E", fg = "#181616", bold = true })
-			vim.api.nvim_set_hl(0, "CmpItemKindStructSel", { bg = "#E6C384", fg = "#181616", bold = true })
-			vim.api.nvim_set_hl(0, "CmpItemKindEventSel", { bg = "#E6C384", fg = "#181616", bold = true })
-			vim.api.nvim_set_hl(0, "CmpItemKindOperatorSel", { bg = "#957FB8", fg = "#181616", bold = true })
-			vim.api.nvim_set_hl(0, "CmpItemKindTypeParameterSel", { bg = "#E6C384", fg = "#181616", bold = true })
-			vim.api.nvim_set_hl(0, "CmpItemKindCodeiumSel", { bg = "#7AA89F", fg = "#181616", bold = true })
-
-			-- 🌊 Beautiful Scrollbar Styling 🌊
-			vim.api.nvim_set_hl(0, "CmpScrollbar", { bg = "#0D0C0C" })
-			vim.api.nvim_set_hl(0, "CmpScrollbarThumb", { bg = "#7AA89F" })
-			-- Also set the standard Pmenu scrollbar highlights
-			vim.api.nvim_set_hl(0, "PmenuSbar", { bg = "#0D0C0C" })
-			vim.api.nvim_set_hl(0, "PmenuThumb", { bg = "#7AA89F" })
-
 			-- 🚀 DYNAMIC SELECTION MAGIC! 🚀
 			local function setup_dynamic_selection()
 				local cmp = require("cmp")
@@ -334,6 +264,7 @@ return {
 
 			-- Initialize dynamic selection after a short delay
 			vim.defer_fn(setup_dynamic_selection, 100)
+
 		end,
 	},
 }

@@ -103,6 +103,10 @@ local function load_settings()
 		local ok, settings = pcall(vim.fn.json_decode, content)
 		if ok and settings then
 			tips_enabled = settings.tips_enabled ~= false
+			-- Load hardtime setting
+			if settings.hardtime ~= nil then
+				vim.g.nde_hardmode_enabled = settings.hardtime
+			end
 		end
 	end
 end
@@ -110,7 +114,8 @@ end
 -- Save settings to file
 local function save_settings()
 	local settings = {
-		tips_enabled = tips_enabled
+		tips_enabled = tips_enabled,
+		hardtime = vim.g.nde_hardmode_enabled
 	}
 	local file = io.open(settings_file, 'w')
 	if file then
@@ -249,6 +254,12 @@ local function show_welcome()
 			)
 		end
 	end, 1000)
+end
+
+-- Save hardtime setting (exposed for command suite)
+M.save_hardtime = function(enabled)
+	vim.g.nde_hardmode_enabled = enabled
+	save_settings()
 end
 
 -- Expose functions for command suite

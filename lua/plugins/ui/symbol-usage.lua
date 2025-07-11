@@ -74,12 +74,6 @@ return {
         vim.lsp.protocol.SymbolKind.Constant,
       },
       
-      -- Language server specific settings
-      lang = {
-        -- Disable for certain languages if needed
-        -- rust = { request = { references = false } },
-      },
-      
       -- Logging level
       log_level = vim.log.levels.ERROR,
     })

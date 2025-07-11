@@ -10,8 +10,8 @@ return {
       -- Maximum time (in milliseconds) to consider key presses as repeated
       max_time = 1000,
       
-      -- Enable hardtime by default
-      enabled = true,
+      -- Enable hardtime by default (but check saved state)
+      enabled = vim.g.nde_hardmode_enabled ~= false,
       
       -- Disable mouse support
       disable_mouse = true,
@@ -55,6 +55,8 @@ return {
     vim.defer_fn(function()
       if vim.g.nde_hardmode_enabled == false then
         require("hardtime").disable()
+      elseif vim.g.nde_hardmode_enabled == true then
+        require("hardtime").enable()
       end
     end, 100)
   end,

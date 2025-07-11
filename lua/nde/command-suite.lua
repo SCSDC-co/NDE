@@ -116,13 +116,14 @@ local function handle_nde_command(opts)
       local ok, hardtime = pcall(require, 'hardtime')
       if ok then
         hardtime.enable()
-        -- Save state persistently
-        vim.g.nde_hardmode_enabled = true
+        -- Save state persistently using JSON
+        tips.save_hardtime(true)
         vim.notify(
           '🔥 Hard Mode ENABLED! 💪\n\n' ..
           'No more lazy hjkl movements!\n' ..
           'Time to level up your Vim skills!\n\n' ..
           '💡 Use :NDE hardmode off to disable\n' ..
+          '💾 Setting saved permanently!',
           vim.log.levels.INFO,
           { title = '🚀 NDE Hard Mode' }
         )
@@ -138,12 +139,13 @@ local function handle_nde_command(opts)
       local ok, hardtime = pcall(require, 'hardtime')
       if ok then
         hardtime.disable()
-        -- Save state persistently
-        vim.g.nde_hardmode_enabled = false
+        -- Save state persistently using JSON
+        tips.save_hardtime(false)
         vim.notify(
           '😌 Hard Mode DISABLED\n\n' ..
           'Back to comfortable editing...\n\n' ..
           '💡 Use :NDE hardmode on to re-enable\n' ..
+          '💾 Setting saved permanently!',
           vim.log.levels.INFO,
           { title = '🚀 NDE Hard Mode' }
         )

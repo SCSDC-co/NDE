@@ -1,4 +1,4 @@
-# ⌨️ NDE Keybinding Reference v4.1.0
+# ⌨️ NDE Keybinding Reference v4.2.0
 
 > Complete keybinding guide for the Neovim Development Environment - AI Revolution Update
 
@@ -19,7 +19,7 @@ The leader key is set to **`<Space>`** (spacebar). All leader-based commands sta
 | `<leader>fw` | Find & Replace Word      | Search and replace current word/selection         |
 | `<leader>fc` | Find & Replace in File   | Search and replace within current file only       |
 | `<leader>e`  | File Explorer (Root)     | Toggle Neo-tree from filesystem root              |
-| `<leader>n`  | File Explorer (Local)    | Toggle Neo-tree (smart focus switching)           |
+| `<leader>u`  | Undotree                 | Open visual undo tree for enhanced undo history   |
 | `<leader>bc` | Close Buffer             | Close current buffer                              |
 | `<leader>bo` | Close Others             | Close all other buffers                           |
 

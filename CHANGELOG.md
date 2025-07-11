@@ -5,6 +5,69 @@ All notable changes to the NDE (Neovim Development Environment) project will be 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.1.1] - 2025-07-11
+
+### 🎨 **Theme Organization & Code Structure Enhancement**
+
+#### **🧹 Configuration Refactoring & Optimization**
+
+- **Enhanced** `lua/GUI/theme.lua`: Centralized highlight group management
+  - **🎨 Unified Theming**: Moved highlight configurations from cmp.lua and hlchunk.lua into theme.lua
+  - **🔧 Better Organization**: Centralized color management for consistent theming
+  - **⚡ Improved Structure**: Cleaner separation of concerns between plugins and theming
+  - **🎯 Dynamic Integration**: Maintains dynamic selection logic while centralizing visual styling
+
+- **Enhanced** `lua/plugins/editing/cmp.lua`: Optimized completion configuration
+  - **🔄 Focused Responsibility**: Kept dynamic selection logic while moving highlights to theme.lua
+  - **⚡ Performance**: Streamlined configuration with better separation of concerns
+  - **🎨 Clean Interface**: Removed redundant highlight definitions
+
+- **Enhanced** `lua/plugins/ui/hlchunk.lua`: Improved chunk visualization
+  - **🎨 Better Styling**: Custom colors for indent guides and chunk highlighting
+  - **📊 Visual Clarity**: Enhanced code structure visualization
+
+#### **🔧 Hardtime Integration Enhancement**
+
+- **Enhanced** Hardtime state persistence in NDE commands
+  - **💾 Smart Persistence**: Hardtime state now saves to JSON file for cross-session memory
+  - **🔄 Seamless Integration**: State management integrated into existing NDE command suite
+  - **🎯 User Experience**: Maintains hardtime preferences across Neovim restarts
+
+#### **🌳 Undotree Plugin Addition**
+
+- **Added** `undotree` plugin with complete integration
+  - **📊 Visual History**: Beautiful undo tree visualization for better version control
+  - **🎨 Theme Integration**: Custom theming matching Kanagawa Dragon color scheme
+  - **⚡ Optimized Configuration**: Clean symbol characters and streamlined interface
+  - **🔕 Reduced Noise**: Disabled help popup for distraction-free experience
+  - **🎯 Enhanced Workflow**: Better undo/redo navigation with visual feedback
+
+#### **🚫 Annotation Cleanup**
+
+- **Fixed** virtual text annotations
+  - **🔇 Removed Clutter**: Disabled vim-matchup virtual text to eliminate annoying `▶ def` context labels
+  - **🎯 Clean Interface**: Removed distracting virtual text annotations from code view
+  - **📊 Better Focus**: Improved code readability by removing unnecessary visual noise
+  - **⚡ Performance**: Reduced visual processing overhead
+
+### 🎯 **Technical Improvements**
+
+#### **Architecture Enhancement**
+
+- **Improved** Plugin organization with better separation of concerns
+- **Enhanced** Theme management with centralized highlight configuration
+- **Optimized** Configuration structure for better maintainability
+- **Streamlined** Plugin interactions with reduced coupling
+
+#### **User Experience Enhancements**
+
+- **Cleaner** Code visualization with reduced visual noise
+- **Better** Undo/redo workflow with undotree integration
+- **Improved** Persistent settings across sessions
+- **Enhanced** Visual consistency across all components
+
+---
+
 ## [4.1.0] - 2025-07-08
 
 ### 🧠 **Discipline and Usability Update**

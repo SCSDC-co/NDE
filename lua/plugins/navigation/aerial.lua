@@ -29,19 +29,6 @@ return {
                     nested_top = "│ ",
                     whitespace = "  ",
                 },
-                
-                -- Filter certain symbols for cleaner view
-                filter_kind = {
-                    "Class",
-                    "Constructor",
-                    "Enum",
-                    "Function",
-                    "Interface",
-                    "Module",
-                    "Method",
-                    "Struct",
-                },
-                
                 -- Better icons for symbols
                 icons = {
                     Class = "󰠱 ",
@@ -81,7 +68,9 @@ return {
                     ["<C-j>"] = "actions.down_and_scroll",
                     ["<C-k>"] = "actions.up_and_scroll",
                 },
-                
+
+                filter_kind = false,
+
                 -- Ensure aerial auto-updates
                 autojump = false,
                 manage_folds = false,
