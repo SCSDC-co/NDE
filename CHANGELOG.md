@@ -5,6 +5,108 @@ All notable changes to the NDE (Neovim Development Environment) project will be 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.1.2] - 2025-07-12
+
+### 🪟 **Windows Support Revolution & Configuration Enhancements**
+
+#### **🖥️ Complete Windows Installation Support** ⭐ *Cross-Platform Excellence*
+
+- **Added** Comprehensive Windows installation guide with multiple options
+  - **🏪 Scoop Integration**: Recommended Windows package manager with complete toolchain
+  - **🍫 Chocolatey Support**: Alternative package manager for Windows users
+  - **⚡ Winget Support**: Native Microsoft package manager option
+  - **📂 Manual Installation**: Detailed step-by-step guide for advanced users
+  - **🛠️ Essential Tools**: Complete coverage of Neovim, Git, LLVM, Node.js, and utilities
+  - **🔧 Troubleshooting**: Windows-specific solutions and common issue resolution
+
+#### **🎨 Visual Enhancement & Code Structure Improvements** ⭐ *Professional Polish*
+
+- **Enhanced** `nvim-highlight-colors` plugin with modern visual design
+  - **🟫 Filled Square Icon**: Updated from basic square to filled rounded square `󱓻`
+  - **📱 Nerd Font Integration**: Perfect symbol matching with Nerd Font glyphs
+  - **🎨 Better Visual Clarity**: Enhanced color indication with modern icon design
+  - **✨ Professional Appearance**: Consistent with modern editor aesthetics
+
+- **Restructured** Theme and highlight organization for better maintainability
+  - **📁 New File**: Created `lua/GUI/highlights.lua` for centralized highlight management
+  - **🔧 Improved Structure**: Moved highlight groups from `theme.lua` to dedicated highlights file
+  - **🎨 Kanagawa Integration**: Proper colorscheme override structure for theme consistency
+  - **⚡ Better Organization**: Cleaner separation of concerns between theming and highlights
+
+#### **🤖 LSP & Mason Integration Fixes** ⭐ *Toolchain Accuracy*
+
+- **Fixed** Mason LSP server and formatter naming consistency
+  - **🔧 LSP Server Names**: Corrected Vue.js from `volar` to `vue_ls` per Mason registry
+  - **📝 Formatter Names**: Updated SQL formatter and other tools to match Mason expectations
+  - **🛠️ Language Files**: Corrected names in web.lua, systems.lua, data.lua, scripting.lua, devops.lua, functional.lua, and config.lua
+  - **✅ Registry Alignment**: Ensured all names match Mason package manager registry
+  - **🎯 Installation Success**: Improved reliability of automatic toolchain installation
+
+#### **🎨 New Color Picker Integration** ⭐ *Modern Development Tools*
+
+- **Added** `minty.nvim`: Professional color picker plugin with seamless integration
+  - **🎨 Color Selection**: Interactive color picker with live preview
+  - **📋 Hex Code Support**: Direct hex color code insertion and manipulation
+  - **⌨️ Smart Keybindings**: `<leader>cs` for color selection, `<leader>ch` for color history
+  - **🗂️ Which-key Integration**: Organized color picker commands in dedicated group
+  - **🔄 Lazy Loading**: Efficient loading on BufRead event for optimal performance
+  - **🎯 Workflow Enhancement**: Streamlined color workflow for UI/UX development
+
+#### **🛠️ Enhanced Plugin Error Handling** ⭐ *Stability Improvements*
+
+- **Fixed** `satellite.nvim` compatibility with minty buffer types
+  - **🚫 Buffer Exclusion**: Excluded minty buffers from satellite diagnostics
+  - **🛡️ Error Suppression**: Implemented pcall error handling for cursor position conflicts
+  - **📝 Safe Logging**: Added print overrides to avoid noice.nvim notification conflicts
+  - **⚡ Maintained Performance**: Kept satellite functionality while preventing errors
+  - **🔄 Graceful Degradation**: Seamless operation when errors occur
+
+#### **🌍 Cross-Platform Compatibility** ⭐ *Universal Support*
+
+- **Enhanced** `init.lua` with Windows-specific path handling
+  - **🏠 Home Directory**: Proper Windows home directory detection using `os.getenv("USERPROFILE")`
+  - **🐍 Python venv**: Fixed Windows Python virtual environment path resolution
+  - **🗂️ Path Normalization**: Cross-platform path handling for all operating systems
+  - **🔧 Compatibility**: Seamless operation across Windows, macOS, and Linux
+  - **✅ Tested**: Verified functionality on all major platforms
+
+### 📊 **Enhanced Documentation & User Experience**
+
+#### **📝 Comprehensive Installation Guide Updates**
+
+- **Updated** `INSTALL.md` with complete Windows coverage
+  - **🎯 Three Package Managers**: Scoop (recommended), Chocolatey, and Winget options
+  - **⚡ Quick Commands**: One-line installation commands for each package manager
+  - **🛠️ Tool Coverage**: Complete setup for all essential development tools
+  - **🔧 Troubleshooting**: Enhanced Windows-specific problem resolution
+  - **📋 Verification**: Step-by-step verification of successful installation
+
+- **Updated** `KEYBINDINGS.md` with minty color picker shortcuts
+  - **🎨 Color Commands**: Documented `<leader>cs` and `<leader>ch` keybindings
+  - **📖 Usage Examples**: Practical examples of color picker workflow
+  - **🗂️ Organization**: Proper categorization of color-related commands
+  - **💡 Tips**: Efficiency tips for color manipulation workflows
+
+### 🎯 **Technical Improvements**
+
+#### **Architecture Enhancement**
+
+- **Improved** Plugin organization with better separation of concerns
+- **Enhanced** Theme management with centralized highlight configuration
+- **Optimized** Cross-platform compatibility with robust path handling
+- **Streamlined** Color workflow integration with modern tools
+- **Strengthened** Error handling and graceful degradation systems
+
+#### **User Experience Enhancements**
+
+- **Expanded** Windows user support with comprehensive installation options
+- **Improved** Visual consistency with modern icon design
+- **Enhanced** Color development workflow with integrated picker
+- **Strengthened** Plugin stability with better error management
+- **Modernized** Tool integration with accurate Mason registry alignment
+
+---
+
 ## [4.1.1] - 2025-07-11
 
 ### 🎨 **Theme Organization & Code Structure Enhancement**

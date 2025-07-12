@@ -6,7 +6,7 @@ function M.setup()
   require("optispec.core.languages").register_language("haskell", {
     filetypes = { "haskell", "lhaskell" },
     mason_tools = {
-      lsp = { "hls" },
+      lsp = { "haskell-language-server" },
       formatters = { "fourmolu" },
     },
     lsp = {

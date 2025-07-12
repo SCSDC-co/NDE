@@ -62,7 +62,7 @@ function M.setup()
   require("optispec.core.languages").register_language("nix", {
     filetypes = { "nix" },
     mason_tools = {
-      lsp = { "nil_ls" },
+      lsp = { "nil" },
       formatters = { "alejandra" },
     },
     lsp = {
@@ -76,7 +76,7 @@ function M.setup()
   require("optispec.core.languages").register_language("cmake", {
     filetypes = { "cmake" },
     mason_tools = {
-      lsp = { "cmake" },
+      lsp = { "cmake-language-server" },
     },
     lsp = {
       name = "cmake",
@@ -109,7 +109,7 @@ function M.setup()
   require("optispec.core.languages").register_language("lua", {
     filetypes = { "lua" },
     mason_tools = {
-      lsp = { "lua_ls" },
+      lsp = { "lua-language-server" },
       formatters = { "stylua" },
     },
     lsp = {

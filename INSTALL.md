@@ -115,6 +115,117 @@ nvim
 # :NDE optispec browse
 ```
 
+### 🪟 Windows
+
+#### Option 1: Using Scoop (Recommended)
+
+```powershell
+# Install Scoop if not already installed
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+
+# Install essential dependencies
+scoop install neovim git gcc nodejs
+
+# Optional: Install recommended tools
+scoop install lazygit ripgrep fd
+
+# Clone NDE to Windows config directory
+git clone https://github.com/Sckab/NDE.git $env:LOCALAPPDATA/nvim
+
+# Launch Neovim (plugins will auto-install)
+nvim
+
+# Language tools are managed by OptiSpec - install on demand:
+# :NDE optispec browse
+```
+
+#### Option 2: Using Chocolatey
+
+```powershell
+# Install Chocolatey if not already installed
+Set-ExecutionPolicy Bypass -Scope Process -Force
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+# Install essential dependencies
+choco install neovim git mingw nodejs
+
+# Optional: Install recommended tools
+choco install lazygit ripgrep fd
+
+# Clone NDE to Windows config directory
+git clone https://github.com/Sckab/NDE.git $env:LOCALAPPDATA/nvim
+
+# Launch Neovim (plugins will auto-install)
+nvim
+
+# Language tools are managed by OptiSpec - install on demand:
+# :NDE optispec browse
+```
+
+#### Option 3: Using Winget
+
+```powershell
+# Install Neovim with Winget
+winget install Neovim.Neovim
+
+# Install essential dependencies
+winget install Git
+winget install LLVM.LLVM
+winget install OpenJS.NodeJS
+
+# Optional: Install recommended tools
+winget install lazygit
+winget install sharkdp.fd
+
+# Clone NDE to Windows config directory
+git clone https://github.com/Sckab/NDE.git $env:LOCALAPPDATA/nvim
+
+# Launch Neovim (plugins will auto-install)
+nvim
+
+# Language tools are managed by OptiSpec - install on demand:
+# :NDE optispec browse
+```
+
+#### Option 4: Manual Installation
+
+1. **Download and install Neovim**:
+   - Go to https://github.com/neovim/neovim/releases
+   - Download the latest `nvim-win64.zip`
+   - Extract to `C:\tools\neovim\` and add to PATH
+
+2. **Install Git**:
+   - Download from https://git-scm.com/download/win
+   - Install with default options
+
+3. **Install Node.js**:
+   - Download from https://nodejs.org/
+   - Install LTS version
+
+4. **Install Visual Studio Build Tools** (for C compiler):
+   - Download from https://visualstudio.microsoft.com/downloads/
+   - Install "C++ build tools" workload
+
+5. **Clone NDE**:
+   ```cmd
+   git clone https://github.com/Sckab/NDE.git %LOCALAPPDATA%\nvim
+   ```
+
+6. **Launch Neovim**:
+   ```cmd
+   nvim
+   ```
+
+#### Windows-Specific Notes
+
+- **Config Location**: `%LOCALAPPDATA%\nvim\` (typically `C:\Users\[username]\AppData\Local\nvim\`)
+- **PowerShell**: Use PowerShell or PowerShell Core for best experience
+- **Terminal**: Windows Terminal is recommended for better font and color support
+- **Fonts**: Install a Nerd Font for proper icon display (recommended: FiraCode Nerd Font)
+- **Antivirus**: You may need to exclude the nvim config directory from real-time scanning
+
 ## 🔧 Manual Neovim Installation
 
 If your distribution doesn't have Neovim 0.10.0+:

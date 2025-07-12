@@ -20,7 +20,7 @@ function M.setup()
     filetypes = { "terraform", "tf" },
     mason_tools = {
       lsp = { "terraform-ls" },
-      formatters = { "terraform_fmt" },
+      formatters = { "terraform" },
     },
     lsp = {
       name = "terraformls",

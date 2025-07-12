@@ -7,7 +7,7 @@ function M.setup()
     filetypes = { "sql", "mysql", "plsql" },
     mason_tools = {
       lsp = { "sqlls" },
-      formatters = { "sqlfluff" },
+      formatters = { "sql-formatter" },
     },
     lsp = {
       name = "sqlls",

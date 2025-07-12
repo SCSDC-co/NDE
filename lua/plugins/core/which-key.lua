@@ -195,6 +195,11 @@ return {
 			{ "<leader>B", group = "👀 Blink" },
 			{ "<leader>B;", "<cmd>lua require('blink.chartoggle').toggle_char_eol(';')<cr>", desc = "Toggle ; at eol" },
 			{ "<leader>B,", "<cmd>lua require('blink.chartoggle').toggle_char_eol(',')<cr>", desc = "Toggle , at eol" },
+
+			-- Colorpicker
+			{ "<leader>c", group = "🎨 Colorpicker" },
+			{ "<leader>cs", "<cmd>Shades<cr>", desc = "󱓻 Shades Picker" },
+			{ "<leader>ch", "<cmd>Huefy<cr>", desc = "🌈 Hue Picker" },
 		},
 	},
 

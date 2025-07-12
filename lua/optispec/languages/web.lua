@@ -40,7 +40,7 @@ function M.setup()
       formatters = { "prettierd" },
     },
     lsp = {
-      name = "vls",
+      name = "vue_ls",
       settings = {},
     },
     treesitter = { "vue" },
@@ -54,7 +54,7 @@ function M.setup()
       formatters = { "prettierd" },
     },
     lsp = {
-      name = "angular-language-server",
+      name = "angularls",
       settings = {},
     },
     treesitter = { "html", "typescript", "scss" },
@@ -68,7 +68,7 @@ function M.setup()
       formatters = { "prettierd" },
     },
     lsp = {
-      name = "svelte-language-server",
+      name = "svelte",
       settings = {},
     },
     treesitter = { "svelte" },

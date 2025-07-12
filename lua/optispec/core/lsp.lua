@@ -33,6 +33,7 @@ function M.setup(config)
   M.config = config
   M.capabilities = vim.lsp.protocol.make_client_capabilities()
   
+  
   -- Setup lspconfig
   local lspconfig = require("lspconfig")
   

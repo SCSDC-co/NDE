@@ -57,7 +57,6 @@ function M.setup()
     filetypes = { "elixir", "eelixir" },
     mason_tools = {
       lsp = { "elixirls" },
-      formatters = { "mix" },
     },
     lsp = {
       name = "elixirls",

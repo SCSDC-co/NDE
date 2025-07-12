@@ -7,8 +7,8 @@ return {
       ---@usage 'background'|'foreground'|'virtual'
       render = 'virtual',
 
-      ---Set virtual symbol (small square like VSCode)
-      virtual_symbol = '■',
+      ---Set virtual symbol (filled rounded square Nerd Font)
+      virtual_symbol = '󱓻',
 
       ---Set virtual symbol prefix (space before the square)
       virtual_symbol_prefix = ' ',

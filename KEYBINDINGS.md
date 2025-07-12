@@ -126,6 +126,21 @@ The leader key is set to **`<Space>`** (spacebar). All leader-based commands sta
 | `<Leader>B;` | **Toggle Semicolon** | Add/remove `;` at line end | Code formatting |
 | `<Leader>B,` | **Toggle Comma**     | Add/remove `,` at line end | List formatting |
 
+## 🎨 Color Picker (Minty)
+
+| Keybinding   | Function             | Behavior                        | Use Case       |
+| ------------ | -------------------- | ------------------------------- | -------------- |
+| `<Leader>c`  | **Colorpicker Menu** | Open colorpicker command group  | Menu discovery |
+| `<Leader>cs` | **Shades Picker**    | Open color shades picker (Minty)| Color variants |
+| `<Leader>ch` | **Hue Picker**       | Open color hue picker (Minty)   | Color palettes |
+
+**Features:**
+- 🎨 **Visual Color Selection**: Interactive color picker with real-time preview
+- 🌈 **Multiple Modes**: Shades mode for lightness/darkness, Hue mode for color variations
+- 📋 **Copy to Clipboard**: Selected colors are automatically copied as hex values
+- 🎯 **Live Preview**: See color changes in real-time as you adjust sliders
+- 💡 **Smart Integration**: Works seamlessly with CSS, design files, and color workflows
+
 ## 🗂️ Code Structure Navigation (Aerial)
 
 | Keybinding   | Function             | Behavior                        | Context      |

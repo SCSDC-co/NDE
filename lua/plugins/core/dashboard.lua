@@ -31,7 +31,7 @@ return {
 			dashboard.button("r", "🕘  Recent Files", ":Telescope oldfiles<CR>"),
 			dashboard.button("n", "📄  New File", ":ene <BAR> startinsert <CR>"),
 			dashboard.button("t", "🎮  Vim Training", ":VimBeGood<CR>"),
-            dashboard.button("p", "🔧  Plugins", ":Lazy<CR>"),
+			dashboard.button("p", "🔧  Plugins", ":Lazy<CR>"),
 			dashboard.button("l", "🔨  LSP Manager", ":Mason<CR>"),
 			dashboard.button("g", "🚀  OptiSpec Browser", ":NDE optispec browse<CR>"),
 			dashboard.button("q", "🚪  Quit", ":qa<CR>"),
@@ -41,32 +41,32 @@ return {
 		local function get_startup_time()
 			local stats = require("lazy").stats()
 			local startup_time = "calculating..."
-			
+
 			-- Get actual startup time from vim.fn.reltime if available
 			if vim.g.startup_timer then
 				-- Calculate elapsed time from startup
 				local elapsed = vim.fn.reltimefloat(vim.fn.reltime(vim.g.startup_timer)) * 1000
 				startup_time = string.format("%.1f", elapsed)
-			elseif vim.fn.exists('g:startup_time') == 1 then
+			elseif vim.fn.exists("g:startup_time") == 1 then
 				-- Fallback to global variable if set
 				startup_time = tostring(vim.g.startup_time)
 			else
 				-- Ultimate fallback - try to measure current startup performance
 				startup_time = "~25"
 			end
-			
+
 			return "⚡ Loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. startup_time .. "ms"
 		end
 
-	dashboard.section.footer.val = {
+		dashboard.section.footer.val = {
 			"",
 			get_startup_time(),
-			"🚀 NDE v4.1.0",
+			"🚀 NDE v4.1.2",
 		}
-		
-	dashboard.section.header.opts.hl = "DashboardHeader"
-	dashboard.section.buttons.opts.hl = "DashboardButtons"
-	dashboard.section.footer.opts.hl = "DashboardFooter"
+
+		dashboard.section.header.opts.hl = "DashboardHeader"
+		dashboard.section.buttons.opts.hl = "DashboardButtons"
+		dashboard.section.footer.opts.hl = "DashboardFooter"
 
 		require("alpha").setup(dashboard.config)
 
