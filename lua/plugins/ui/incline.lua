@@ -69,7 +69,7 @@ return {
         end
         
         table.insert(result, " ")
-        result.guibg = "#0D0C0C"
+        -- Remove hardcoded background, let theme handle it via InclineNormal
         
         return result
       end,

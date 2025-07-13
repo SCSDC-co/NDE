@@ -128,11 +128,12 @@ The leader key is set to **`<Space>`** (spacebar). All leader-based commands sta
 
 ## 🎨 Color Picker (Minty)
 
-| Keybinding   | Function             | Behavior                        | Use Case       |
-| ------------ | -------------------- | ------------------------------- | -------------- |
-| `<Leader>c`  | **Colorpicker Menu** | Open colorpicker command group  | Menu discovery |
-| `<Leader>cs` | **Shades Picker**    | Open color shades picker (Minty)| Color variants |
-| `<Leader>ch` | **Hue Picker**       | Open color hue picker (Minty)   | Color palettes |
+| Keybinding   | Function             | Behavior                        | Use Case         |
+| ------------ | -------------------- | ------------------------------- | ---------------- |
+| `<Leader>th` | **Theme Switcher**   | Switch themes dynamically       | Theme management |
+| `<Leader>c`  | **Colorpicker Menu** | Open colorpicker command group  | Menu discovery   |
+| `<Leader>cs` | **Shades Picker**    | Open color shades picker (Minty)| Color variants   |
+| `<Leader>ch` | **Hue Picker**       | Open color hue picker (Minty)   | Color palettes   |
 
 **Features:**
 - 🎨 **Visual Color Selection**: Interactive color picker with real-time preview

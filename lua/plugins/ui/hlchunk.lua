@@ -10,7 +10,11 @@ return {
 					"│",
 				},
 				style = {
-					{ fg = "#2a2a2a" },
+					{ fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("HLIndent1")), "fg", "gui") },
+					{ fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("HLIndent2")), "fg", "gui") },
+					{ fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("HLIndent3")), "fg", "gui") },
+					{ fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("HLIndent4")), "fg", "gui") },
+					{ fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("HLIndent5")), "fg", "gui") },
 				},
 				exclude_filetypes = {
 					"dashboard",
@@ -26,17 +30,20 @@ return {
 
 			chunk = {
 				enable = true,
-				style = {
-					{ fg = "#FF9E3B" },
-				},
 				chars = {
 					horizontal_line = "─",
 					vertical_line = "│",
 					left_top = "╭",
 					left_bottom = "╰",
-				    right_arrow = "─",
+					right_arrow = "─",
 				},
-				-- Disable textobject annotations (removes ▶ def tags)
+				style = {
+					{ fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("HLChunk1")), "fg", "gui") },
+					{ fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("HLChunk2")), "fg", "gui") },
+					{ fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("HLChunk3")), "fg", "gui") },
+					{ fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("HLChunk4")), "fg", "gui") },
+					{ fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("HLChunk5")), "fg", "gui") },
+				},
 				textobject = "",
 				exclude_filetypes = {
 					"dashboard",
@@ -50,36 +57,18 @@ return {
 				},
 			},
 
-			-- Disable context/scope annotations (the annoying ▶ def tags)
 			context = {
 				enable = false,
 			},
 
-			-- Disable line number highlighting
 			line_num = {
 				enable = false,
 			},
 
-			-- Disable blank line highlighting
 			blank = {
 				enable = false,
 			},
 		})
-		
-		-- Force set highlight groups after setup
-		vim.defer_fn(function()
-			-- Indent highlight groups (with the darker color as requested)
-			vim.api.nvim_set_hl(0, "HLIndent1", { fg = "#2a2a2a" })
-			vim.api.nvim_set_hl(0, "HLIndent2", { fg = "#2a2a2a" })
-			vim.api.nvim_set_hl(0, "HLIndent3", { fg = "#2a2a2a" })
-			vim.api.nvim_set_hl(0, "HLIndent4", { fg = "#2a2a2a" })
-			vim.api.nvim_set_hl(0, "HLIndent5", { fg = "#2a2a2a" })
-			-- Chunk highlight groups
-			vim.api.nvim_set_hl(0, "HLChunk1", { fg = "#FF9E3B" })
-			vim.api.nvim_set_hl(0, "HLChunk2", { fg = "#FF9E3B" })
-			vim.api.nvim_set_hl(0, "HLChunk3", { fg = "#FF9E3B" })
-			vim.api.nvim_set_hl(0, "HLChunk4", { fg = "#FF9E3B" })
-			vim.api.nvim_set_hl(0, "HLChunk5", { fg = "#FF9E3B" })
-		end, 100)
+
 	end,
 }

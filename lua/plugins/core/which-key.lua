@@ -207,16 +207,5 @@ return {
 		local wk = require("which-key")
 		wk.setup(opts)
 
-		vim.cmd([[
-      highlight WhichKey guifg=#dcd7ba guibg=#181616
-      highlight WhichKeyGroup guifg=#7e9cd8 guibg=#181616
-      highlight WhichKeyDesc guifg=#a3d4d5 guibg=#181616
-      highlight WhichKeyValue guifg=#a3d4d5 guibg=#181616
-      highlight WhichKeySeparator guifg=#54546d guibg=#181616
-      highlight WhichKeyFloat guibg=#181616
-      highlight WhichKeyBorder guifg=#54546d guibg=#181616
-      highlight WhichKeyTitle guifg=#7e9cd8 guibg=#181616
-      highlight WhichKeyNormal guibg=#181616
-    ]])
 	end,
 }

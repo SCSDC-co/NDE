@@ -4,8 +4,6 @@ return {
 	event = "VimEnter", -- ⚡ PERFORMANCE: Load after Vim starts
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function()
-		vim.cmd("colorscheme kanagawa-dragon")
-
 		local dashboard = require("alpha.themes.dashboard")
 
 		dashboard.section.header.val = {
@@ -34,6 +32,7 @@ return {
 			dashboard.button("p", "🔧  Plugins", ":Lazy<CR>"),
 			dashboard.button("l", "🔨  LSP Manager", ":Mason<CR>"),
 			dashboard.button("g", "🚀  OptiSpec Browser", ":NDE optispec browse<CR>"),
+			dashboard.button("h", "🎨  Theme Switcher", ":Themery<CR>"),
 			dashboard.button("q", "🚪  Quit", ":qa<CR>"),
 		}
 
@@ -61,7 +60,7 @@ return {
 		dashboard.section.footer.val = {
 			"",
 			get_startup_time(),
-			"🚀 NDE v4.1.2",
+			"🚀 NDE v5.0.0",
 		}
 
 		dashboard.section.header.opts.hl = "DashboardHeader"

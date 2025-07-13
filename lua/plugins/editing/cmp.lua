@@ -18,6 +18,7 @@ return {
 			"onsails/lspkind.nvim",
 			"Exafunction/codeium.nvim",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
+			"brenoprata10/nvim-highlight-colors",
 		},
 		config = function()
 			local capabilities =
@@ -65,6 +66,8 @@ return {
 				formatting = {
 					fields = { "kind", "abbr", "menu" },
 					format = function(entry, vim_item)
+						-- 🎨 First, get color information from nvim-highlight-colors
+						local color_item = require("nvim-highlight-colors").format(entry, { kind = vim_item.kind })
 						local lspkind_icons = {
 							Text = "󰉿",
 							Method = "󰆧",
@@ -149,6 +152,12 @@ return {
 						vim_item.menu = menu_icon[entry.source.name] or ""
 						vim_item.kind_hl_group = kind_colors[kind] or "CmpItemKind"
 						vim_item.menu_hl_group = "CmpItemMenu"
+
+						-- 🎨 Apply color highlighting if available
+						if color_item.abbr_hl_group then
+							vim_item.kind_hl_group = color_item.abbr_hl_group
+							vim_item.kind = color_item.abbr
+						end
 
 						-- Smart truncation with ellipsis
 						local max_width = 40

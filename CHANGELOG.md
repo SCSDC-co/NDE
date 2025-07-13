@@ -5,6 +5,105 @@ All notable changes to the NDE (Neovim Development Environment) project will be 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.0.0] - 2025-07-13
+
+### 🎨 **Theme System Revolution & Visual Enhancement Overhaul** ⭐ *Major Architecture Redesign*
+
+#### **🏗️ Complete Theme Architecture Rewrite** ⭐ *Breaking Changes - Major Version*
+
+- **BREAKING** Revolutionary theme system with advanced multi-variant support
+  - **🗑️ Removed**: Legacy `lua/GUI/highlights.lua` - replaced with theme-specific files
+  - **🆕 Added**: `lua/GUI/highlights-kanagawa-dragon.lua` - Dark theme highlight definitions
+  - **🆕 Added**: `lua/GUI/highlights-kanagawa-lotus.lua` - Light theme highlight definitions
+  - **🆕 Added**: `lua/GUI/theme-init.lua` - Advanced theme initialization system
+  - **🔧 Enhanced**: Theme management with proper variant detection and switching
+  - **⚡ Optimized**: Theme loading with intelligent caching and performance improvements
+
+- **Added** `lua/plugins/ui/themery.lua`: Professional theme switcher with live preview
+  - **🎨 Live Preview**: Real-time theme switching with instant visual feedback
+  - **🔄 Dynamic Switching**: Seamless switching between Kanagawa Dragon and Lotus variants
+  - **⌨️ Quick Access**: `<leader>th` keybinding for instant theme selection
+  - **💾 State Persistence**: Automatic theme preference saving across sessions
+  - **🎯 Zero Lag**: Optimized theme application with minimal performance impact
+
+#### **🎨 Advanced Highlight System Enhancement** ⭐ *Professional Visual Polish*
+
+- **Enhanced** Sign column and diagnostic highlighting with semantic colors
+  - **🚦 Git Signs**: Proper color coding - Green (add), Yellow (change), Red (delete)
+  - **🔍 Diagnostics**: Semantic diagnostic colors - Error (red), Warning (yellow), Info (cyan), Hint (purple)
+  - **🎨 Theme Awareness**: Colors automatically adapt to current theme variant
+  - **✨ Professional Look**: Consistent with modern IDE color standards
+
+- **Fixed** HLChunk plugin integration with complete highlight system rewrite
+  - **🆕 Added**: `lua/autocommands.lua` - Global autocommand management for theme-aware plugins
+  - **🔧 Advanced Detection**: Intelligent Kanagawa variant detection for proper highlight application
+  - **🎯 Automatic Switching**: HLChunk highlights automatically adapt when themes change
+  - **⚡ Optimized Timing**: Proper highlight application timing with theme loading coordination
+  - **🎨 Custom Styling**: Advanced hlchunk configuration with dynamic style references
+
+#### **🧹 Configuration Architecture Modernization** ⭐ *Professional Organization*
+
+- **Restructured** Launch system with improved autocommand integration
+  - **🔧 Enhanced**: `lua/launch.lua` now loads global autocommands for better coordination
+  - **📁 Organized**: Cleaner separation between plugin configs and global behavior
+  - **⚡ Performance**: Optimized loading order for faster startup times
+  - **🎯 Reliability**: Better initialization sequence for consistent behavior
+
+- **Enhanced** Incline integration with theme-aware background handling
+  - **🎨 Smart Backgrounds**: Incline now uses theme-appropriate background colors
+  - **📝 Native Text**: Removed forced foreground colors to allow Incline's native text handling
+  - **✨ Visual Harmony**: Perfect integration with theme color schemes
+  - **🔄 Dynamic Adaptation**: Automatically adapts to theme changes
+
+#### **🆕 New Plugin Integrations** ⭐ *Extended Functionality*
+
+- **Added** Multiple new plugins with complete theme integration:
+  - **🔗 URL Open**: `lua/plugins/ui/url-open.lua` - Smart URL handling with gx keybinding
+  - **🌳 TreeSJ**: `lua/plugins/editing/treesj.lua` - Advanced code structure manipulation
+  - **📍 Numb**: `lua/plugins/navigation/numb.lua` - Line number preview for jump commands
+  - **🎨 HL Args**: `lua/plugins/editing/hlargs.lua` - Function argument highlighting
+  - **🛠️ Health Utils**: `lua/utils/health.lua` - Configuration health checking utilities
+  - **💻 VSCode Utils**: `lua/utils/vscode.lua` - VSCode integration utilities
+
+#### **🔧 Plugin Configuration Enhancements** ⭐ *Refined User Experience*
+
+- **Enhanced** Multiple plugin configurations with theme awareness:
+  - **🎨 Dashboard**: Updated with proper theme integration and visual improvements
+  - **🔧 Which-Key**: Enhanced keybinding organization with theme-aware styling
+  - **💬 CMP**: Improved completion styling with theme-coordinated highlights
+  - **🌈 Highlight Colors**: Better color preview integration with theme system
+  - **📊 Lualine**: Enhanced statusline with improved theme coordination
+  - **🎨 Minty**: Color picker with theme-aware interface styling
+  - **📢 Noice**: Notification system with proper theme integration
+
+### 🎯 **Technical Improvements**
+
+#### **Architecture Excellence**
+
+- **Revolutionary** Theme system with intelligent variant detection and switching
+- **Advanced** Highlight management with semantic color coordination
+- **Optimized** Plugin loading with better dependency management
+- **Enhanced** Configuration organization with professional separation of concerns
+- **Improved** Performance with intelligent caching and loading strategies
+
+#### **User Experience Transformation**
+
+- **Seamless** Theme switching with live preview and instant feedback
+- **Professional** Visual consistency across all interface elements
+- **Intelligent** Color coordination that adapts to theme variants
+- **Enhanced** Plugin integration with unified styling approach
+- **Modernized** Configuration architecture for better maintainability
+
+#### **Developer Experience**
+
+- **Modular** Theme system that's easy to extend with new variants
+- **Well-Documented** Autocommand system for plugin coordination
+- **Professional** File organization with clear separation of concerns
+- **Future-Proof** Architecture that supports easy theme additions
+- **Maintainable** Codebase with improved configuration structure
+
+---
+
 ## [4.1.2] - 2025-07-12
 
 ### 🪟 **Windows Support Revolution & Configuration Enhancements**

@@ -8,8 +8,9 @@ vim.env.PATH = vim.env.PATH .. path_separator .. home .. "/.luarocks/bin"
 require("opts")
 
 require("lazynvim.lazy")
-require("GUI.theme")
+-- Theme is now handled by Themery plugin
 require("keymaps")
+require("autocommands")
 
 -- 🎉 Initialize NDE beginner tips system
 require("nde.tips").setup({

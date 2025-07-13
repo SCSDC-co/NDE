@@ -194,6 +194,31 @@ local function handle_nde_command(opts)
   elseif cmd == 'status' then
     tips.show_status()
     
+  -- Minty commands
+  elseif cmd == 'minty' then
+    if subcmd == 'help' then
+      vim.notify(
+        '🎨 Minty Color Picker Usage:\n\n' ..
+        '🖱️  For mouse users, it\'s easy to click & hover\n\n' ..
+        '⌨️  NOTE: For keyboard users, these are the mappings:\n\n' ..
+        '🔄 <Ctrl> + t : cycle through windows\n' ..
+        '⭾ <Tab> or <S-Tab> : cycle through clickables in current window\n' ..
+        '↵ <CR> i.e enter to click on the area\n' ..
+        '← → moving cursor with h or l in slider',
+        vim.log.levels.INFO,
+        { title = '🎨 NDE Minty Color Picker', timeout = 8000 }
+      )
+    else
+      -- Show minty commands overview
+      vim.notify(
+        '🎨 NDE Minty Commands:\n\n' ..
+        '📚 :NDE minty help - Show usage instructions\n\n' ..
+        '💡 TIP: Use <leader>cs and <leader>ch for color picker shortcuts',
+        vim.log.levels.INFO,
+        { title = '🎨 NDE Minty Help', timeout = 5000 }
+      )
+    end
+    
   -- OptiSpec commands
   elseif cmd == 'optispec' then
     if subcmd == 'status' then
@@ -281,6 +306,8 @@ local function handle_nde_command(opts)
       '   :NDE hardmode on/off - Toggle Vim motion discipline\n\n' ..
       '📝 SNIPPETS:\n' ..
       '   :NDE snippetslist - List available snippets for current file\n\n' ..
+      '🎨 MINTY:\n' ..
+      '   :NDE minty help - Color picker usage guide\n\n' ..
       '🚀 OPTISPEC:\n' ..
       '   :NDE optispec - Smart language management\n' ..
       '   :NDE optispec status - Show installed languages\n' ..
@@ -318,7 +345,7 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
     -- First level commands
     local commands = {
       'help', 'tips', 'tip', 'codeiumauth', 'hardmode',
-      'snippetslist', 'welcome', 'status', 'optispec'
+      'snippetslist', 'welcome', 'status', 'minty', 'optispec'
     }
     return vim.tbl_filter(function(cmd)
       return cmd:match('^' .. vim.pesc(ArgLead))
@@ -334,6 +361,8 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
       return { 'help' }
     elseif cmd == 'hardmode' then
       return { 'on', 'off' }
+    elseif cmd == 'minty' then
+      return { 'help' }
     elseif cmd == 'optispec' then
       return { 'status', 'browse', 'install', 'remove', 'update' }
     end
