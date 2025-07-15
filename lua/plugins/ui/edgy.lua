@@ -37,15 +37,15 @@ return {
 							-- Load fugitive and open Flog
 							vim.cmd("silent! Git status")
 
-                            vim.defer_fn(function()
-                                -- Use explicit graph options for better display
-                                local ok, err = pcall(vim.cmd, "Flogsplit -all")
-                                if not ok then
-                                    pcall(vim.cmd, "Flog -all")
-                                end
-                                -- Restore directory
-                                vim.cmd("lcd " .. old_cwd)
-                            end, 200)
+							vim.defer_fn(function()
+								-- Use explicit graph options for better display
+								local ok, err = pcall(vim.cmd, "Flogsplit -all")
+								if not ok then
+									pcall(vim.cmd, "Flog -all")
+								end
+								-- Restore directory
+								vim.cmd("lcd " .. old_cwd)
+							end, 200)
 						end
 					end, 50)
 
@@ -63,6 +63,11 @@ return {
 						pcall(vim.cmd, "AerialToggle")
 					end, 150)
 
+					-- Open undotree
+					vim.defer_fn(function()
+						pcall(vim.cmd, "UndotreeToggle")
+					end, 200)
+
 					-- Focus back to editor window
 					vim.defer_fn(function()
 						for _, win in ipairs(vim.api.nvim_list_wins()) do
@@ -71,7 +76,18 @@ return {
 							local bt = vim.bo[buf].buftype
 
 							-- Focus on normal text editor buffers
-							if (ft == "" or (ft ~= "neo-tree" and ft ~= "aerial" and ft ~= "floggraph" and ft ~= "flog")) and bt == "" then
+							if
+								(
+									ft == ""
+									or (
+										ft ~= "neo-tree"
+										and ft ~= "aerial"
+										and ft ~= "floggraph"
+										and ft ~= "flog"
+										and ft ~= "undotree"
+									)
+								) and bt == ""
+							then
 								vim.api.nvim_set_current_win(win)
 								return
 							end
@@ -105,12 +121,17 @@ return {
 			{
 				title = "Outline",
 				ft = "aerial",
-				size = { width = 30 },
+				size = { height = 0.4 },
+			},
+			{
+				title = "Undo Tree",
+				ft = "undotree",
+				size = { height = 0.6 },
 			},
 		},
 		options = {
-			left = { size = 35 },
-			right = { size = 30 },
+			left = { size = 40 },
+			right = { size = 40 },
 		},
 		animate = {
 			enabled = false,

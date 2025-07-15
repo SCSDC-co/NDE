@@ -57,10 +57,8 @@ vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], { desc = "Move to right wind
 vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], { desc = "Move to down window" })
 vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], { desc = "Move to up window" })
 
-vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = "Go to left window" })
-vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = "Go to below window" })
-vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = "Go to above window" })
-vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = "Go to right window" })
+-- Window navigation now handled by smart-splits plugin
+-- See lua/plugins/navigation/smart-splits.lua for configuration
 
 -- bufferline
 vim.keymap.set('n', '<leader>bc', ':bdelete<CR>', { noremap = true, silent = true })

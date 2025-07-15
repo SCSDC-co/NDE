@@ -6,25 +6,16 @@ return {
 	},
 	config = function()
 		-- Configure undotree settings
-		vim.g.undotree_WindowLayout = 3 -- Layout: undotree on left, diff on bottom
+		vim.g.undotree_WindowLayout = 1 -- Layout: undotree only, no diff at all
 		vim.g.undotree_SplitWidth = 40 -- Width of the undotree window
-		vim.g.undotree_DiffpanelHeight = 10 -- Height of the diff panel
 		vim.g.undotree_SetFocusWhenToggle = 1 -- Focus undotree when toggled
 		vim.g.undotree_TreeNodeShape = '●' -- Use bullet points for tree nodes
 		vim.g.undotree_TreeVertShape = '│' -- Vertical line character
 		vim.g.undotree_TreeSplitShape = '/' -- Split line character
-		vim.g.undotree_DiffCommand = "diff" -- Use system diff command
+		vim.g.undotree_DiffAutoOpen = 0 -- Disable diff auto-opening
 		
 		-- Show relative timestamps instead of absolute
 		vim.g.undotree_RelativeTimestamp = 1
-		
-		-- Highlight changed text in diff view
-		vim.g.undotree_HighlightChangedText = 1
-		
-		-- Highlight changed text with specific syntax
-		vim.g.undotree_HighlightSyntaxAdd = "DiffAdd"
-		vim.g.undotree_HighlightSyntaxChange = "DiffChange"
-		vim.g.undotree_HighlightSyntaxDel = "DiffDelete"
 		
 		-- Short indicators for better readability
 		vim.g.undotree_ShortIndicators = 1

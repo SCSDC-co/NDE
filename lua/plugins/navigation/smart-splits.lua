@@ -16,6 +16,7 @@ return {
 				"NvimTree",
 				"neo-tree",
 				"sagaoutline",
+				"aerial",
 				"toggleterm",
 				"TelescopePrompt",
 				"spectre_panel",
