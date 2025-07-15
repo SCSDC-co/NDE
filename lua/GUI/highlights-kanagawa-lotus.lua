@@ -14,7 +14,7 @@ local highlights = {
 	DiagnosticSignHint = { bg = "#F2ECBC", fg = "#8B008B" },
 	VertSplit = { bg = "#C1BC96", fg = "#C1BC96" },
 	WinSeparator = { bg = "#C1BC96", fg = "#C1BC96" },
-	BufferLineOffset = { bg = "#C1BC96", fg = "#4D699B", bold = true },
+	BufferLineOffset = { bg = "#C1BC96", fg = "#C1BC96", bold = true },
 	BufferLineOffsetSeparator = { bg = "#C1BC96", fg = "#C1BC96" },
 	WhichKey = { fg = "#4D699B", bg = "#F2ECBC" },
 	WhichKeyGroup = { fg = "#8A8A8A", bg = "#F2ECBC" },
@@ -56,12 +56,8 @@ local highlights = {
 	Pmenu = { bg = "#F2ECBC", fg = "#2A2A37" },
 	PmenuSel = { bg = "#C1BC96", fg = "#2A2A37" },
 	PmenuBorder = { bg = "#F2ECBC", fg = "#8A8A8A" },
-
-	-- Minty Color Picker highlights (Lotus theme)
 	MintyFloatBorder = { fg = "#8A8A8A", bg = "#F2ECBC" },
 	MintyNormal = { bg = "#F2ECBC" },
-
-	-- CMP highlights (Lotus theme) - LOTS OF THEM!
 	CmpPmenu = { bg = "#F2ECBC", fg = "#2A2A37" },
 	CmpSel = { bg = "#C1BC96", fg = "#2A2A37" },
 	CmpBorder = { fg = "#8A8A8A", bg = "#F2ECBC" },
@@ -121,7 +117,6 @@ local highlights = {
 	CmpItemKindCodeiumSel = { bg = "#4D699B", fg = "#F2ECBC", bold = true },
 	CmpScrollbar = { bg = "#C1BC96" },
 	CmpScrollbarThumb = { bg = "#4D699B" },
-	-- HLChunk numbered highlight groups for lotus theme
 	HLIndent1 = { fg = "#8A8A8A" },
 	HLIndent2 = { fg = "#8A8A8A" },
 	HLIndent3 = { fg = "#8A8A8A" },
@@ -132,8 +127,13 @@ local highlights = {
 	HLChunk3 = { fg = "#2A2A37" },
 	HLChunk4 = { fg = "#2A2A37" },
 	HLChunk5 = { fg = "#2A2A37" },
-	InclineNormal = { bg = "#C1BC96" }, -- Same as win separators
-	InclineNormalNC = { bg = "#C1BC96" }, -- Non-current windows
+	InclineNormal = { bg = "#C1BC96" },
+	InclineNormalNC = { bg = "#C1BC96" },
+	NeoTreeNormal = { bg = "#C1BC96" },
+	NeoTreeNormalNC = { bg = "#C1BC96" },
+	NeoTreeEndOfBuffer = { bg = "#C1BC96", fg = "#C1BC96" },
+	ColorColumn = { bg = "#C1BC96" },
+	VirtColumn = { fg = "#C1BC96" },
 }
 
 return highlights

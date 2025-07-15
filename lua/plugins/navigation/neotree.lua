@@ -68,7 +68,7 @@ return {
 			},
 			window = {
 				position = "left",
-				width = 40,
+				width = 30,
 				mappings = {
 					["o"] = "open",
 					["<CR>"] = "open",
@@ -89,6 +89,7 @@ return {
 					event = "neo_tree_buffer_enter",
 					handler = function()
 						vim.opt_local.signcolumn = "auto"
+						vim.opt_local.cursorline = false
 					end,
 				},
 			},

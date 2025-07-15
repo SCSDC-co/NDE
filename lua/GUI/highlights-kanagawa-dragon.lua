@@ -15,7 +15,7 @@ local highlights = {
 	DiagnosticSignHint = { bg = "#181616", fg = "#957FB8" },
 	VertSplit = { fg = "#0D0C0C", bg = "#0D0C0C" },
 	WinSeparator = { fg = "#0D0C0C", bg = "#0D0C0C" },
-	BufferLineOffset = { bg = "#0d0c0c", fg = "#8BA4B0", bold = true },
+	BufferLineOffset = { bg = "#0d0c0c", fg = "#0d0c0c", bold = true },
 	BufferLineOffsetSeparator = { bg = "#0d0c0c", fg = "#0d0c0c" },
 	TerminalNormal = { bg = "#181616" },
 	TerminalBorder = { fg = "#181616", bg = "#181616" },
@@ -131,6 +131,11 @@ local highlights = {
 	Pmenu = { bg = "#181616", fg = "#dcd7ba" },
 	PmenuSel = { bg = "#2d2a2e", fg = "#dcd7ba" },
 	PmenuBorder = { bg = "#181616", fg = "#626978" },
+	NeoTreeNormal = { bg = "#0d0c0c" },
+	NeoTreeNormalNC = { bg = "#0d0c0c" },
+	NeoTreeEndOfBuffer = { bg = "#0d0c0c", fg = "#0d0c0c" },
+	ColorColumn = { bg = "#2a2a2a" },
+	VirtColumn = { fg = "#2a2a2a" },
 }
 
 return highlights

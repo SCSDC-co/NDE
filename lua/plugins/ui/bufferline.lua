@@ -18,12 +18,11 @@ return {
 				offsets = {
 					{
 						filetype = 'neo-tree',
-						text = ' NeoTree',
+						text = '',
 						text_align = 'left',
 						separator = true,
 						highlight = 'BufferLineOffset',
 						separator_highlight = 'BufferLineOffsetSeparator',
-						style = 'bold',
 					},
 				},
 			},
