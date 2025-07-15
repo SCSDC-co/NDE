@@ -51,7 +51,6 @@ return {
 
 		-- Sorting and filtering
 		sort = { "local", "order", "group", "alphanum", "mod" },
-		expand = 0,
 
 		-- Icons
 		icons = {
@@ -126,7 +125,7 @@ return {
 					if neotree_win then
 						vim.cmd("Neotree close")
 					else
-						require("neo-tree.command").execute({ source = "filesystem", dir = "/" })
+						vim.cmd("Neotree toggle")
 					end
 				end,
 				desc = "🌲 File Explorer (Root)",
@@ -206,6 +205,5 @@ return {
 	config = function(_, opts)
 		local wk = require("which-key")
 		wk.setup(opts)
-
 	end,
 }

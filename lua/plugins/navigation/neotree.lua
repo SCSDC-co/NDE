@@ -19,8 +19,12 @@ return {
 			enable_diagnostics = true,
 			default_component_configs = {
 				indent = {
-					with_markers = true,
+					with_markers = false,
 					highlight = "NeoTreeIndentMarker",
+					with_expanders = true,
+					expander_collapsed = "",
+					expander_expanded = "",
+					expander_highlight = "NeoTreeDirectoryName",
 				},
 				icon = {
 					folder_closed = "",
@@ -56,9 +60,9 @@ return {
 				use_libuv_file_watcher = true,
 				hijack_netrw_behavior = "open_default",
 				group_empty_dirs = true,
-				bind_to_cwd = true,
+				bind_to_cwd = false,
 				cwd_target = {
-					sidebar = "tab",
+					sidebar = "window",
 					current = "window",
 				},
 			},
