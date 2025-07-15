@@ -111,25 +111,7 @@ return {
 			{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent Files" },
 			{ "<leader>fp", "<cmd>Telescope yank_history<cr>", desc = "📋 Clipboard History" },
 
-			{
-				"<leader>e",
-				function()
-					local neotree_win = nil
-					for _, win in ipairs(vim.api.nvim_list_wins()) do
-						local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(win))
-						if bufname:match("neo%-tree filesystem") then
-							neotree_win = win
-							break
-						end
-					end
-					if neotree_win then
-						vim.cmd("Neotree close")
-					else
-						vim.cmd("Neotree toggle")
-					end
-				end,
-				desc = "🌲 File Explorer (Root)",
-			},
+			{ "<leader>e", "<cmd>Neotree toggle<cr>", desc = "🌲 File Explorer" },
 
 			{ "<leader>b", group = "📋 Buffer" },
 			{ "<leader>bc", "<cmd>bdelete<cr>", desc = "Close Buffer" },

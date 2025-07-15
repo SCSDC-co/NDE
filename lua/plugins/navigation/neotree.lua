@@ -38,15 +38,15 @@ return {
 				},
 				git_status = {
 					symbols = {
-						added = "",
-						modified = "",
-						deleted = "",
-						renamed = "➜",
-						untracked = "★",
-						ignored = "◌",
-						unstaged = "✗",
-						staged = "✓",
-						conflict = "",
+						added = "󰐕",
+						modified = "󰜥",
+						deleted = "",
+						renamed = "",
+						untracked = "",
+						ignored = "",
+						unstaged = "",
+						staged = "",
+						conflict = "",
 					},
 				},
 			},
@@ -68,7 +68,7 @@ return {
 			},
 			window = {
 				position = "left",
-				width = 30,
+				width = 40,
 				mappings = {
 					["o"] = "open",
 					["<CR>"] = "open",
