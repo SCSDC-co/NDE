@@ -20,6 +20,7 @@ function M.setup()
       json = { "prettierd" },
       yaml = { "prettierd" },
       markdown = { "prettierd" },
+      cshtml = { "prettierd" },
       
       -- Python (autopep8 fixes indentation, then black for style)
       python = { "autopep8", "black" },
@@ -74,6 +75,28 @@ function M.setup()
       
       -- XML
       xml = { "xmlformat" },
+    },
+    
+    -- Formatter configurations
+    formatters = {
+      prettierd = {
+        args = {
+          "--print-width=80",
+          "--tab-width=4",
+          "--use-tabs=false",
+          "--semi=true",
+          "--single-quote=false",
+          "--quote-props=as-needed",
+          "--trailing-comma=es5",
+          "--bracket-spacing=true",
+          "--bracket-same-line=false",
+          "--arrow-parens=avoid",
+          "--end-of-line=lf",
+          "--single-attribute-per-line=false",
+          "--stdin-filepath",
+          "$FILENAME",
+        },
+      },
     },
     
     -- Format on save
