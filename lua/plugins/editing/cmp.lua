@@ -97,10 +97,21 @@ return {
 							Codeium = "󰚩",
 							Supermaven = "󰦉",
 							Avante = "󰧑",
+							Emmet = "󰌝",
 						}
 
 						local kind = vim_item.kind
 						local icon = lspkind_icons[kind] or ""
+
+						-- Special handling for emmet completions
+						if entry.source.name == "nvim_lsp" and entry.source.source and entry.source.source.client then
+							local client_name = entry.source.source.client.name
+							if client_name == "emmet_language_server" then
+								icon = "󰌝" -- Emmet icon
+								kind = "Emmet"
+								vim_item.kind_hl_group = "CmpItemKindSnippet" -- Use snippet color
+							end
+						end
 
 						-- Cool source menu icons
 						local menu_icon = {
@@ -145,6 +156,7 @@ return {
 							Operator = "CmpItemKindOperator",
 							TypeParameter = "CmpItemKindTypeParameter",
 							Codeium = "CmpItemKindCodeium",
+							Emmet = "CmpItemKindSnippet",
 						}
 
 						-- Format with cool styling
