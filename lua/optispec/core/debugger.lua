@@ -10,6 +10,21 @@ function M.setup(config)
     return
   end
   
+  -- Configure breakpoint signs
+  vim.fn.sign_define('DapBreakpoint', { text = '●', texthl = 'DapBreakpoint', linehl = '', numhl = '' })
+  vim.fn.sign_define('DapBreakpointCondition', { text = '◐', texthl = 'DapBreakpointCondition', linehl = '', numhl = '' })
+  vim.fn.sign_define('DapBreakpointRejected', { text = '○', texthl = 'DapBreakpointRejected', linehl = '', numhl = '' })
+  vim.fn.sign_define('DapLogPoint', { text = '◆', texthl = 'DapLogPoint', linehl = '', numhl = '' })
+  vim.fn.sign_define('DapStopped', { text = '→', texthl = 'DapStopped', linehl = 'DapStoppedLine', numhl = '' })
+  
+  -- Set up highlight groups for breakpoints
+  vim.api.nvim_set_hl(0, 'DapBreakpoint', { fg = '#e06c75' }) -- Red color
+  vim.api.nvim_set_hl(0, 'DapBreakpointCondition', { fg = '#d19a66' }) -- Orange color
+  vim.api.nvim_set_hl(0, 'DapBreakpointRejected', { fg = '#5c6370' }) -- Gray color
+  vim.api.nvim_set_hl(0, 'DapLogPoint', { fg = '#61afef' }) -- Blue color
+  vim.api.nvim_set_hl(0, 'DapStopped', { fg = '#98c379' }) -- Green color
+  vim.api.nvim_set_hl(0, 'DapStoppedLine', { bg = '#2c323c' }) -- Dark background
+  
   -- Setup DAP UI
   dapui.setup({
     layouts = {
