@@ -33,6 +33,7 @@ git clone https://github.com/Sckab/NDE.git ~/.config/nvim && nvim
 - **A Nerd Font** (for proper icon display)
 - **Ripgrep** (ultra-fast search)
 - **fd-find** (modern file finder)
+- **Silicon** (for SnapIcon code screenshots - install via cargo: `cargo install silicon`)
 
 ## 💻 Platform-Specific Installation
 
@@ -44,6 +45,10 @@ sudo pacman -S neovim git gcc nodejs npm
 
 # Optional: Install recommended tools
 sudo pacman -S lazygit ripgrep fd
+
+# Install Silicon for SnapIcon screenshots
+rustup install stable
+cargo install silicon
 
 # Clone NDE
 git clone https://github.com/Sckab/NDE.git ~/.config/nvim
@@ -67,6 +72,11 @@ sudo apt install neovim git build-essential nodejs npm
 # Optional: Install recommended tools
 sudo apt install lazygit ripgrep fd-find
 
+# Install Silicon for SnapIcon screenshots
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source ~/.cargo/env
+cargo install silicon
+
 # Clone NDE
 git clone https://github.com/Sckab/NDE.git ~/.config/nvim
 
@@ -86,6 +96,9 @@ brew install neovim git node
 # Optional: Install recommended tools
 brew install lazygit ripgrep fd
 
+# Install Silicon for SnapIcon screenshots
+brew install silicon
+
 # Clone NDE
 git clone https://github.com/Sckab/NDE.git ~/.config/nvim
 
@@ -104,6 +117,11 @@ sudo dnf install neovim git gcc nodejs npm
 
 # Optional: Install recommended tools
 sudo dnf install lazygit ripgrep fd-find
+
+# Install Silicon for SnapIcon screenshots
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source ~/.cargo/env
+cargo install silicon
 
 # Clone NDE
 git clone https://github.com/Sckab/NDE.git ~/.config/nvim
@@ -130,6 +148,11 @@ scoop install neovim git gcc nodejs
 # Optional: Install recommended tools
 scoop install lazygit ripgrep fd
 
+# Install Silicon for SnapIcon screenshots
+scoop install rustup
+rustup install stable
+cargo install silicon
+
 # Clone NDE to Windows config directory
 git clone https://github.com/Sckab/NDE.git $env:LOCALAPPDATA/nvim
 
@@ -153,6 +176,11 @@ choco install neovim git mingw nodejs
 
 # Optional: Install recommended tools
 choco install lazygit ripgrep fd
+
+# Install Silicon for SnapIcon screenshots
+choco install rustup.install
+rustup install stable
+cargo install silicon
 
 # Clone NDE to Windows config directory
 git clone https://github.com/Sckab/NDE.git $env:LOCALAPPDATA/nvim
@@ -178,6 +206,10 @@ winget install OpenJS.NodeJS
 # Optional: Install recommended tools
 winget install lazygit
 winget install sharkdp.fd
+
+# Install Silicon for SnapIcon screenshots
+winget install Rustlang.Rust.MSVC
+cargo install silicon
 
 # Clone NDE to Windows config directory
 git clone https://github.com/Sckab/NDE.git $env:LOCALAPPDATA/nvim

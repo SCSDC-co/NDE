@@ -288,6 +288,19 @@ The leader key is set to **`<Space>`** (spacebar). All leader-based commands sta
 - `,` - Align around commas
 - `//` - Align around comments
 
+## 📸 SnapIcon Screenshot Plugin
+
+| Keybinding     | Action                 | Description                                       | Mode   |
+| -------------- | ---------------------- | ------------------------------------------------- | ------ |
+| `<leader>S`    | **Take Screenshot**    | Take a beautiful screenshot of the current buffer | Visual |
+
+**Features:**
+- 📸 **Professional Screenshots**: Generate high-quality code screenshots with syntax highlighting
+- 🎨 **Customizable Styling**: Beautiful themes and layout options powered by Silicon
+- 📋 **Smart Selection**: Automatically captures current visual selection or entire buffer
+- 🚀 **One-Key Operation**: Single keybinding for instant screenshot generation
+- 💾 **Multiple Formats**: Support for PNG output with transparency and shadows
+
 ## 📊 Advanced Git Workflow
 
 ### Git Fugitive

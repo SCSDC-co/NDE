@@ -5,6 +5,105 @@ All notable changes to the NDE (Neovim Development Environment) project will be 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.1.0] - 2025-07-16
+
+### 📸 **SnapIcon Plugin & UI Refinements** ⭐ *New Screenshot Capabilities & Enhanced Experience*
+
+#### **🆕 Brand New SnapIcon Plugin** ⭐ *Professional Code Screenshots*
+
+- **Added** Complete `lua/snapicon/` plugin system for beautiful code screenshots
+  - **📸 Core Engine**: `core.lua` - Advanced screenshot generation with Silicon integration
+  - **🎛️ Configuration**: `init.lua` - Comprehensive customization options with sensible defaults
+  - **⌨️ Keybinding**: `keymaps.lua` - `<leader>S` for instant visual selection screenshots
+  - **🖥️ Commands**: `commands.lua` - `:Silicon` command with range support
+  - **🔧 Which-Key**: `which_key.lua` - Organized command grouping and descriptions
+  - **📚 Documentation**: `README.md` - Complete usage guide and configuration reference
+  - **🎨 Theme Integration**: Visual Studio Dark+ theme with customizable backgrounds
+  - **💾 Smart Output**: Automatic filename generation with timestamp and file context
+  - **📋 Clipboard Support**: Linux clipboard integration with xclip
+  - **🌈 Language Detection**: Automatic syntax highlighting based on file extension
+  - **🪟 Window Styling**: Configurable window controls and padding for professional look
+
+#### **🎨 Enhanced NDE Command Suite** ⭐ *Beautiful Configuration Display*
+
+- **Enhanced** `lua/nde/command-suite.lua` with professional SnapIcon integration
+  - **📸 Config Display**: Beautiful `:NDE snapicon config` with organized, readable format
+  - **📚 Help System**: Comprehensive `:NDE snapicon help` with usage instructions
+  - **🔧 Smart Organization**: Categorized configuration display with icons and clear sections
+  - **⌨️ Tab Completion**: Enhanced command completion for seamless user experience
+
+#### **🛠️ Development Environment Enhancements** ⭐ *Professional Tooling*
+
+- **Enhanced** Formatter support with comprehensive web development coverage
+  - **🏗️ .cshtml Support**: Fixed Razor page formatting with proper C# and HTML integration
+  - **⚡ Prettierd Integration**: Advanced JavaScript/TypeScript formatting with prettierd configuration
+  - **🎨 Multi-Language**: Enhanced support for web frameworks and templating engines
+  - **🔧 Emmet LSP**: Complete HTML/CSS expansion with extensive framework support
+  - **📝 Template Engine**: Improved handling of mixed-language files like Razor views
+
+#### **🎨 UI/UX Modernization** ⭐ *Cleaner Interface Design*
+
+- **Redesigned** Core interface components for modern, clean aesthetic
+  - **📊 Lualine Enhancement**: Streamlined statusline with improved theme coordination
+  - **🌳 NeoTree Modernization**: Chevron-based directory indentation instead of lines
+  - **📁 Smart Navigation**: NeoTree now opens to current working directory by default
+  - **🎯 Focus Improvement**: Removed visual clutter for better code focus
+  - **✨ Icon Updates**: Beautiful new icons for enhanced visual hierarchy
+  - **🔄 Column Indicators**: Switched from deadcolumn to virt-column for better performance
+
+#### **🧹 Plugin Architecture Optimization** ⭐ *Performance & Maintainability*
+
+- **Removed** Legacy plugins for improved performance and reduced complexity
+  - **🗑️ Decluttered**: Removed edgy.nvim, neodim.nvim, deadcolumn.nvim, matchup.nvim
+  - **🗑️ Streamlined**: Removed hover.nvim for cleaner hover experience
+  - **⚡ Performance**: Reduced plugin load time and memory footprint
+  - **🎯 Focus**: Eliminated feature overlap and redundant functionality
+  - **🔧 Maintenance**: Simplified configuration with fewer moving parts
+
+#### **🛠️ Development Tools Enhancement** ⭐ *Improved Debugging & Navigation*
+
+- **Enhanced** Development and debugging experience
+  - **🔍 Undotree Integration**: Better undo history visualization and navigation
+  - **🐛 Breakpoint Icons**: Updated debugger breakpoint icons for better visibility
+  - **📍 Aerial Navigation**: Improved symbol navigation with better treesitter integration
+  - **⚡ Smart Splits**: Optimized window navigation with reduced keybinding conflicts
+
+#### **🎮 Enhanced Discord Integration** ⭐ *Professional Presence*
+
+- **Fixed** Discord Rich Presence with improved stability
+  - **🎯 Version Stability**: Fixed presence.nvim version pinning for consistent behavior
+  - **🔧 Emmet Integration**: Resolved nvim-cmp display conflicts with Emmet LSP
+  - **📱 Activity Display**: Better file type detection and activity representation
+  - **🎨 Visual Polish**: Enhanced presence display with proper project context
+
+### 🎯 **Technical Improvements**
+
+#### **Architecture Excellence**
+
+- **Professional** Screenshot plugin architecture with comprehensive Silicon integration
+- **Optimized** Command suite with beautiful configuration displays and user-friendly help
+- **Enhanced** Formatter ecosystem with multi-language and framework support
+- **Streamlined** Plugin selection focused on performance and essential functionality
+- **Improved** UI consistency with modern design principles and reduced visual noise
+
+#### **User Experience Transformation**
+
+- **Instant** Code screenshots with `<leader>S` - perfect for documentation and sharing
+- **Beautiful** Configuration displays that are actually readable and informative
+- **Professional** Screenshot output with customizable themes and styling options
+- **Cleaner** Interface with reduced clutter and improved focus on code
+- **Enhanced** Development workflow with better formatting and debugging tools
+
+#### **Developer Experience**
+
+- **Complete** Screenshot plugin with comprehensive documentation and examples
+- **Extensible** Configuration system with theme support and customization options
+- **Reliable** Command integration with proper error handling and user feedback
+- **Future-Proof** Architecture that supports easy enhancement and customization
+- **Maintainable** Codebase with clear separation of concerns and modular design
+
+---
+
 ## [5.0.0] - 2025-07-13
 
 ### 🎨 **Theme System Revolution & Visual Enhancement Overhaul** ⭐ *Major Architecture Redesign*

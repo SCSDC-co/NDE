@@ -34,3 +34,14 @@ require("optispec").setup({
 		diagnostics = { merge_sources = false },
 	},
 })
+
+-- 📸 Initialize SnapIcon screenshot tool
+vim.api.nvim_create_autocmd("BufReadPost", {
+	callback = function()
+		require("snapicon").setup({
+			-- Custom configuration can be added here
+			-- Uses sensible defaults if not specified
+		})
+	end,
+	once = true, -- Only load once
+})

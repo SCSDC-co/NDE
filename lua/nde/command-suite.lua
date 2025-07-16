@@ -219,6 +219,74 @@ local function handle_nde_command(opts)
       )
     end
     
+  -- SnapIcon commands
+  elseif cmd == 'snapicon' then
+    if subcmd == 'config' then
+      -- Show current configuration in a user-friendly format
+      local snapicon = require('snapicon')
+      local config = snapicon.get_config()
+      
+      local config_display = '📸 SnapIcon Configuration:\n\n' ..
+        '🎨 APPEARANCE:\n' ..
+        '   Theme: ' .. config.silicon.theme .. '\n' ..
+        '   Background: ' .. config.silicon.background .. '\n' ..
+        '   Font: ' .. config.silicon.font .. '\n' ..
+        '   Padding: ' .. config.silicon.pad_vert .. 'px (vertical), ' .. config.silicon.pad_horiz .. 'px (horizontal)\n' ..
+        '   Window Controls: ' .. (config.silicon.show_window_controls and 'Yes' or 'No') .. '\n\n' ..
+        '📁 OUTPUT:\n' ..
+        '   Directory: ' .. (config.output.dir or '~/Pictures (default)') .. '\n' ..
+        '   Filename Template: ' .. config.output.filename_template .. '\n' ..
+        '   Full Path Title: ' .. (config.output.use_full_path_title and 'Yes' or 'No') .. '\n' ..
+        '   Copy to Clipboard: ' .. (config.output.copy_to_clipboard and 'Yes' or 'No') .. '\n\n' ..
+        '⌨️  KEYBINDINGS:\n' ..
+        '   Screenshot: ' .. config.keymaps.take_screenshot .. '\n\n' ..
+        '💻 COMMANDS:\n' ..
+        '   Command Name: :' .. config.command.name .. '\n' ..
+        '   Range Support: ' .. (config.command.range and 'Yes' or 'No') .. '\n\n' ..
+        '🔧 WHICH-KEY:\n' ..
+        '   Enabled: ' .. (config.which_key.enabled and 'Yes' or 'No') .. '\n' ..
+        '   Group Key: ' .. config.which_key.group_key .. '\n' ..
+        '   Group Name: ' .. config.which_key.group_name
+      
+      vim.notify(
+        config_display,
+        vim.log.levels.INFO,
+        { title = '📸 SnapIcon Configuration', timeout = 12000 }
+      )
+      
+    elseif subcmd == 'help' then
+      -- Show help
+      vim.notify(
+        '📸 SnapIcon Usage:\n\n' ..
+        '1. **Visual Selection**: Select code in visual mode (v or V)\n' ..
+        '2. **Take Screenshot**: Press <leader>S or use :Silicon command\n\n' ..
+        '⚙️  FEATURES:\n' ..
+        '• 🎨 Configurable themes and styling\n' ..
+        '• 📁 Flexible output options\n' ..
+        '• 🪟 Full file path in window title\n' ..
+        '• 🌈 Automatic language detection\n' ..
+        '• 📋 Visual selection support\n\n' ..
+        '💡 TIP: Screenshots are saved to your Pictures directory!',
+        vim.log.levels.INFO,
+        { title = '📸 SnapIcon Help', timeout = 10000 }
+      )
+      
+    else
+      -- SnapIcon commands overview
+      vim.notify(
+        '📸 SnapIcon Commands:\n\n' ..
+        '⚙️  :NDE snapicon config - Show current configuration\n' ..
+        '📚 :NDE snapicon help - Show usage instructions\n\n' ..
+        '💡 QUICK START:\n' ..
+        '1. Select code in visual mode (v or V)\n' ..
+        '2. Press <leader>S to take screenshot\n' ..
+        '3. Find your beautiful screenshot in ~/Pictures!\n\n' ..
+        '🎯 TIP: Uses Silicon for beautiful code screenshots!',
+        vim.log.levels.INFO,
+        { title = '📸 SnapIcon Screenshot Tool', timeout = 8000 }
+      )
+    end
+    
   -- OptiSpec commands
   elseif cmd == 'optispec' then
     if subcmd == 'status' then
@@ -308,6 +376,9 @@ local function handle_nde_command(opts)
       '   :NDE snippetslist - List available snippets for current file\n\n' ..
       '🎨 MINTY:\n' ..
       '   :NDE minty help - Color picker usage guide\n\n' ..
+      '📸 SNAPICON:\n' ..
+      '   :NDE snapicon config - Show snapicon configuration\n' ..
+      '   :NDE snapicon help - Screenshot tool usage guide\n\n' ..
       '🚀 OPTISPEC:\n' ..
       '   :NDE optispec - Smart language management\n' ..
       '   :NDE optispec status - Show installed languages\n' ..
@@ -345,7 +416,7 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
     -- First level commands
     local commands = {
       'help', 'tips', 'tip', 'codeiumauth', 'hardmode',
-      'snippetslist', 'welcome', 'status', 'minty', 'optispec'
+      'snippetslist', 'welcome', 'status', 'minty', 'snapicon', 'optispec'
     }
     return vim.tbl_filter(function(cmd)
       return cmd:match('^' .. vim.pesc(ArgLead))
@@ -363,6 +434,8 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
       return { 'on', 'off' }
     elseif cmd == 'minty' then
       return { 'help' }
+    elseif cmd == 'snapicon' then
+      return { 'config', 'help' }
     elseif cmd == 'optispec' then
       return { 'status', 'browse', 'install', 'remove', 'update' }
     end
