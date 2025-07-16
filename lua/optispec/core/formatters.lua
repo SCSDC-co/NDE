@@ -20,7 +20,9 @@ function M.setup()
       json = { "prettierd" },
       yaml = { "prettierd" },
       markdown = { "prettierd" },
-      cshtml = { "prettierd" },
+      
+      -- ASP.NET Razor Pages (use only csharpier)
+      cshtml = { "csharpier" },
       
       -- Python (autopep8 fixes indentation, then black for style)
       python = { "autopep8", "black" },
@@ -80,6 +82,10 @@ function M.setup()
     -- Formatter configurations
     formatters = {
       prettierd = {
+        condition = function(self, ctx)
+          -- Explicitly exclude .cshtml files
+          return not ctx.filename:match("%.cshtml$")
+        end,
         args = {
           "--print-width=80",
           "--tab-width=4",
@@ -97,13 +103,21 @@ function M.setup()
           "$FILENAME",
         },
       },
+      csharpier = {
+        command = "csharpier",
+        args = { "--write-stdout" },
+        stdin = true,
+      },
     },
     
     -- Format on save
-    format_on_save = {
-      timeout_ms = 500,
-      lsp_fallback = true,
-    },
+    format_on_save = function(bufnr)
+      local filetype = vim.bo[bufnr].filetype
+      return {
+        timeout_ms = 500,
+        lsp_fallback = filetype ~= "cshtml",
+      }
+    end,
     
     -- Default format options
     default_format_opts = {
@@ -120,7 +134,9 @@ function M.setup()
   
   -- Set up format keymap
   vim.keymap.set("n", "<leader>f", function()
-    require("conform").format({ async = true, lsp_fallback = true })
+    local filetype = vim.bo.filetype
+    local lsp_fallback = filetype ~= "cshtml"
+    require("conform").format({ async = true, lsp_fallback = lsp_fallback })
   end, { desc = "Format buffer" })
 end
 

@@ -107,9 +107,10 @@ function M.setup()
 
   -- C# (OmniSharp)
   require("optispec.core.languages").register_language("csharp", {
-    filetypes = { "cs" },
+    filetypes = { "cs", "cshtml" },
     mason_tools = {
       lsp = { "omnisharp" },
+      formatters = { "csharpier" },
     },
     lsp = {
       name = "omnisharp",

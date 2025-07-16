@@ -48,7 +48,7 @@ function M.setup()
 
   -- Angular
   require("optispec.core.languages").register_language("angular", {
-    filetypes = { "typescript", "html", "scss" },
+    filetypes = { "typescript", "scss" },
     mason_tools = {
       lsp = { "angular-language-server" },
       formatters = { "prettierd" },
@@ -184,6 +184,20 @@ function M.setup()
       },
     },
     treesitter = {},
+  })
+
+  -- HTML
+  require("optispec.core.languages").register_language("html", {
+    filetypes = { "html" },
+    mason_tools = {
+      lsp = { "html-lsp" },
+      formatters = { "prettierd" },
+    },
+    lsp = {
+      name = "html",
+      settings = {},
+    },
+    treesitter = { "html" },
   })
 
   -- Astro
