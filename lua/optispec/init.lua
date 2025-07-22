@@ -30,8 +30,20 @@ function M.setup(opts)
 
   -- Create Mason command immediately but defer actual setup
   vim.api.nvim_create_user_command('Mason', function()
-    M.ensure_initialized()
-    require('mason.ui').open()
+    -- Ensure Mason plugin is loaded first
+    local has_mason = pcall(require, 'mason')
+    if not has_mason then
+      vim.notify('Mason is loading... Please try again in a moment.', vim.log.levels.INFO)
+      -- Force lazy to load Mason and related plugins
+      vim.cmd('Lazy load mason.nvim')
+      vim.defer_fn(function()
+        M.ensure_initialized()
+        require('mason.ui').open()
+      end, 100)
+    else
+      M.ensure_initialized()
+      require('mason.ui').open()
+    end
   end, { desc = 'Open Mason' })
   
   -- Only setup essential autocmds for file detection (lightweight)

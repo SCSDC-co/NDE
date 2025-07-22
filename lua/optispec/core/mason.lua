@@ -2,8 +2,14 @@ local M = {}
 
 -- Setup Mason with OptiSpec configuration
 function M.setup(config)
-	-- Initialize Mason first
-	require("mason").setup({
+	-- Initialize Mason first (with safe loading)
+	local has_mason, mason = pcall(require, "mason")
+	if not has_mason then
+		vim.notify("Mason not available, skipping setup", vim.log.levels.WARN)
+		return
+	end
+	
+	mason.setup({
 		ui = {
 			check_outdated_packages_on_open = config.tools.mason.auto_update,
 			icons = {

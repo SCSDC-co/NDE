@@ -10,7 +10,9 @@ M.core_plugins = {
   "core/dashboard",
   "core/snacks", 
   "core/which-key",
+  "core/optispec", -- Essential for loading Mason, lspconfig, dap, treesitter, conform, and more
   "core/hardtime",
+  "core/vim-be-good", -- Vim training game
   
   -- UI essentials
   "ui/bufferline",
@@ -61,7 +63,6 @@ local function load_user_config()
       -- Core category
       legendary = false,
       persistence = false,
-      ["vim-be-good"] = false,
       
       -- UI category
       animate = false,
@@ -174,7 +175,6 @@ return {
     -- Core category
     legendary = false,
     persistence = false,
-    ["vim-be-good"] = false,
     
     -- UI category
     animate = false,

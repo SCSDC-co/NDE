@@ -16,7 +16,17 @@ for _, plugin_path in ipairs(plugins_to_load) do
     -- Safely load the plugin configuration
     local ok, plugin_config = pcall(require, full_path)
     if ok and type(plugin_config) == "table" then
-      table.insert(plugins, plugin_config)
+      -- Check if this is a nested array of plugins (like OptiSpec)
+      -- OptiSpec returns an array where each element is a plugin table with plugin[1] = "plugin/name"
+      if plugin_config[1] and type(plugin_config[1]) == "table" and type(plugin_config[1][1]) == "string" then
+        -- This is an array of plugin configs, add each one individually
+        for _, nested_plugin in ipairs(plugin_config) do
+          table.insert(plugins, nested_plugin)
+        end
+      else
+        -- This is a single plugin config
+        table.insert(plugins, plugin_config)
+      end
     else
       vim.notify("Failed to load plugin: " .. full_path, vim.log.levels.WARN)
     end
