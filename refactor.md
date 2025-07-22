@@ -6,17 +6,17 @@ Refactor bloated nvim config (95 plugins) into a streamlined system with:
 - Optional plugins (user-configurable)
 
 ## Core Plugins (Always Enabled)
-- **UI/Visual**: hlchunk, neotree, telescope, bufferline, lualine, themery + themes, dashboard
+- **UI/Visual**: hlchunk, neotree, telescope, bufferline, lualine, themery + themes, dashboard, dropbar
 - **Display**: satellite, virt-column, render-markdown
 - **Completion**: cmp + all sources
-- **UX Enhancement**: noice, snacks, mini, which-key, smart-splits
+- **UX Enhancement**: noice, snacks, mini (all mini suite plugins), which-key, smart-splits
 - **Terminal/Tools**: betterterm, coderunner
 - **Editing**: vim-repeat, yanky, zen-mode, undo-tree
-- **Git**: vim-fugitive
+- **Git**: vim-fugitive, gitsigns
 - **NDE Suite**: All NDE-related plugins (loaded via lua/launch.lua)
   - optispec, snapicon, and other NDE-only plugins
 
-**Total Core Plugins: ~25**
+**Total Core Plugins: ~30**
 
 ## Implementation Plan
 
