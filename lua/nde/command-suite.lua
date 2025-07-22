@@ -287,6 +287,10 @@ local function handle_nde_command(opts)
       )
     end
     
+  -- Plugin Manager commands
+  elseif cmd == 'pluginmanager' then
+    require('config.ui.plugin_manager').show()
+    
   -- OptiSpec commands
   elseif cmd == 'optispec' then
     if subcmd == 'status' then
@@ -383,6 +387,8 @@ local function handle_nde_command(opts)
       '   :NDE optispec - Smart language management\n' ..
       '   :NDE optispec status - Show installed languages\n' ..
       '   :NDE optispec browse - Browse available languages\n\n' ..
+      '🔧 PLUGIN MANAGER:\n' ..
+      '   :NDE pluginmanager - Configure optional plugins\n\n' ..
       '🎉 GENERAL:\n' ..
       '   :NDE welcome - Show welcome message\n' ..
       '   :NDE status - Show NDE status\n\n' ..
@@ -416,7 +422,7 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
     -- First level commands
     local commands = {
       'help', 'tips', 'tip', 'codeiumauth', 'hardmode',
-      'snippetslist', 'welcome', 'status', 'minty', 'snapicon', 'optispec'
+      'snippetslist', 'welcome', 'status', 'minty', 'snapicon', 'optispec', 'pluginmanager'
     }
     return vim.tbl_filter(function(cmd)
       return cmd:match('^' .. vim.pesc(ArgLead))

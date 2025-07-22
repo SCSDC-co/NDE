@@ -19,16 +19,17 @@ M.core_plugins = {
   "ui/hlchunk",
   "ui/lualine",
   "ui/noice",
-  "ui/satellite",
   "ui/themery",
   "ui/virt-column",
   "ui/zen",
-  "ui/dropbar",
+  "ui/rainbow-delimiters",
+  "ui/highlight-colors",
   
   -- Navigation essentials
   "navigation/neotree",
   "navigation/smart-splits",
   "navigation/telescope",
+  "navigation/leap",
   
   -- Editing essentials
   "editing/cmp", -- Includes all CMP sources: nvim-lsp, buffer, path, cmdline, nvim-lua, calc, emoji, spell, luasnip, signature-help
@@ -37,7 +38,6 @@ M.core_plugins = {
   "editing/mini-comment", -- mini.comment
   "editing/repeat",
   "editing/undotree",
-  "editing/yanky",
   
   -- Development essentials
   "development/code-runner",
@@ -55,7 +55,7 @@ M.core_plugins = {
 
 -- Load user configuration for optional plugins
 local function load_user_config()
-  local config_path = vim.fn.stdpath("config") .. "/nde-config.lua"
+  local config_path = vim.fn.stdpath("config") .. "/nde-plugins.json"
   
   -- Default configuration
   local default_config = {
@@ -66,10 +66,10 @@ local function load_user_config()
       
       -- UI category
       animate = false,
-      ["highlight-colors"] = false,
+      dropbar = false,
       incline = false,
       presence = false,
-      ["rainbow-delimiters"] = false,
+      satellite = false,
       ["symbol-usage"] = false,
       ["url-open"] = false,
       minty = false,
@@ -77,7 +77,6 @@ local function load_user_config()
       -- Navigation category
       aerial = false,
       harpoon = false,
-      leap = false,
       numb = false,
       oil = false,
       
@@ -92,6 +91,7 @@ local function load_user_config()
       tabout = false,
       treesj = false,
       ["visual-multi"] = false,
+      yanky = false,
       
       -- Development category
       avante = false,
@@ -111,12 +111,15 @@ local function load_user_config()
     }
   }
   
-  -- Try to load user config, fallback to default
+  -- Try to load JSON config, fallback to default
   local user_config = default_config
   if vim.fn.filereadable(config_path) == 1 then
-    local ok, loaded_config = pcall(dofile, config_path)
-    if ok and type(loaded_config) == "table" then
-      user_config = vim.tbl_deep_extend("force", default_config, loaded_config)
+    local content = vim.fn.readfile(config_path)
+    if content and #content > 0 then
+      local ok, loaded_config = pcall(vim.json.decode, table.concat(content, '\n'))
+      if ok and type(loaded_config) == "table" and loaded_config.optional_plugins then
+        user_config.optional_plugins = loaded_config.optional_plugins
+      end
     end
   end
   
@@ -163,72 +166,92 @@ end
 
 -- Create default user configuration file if it doesn't exist
 function M.create_default_config()
-  local config_path = vim.fn.stdpath("config") .. "/nde-config.lua"
+  local config_path = vim.fn.stdpath("config") .. "/nde-plugins.json"
   
   if vim.fn.filereadable(config_path) == 0 then
-    local config_content = [[-- NDE User Configuration
--- Configure which optional plugins to enable/disable
--- Set to true to enable, false to disable
-
-return {
-  optional_plugins = {
-    -- Core category
-    legendary = false,
-    persistence = false,
+    local default_config = {
+      optional_plugins = {
+        -- Core category
+        legendary = false,
+        persistence = false,
+        
+        -- UI category
+        animate = false,
+        dropbar = false,
+        incline = false,
+        presence = false,
+        satellite = false,
+        ["symbol-usage"] = false,
+        ["url-open"] = false,
+        minty = false,
+        
+        -- Navigation category
+        aerial = false,
+        harpoon = false,
+        numb = false,
+        oil = false,
+        
+        -- Editing category
+        autotag = false,
+        blink = false,
+        dial = false,
+        hlargs = false,
+        illuminate = false,
+        snippet = false,
+        spectre = false,
+        tabout = false,
+        treesj = false,
+        ["visual-multi"] = false,
+        yanky = false,
+        
+        -- Development category
+        avante = false,
+        playground = false,
+        ["todo-comments"] = false,
+        trouble = false,
+        
+        -- Git category
+        diffview = false,
+        ["vim-flog"] = false,
+        
+        -- Terminal category
+        toggleterm = false,
+        
+        -- Coding category
+        refactoring = false,
+      }
+    }
     
-    -- UI category
-    animate = false,
-    ["highlight-colors"] = false,
-    incline = false,
-    presence = false,
-    ["rainbow-delimiters"] = false,
-    ["symbol-usage"] = false,
-    ["url-open"] = false,
-    minty = false,
+    -- Create pretty-printed JSON manually for better readability
+    local json_lines = { "{" }
+    table.insert(json_lines, '  "optional_plugins": {')
     
-    -- Navigation category
-    aerial = false,
-    harpoon = false,
-    leap = false,
-    numb = false,
-    oil = false,
+    -- Sort keys for consistent output
+    local sorted_keys = {}
+    for key in pairs(default_config.optional_plugins) do
+      table.insert(sorted_keys, key)
+    end
+    table.sort(sorted_keys)
     
-    -- Editing category
-    autotag = false,
-    blink = false,
-    dial = false,
-    hlargs = false,
-    illuminate = false,
-    snippet = false,
-    spectre = false,
-    tabout = false,
-    treesj = false,
-    ["visual-multi"] = false,
+    -- Add each plugin with proper formatting
+    for i, key in ipairs(sorted_keys) do
+      local value = default_config.optional_plugins[key] and "true" or "false"
+      local comma = i < #sorted_keys and "," or ""
+      table.insert(json_lines, '    "' .. key .. '": ' .. value .. comma)
+    end
     
-    -- Development category
-    avante = false,
-    playground = false,
-    ["todo-comments"] = false,
-    trouble = false,
+    table.insert(json_lines, '  }')
+    table.insert(json_lines, '}')
     
-    -- Git category
-    diffview = false,
-    ["vim-flog"] = false,
-    
-    -- Terminal category
-    toggleterm = false,
-    
-    -- Coding category
-    refactoring = false,
-  }
-}
-]]
+    local json_content = table.concat(json_lines, '\n')
     
     local file = io.open(config_path, "w")
     if file then
-      file:write(config_content)
+      file:write(json_content)
       file:close()
       vim.notify("Created NDE configuration file: " .. config_path, vim.log.levels.INFO)
+    else
+      vim.notify("Failed to create default JSON configuration", vim.log.levels.ERROR)
     end
   end
 end
