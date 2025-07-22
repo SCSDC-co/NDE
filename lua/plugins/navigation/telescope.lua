@@ -28,8 +28,11 @@ return {
 				},
 			})
 
-			-- Load yanky extension
-			telescope.load_extension("yank_history")
+			-- Load yanky extension only if yanky plugin is available
+			local has_yanky = pcall(require, "yanky")
+			if has_yanky then
+				telescope.load_extension("yank_history")
+			end
 
 			local builtin = require("telescope.builtin")
 			vim.keymap.set("n", "<leader>ff", function()

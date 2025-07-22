@@ -23,8 +23,13 @@ return {
 		config = function()
 			local capabilities =
 				require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-			require("lspconfig").util.default_config =
-				vim.tbl_extend("force", require("lspconfig").util.default_config, { capabilities = capabilities })
+			
+			-- Only set lspconfig capabilities if lspconfig is available
+			local has_lspconfig, lspconfig = pcall(require, "lspconfig")
+			if has_lspconfig then
+				lspconfig.util.default_config =
+					vim.tbl_extend("force", lspconfig.util.default_config, { capabilities = capabilities })
+			end
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
 			local lspkind = require("lspkind")

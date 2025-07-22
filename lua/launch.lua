@@ -7,6 +7,9 @@ local path_separator = is_windows and ";" or ":"
 vim.env.PATH = vim.env.PATH .. path_separator .. home .. "/.luarocks/bin"
 require("opts")
 
+-- Initialize NDE Plugin Manager
+require("config.plugin-manager").setup()
+
 require("lazynvim.lazy")
 -- Theme is now handled by Themery plugin
 require("keymaps")

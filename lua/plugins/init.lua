@@ -1,33 +1,53 @@
--- Load all plugins from organized subdirectories
+-- NDE Plugin Loader - Integrates with Plugin Manager
+-- This system loads only core plugins + user-enabled optional plugins
+
+local plugin_manager = require("config.plugin-manager")
 local plugins = {}
 
--- Define plugin categories and their directories
-local categories = {
-  "core",
-  "ui", 
-  "navigation",
-  "editing",
-  "development",
-  "lsp",
-  "debugging",
-  "git",
-  "terminal"
-}
+-- Get list of plugins to load (core + enabled optional)
+local plugins_to_load = plugin_manager.get_plugins_to_load()
 
--- Load plugins from each category
-for _, category in ipairs(categories) do
-  local category_path = "plugins." .. category
-  
-  -- Get all .lua files in the category directory
-  local plugin_files = vim.fn.glob(vim.fn.stdpath("config") .. "/lua/plugins/" .. category .. "/*.lua", false, true)
-  
-  for _, file_path in ipairs(plugin_files) do
-    local file_name = vim.fn.fnamemodify(file_path, ":t:r")  -- Get filename without extension
-    local plugin_config = require(category_path .. "." .. file_name)
+-- Load each plugin configuration
+for _, plugin_path in ipairs(plugins_to_load) do
+  local category, plugin_name = plugin_path:match("^([^/]+)/(.+)$")
+  if category and plugin_name then
+    local full_path = "plugins." .. category .. "." .. plugin_name
     
-    -- Add the plugin configuration to our plugins table
-    if type(plugin_config) == "table" then
-      table.insert(plugins, plugin_config)
+    -- Safely load the plugin configuration
+    local ok, plugin_config = pcall(require, full_path)
+    if ok and type(plugin_config) == "table" then
+      -- Check if this is a nested array of plugins (like OptiSpec)
+      -- OptiSpec returns an array where each element is a plugin table with plugin[1] = "plugin/name"
+      if plugin_config[1] and type(plugin_config[1]) == "table" and type(plugin_config[1][1]) == "string" then
+        -- This is an array of plugin configs, add each one individually
+        for _, nested_plugin in ipairs(plugin_config) do
+          table.insert(plugins, nested_plugin)
+        end
+      else
+        -- This is a single plugin config
+        table.insert(plugins, plugin_config)
+      end
+    else
+      vim.notify("Failed to load plugin: " .. full_path, vim.log.levels.WARN)
+    end
+  end
+end
+
+-- Also add the missing 'coding' category to scan for any enabled plugins
+local coding_files = vim.fn.glob(vim.fn.stdpath("config") .. "/lua/plugins/coding/*.lua", false, true)
+for _, file_path in ipairs(coding_files) do
+  local file_name = vim.fn.fnamemodify(file_path, ":t:r")
+  local user_config = require("config.plugin-manager")
+  
+  -- Check if this coding plugin is enabled in user config
+  local config_path = vim.fn.stdpath("config") .. "/nde-config.lua"
+  if vim.fn.filereadable(config_path) == 1 then
+    local ok, loaded_config = pcall(dofile, config_path)
+    if ok and loaded_config and loaded_config.optional_plugins and loaded_config.optional_plugins[file_name] then
+      local plugin_config = require("plugins.coding." .. file_name)
+      if type(plugin_config) == "table" then
+        table.insert(plugins, plugin_config)
+      end
     end
   end
 end
