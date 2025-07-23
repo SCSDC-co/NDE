@@ -22,6 +22,20 @@ return {
             require("GUI.theme-init").setup_lotus()
           ]],
         },
+        {
+          name = "Catppuccin Mocha",
+          colorscheme = "catppuccin-mocha",
+          before = [[
+            require("GUI.theme-init").setup_catppuccin_mocha()
+          ]],
+        },
+        {
+          name = "Catppuccin Latte",
+          colorscheme = "catppuccin-latte",
+          before = [[
+            require("GUI.theme-init").setup_catppuccin_latte()
+          ]],
+        },
       },
       -- Live preview while navigating themes
       livePreview = true,

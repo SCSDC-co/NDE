@@ -16,8 +16,6 @@ return {
 			[[  ░ ░░   ░ ▒░ ░ ▒  ▒  ░ ░  ░  ]],
 			[[     ░   ░ ░  ░ ░  ░    ░     ]],
 			[[           ░    ░       ░  ░  ]],
-			[[                              ]],
-			[[Neovim Development Environment]],
 		}
 
 		dashboard.section.buttons.val = {
@@ -61,16 +59,23 @@ return {
 		dashboard.section.footer.val = {
 			"",
 			get_startup_time(),
-			"🚀 NDE v6.1.1",
 		}
 
 		dashboard.section.header.opts.hl = "DashboardHeader"
 		dashboard.section.buttons.opts.hl = "DashboardButtons"
 		dashboard.section.footer.opts.hl = "DashboardFooter"
 
-		-- Configure proper centering
+		dashboard.config.layout = {
+			{ type = "padding", val = 7 },
+			dashboard.section.header,
+			{ type = "padding", val = 2 },
+			dashboard.section.buttons,
+			dashboard.section.footer,
+		}
+
 		dashboard.config.opts = {
 			margin = 5,
+			noautocmd = true,
 		}
 
 		require("alpha").setup(dashboard.config)

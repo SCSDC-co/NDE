@@ -2,9 +2,9 @@
 
 ![NDE Banner](.github/assets/banner_ui_readme.png)
 
-**The Ultimate Neovim Development Environment - v6.1.1**
+**The Ultimate Neovim Development Environment - v6.2.0**
 
-A meticulously crafted, enterprise-grade Neovim configuration featuring **Revolutionary LSP Scrolling Optimization** with buffer detachment approach for ultra-smooth scrolling experience. Built on the **Complete Plugin System Revolution & Management Overhaul** foundation - revolutionary plugin management with minimal core approach (~32 essential plugins) and optional plugin system (~60+ user-configurable) for enhanced usability and performance. Powered by triple AI integration, OptiSpec Language Management System, and modern plugin ecosystem.
+A meticulously crafted, enterprise-grade Neovim configuration featuring **Multi-Theme Architecture** with seamless Catppuccin integration and **Optimized Performance**. Built on the **Complete Plugin System Revolution & Management Overhaul** foundation - revolutionary plugin management with minimal core approach (~32 essential plugins) and optional plugin system (~60+ user-configurable) for enhanced usability and performance. Powered by triple AI integration, OptiSpec Language Management System, and modern dual-theme ecosystem.
 
 <p>
     <a href="https://github.com/SCSDC-co/NDE/stargazers">
@@ -43,44 +43,36 @@ A meticulously crafted, enterprise-grade Neovim configuration featuring **Revolu
 
 ## ✨ Revolutionary Features
 
-### ⚡ **Revolutionary LSP Scrolling Optimization** ⭐ *NEW in v6.1.1 - Ultra-Smooth Scrolling*
+### ⚡ **Enhanced Performance & Stability** ⭐ *Optimized in v6.2.0*
 
-_Revolutionary buffer detachment approach for buttery smooth scrolling experience with complete LSP isolation_
+_Refined performance optimizations with focus on stability and responsiveness_
 
-#### **🎯 Buffer Detachment Technology**
-- **🚫 Complete LSP Isolation**: LSP clients are fully detached from buffer during scrolling for instant smoothness
-- **⚡ Instant Effect**: Immediate LSP disconnection when scrolling starts - no lag, no interference
-- **🔄 Smart Reattachment**: Seamless client restoration after scrolling stops with automatic diagnostic refresh
-- **📊 Dual Event Detection**: Uses both `WinScrolled` and `CursorMoved` events for comprehensive scroll detection
-- **⏱️ Lightning Recovery**: 100ms debounce for instant LSP re-enabling - 3x faster than previous versions
+#### **🎯 Performance Improvements**
+- **⚡ Optimized Startup**: Enhanced plugin loading with intelligent lazy loading
+- **🔄 Stable Scrolling**: Improved scrolling performance through plugin optimization
+- **🛡️ Enhanced Reliability**: Robust error handling and graceful degradation
+- **📊 Resource Management**: Efficient memory usage and CPU optimization
+- **⏱️ Responsive UI**: Smooth interface interactions across all components
 
-#### **🏗️ Professional Engineering Excellence**
-- **🔧 Modern API Integration**: Fixed deprecated `vim.lsp.get_active_clients()` with current Neovim standards
-- **🛡️ Bulletproof Recovery**: Robust client management with automatic diagnostic refresh and state tracking
-- **🎨 Clean Interface**: Complete diagnostic clearing during scroll for distraction-free navigation
-- **📍 Intelligent Detection**: Primary WinScrolled detection with CursorMoved fallback for all navigation patterns
-- **💾 State Management**: Smart storage of client information for reliable reattachment
-
-#### **📊 Performance Revolution**
-
-| **Scrolling Metric**          | **Before v6.1.1**     | **After v6.1.1**           | **Achievement**               |
-|-------------------------------|------------------------|-----------------------------|-------------------------------|
-| **LSP During Scroll**         | Partially disabled     | **Completely detached**     | **🚀 True LSP isolation**     |
-| **Scroll Responsiveness**     | Good with issues       | **Perfect butter smooth**   | **⚡ Revolutionary fluidity** |
-| **Re-enable Speed**           | 300ms delay            | **100ms instant**           | **🎯 3x faster recovery**     |
-| **API Compatibility**         | Deprecated warnings    | **Modern API usage**        | **🔧 Future-proof code**     |
-| **User Experience**           | Occasional lag         | **Professional smoothness** | **✨ Editor-grade quality**  |
+#### **🏗️ Stability Enhancements**
+- **🔧 Modern API Integration**: Latest Neovim API compatibility throughout
+- **🛡️ Error Recovery**: Comprehensive error handling with automatic recovery
+- **🎨 Clean Interface**: Optimized diagnostic display and UI responsiveness
+- **📍 Smart Performance**: Intelligent resource allocation for smooth operation
+- **💾 Memory Efficiency**: Optimized memory usage patterns
 
 ### 🚀 **Complete Plugin System Revolution & Management Overhaul** ⭐ *v6.0.0 - Major Architecture Redesign*
 
 _Complete plugin system redesign with minimal core approach and optional plugin system for enhanced usability and performance_
 
-#### **🏗️ Advanced Theme Architecture**
-- **🎨 Live Theme Switching**: Instant switching between Kanagawa Dragon (dark) and Lotus (light) variants with `<leader>th`
+#### **🏗️ Advanced Multi-Theme Architecture**
+- **🎨 Live Theme Switching**: Instant switching between 4 beautiful themes with `<leader>th` - Kanagawa Dragon/Lotus and Catppuccin Mocha/Latte
+- **🌙 Dark/Light Variants**: Professional dark themes (Dragon, Mocha) and elegant light themes (Lotus, Latte) for any environment
 - **🔄 Dynamic Adaptation**: All plugins automatically adapt to theme changes with intelligent highlight coordination
-- **🛠️ Theme-Aware Components**: Every UI element updates seamlessly - from completion menus to diagnostic signs
+- **🛠️ Theme-Aware Components**: Every UI element updates seamlessly - from completion menus to diagnostic signs with theme-specific highlights
 - **💾 State Persistence**: Your theme preference automatically saves and restores across sessions
 - **⚡ Zero Performance Impact**: Theme switching with live preview and minimal lag
+- **🎯 Custom Integration**: Catppuccin themes include specialized highlights for Telescope, Git signs, diagnostics, and completion menus
 
 #### **🎯 Professional Visual Enhancement**
 - **🚦 Semantic Sign Colors**: Git signs and diagnostics use proper color coding (green/yellow/red)

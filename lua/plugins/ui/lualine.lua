@@ -9,6 +9,7 @@ return {
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 		"rebelot/kanagawa.nvim", -- Ensure kanagawa loads first
+		"catppuccin/nvim", -- Ensure catppuccin loads first
 	},
 	config = function()
 		require("lualine").setup({

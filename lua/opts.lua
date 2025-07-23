@@ -119,6 +119,12 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 4 -- Keep cursor 4 lines away from screen edges
 vim.opt.sidescrolloff = 8 -- Keep cursor 8 columns away from screen edges
 
+-- Additional scrolling performance improvements
+vim.opt.lazyredraw = false -- Don't use lazyredraw as it can cause issues with modern plugins
+vim.opt.scroll = 0 -- Use default scroll amount (half screen)
+vim.opt.mouse = "a" -- Enable mouse support for better scrolling
+vim.opt.mousescroll = "ver:3,hor:0" -- Smooth mouse scrolling
+
 -- Custom highlights
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#e6c384", bold = true })
 vim.api.nvim_set_hl(0, "LineNr", { fg = "#5e5c64" })
@@ -156,138 +162,4 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 	end,
 })
 
--- ===== LSP SCROLLING OPTIMIZATION ===== --
--- Buffer detachment approach: temporarily detach LSP clients from buffer during scrolling
 
-local scroll_debounce_timer = nil
-local last_line = nil
-local scroll_threshold = 3 -- Consider it scrolling if moving more than 3 lines
-local lsp_disabled = false
-local detached_clients = {}
-
-local function disable_lsp_during_scroll()
-	if lsp_disabled then
-		return
-	end
-
-	local bufnr = vim.api.nvim_get_current_buf()
-	
-	-- Clear all diagnostics immediately
-	vim.diagnostic.reset(nil, bufnr)
-	
-	-- Disable diagnostic display
-	vim.diagnostic.config({
-		virtual_text = false,
-		signs = false,
-		update_in_insert = false,
-		underline = false,
-		severity_sort = false,
-	}, bufnr)
-
-	-- Detach all LSP clients from current buffer
-	local clients = vim.lsp.get_clients({ bufnr = bufnr })
-	for _, client in pairs(clients) do
-		if client.attached_buffers[bufnr] then
-			-- Store client info for reattachment
-			table.insert(detached_clients, {
-				client = client,
-				bufnr = bufnr,
-				name = client.name
-			})
-			
-			-- Detach client from buffer
-			vim.lsp.buf_detach_client(bufnr, client.id)
-		end
-	end
-
-	lsp_disabled = true
-end
-
-local function enable_lsp_after_scroll()
-	if not lsp_disabled then
-		return
-	end
-
-	-- Reattach all detached clients
-	for _, client_info in pairs(detached_clients) do
-		vim.schedule(function()
-			-- Reattach client to buffer
-			vim.lsp.buf_attach_client(client_info.bufnr, client_info.client.id)
-		end)
-	end
-
-	-- Clear detached clients list
-	detached_clients = {}
-
-	-- Re-enable diagnostics with delay to allow reattachment
-	vim.schedule(function()
-		vim.diagnostic.config({
-			virtual_text = {
-				spacing = 4,
-				source = "if_many",
-				prefix = "●",
-			},
-			signs = true,
-			update_in_insert = false,
-			underline = true,
-			severity_sort = true,
-			float = {
-				focusable = false,
-				style = "minimal",
-				border = "rounded",
-				source = "always",
-				header = "",
-				prefix = "",
-			},
-		})
-	end)
-
-	lsp_disabled = false
-end
-
--- Use WinScrolled event for more accurate scroll detection
-vim.api.nvim_create_autocmd({ "WinScrolled" }, {
-	callback = function()
-		if not lsp_disabled then
-			disable_lsp_during_scroll()
-		end
-
-		-- Reset debounce timer
-		if scroll_debounce_timer then
-			vim.fn.timer_stop(scroll_debounce_timer)
-		end
-
-		-- Re-enable LSP features after scrolling stops
-		scroll_debounce_timer = vim.fn.timer_start(100, function()
-			enable_lsp_after_scroll()
-			scroll_debounce_timer = nil
-		end)
-	end,
-})
-
--- Fallback using CursorMoved for other navigation
-vim.api.nvim_create_autocmd({ "CursorMoved" }, {
-	callback = function()
-		local current_line = vim.fn.line(".")
-
-		-- Only trigger during significant cursor movements (likely scrolling)
-		if last_line and math.abs(current_line - last_line) >= scroll_threshold then
-			if not lsp_disabled then
-				disable_lsp_during_scroll()
-			end
-
-			-- Reset debounce timer
-			if scroll_debounce_timer then
-				vim.fn.timer_stop(scroll_debounce_timer)
-			end
-
-			-- Re-enable LSP features after scrolling stops
-			scroll_debounce_timer = vim.fn.timer_start(100, function()
-				enable_lsp_after_scroll()
-				scroll_debounce_timer = nil
-			end)
-		end
-
-		last_line = current_line
-	end,
-})

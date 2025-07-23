@@ -5,6 +5,125 @@ All notable changes to the NDE (Neovim Development Environment) project will be 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.2.0] - 2025-07-23
+
+### 🎨 **Catppuccin Theme Integration & Dashboard Enhancement** ⭐ *Beautiful Dual Colorscheme Support*
+
+#### **🌙 Catppuccin Mocha & Latte Theme Addition** ⭐ *Complete Theme Ecosystem*
+
+- **Added** Full Catppuccin Mocha (Dark) theme integration
+  - **🎨 Custom Highlights**: Comprehensive highlight overrides for all UI components
+  - **🔌 Plugin Integration**: Perfect compatibility with completion menus, diagnostics, git signs
+  - **🎯 Theme Consistency**: Seamless integration with lualine, telescope, noice, and all plugins
+  - **⚡ Performance Optimized**: Lazy-loaded with proper initialization order
+  - **🛠️ Mason Ready**: Pre-configured for development tool integration
+
+- **Added** Full Catppuccin Latte (Light) theme integration  
+  - **☀️ Light Theme Excellence**: Beautiful daytime coding experience with excellent contrast
+  - **🎨 Elegant Colors**: Soft, warm light theme with professional appearance
+  - **👁️ Eye-Friendly**: Optimized for extended coding sessions in bright environments
+  - **🔄 Theme Switching**: Instant switching between light and dark variants
+  - **📱 Consistent UI**: Unified styling across all interface elements
+
+#### **🎛️ Advanced Theme Management System** ⭐ *Professional Theme Switching*
+
+- **Enhanced** Themery integration with expanded theme collection
+  - **🌈 Four Theme Options**: Dragon, Lotus (Kanagawa) + Mocha, Latte (Catppuccin)
+  - **⚡ Live Preview**: Real-time theme preview while browsing options
+  - **🔄 Instant Switching**: Seamless theme changes with `<leader>th` hotkey
+  - **💾 State Persistence**: Theme preference automatically saved
+  - **🎨 Dynamic Integration**: Automatic lualine theme updates
+
+- **Implemented** Advanced theme initialization system
+  - **🔧 Setup Functions**: Individual setup functions for each theme variant
+  - **🎨 Highlight Management**: Automatic custom highlight application
+  - **⚡ Lazy Loading**: Themes loaded only when selected for optimal performance
+  - **🛡️ Error Recovery**: Robust theme switching with fallback mechanisms
+
+#### **🎯 Dashboard Centering Resolution** ⭐ *Perfect Visual Alignment*
+
+- **Fixed** Dashboard centering issues with simplified approach
+  - **📍 Reliable Positioning**: Removed complex calculations causing layout problems
+  - **⚡ Clean Implementation**: Simplified padding system for consistent results
+  - **🎨 Visual Polish**: Dashboard now displays perfectly centered on all screen sizes
+  - **🔧 Maintenance Friendly**: Cleaner, more maintainable dashboard configuration
+  - **✨ User Experience**: Improved first impression with professional dashboard layout
+
+#### **🔧 LSP Scrolling Optimization Refinement** ⭐ *Stability & Performance*
+
+- **Removed** Complex scrolling optimizations causing instability
+  - **🛡️ Stability First**: Eliminated LSP client detachment/reattachment complexity
+  - **⚡ Smooth Performance**: Leveraged native Neovim 0.10+ smooth scrolling
+  - **🎯 Reliable Experience**: Consistent scrolling behavior across all file types
+  - **🔧 Simplified Codebase**: Cleaner, more maintainable scrolling implementation
+  - **✅ Issue Resolution**: Fixed diagnostic configuration conflicts and namespace errors
+
+### 🏗️ **Theme Architecture Excellence**
+
+#### **📊 Catppuccin Color Integration**
+
+| **Component** | **Mocha Colors** | **Latte Colors** | **Integration** |
+|---------------|------------------|------------------|-----------------|
+| **Background** | `#1e1e2e` | `#eff1f5` | **Perfect contrast** |
+| **Text** | `#cdd6f4` | `#4c4f69` | **Optimal readability** |
+| **Accent** | `#89b4fa` | `#1e66f5` | **Consistent branding** |
+| **Success** | `#a6e3a1` | `#40a02b` | **Clear semantics** |
+| **Warning** | `#f9e2af` | `#df8e1d` | **Attention grabbing** |
+| **Error** | `#f38ba8` | `#d20f39` | **Immediate recognition** |
+
+#### **🎨 Comprehensive Plugin Integration**
+
+- **✅ Completion**: CMP menus with themed colors and selection highlights
+- **✅ Diagnostics**: Error, warning, info, hint signs with proper theme colors
+- **✅ Git Integration**: Add, change, delete signs with semantic colors
+- **✅ UI Components**: Which-key, noice, telescope, neo-tree all themed
+- **✅ Terminal**: Consistent theming in integrated terminal windows
+- **✅ Floating Windows**: Borders, backgrounds, and text properly themed
+
+#### **⚡ Performance & User Experience**
+
+- **🏎️ Fast Theme Switching**: Instant theme changes with no lag or flicker
+- **💾 Memory Efficient**: Themes loaded on-demand with proper cleanup
+- **🔧 Developer Friendly**: Easy to extend and customize theme variations
+- **📱 Responsive Design**: Perfect appearance on all terminal sizes
+- **🎯 Professional Quality**: Color schemes matching industry standards
+
+### 🏆 **Technical Achievement Summary**
+
+#### **🎨 For Theme Experience:**
+- **✅ Dual Theme Support**: Complete light/dark theme ecosystem with Catppuccin
+- **🎛️ Advanced Management**: Professional theme switching with live preview
+- **🎯 Perfect Integration**: Seamless plugin compatibility across all themes
+- **⚡ Performance Optimized**: Lazy loading and efficient theme management
+- **🔧 Maintainable Code**: Clean, organized theme architecture
+
+#### **🛡️ For System Stability:**
+- **✅ Dashboard Fixed**: Resolved centering issues with simplified approach
+- **⚡ Scrolling Optimized**: Removed complex optimizations for stable performance
+- **🔧 Code Quality**: Cleaner, more maintainable configuration structure
+- **🛠️ Error Prevention**: Eliminated namespace conflicts and diagnostic issues
+- **📊 User Satisfaction**: Improved reliability and visual appeal
+
+### 🎯 **Configuration Updates**
+
+#### **🆕 New Files Added**
+- `lua/GUI/highlights-catppuccin-mocha.lua` - Mocha theme custom highlights
+- `lua/GUI/highlights-catppuccin-latte.lua` - Latte theme custom highlights
+- Enhanced `lua/GUI/theme-init.lua` - Theme setup functions
+- Updated `lua/plugins/ui/themery.lua` - Expanded theme collection
+- Updated `lua/lazynvim/lazy.lua` - Catppuccin plugin integration
+
+#### **🎨 Theme Collection Status**
+
+| **Theme** | **Variant** | **Optimized** | **Status** |
+|-----------|-------------|---------------|------------|
+| **Kanagawa Dragon** | Dark | ✅ | Production Ready |
+| **Kanagawa Lotus** | Light | ✅ | Production Ready |
+| **Catppuccin Mocha** | Dark | ✅ | **NEW in 6.2.0** |
+| **Catppuccin Latte** | Light | ✅ | **NEW in 6.2.0** |
+
+---
+
 ## [6.1.1] - 2025-07-23
 
 ### 🔧 **Critical LSP Scrolling Fix & Performance Enhancement** ⭐ *Ultra-Smooth Scrolling Experience*

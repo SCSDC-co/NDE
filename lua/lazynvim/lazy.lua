@@ -12,8 +12,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-	-- Theme with high priority
+	-- Themes with high priority
 	{ 'rebelot/kanagawa.nvim', priority = 1000 },
+	{ 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
 
 	-- Import all organized plugins
 	{ import = 'plugins' },
