@@ -2,9 +2,9 @@
 
 ![NDE Banner](.github/assets/banner_ui_readme.png)
 
-**The Ultimate Neovim Development Environment - v6.1.0**
+**The Ultimate Neovim Development Environment - v6.1.1**
 
-A meticulously crafted, enterprise-grade Neovim configuration featuring the **Complete Plugin System Revolution & Management Overhaul** - revolutionary plugin management with minimal core approach (~32 essential plugins) and optional plugin system (~60+ user-configurable) for enhanced usability and performance. Built on top of the powerful AI Revolution foundation with triple AI integration, OptiSpec Language Management System, and modern plugin ecosystem.
+A meticulously crafted, enterprise-grade Neovim configuration featuring **Revolutionary LSP Scrolling Optimization** with buffer detachment approach for ultra-smooth scrolling experience. Built on the **Complete Plugin System Revolution & Management Overhaul** foundation - revolutionary plugin management with minimal core approach (~32 essential plugins) and optional plugin system (~60+ user-configurable) for enhanced usability and performance. Powered by triple AI integration, OptiSpec Language Management System, and modern plugin ecosystem.
 
 <p>
     <a href="https://github.com/SCSDC-co/NDE/stargazers">
@@ -43,7 +43,35 @@ A meticulously crafted, enterprise-grade Neovim configuration featuring the **Co
 
 ## ✨ Revolutionary Features
 
-### 🚀 **Complete Plugin System Revolution & Management Overhaul** ⭐ *NEW in v6.0.0 - Major Architecture Redesign*
+### ⚡ **Revolutionary LSP Scrolling Optimization** ⭐ *NEW in v6.1.1 - Ultra-Smooth Scrolling*
+
+_Revolutionary buffer detachment approach for buttery smooth scrolling experience with complete LSP isolation_
+
+#### **🎯 Buffer Detachment Technology**
+- **🚫 Complete LSP Isolation**: LSP clients are fully detached from buffer during scrolling for instant smoothness
+- **⚡ Instant Effect**: Immediate LSP disconnection when scrolling starts - no lag, no interference
+- **🔄 Smart Reattachment**: Seamless client restoration after scrolling stops with automatic diagnostic refresh
+- **📊 Dual Event Detection**: Uses both `WinScrolled` and `CursorMoved` events for comprehensive scroll detection
+- **⏱️ Lightning Recovery**: 100ms debounce for instant LSP re-enabling - 3x faster than previous versions
+
+#### **🏗️ Professional Engineering Excellence**
+- **🔧 Modern API Integration**: Fixed deprecated `vim.lsp.get_active_clients()` with current Neovim standards
+- **🛡️ Bulletproof Recovery**: Robust client management with automatic diagnostic refresh and state tracking
+- **🎨 Clean Interface**: Complete diagnostic clearing during scroll for distraction-free navigation
+- **📍 Intelligent Detection**: Primary WinScrolled detection with CursorMoved fallback for all navigation patterns
+- **💾 State Management**: Smart storage of client information for reliable reattachment
+
+#### **📊 Performance Revolution**
+
+| **Scrolling Metric**          | **Before v6.1.1**     | **After v6.1.1**           | **Achievement**               |
+|-------------------------------|------------------------|-----------------------------|-------------------------------|
+| **LSP During Scroll**         | Partially disabled     | **Completely detached**     | **🚀 True LSP isolation**     |
+| **Scroll Responsiveness**     | Good with issues       | **Perfect butter smooth**   | **⚡ Revolutionary fluidity** |
+| **Re-enable Speed**           | 300ms delay            | **100ms instant**           | **🎯 3x faster recovery**     |
+| **API Compatibility**         | Deprecated warnings    | **Modern API usage**        | **🔧 Future-proof code**     |
+| **User Experience**           | Occasional lag         | **Professional smoothness** | **✨ Editor-grade quality**  |
+
+### 🚀 **Complete Plugin System Revolution & Management Overhaul** ⭐ *v6.0.0 - Major Architecture Redesign*
 
 _Complete plugin system redesign with minimal core approach and optional plugin system for enhanced usability and performance_
 

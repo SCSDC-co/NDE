@@ -5,7 +5,79 @@ All notable changes to the NDE (Neovim Development Environment) project will be 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [6.1.0] - 2025-01-17
+## [6.1.1] - 2025-07-23
+
+### 🔧 **Critical LSP Scrolling Fix & Performance Enhancement** ⭐ *Ultra-Smooth Scrolling Experience*
+
+#### **⚡ Revolutionary LSP Scrolling Optimization** ⭐ *Buffer Detachment Approach*
+
+- **Fixed** LSP scrolling optimization with revolutionary buffer detachment method
+  - **🎯 Complete LSP Disabling**: LSP clients are now fully detached from buffer during scrolling
+  - **⚡ Instant Effect**: Immediate LSP isolation when scrolling starts for buttery smooth experience
+  - **🔄 Smart Reattachment**: Clients seamlessly reattach after scrolling stops with proper restoration
+  - **📊 Dual Event Detection**: Uses both `WinScrolled` and `CursorMoved` for comprehensive scroll detection
+  - **🛡️ Bulletproof Recovery**: Robust client management with automatic diagnostic refresh
+  - **⏱️ Optimized Timing**: 100ms debounce delay for instant LSP re-enabling after scroll stops
+  - **🎨 Clean Interface**: Complete diagnostic clearing during scroll for distraction-free navigation
+
+- **Enhanced** Scroll detection system with modern Neovim API integration
+  - **🔧 API Modernization**: Fixed deprecated `vim.lsp.get_active_clients()` to use `vim.lsp.get_clients()`
+  - **🎯 WinScrolled Priority**: Primary scroll detection using `WinScrolled` event for accuracy
+  - **📍 CursorMoved Fallback**: Backup detection for other navigation patterns
+  - **⚡ Performance Boost**: Reduced debounce from 300ms to 100ms for snappier re-enabling
+  - **🔄 State Management**: Improved LSP state tracking and client information storage
+
+#### **🎨 Technical Implementation Excellence** ⭐ *Professional Engineering*
+
+- **Implemented** Advanced buffer detachment architecture
+  - **🚫 Complete Isolation**: `vim.lsp.buf_detach_client()` for true LSP disconnection during scroll
+  - **🔄 Seamless Restoration**: `vim.lsp.buf_attach_client()` for perfect client reattachment
+  - **📊 Diagnostic Management**: Immediate diagnostic clearing and smart refresh after scroll
+  - **💾 Client State Storage**: Intelligent storage of client information for reliable reattachment
+  - **⏱️ Scheduled Operations**: Proper vim.schedule() usage for smooth async operations
+  - **🛡️ Error Prevention**: Robust error handling and graceful degradation
+
+### 🎯 **Performance Impact & User Experience**
+
+#### **📊 Scrolling Performance Revolution**
+
+| **Metric**                    | **Before v6.1.1**     | **After v6.1.1**           | **Achievement**               |
+|-------------------------------|------------------------|-----------------------------|-------------------------------|
+| **LSP During Scroll**         | Partially disabled     | **Completely detached**     | **🚀 True LSP isolation**     |
+| **Scroll Responsiveness**     | Good with issues       | **Perfect butter smooth**   | **⚡ Revolutionary fluidity** |
+| **Re-enable Speed**           | 300ms delay            | **100ms instant**           | **🎯 3x faster recovery**     |
+| **API Compatibility**         | Deprecated warnings    | **Modern API usage**        | **🔧 Future-proof code**     |
+| **Scroll Detection**          | CursorMoved only       | **WinScrolled + fallback**  | **📊 Comprehensive coverage**|
+| **User Experience**           | Occasional lag         | **Professional smoothness** | **✨ Editor-grade quality**  |
+
+#### **🏗️ Architecture Excellence**
+
+- **⚡ Buffer Detachment**: True LSP client isolation during scrolling operations
+- **🔧 Modern API Usage**: Updated to use current Neovim LSP API standards
+- **📊 Dual Detection**: Comprehensive scroll detection with primary and fallback methods
+- **🛡️ Robust Recovery**: Bulletproof client reattachment with diagnostic refresh
+- **⏱️ Optimized Timing**: Fine-tuned delays for instant responsiveness
+
+#### **👥 User Experience Enhancement**
+
+- **🏎️ Ultra-Smooth Scrolling**: Completely eliminated LSP interference during navigation
+- **⚡ Instant Recovery**: LSP functionality returns immediately after scroll stops
+- **🔧 Transparent Operation**: LSP optimization works invisibly in background
+- **📊 Consistent Performance**: Reliable smooth scrolling across all file types
+- **💻 Professional Quality**: Scrolling experience matching top-tier editors
+
+### 🏆 **Technical Achievement Summary**
+
+- **✅ Complete Fix**: Resolved LSP scrolling issues with revolutionary buffer detachment
+- **🔧 API Modernization**: Updated deprecated functions for future compatibility
+- **⚡ Performance Boost**: 3x faster LSP recovery with 100ms debounce timing
+- **📊 Enhanced Detection**: Dual-method scroll detection for comprehensive coverage
+- **🛡️ Robust Implementation**: Professional error handling and state management
+- **🎯 User-Focused**: Optimized for real-world scrolling patterns and workflows
+
+---
+
+## [6.1.0] - 2025-07-23
 
 ### 🚀 **Scrolling Performance Revolution & LSP Optimization** ⭐ *Buttery Smooth Editor Experience*
 

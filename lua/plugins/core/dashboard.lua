@@ -61,7 +61,7 @@ return {
 		dashboard.section.footer.val = {
 			"",
 			get_startup_time(),
-			"🚀 NDE v6.1.0",
+			"🚀 NDE v6.1.1",
 		}
 
 		dashboard.section.header.opts.hl = "DashboardHeader"
