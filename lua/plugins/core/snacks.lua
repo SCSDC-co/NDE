@@ -39,9 +39,56 @@ return {
 			end,
 		},
 
+		-- Indent guides configuration (replaces hlchunk)
+		indent = {
+			enabled = true,
+			indent = {
+				priority = 1,
+				enabled = true,
+				char = "│", -- Same char as hlchunk
+				only_scope = false,
+				only_current = false,
+				hl = "HLIndent1", -- Use hlchunk indent highlight
+			},
+			-- Animation settings
+			animate = {
+				enabled = true,
+				style = "out",
+				easing = "linear",
+				duration = {
+					step = 20,
+					total = 150,
+				},
+			},
+			-- Scope highlighting (replaces hlchunk chunk)
+			scope = {
+				enabled = true,
+				priority = 200,
+				char = "│",
+				underline = false,
+				only_current = false,
+				hl = "HLChunk1", -- Use hlchunk scope highlight
+			},
+			-- Chunk disabled (we use scope instead)
+			chunk = {
+				enabled = false,
+			},
+			-- Filter to exclude filetypes (same as hlchunk)
+			filter = function(buf)
+				local ft = vim.bo[buf].filetype
+				return vim.g.snacks_indent ~= false 
+					and vim.b[buf].snacks_indent ~= false 
+					and vim.bo[buf].buftype == ""
+					and not vim.tbl_contains({
+						"dashboard", "help", "lspinfo", "packer", "checkhealth", 
+						"man", "mason", "neo-tree", "alpha", "Trouble", "trouble",
+						"lazy", "notify", "toggleterm", "lazyterm"
+					}, ft)
+			end,
+		},
+
 		-- Disable modules we don't use
 		dashboard = { enabled = false },
-		indent = { enabled = false },
 		input = { enabled = false },
 		notifier = { enabled = false },
 		quickfile = { enabled = false },

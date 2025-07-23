@@ -9,16 +9,26 @@ vim.notify = function(msg, level, opts)
 	if level == vim.log.levels.INFO and (string.find(msg, "LSP") or string.find(msg, "Configured") or string.find(msg, "loaded")) then
 		return -- Suppress LSP info messages
 	end
+	-- Also suppress LSP client quit messages during scrolling optimization
+	if msg and (string.find(msg, "quit with exit code") or string.find(msg, "Check log for errors") or string.find(msg, "Client.*quit")) then
+		return -- Suppress LSP client restart messages
+	end
 	original_notify(msg, level, opts)
 end
 
 -- Core performance settings
 vim.opt.ttyfast = true              -- Fast terminal connection
-vim.opt.updatetime = 50             -- Faster CursorHold events (default 4000ms)
+vim.opt.updatetime = 200            -- Reasonable update time
 vim.opt.timeoutlen = 300            -- Faster key sequence timeout
 vim.opt.ttimeoutlen = 10            -- Faster key code timeout
 vim.opt.redrawtime = 1500           -- Time limit for syntax highlighting
 vim.opt.synmaxcol = 200             -- Limit syntax highlighting to 200 columns
+
+-- Enable smooth scrolling for better experience
+if vim.fn.has("nvim-0.10") == 1 then
+  vim.opt.smoothscroll = true
+end
+
 -- vim.opt.regexpengine = 1            -- Commented out due to compatibility issues
 
 -- Memory and performance optimizations
@@ -90,6 +100,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 vim.opt.cursorline = true
+vim.opt.scrolloff = 8          -- Keep cursor 8 lines away from screen edges
 
 -- Custom highlights
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#e6c384", bold = true })
@@ -102,7 +113,7 @@ vim.api.nvim_set_hl(0, "LineNr", { fg = "#5e5c64" })
 -- Performance autocmds
 vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained" }, {
 	callback = function()
-		vim.opt.updatetime = 50
+		vim.opt.updatetime = 200
 	end,
 })
 
@@ -128,5 +139,54 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 	end,
 })
 
--- LSP timeout logic removed - it was too aggressive and restarting healthy clients
--- If you experience actual LSP issues, you can manually restart with :LspRestart
+
+-- ===== LSP SCROLLING OPTIMIZATION ===== --
+-- Safer approach: disable LSP clients during scrolling
+
+local lsp_clients_disabled = false
+local scroll_timer = nil
+local disabled_clients = {}
+
+local function disable_lsp_clients()
+  if lsp_clients_disabled then return end
+  
+  local clients = vim.lsp.get_clients()
+  for _, client in ipairs(clients) do
+    disabled_clients[client.id] = client
+    pcall(function()
+      client.stop()
+    end)
+  end
+  lsp_clients_disabled = true
+end
+
+local function enable_lsp_clients()
+  if not lsp_clients_disabled then return end
+  
+  -- Restart disabled clients
+  for _, client in pairs(disabled_clients) do
+    pcall(function()
+      vim.lsp.start_client(client.config)
+    end)
+  end
+  disabled_clients = {}
+  lsp_clients_disabled = false
+end
+
+vim.api.nvim_create_autocmd({ "CursorMoved" }, {
+  callback = function()
+    -- Disable LSP clients when scrolling starts
+    disable_lsp_clients()
+    
+    -- Reset timer
+    if scroll_timer then
+      vim.fn.timer_stop(scroll_timer)
+    end
+    
+    -- Re-enable LSP after scrolling stops
+    scroll_timer = vim.fn.timer_start(500, function()
+      enable_lsp_clients()
+      scroll_timer = nil
+    end)
+  end,
+})

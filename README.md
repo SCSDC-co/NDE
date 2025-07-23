@@ -2,7 +2,7 @@
 
 ![NDE Banner](.github/assets/banner_ui_readme.png)
 
-**The Ultimate Neovim Development Environment - v6.0.0**
+**The Ultimate Neovim Development Environment - v6.1.0**
 
 A meticulously crafted, enterprise-grade Neovim configuration featuring the **Complete Plugin System Revolution & Management Overhaul** - revolutionary plugin management with minimal core approach (~32 essential plugins) and optional plugin system (~60+ user-configurable) for enhanced usability and performance. Built on top of the powerful AI Revolution foundation with triple AI integration, OptiSpec Language Management System, and modern plugin ecosystem.
 

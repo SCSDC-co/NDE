@@ -20,7 +20,7 @@ return {
 				globalstatus = true,
 				-- Hide lualine on dashboard and other special buffers
 				disabled_filetypes = {
-					statusline = { "alpha", "dashboard", "neo-tree", "Trouble", "spectre_panel", "toggleterm" },
+					statusline = { "alpha", "dashboard" },
 					winbar = {},
 				},
 			},

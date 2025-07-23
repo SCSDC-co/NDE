@@ -15,7 +15,7 @@ return {
       },
       
       -- Delay before highlighting (milliseconds)
-      delay = 100,
+      delay = 500,  -- Increased from 100ms to reduce parsing frequency
       
       -- Filetypes to exclude from illumination
       filetypes_denylist = {

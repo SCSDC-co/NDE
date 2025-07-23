@@ -61,7 +61,7 @@ return {
 		dashboard.section.footer.val = {
 			"",
 			get_startup_time(),
-			"🚀 NDE v5.0.0",
+			"🚀 NDE v6.1.0",
 		}
 
 		dashboard.section.header.opts.hl = "DashboardHeader"
@@ -70,7 +70,7 @@ return {
 
 		-- Configure proper centering
 		dashboard.config.opts = {
-			margin = 5
+			margin = 5,
 		}
 
 		require("alpha").setup(dashboard.config)
@@ -82,19 +82,19 @@ return {
 				local buffers = vim.api.nvim_list_bufs()
 				local valid_buffers = {}
 				local no_name_buf = nil
-				
+
 				for _, buf in ipairs(buffers) do
 					if vim.api.nvim_buf_is_valid(buf) and vim.api.nvim_buf_is_loaded(buf) then
 						local name = vim.api.nvim_buf_get_name(buf)
-						local buftype = vim.api.nvim_buf_get_option(buf, 'buftype')
-						
+						local buftype = vim.api.nvim_buf_get_option(buf, "buftype")
+
 						-- Skip special buffers (dashboard, help, etc.)
-						if buftype == '' then
-							if name == '' then
+						if buftype == "" then
+							if name == "" then
 								-- Check if it's an empty, unmodified buffer
-								local modified = vim.api.nvim_buf_get_option(buf, 'modified')
+								local modified = vim.api.nvim_buf_get_option(buf, "modified")
 								local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
-								if not modified and (#lines == 0 or (#lines == 1 and lines[1] == '')) then
+								if not modified and (#lines == 0 or (#lines == 1 and lines[1] == "")) then
 									no_name_buf = buf
 								else
 									table.insert(valid_buffers, buf)
@@ -105,14 +105,14 @@ return {
 						end
 					end
 				end
-				
+
 				-- If we have a real file open and an empty [No Name] buffer, delete the empty one
 				if no_name_buf and #valid_buffers > 0 then
 					vim.api.nvim_buf_delete(no_name_buf, { force = true })
 				end
 			end,
 		})
-		
+
 		if vim.fn.argc() == 0 then
 			require("alpha").start()
 		end

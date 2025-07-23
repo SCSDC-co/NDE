@@ -16,7 +16,6 @@ M.core_plugins = {
   
   -- UI essentials
   "ui/bufferline",
-  "ui/hlchunk",
   "ui/lualine",
   "ui/noice",
   "ui/themery",
