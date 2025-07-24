@@ -5,9 +5,13 @@ local Popup = require('nui.popup')
 local Menu = require('nui.menu')
 local event = require('nui.utils.autocmd').event
 
+-- Centralized data directory for NDE settings
+local nde_data_dir = vim.fn.stdpath("data") .. "/nde"
+vim.fn.mkdir(nde_data_dir, "p") -- Ensure directory exists
+
 -- Get current plugin configuration
 local function get_current_config()
-  local config_path = vim.fn.stdpath("config") .. "/nde-plugins.json"
+  local config_path = nde_data_dir .. "/plugins.json"
   if vim.fn.filereadable(config_path) == 1 then
     local content = vim.fn.readfile(config_path)
     if content and #content > 0 then
@@ -22,7 +26,7 @@ end
 
 -- Save plugin configuration
 local function save_config(new_config)
-  local config_path = vim.fn.stdpath("config") .. "/nde-plugins.json"
+  local config_path = nde_data_dir .. "/plugins.json"
   
   -- Create pretty-printed JSON manually for better readability
   local json_lines = { "{" }

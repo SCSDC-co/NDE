@@ -3,7 +3,7 @@ local M = {}
 -- Fun tips for beginners with emojis! 🎉
 local tips = {
 	{
-		title = '🚀 Navigation Basics',
+		title = "🚀 Navigation Basics",
 		content = {
 			"🏃‍♂️ Use 'h j k l' to move around (left, down, up, right)",
 			"✏️ Press 'i' to enter Insert mode, 'Esc' to exit",
@@ -13,7 +13,7 @@ local tips = {
 		},
 	},
 	{
-		title = '📁 File Operations',
+		title = "📁 File Operations",
 		content = {
 			"💾 ':w' to save file, ':q' to quit",
 			"🚪 ':wq' to save and quit, ':q!' to quit without saving",
@@ -23,7 +23,7 @@ local tips = {
 		},
 	},
 	{
-		title = '⚡ Editing Power',
+		title = "⚡ Editing Power",
 		content = {
 			"🗑️ 'dd' to delete line, 'yy' to copy line",
 			"📋 'p' to paste after cursor, 'P' to paste before",
@@ -33,7 +33,7 @@ local tips = {
 		},
 	},
 	{
-		title = '🧭 Code Navigation',
+		title = "🧭 Code Navigation",
 		content = {
 			"🎯 'gd' to go to definition (jump to the source!)",
 			"🔗 'gr' to find references (see who's using this!)",
@@ -43,7 +43,7 @@ local tips = {
 		},
 	},
 	{
-		title = '🪟 Window Management',
+		title = "🪟 Window Management",
 		content = {
 			"➖ ':split' or ':sp' for horizontal split",
 			"➡️  ':vsplit' or ':vs' for vertical split",
@@ -53,7 +53,7 @@ local tips = {
 		},
 	},
 	{
-		title = '💻 Terminal & Tasks',
+		title = "💻 Terminal & Tasks",
 		content = {
 			"🖥️ '<leader>tt' to toggle terminal",
 			"📐 '<leader>th' for horizontal terminal",
@@ -63,7 +63,7 @@ local tips = {
 		},
 	},
 	{
-		title = '🎨 Pro Tips',
+		title = "🎨 Pro Tips",
 		content = {
 			"🌟  Use '.' to repeat last command",
 			"🔄 'Ctrl+o' to go back, 'Ctrl+i' to go forward",
@@ -73,7 +73,7 @@ local tips = {
 		},
 	},
 	{
-		title = '🚀 Advanced Moves',
+		title = "🚀 Advanced Moves",
 		content = {
 			"🏆 'ci(' to change inside parentheses",
 			"🎯 'da\"' to delete around quotes",
@@ -86,23 +86,29 @@ local tips = {
 }
 
 local current_tip = 1
-local last_shown_tip = nil  -- Track last shown tip to prevent duplicates
+local last_shown_tip = nil -- Track last shown tip to prevent duplicates
 local tip_timer = nil
 local tip_interval = 45000 -- 45 seconds (a bit longer to read)
 
--- Settings persistence
-local settings_file = vim.fn.stdpath('data') .. '/nde_tips_settings.json'
+-- Settings persistence - centralized in nde folder
+local nde_data_dir = vim.fn.stdpath("data") .. "/nde"
+local settings_file = nde_data_dir .. "/tips_settings.json"
+
+-- Ensure the nde data directory exists
+vim.fn.mkdir(nde_data_dir, "p")
 local tips_enabled = true
+local welcome_enabled = true
 
 -- Load settings from file
 local function load_settings()
-	local file = io.open(settings_file, 'r')
+	local file = io.open(settings_file, "r")
 	if file then
-		local content = file:read('*all')
+		local content = file:read("*all")
 		file:close()
 		local ok, settings = pcall(vim.fn.json_decode, content)
 		if ok and settings then
 			tips_enabled = settings.tips_enabled ~= false
+			welcome_enabled = settings.welcome_enabled ~= false
 			-- Load hardtime setting
 			if settings.hardtime ~= nil then
 				vim.g.nde_hardmode_enabled = settings.hardtime
@@ -115,9 +121,10 @@ end
 local function save_settings()
 	local settings = {
 		tips_enabled = tips_enabled,
-		hardtime = vim.g.nde_hardmode_enabled
+		welcome_enabled = welcome_enabled,
+		hardtime = vim.g.nde_hardmode_enabled,
 	}
-	local file = io.open(settings_file, 'w')
+	local file = io.open(settings_file, "w")
 	if file then
 		file:write(vim.fn.json_encode(settings))
 		file:close()
@@ -129,37 +136,48 @@ local function is_in_file()
 	local buftype = vim.bo.buftype
 	local filetype = vim.bo.filetype
 	local bufname = vim.api.nvim_buf_get_name(0)
-	
+
 	-- Don't show tips in special buffers
-	if buftype ~= '' then
+	if buftype ~= "" then
 		return false
 	end
-	
+
 	-- Don't show tips in help, terminal, or other special filetypes
 	local excluded_filetypes = {
-		'help', 'terminal', 'NvimTree', 'neo-tree', 'TelescopePrompt',
-		'TelescopeResults', 'dashboard', 'alpha', 'startify', 'lazy',
-		'mason', 'lspinfo', 'checkhealth', 'qf'
+		"help",
+		"terminal",
+		"NvimTree",
+		"neo-tree",
+		"TelescopePrompt",
+		"TelescopeResults",
+		"dashboard",
+		"alpha",
+		"startify",
+		"lazy",
+		"mason",
+		"lspinfo",
+		"checkhealth",
+		"qf",
 	}
-	
+
 	for _, ft in ipairs(excluded_filetypes) do
 		if filetype == ft then
 			return false
 		end
 	end
-	
+
 	-- Must have a filename (not an empty buffer)
-	return bufname ~= ''
+	return bufname ~= ""
 end
 local fun_messages = {
 	"🎉 Here's another awesome tip!",
-	'💡 Time for some Vim wisdom!',
-	'🚀 Level up your coding skills!',
-	'✨ Master these moves!',
-	'🔥 Hot tip incoming!',
-	'🏆 Pro tip alert!',
-	'🎯 Precision editing ahead!',
-	'⚡  Speed boost unlocked!',
+	"💡 Time for some Vim wisdom!",
+	"🚀 Level up your coding skills!",
+	"✨ Master these moves!",
+	"🔥 Hot tip incoming!",
+	"🏆 Pro tip alert!",
+	"🎯 Precision editing ahead!",
+	"⚡  Speed boost unlocked!",
 }
 
 -- Show tip notification with random fun message
@@ -168,15 +186,15 @@ local function show_tip(tip)
 		return
 	end
 
-	local content = table.concat(tip.content, '\n')
+	local content = table.concat(tip.content, "\n")
 	local fun_msg = fun_messages[math.random(#fun_messages)]
-	
+
 	-- Use nvim-notify directly to avoid noice formatting
-	local notify = require('notify')
+	local notify = require("notify")
 	notify(content, vim.log.levels.INFO, {
-		title = fun_msg .. ' ' .. tip.title,
+		title = fun_msg .. " " .. tip.title,
 		timeout = 6000,
-		render = 'default',
+		render = "default",
 	})
 end
 
@@ -213,19 +231,24 @@ end
 
 -- Show epic welcome message
 local function show_welcome()
+	-- Check if welcome messages are enabled
+	if not welcome_enabled then
+		return
+	end
+
 	vim.defer_fn(function()
 		if tips_enabled then
 			-- Welcome message when tips are enabled
 			vim.notify(
-				'🎉 Welcome to NDE (Neovim Development Environment)! 🎉\n\n'
-					.. '🚀 Ready to code with power and simplicity\n'
-					.. '💡 Fun tips will appear every 45 seconds\n'
-					.. '⚙️ Use :NDE to access all commands\n'
-					.. '🎯 Type :NDE help for the full command list\n\n'
-					.. '🔥 First epic tip coming right up...',
+				"🎉 Welcome to NDE (Neovim Development Environment)! 🎉\n\n"
+					.. "🚀 Ready to code with power and simplicity\n"
+					.. "💡 Fun tips will appear every 45 seconds\n"
+					.. "⚙️ Use :NDE to access all commands\n"
+					.. "🎯 Type :NDE help for the full command list\n\n"
+					.. "🔥 First epic tip coming right up...",
 				vim.log.levels.INFO,
 				{
-					title = '🌟 NDE is Ready to Rock! 🌟',
+					title = "🌟 NDE is Ready to Rock! 🌟",
 					timeout = 5000,
 				}
 			)
@@ -239,16 +262,16 @@ local function show_welcome()
 		else
 			-- Welcome message when tips are disabled
 			vim.notify(
-				'🎉 Welcome back to NDE! 🎉\n\n'
-					.. '🚀 Ready to code with power and simplicity\n'
-					.. '😴 Tips are currently sleeping (you disabled them)\n'
-					.. '💡 Use :NDE tips on to wake them up anytime\n'
-					.. '⚙️ Use :NDE to access all commands\n'
-					.. '🎯 Type :NDE help for the full command list\n\n'
-					.. '🔥 Happy coding without distractions!',
+				"🎉 Welcome back to NDE! 🎉\n\n"
+					.. "🚀 Ready to code with power and simplicity\n"
+					.. "😴 Tips are currently sleeping (you disabled them)\n"
+					.. "💡 Use :NDE tips on to wake them up anytime\n"
+					.. "⚙️ Use :NDE to access all commands\n"
+					.. "🎯 Type :NDE help for the full command list\n\n"
+					.. "🔥 Happy coding without distractions!",
 				vim.log.levels.INFO,
 				{
-					title = '🌟 NDE is Ready (Tips Off) 🌟',
+					title = "🌟 NDE is Ready (Tips Off) 🌟",
 					timeout = 5000,
 				}
 			)
@@ -267,7 +290,7 @@ M.enable = function()
 	tips_enabled = true
 	save_settings()
 	start_tips()
-	vim.notify('🎉 Tips enabled! Get ready for awesome advice! 💡', vim.log.levels.INFO)
+	vim.notify("🎉 Tips enabled! Get ready for awesome advice! 💡", vim.log.levels.INFO)
 end
 
 M.disable = function()
@@ -282,10 +305,10 @@ M.toggle = function()
 	save_settings()
 	if tips_enabled then
 		start_tips()
-		vim.notify('🎉 Tips enabled! Let the learning begin! 🚀', vim.log.levels.INFO)
+		vim.notify("🎉 Tips enabled! Let the learning begin! 🚀", vim.log.levels.INFO)
 	else
 		stop_tips()
-		vim.notify('😴 Tips paused. Use :NDE tips on to resume!', vim.log.levels.INFO)
+		vim.notify("😴 Tips paused. Use :NDE tips on to resume!", vim.log.levels.INFO)
 	end
 end
 
@@ -314,33 +337,47 @@ M.show_random = function()
 	end
 	show_tip(tips[random_tip])
 	last_shown_tip = random_tip
-	vim.notify('🎲 Random tip served! 🎯', vim.log.levels.INFO)
+	vim.notify("🎲 Random tip served! 🎯", vim.log.levels.INFO)
 end
 
 M.show_welcome = function()
 	show_welcome()
 end
 
+-- Welcome message toggle functions
+M.welcome_toggle = function()
+	welcome_enabled = not welcome_enabled
+	save_settings()
+	if welcome_enabled then
+		vim.notify("🎉 Welcome messages enabled! You'll see them on startup! 👋", vim.log.levels.INFO)
+	else
+		vim.notify("😴 Welcome messages disabled. Quiet startups from now on!", vim.log.levels.INFO)
+	end
+end
+
 M.show_status = function()
 	vim.notify(
-		'📊 NDE Status Dashboard:\n\n'
-			.. '💡 Tips: '
-			.. (tips_enabled and 'Enabled & Rocking! 🎉' or 'Sleeping 😴')
-			.. '\n'
-			.. '🎯 Current tip: '
+		"📊 NDE Status Dashboard:\n\n"
+			.. "💡 Tips: "
+			.. (tips_enabled and "Enabled & Rocking! 🎉" or "Sleeping 😴")
+			.. "\n"
+			.. "👋 Welcome Messages: "
+			.. (welcome_enabled and "Enabled & Welcoming! 🎉" or "Disabled 😴")
+			.. "\n"
+			.. "🎯 Current tip: "
 			.. current_tip
-			.. '/'
+			.. "/"
 			.. #tips
-			.. '\n'
-			.. '⏰ Tip interval: '
+			.. "\n"
+			.. "⏰ Tip interval: "
 			.. (tip_interval / 1000)
-			.. 's\n'
-			.. '📚 Total tips available: '
+			.. "s\n"
+			.. "📚 Total tips available: "
 			.. #tips
-			.. ' awesome tips!\n'
-			.. '🚀 NDE is running smooth!',
+			.. " awesome tips!\n"
+			.. "🚀 NDE is running smooth!",
 		vim.log.levels.INFO,
-		{ title = '🌟 NDE Status Report' }
+		{ title = "🌟 NDE Status Report" }
 	)
 end
 
@@ -350,7 +387,7 @@ function M.setup(opts)
 
 	-- Check if settings file exists
 	local settings_exist = vim.loop.fs_stat(settings_file) ~= nil
-	
+
 	if settings_exist then
 		-- Load saved settings if they exist
 		load_settings()
@@ -367,10 +404,10 @@ function M.setup(opts)
 	math.randomseed(os.time())
 
 	-- Setup NDE command suite
-	local command_suite = require('nde.command-suite')
+	local command_suite = require("nde.command-suite")
 	command_suite.setup()
 
-	-- Show welcome message on startup
+	-- Show welcome message on startup (temporarily disabled to fix dashboard positioning)
 	show_welcome()
 
 	-- Start tips if enabled
@@ -380,7 +417,7 @@ function M.setup(opts)
 end
 
 -- Cleanup on exit
-vim.api.nvim_create_autocmd('VimLeavePre', {
+vim.api.nvim_create_autocmd("VimLeavePre", {
 	callback = function()
 		stop_tips()
 	end,

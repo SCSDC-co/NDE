@@ -1,6 +1,6 @@
-# ⌨️ NDE Keybinding Reference v4.2.0
+# ⌨️ NDE Keybinding Reference v7.0.0
 
-> Complete keybinding guide for the Neovim Development Environment - AI Revolution Update
+> Complete keybinding guide for the Neovim Development Environment - Ultimate Theme Revolution & Dashboard Renaissance
 
 ## 🎯 Leader Key
 
@@ -22,6 +22,8 @@ The leader key is set to **`<Space>`** (spacebar). All leader-based commands sta
 | `<leader>u`  | Undotree                 | Open visual undo tree for enhanced undo history   |
 | `<leader>bc` | Close Buffer             | Close current buffer                              |
 | `<leader>bo` | Close Others             | Close all other buffers                           |
+| `<S-L>`      | Next Buffer              | Navigate to next buffer in the buffer list        |
+| `<S-H>`      | Previous Buffer          | Navigate to previous buffer in the buffer list    |
 
 ## 🚀 Universal Code Runner
 
@@ -357,6 +359,7 @@ The leader key is set to **`<Space>`** (spacebar). All leader-based commands sta
 | `:NDE help`         | **NDE Help**          | Show complete NDE command reference          | Command |
 | `:NDE status`       | **NDE Status**        | Show comprehensive NDE system status         | Command |
 | `:NDE welcome`      | **NDE Welcome**       | Display NDE welcome message                  | Command |
+| `:NDE welcome toggle` | **Welcome Toggle**  | Toggle welcome message display on/off        | Command |
 | `:NDE tips on/off`  | **Tips Control**      | Enable/disable automatic tips system         | Command |
 | `:NDE tip random`   | **Random Tip**        | Show a random helpful tip                    | Command |
 | `:NDE dynamicloader stats` | **Performance Stats** | Show dynamic loader performance statistics | Command |
@@ -434,6 +437,7 @@ The leader key is set to **`<Space>`** (spacebar). All leader-based commands sta
 | Command Category | Description | Example Commands |
 | ---------------- | ----------- | ---------------- |
 | **Tips System** | Smart learning assistance | `:NDE tips on`, `:NDE tip random` |
+| **Notification Management** | Advanced notification control | `:NDE welcome toggle` |
 | **Performance** | System monitoring | `:NDE dynamicloader stats` |
 | **Snippets** | Code template discovery | `:NDE snippetslist` |
 | **Navigation** | Quick help access | `:NDE help`, `:NDE status` |

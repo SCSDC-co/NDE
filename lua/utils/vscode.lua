@@ -67,8 +67,7 @@ end
 function M.get_disabled_plugins()
   return {
     -- Dashboard and UI that conflicts with VSCode
-    "alpha-nvim", -- Startup screen
-    "snacks.nvim", -- UI framework
+    "snacks.nvim", -- Dashboard and UI framework
     "bufferline.nvim", -- VSCode has tabs
     "lualine.nvim", -- VSCode has status bar
     "noice.nvim", -- Command line UI

@@ -189,7 +189,11 @@ local function handle_nde_command(opts)
     
   -- General commands
   elseif cmd == 'welcome' then
-    tips.show_welcome()
+    if subcmd == 'toggle' then
+      tips.welcome_toggle()
+    else
+      tips.show_welcome()
+    end
     
   elseif cmd == 'status' then
     tips.show_status()
@@ -391,6 +395,7 @@ local function handle_nde_command(opts)
       '   :NDE pluginmanager - Configure optional plugins\n\n' ..
       '🎉 GENERAL:\n' ..
       '   :NDE welcome - Show welcome message\n' ..
+      '   :NDE welcome toggle - Toggle welcome message on startup\n' ..
       '   :NDE status - Show NDE status\n\n' ..
       '💡 TIP: All commands support tab completion!',
       vim.log.levels.INFO,
@@ -440,6 +445,8 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
       return { 'on', 'off' }
     elseif cmd == 'minty' then
       return { 'help' }
+    elseif cmd == 'welcome' then
+      return { 'toggle' }
     elseif cmd == 'snapicon' then
       return { 'config', 'help' }
     elseif cmd == 'optispec' then

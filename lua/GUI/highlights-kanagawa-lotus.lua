@@ -2,7 +2,7 @@
 -- Custom highlight groups for Kanagawa Lotus theme (Light)
 
 local highlights = {
-	LineNr = { bg = "#F2ECBC" },
+	LineNr = { bg = "#F2ECBC", fg = "#545464" },
 	CursorLineNr = { bg = "#F2ECBC", bold = true },
 	SignColumn = { bg = "#F2ECBC" },
 	GitSignsAdd = { bg = "#F2ECBC", fg = "#228B22" },
@@ -12,8 +12,8 @@ local highlights = {
 	DiagnosticSignWarn = { bg = "#F2ECBC", fg = "#B8860B" },
 	DiagnosticSignInfo = { bg = "#F2ECBC", fg = "#4D699B" },
 	DiagnosticSignHint = { bg = "#F2ECBC", fg = "#8B008B" },
-	VertSplit = { bg = "#C1BC96", fg = "#C1BC96" },
-	WinSeparator = { bg = "#C1BC96", fg = "#C1BC96" },
+	VertSplit = { fg = "#C1BC96", bg = "#F2ECBC" },
+	WinSeparator = { fg = "#C1BC96", bg = "#F2ECBC" },
 	BufferLineOffset = { bg = "#C1BC96", fg = "#C1BC96", bold = true },
 	BufferLineOffsetSeparator = { bg = "#C1BC96", fg = "#C1BC96" },
 	WhichKey = { fg = "#4D699B", bg = "#F2ECBC" },
@@ -132,6 +132,7 @@ local highlights = {
 	NeoTreeNormal = { bg = "#C1BC96" },
 	NeoTreeNormalNC = { bg = "#C1BC96" },
 	NeoTreeEndOfBuffer = { bg = "#C1BC96", fg = "#C1BC96" },
+	NeoTreeWinSeparator = { fg = "#C1BC96", bg = "#C1BC96" },
 	ColorColumn = { bg = "#C1BC96" },
 	VirtColumn = { fg = "#C1BC96" },
 }

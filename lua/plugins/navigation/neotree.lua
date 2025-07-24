@@ -16,7 +16,9 @@ return {
 			close_if_last_window = true,
 			popup_border_style = "rounded",
 			enable_git_status = true,
-			enable_diagnostics = true,
+			enable_diagnostics = false,
+			refresh_diagnostics_on_change = true,
+			sort_case_insensitive = false,
 			default_component_configs = {
 				indent = {
 					with_markers = false,

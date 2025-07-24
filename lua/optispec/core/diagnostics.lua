@@ -132,10 +132,22 @@ end
 
 -- Setup diagnostics merging
 function M.setup(config)
+	-- Define cool diagnostic signs
+	local signs = {
+		[vim.diagnostic.severity.ERROR] = "",
+		[vim.diagnostic.severity.WARN] = "",
+		[vim.diagnostic.severity.HINT] = "󰌵",
+		[vim.diagnostic.severity.INFO] = ""
+	}
+
 	-- Configure diagnostics display
 	vim.diagnostic.config({
-		virtual_text = true,
-		signs = true,
+		virtual_text = {
+			prefix = "●", -- Cool bullet prefix for virtual text
+		},
+		signs = {
+			text = signs,
+		},
 		update_in_insert = true,
 		severity_sort = true,
 		underline = true,
@@ -143,6 +155,10 @@ function M.setup(config)
 			show_header = true,
 			source = "always",
 			border = "rounded",
+			prefix = function(diagnostic, i, total)
+				local icon, hl_group = signs[vim.diagnostic.severity[diagnostic.severity]], "DiagnosticSign" .. vim.diagnostic.severity[diagnostic.severity]
+				return icon .. " ", hl_group
+			end,
 		},
 	})
 
@@ -206,6 +222,7 @@ function M.setup(config)
 			all_diagnostics[ev.buf] = nil
 		end,
 	})
+
 end
 
 -- Plugin definitions (diagnostics module doesn't need its own plugins)

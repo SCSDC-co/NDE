@@ -15,6 +15,10 @@ require('lazy').setup({
 	-- Themes with high priority
 	{ 'rebelot/kanagawa.nvim', priority = 1000 },
 	{ 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
+	{ 'folke/tokyonight.nvim', priority = 1000 },
+	{ 'ellisonleao/gruvbox.nvim', priority = 1000 },
+	{ 'Mofiqul/vscode.nvim', priority = 1000 },
+	{ 'projekt0n/github-nvim-theme', priority = 1000 },
 
 	-- Import all organized plugins
 	{ import = 'plugins' },
