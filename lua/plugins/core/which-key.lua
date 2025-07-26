@@ -118,9 +118,6 @@ return {
 			{ "<leader>bo", "<cmd>BufferLineCloseOthers<cr>", desc = "Close Others" },
 
 			{ "<leader>g", group = " Git" },
-			{ "<leader>s", group = "󰉉 Sessions" },
-			{ "<leader>m", group = "󰛢 Harpoon" },
-			{ "<leader>L", group = " Legendary" },
 
 			{ "<leader>d", group = " Debug" },
 			{
@@ -163,6 +160,9 @@ return {
 			{ "<c-p>", desc = " Yanky Previous Entry" },
 			{ "<c-n>", desc = " Yanky Next Entry" },
 
+			-- Refactir
+			{ "<leader>R", group = " Refactor" },
+
 			{ "<leader>J", group = " Java", buffer = bufnr },
 			{ "<leader>Jo", desc = "󰋺 Organize Imports", buffer = bufnr },
 			{ "<leader>Jv", desc = " Extract Variable", buffer = bufnr },
@@ -171,16 +171,6 @@ return {
 			{ "<leader>Jt", desc = " Test Nearest Method", buffer = bufnr },
 			{ "<leader>JT", desc = " Test Class", buffer = bufnr },
 			{ "<leader>Ju", desc = " Update Config", buffer = bufnr },
-
-			-- Blink
-			{ "<leader>B", group = "󰈈 Blink" },
-			{ "<leader>B;", "<cmd>lua require('blink.chartoggle').toggle_char_eol(';')<cr>", desc = "Toggle ; at eol" },
-			{ "<leader>B,", "<cmd>lua require('blink.chartoggle').toggle_char_eol(',')<cr>", desc = "Toggle , at eol" },
-
-			-- Colorpicker
-			{ "<leader>c", group = " Colorpicker" },
-			{ "<leader>cs", "<cmd>Shades<cr>", desc = "󱓻 Shades Picker" },
-			{ "<leader>ch", "<cmd>Huefy<cr>", desc = " Hue Picker" },
 
 			-- UI Options
 			{ "<leader>G", group = " UI Options" },
@@ -244,6 +234,8 @@ return {
 					return vim.o.showtabline == 2 and " Disable Bufferline" or " Enable Bufferline"
 				end,
 			},
+			{ "<leader>Gd", "<cmd>NDE dashboard toggleheader<cr>", desc = " Change Dashboard Header Style" },
+			{ "<leader>Gg", "<cmd>NDE gitsigns toggle<cr>", desc = " Toggle Git Signs" },
 		},
 	},
 

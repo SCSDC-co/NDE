@@ -56,4 +56,13 @@ return {
 			desc = "🚫 Stop Session (Don't Save on Exit)",
 		},
 	},
+	config = function(_, opts)
+		require("persistence").setup(opts)
+
+		-- Register which-key group
+		local wk = require("which-key")
+		wk.add({
+			{ "<leader>s", group = "󰉉 Sessions" },
+		})
+	end,
 }

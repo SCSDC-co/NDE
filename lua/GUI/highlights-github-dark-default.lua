@@ -136,6 +136,7 @@ local highlights = {
 	NeoTreeGitUnstaged = { bg = "#21262d", fg = "#d29922" },
 	NeoTreeGitUntracked = { bg = "#21262d", fg = "#3fb950" },
 	NeoTreeGitStaged = { bg = "#21262d", fg = "#3fb950" },
+	NeoTreeCursorLine = { bg = "#0d1117" },
 	EndOfBuffer = { fg = "#0d1117" },
 	ColorColumn = { bg = "#21262d" },
 	VirtColumn = { fg = "#21262d" },

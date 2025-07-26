@@ -129,6 +129,7 @@ local highlights = {
 	NeoTreeNormalNC = { bg = "#d0d5e3" },
 	NeoTreeEndOfBuffer = { bg = "#d0d5e3", fg = "#d0d5e3" },
 	NeoTreeWinSeparator = { fg = "#d0d5e3", bg = "#d0d5e3" },
+	NeoTreeCursorLine = { bg = "#e1e2e7" },
 	ColorColumn = { bg = "#9699a3" },
 	VirtColumn = { fg = "#9699a3" },
 }

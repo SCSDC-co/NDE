@@ -92,7 +92,9 @@ local tip_interval = 45000 -- 45 seconds (a bit longer to read)
 
 -- Settings persistence - centralized in nde folder
 local nde_data_dir = vim.fn.stdpath("data") .. "/nde"
-local settings_file = nde_data_dir .. "/tips_settings.json"
+local settings_file = nde_data_dir .. "/general_settings.json"
+local old_settings_file = nde_data_dir .. "/tips_settings.json"
+
 
 -- Ensure the nde data directory exists
 vim.fn.mkdir(nde_data_dir, "p")

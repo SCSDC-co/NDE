@@ -102,7 +102,7 @@ function M.browse()
   require("optispec.ui.browser").show()
 end
 
--- Collect all plugins from core modules
+-- Collect all plugins from core modules and plugins directory
 function M.get_plugins()
   local plugins = {}
   
@@ -121,6 +121,19 @@ function M.get_plugins()
     if ok and module.plugins then
       for _, plugin in ipairs(module.plugins) do
         table.insert(plugins, plugin)
+      end
+    end
+  end
+  
+  -- Add plugins from the plugins directory
+  local plugins_dir = vim.fn.stdpath("config") .. "/lua/optispec/plugins"
+  if vim.fn.isdirectory(plugins_dir) == 1 then
+    local plugin_files = vim.fn.glob(plugins_dir .. "/*.lua", false, true)
+    for _, file_path in ipairs(plugin_files) do
+      local plugin_name = vim.fn.fnamemodify(file_path, ":t:r")
+      local ok, plugin_spec = pcall(require, "optispec.plugins." .. plugin_name)
+      if ok and plugin_spec then
+        table.insert(plugins, plugin_spec)
       end
     end
   end

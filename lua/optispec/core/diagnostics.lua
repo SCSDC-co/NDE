@@ -142,9 +142,7 @@ function M.setup(config)
 
 	-- Configure diagnostics display
 	vim.diagnostic.config({
-		virtual_text = {
-			prefix = "●", -- Cool bullet prefix for virtual text
-		},
+		virtual_text = false, -- Disabled for tiny-inline-diagnostic compatibility
 		signs = {
 			text = signs,
 		},

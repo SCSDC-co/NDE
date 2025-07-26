@@ -27,6 +27,20 @@ return {
 				end)
 			end,
 		})
+
+		-- Ensure header highlights are properly applied
+		vim.api.nvim_create_autocmd({ "ColorScheme", "VimEnter" }, {
+			callback = function()
+				-- Force refresh SnacksDashboardHeader highlight
+				vim.schedule(function()
+					local hl = vim.api.nvim_get_hl(0, { name = "SnacksDashboardHeader" })
+					if not hl or not hl.fg then
+						-- If no custom highlight is set, ensure it uses Title
+						vim.api.nvim_set_hl(0, "SnacksDashboardHeader", { link = "Title" })
+					end
+				end)
+			end,
+		})
 	end,
 	opts = {
 		-- Smooth scrolling
@@ -60,11 +74,12 @@ return {
 				-- Disable expensive plugins for big files
 				vim.b.minipairs_disable = true
 				vim.b.miniindentscope_disable = true
-				Snacks.util.info(
+				-- Use vim.notify since Snacks global might not be available yet
+				vim.notify(
 					"Big file detected ("
 						.. math.floor(ctx.size / 1024 / 1024 * 100) / 100
 						.. "MB). Optimizing performance...",
-					{ title = "Big File" }
+					vim.log.levels.INFO
 				)
 			end,
 		},
@@ -129,24 +144,63 @@ return {
 			end,
 		},
 
-		-- Dashboard configuration
+		-- Dashboard configuration with toggleable headers
 		dashboard = {
 			enabled = true,
 			width = 60,
 			row = nil, -- center vertically
 			col = nil, -- center horizontally
 			preset = {
-				header = [[
-  ███▄    █ ▓█████▄ ▓█████    
-   ██ ▀█   █ ▒██▀ ██▌▓█   ▀   
-  ▓██  ▀█ ██▒░██   █▌▒███     
-  ▓██▒  ▐▌██▒░▓█▄   ▌▒▓█  ▄   
-  ▒██░   ▓██░░▒████▓ ░▒████▒  
-  ░ ▒░   ▒ ▒  ▒▒▓  ▒ ░░ ▒░ ░  
-  ░ ░░   ░ ▒░ ░ ▒  ▒  ░ ░  ░  
-     ░   ░ ░  ░ ░  ░    ░     
-           ░    ░       ░  ░  
-                         ]],
+				-- Header with proper highlighting and toggle support
+				header = (function()
+					-- Check user preference from JSON settings file
+					local data_dir = vim.fn.stdpath("data") .. "/nde"
+					local settings_file = data_dir .. "/general_settings.json"
+					local use_simple = false
+
+					-- Read preference
+					local ok, result = pcall(function()
+						if vim.fn.filereadable(settings_file) == 1 then
+							local content = vim.fn.readfile(settings_file)
+							if content and #content > 0 then
+								local json_ok, json_data = pcall(vim.fn.json_decode, table.concat(content, ""))
+								if json_ok and json_data and json_data.dashboard_header == "simple" then
+									return true
+								end
+							end
+						end
+						return false
+					end)
+
+					if ok then
+						use_simple = result
+					end
+
+					if use_simple then
+						-- Simple/Classic NDE header
+						return [[
+███╗   ██╗██████╗ ███████╗
+████╗  ██║██╔══██╗██╔════╝
+██╔██╗ ██║██║  ██║█████╗  
+██║╚██╗██║██║  ██║██╔══╝  
+██║ ╚████║██████╔╝███████╗
+╚═╝  ╚═══╝╚═════╝ ╚══════╝
+                            ]]
+					else
+						-- Artistic NDE header
+						return [[
+███▄    █ ▓█████▄ ▓█████  
+ ██ ▀█   █ ▒██▀ ██▌▓█   ▀ 
+▓██  ▀█ ██▒░██   █▌▒███   
+▓██▒  ▐▌██▒░▓█▄   ▌▒▓█  ▄ 
+▒██░   ▓██░░▒████▓ ░▒████▒
+░ ▒░   ▒ ▒  ▒▒▓  ▒ ░░ ▒░ ░
+░ ░░   ░ ▒░ ░ ▒  ▒  ░ ░  ░
+   ░   ░ ░  ░ ░  ░    ░   
+         ░    ░       ░  ░
+                            ]]
+					end
+				end)(),
 				keys = {
 					{
 						icon = "󰱼",
@@ -162,19 +216,21 @@ return {
 					{ icon = "󱁤", key = "m", desc = "Mason", action = ":Mason" },
 					{ icon = "", key = "o", desc = "OptiSpec Browser", action = ":NDE optispec browse" },
 					{ icon = "󰏘", key = "t", desc = "Theme Switcher", action = ":Themery" },
+					{ icon = "", key = "h", desc = "Change Header Style", action = ":NDE dashboard toggleheader" },
 					{ icon = "", key = "q", desc = "Quit", action = ":qa" },
 				},
 			},
+
 			sections = {
 				{ section = "header" },
 				{ icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
-				{ icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+				{ icon = "", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
 				{ section = "startup" },
 			},
 		},
 
 		-- Disable modules we don't use
-		input = { enabled = false },
+		input = { enabled = true },
 		notifier = { enabled = false },
 		quickfile = { enabled = false },
 		words = { enabled = false },

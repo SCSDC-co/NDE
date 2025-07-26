@@ -22,6 +22,7 @@ M.core_plugins = {
 	"ui/zen",
 	"ui/rainbow-delimiters",
 	"ui/highlight-colors",
+	"ui/highlighting", -- matchparen.nvim and local-highlight.nvim
 
 	-- Navigation essentials
 	"navigation/neotree",
@@ -31,6 +32,7 @@ M.core_plugins = {
 
 	-- Editing essentials
 	"editing/cmp", -- Includes all CMP sources: nvim-lsp, buffer, path, cmdline, nvim-lua, calc, emoji, spell, luasnip, signature-help
+	"editing/inc-rename", -- Incremental LSP renaming with noice.nvim integration
 	"editing/mini", -- Contains mini.surround, mini.pairs
 	"editing/mini-align",
 	"editing/mini-comment", -- mini.comment
@@ -39,9 +41,10 @@ M.core_plugins = {
 
 	-- Development essentials
 	"development/code-runner",
-	"development/render-markdown",
 	"development/codeium", -- CMP source integration
 	"development/supermaven", -- CMP source integration
+	"development/tiny-inline-diagnostic", -- Inline diagnostic display
+	"development/tiny-code-actions", -- Code actions with snacks.nvim picker
 
 	-- Git essentials
 	"git/vim-fugitive",
@@ -79,6 +82,7 @@ local function load_user_config()
 			-- Navigation category
 			aerial = false,
 			harpoon = false,
+			hydra = false,
 			numb = false,
 			oil = false,
 
@@ -87,7 +91,7 @@ local function load_user_config()
 			blink = false,
 			dial = false,
 			hlargs = false,
-			illuminate = false,
+			["mini-move"] = false,
 			snippet = false,
 			spectre = false,
 			tabout = false,
@@ -98,6 +102,7 @@ local function load_user_config()
 			-- Development category
 			avante = false,
 			playground = false,
+			["render-markdown"] = false,
 			["todo-comments"] = false,
 			trouble = false,
 
@@ -113,17 +118,38 @@ local function load_user_config()
 		},
 	}
 
-	-- Try to load JSON config, fallback to default
+	-- Automatically load and merge JSON config
 	local user_config = default_config
-	if vim.fn.filereadable(config_path) == 1 then
-		local content = vim.fn.readfile(config_path)
-		if content and #content > 0 then
-			local ok, loaded_config = pcall(vim.json.decode, table.concat(content, "\n"))
-			if ok and type(loaded_config) == "table" and loaded_config.optional_plugins then
-				user_config.optional_plugins = loaded_config.optional_plugins
+
+	local function update_config()
+		if vim.fn.filereadable(config_path) == 1 then
+			local content = vim.fn.readfile(config_path)
+			if content and #content > 0 then
+				local ok, loaded_config = pcall(vim.json.decode, table.concat(content, "\n"))
+				if ok and type(loaded_config) == "table" and loaded_config.optional_plugins then
+					-- Merge existing config with new defaults
+					for plugin_name, default_value in pairs(default_config.optional_plugins) do
+						if loaded_config.optional_plugins[plugin_name] == nil then
+							-- Add new plugin with default value
+							loaded_config.optional_plugins[plugin_name] = default_value
+						end
+					end
+					user_config.optional_plugins = loaded_config.optional_plugins
+					
+					-- Write back the merged config
+					M.write_config(loaded_config)
+				end
 			end
 		end
 	end
+
+	update_config()
+
+	-- Watch for changes to the config file
+	vim.api.nvim_create_autocmd("BufWritePost", {
+		pattern = config_path,
+		callback = update_config
+	})
 
 	return user_config
 end
@@ -150,6 +176,42 @@ function M.get_plugins_to_load()
 	end
 
 	return plugins
+end
+
+-- Helper function to write config back to JSON file
+function M.write_config(config)
+	local config_path = nde_data_dir .. "/plugins.json"
+	
+	-- Create pretty-printed JSON manually for better readability
+	local json_lines = { "{" }
+	table.insert(json_lines, '  "optional_plugins": {')
+
+	-- Sort keys for consistent output
+	local sorted_keys = {}
+	for key in pairs(config.optional_plugins) do
+		table.insert(sorted_keys, key)
+	end
+	table.sort(sorted_keys)
+
+	-- Add each plugin with proper formatting
+	for i, key in ipairs(sorted_keys) do
+		local value = config.optional_plugins[key] and "true" or "false"
+		local comma = i < #sorted_keys and "," or ""
+		table.insert(json_lines, '    "' .. key .. '": ' .. value .. comma)
+	end
+
+	table.insert(json_lines, "  }")
+	table.insert(json_lines, "}")
+
+	local json_content = table.concat(json_lines, "\n")
+
+	local file = io.open(config_path, "w")
+	if file then
+		file:write(json_content)
+		file:close()
+	else
+		vim.notify("Failed to write config file", vim.log.levels.ERROR)
+	end
 end
 
 -- Helper function to find plugin path in directory structure
@@ -190,6 +252,7 @@ function M.create_default_config()
 				-- Navigation category
 				aerial = false,
 				harpoon = false,
+				hydra = false,
 				numb = false,
 				oil = false,
 
@@ -198,7 +261,7 @@ function M.create_default_config()
 				blink = false,
 				dial = false,
 				hlargs = false,
-				illuminate = false,
+				["mini-move"] = false,
 				snippet = false,
 				spectre = false,
 				tabout = false,
@@ -209,6 +272,7 @@ function M.create_default_config()
 				-- Development category
 				avante = false,
 				playground = false,
+				["render-markdown"] = false,
 				["todo-comments"] = false,
 				trouble = false,
 

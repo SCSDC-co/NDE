@@ -24,9 +24,9 @@ return {
 					with_markers = false,
 					highlight = "NeoTreeIndentMarker",
 					with_expanders = true,
-					expander_collapsed = "",
-					expander_expanded = "",
-					expander_highlight = "NeoTreeDirectoryName",
+					expander_collapsed = "",
+					expander_expanded = "",
+					expander_highlight = "NeoTreeExpander", -- Use custom highlight group
 				},
 				icon = {
 					folder_closed = "",
@@ -91,7 +91,30 @@ return {
 					event = "neo_tree_buffer_enter",
 					handler = function()
 						vim.opt_local.signcolumn = "auto"
-						vim.opt_local.cursorline = false
+						-- Set up window focus events for cursor line
+						local group = vim.api.nvim_create_augroup("NeoTreeCursorLine", { clear = true })
+						
+						-- Enable cursor line when entering Neo-tree window
+						vim.api.nvim_create_autocmd("WinEnter", {
+							group = group,
+							buffer = 0,
+							callback = function()
+								if vim.bo.filetype == "neo-tree" then
+									vim.opt_local.cursorline = true
+								end
+							end,
+						})
+						
+						-- Disable cursor line when leaving Neo-tree window
+						vim.api.nvim_create_autocmd("WinLeave", {
+							group = group,
+							buffer = 0,
+							callback = function()
+								if vim.bo.filetype == "neo-tree" then
+									vim.opt_local.cursorline = false
+								end
+							end,
+						})
 					end,
 				},
 			},

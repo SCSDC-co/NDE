@@ -303,6 +303,37 @@ function M.setup_gruvbox_dark()
 	end)
 end
 
+function M.setup_gruvbox_light()
+	local highlights = require("GUI.highlights-gruvbox-light")
+	vim.o.background = "light"
+	require("gruvbox").setup({
+		terminal_colors = false,
+		undercurl = false,
+		underline = true,
+		bold = true,
+		italic = {
+			comments = true,
+		},
+		strikethrough = true,
+		invert_selection = false,
+		invert_signs = false,
+		invert_tabline = false,
+		invert_intend_guides = false,
+		inverse = false,
+		contrast = "", -- `hard`, `soft` or empty string
+		palette_overrides = {},
+		overrides = highlights,
+		dim_inactive = false,
+		transparent_mode = false,
+	})
+	-- Force apply highlights after colorscheme loads
+	vim.schedule(function()
+		for name, opts in pairs(highlights) do
+			vim.api.nvim_set_hl(0, name, opts)
+		end
+	end)
+end
+
 function M.setup_vscode_dark()
 	local highlights = require("GUI.highlights-vscode-dark")
 	require("vscode").setup({
@@ -348,8 +379,8 @@ function M.setup_github_dark_default()
 	require("github-theme").setup({
 		options = {
 			-- Compiled file's destination location
-			compile_path = vim.fn.stdpath('cache') .. '/github-theme',
-			compile_file_suffix = '_compiled', -- Compiled file suffix
+			compile_path = vim.fn.stdpath("cache") .. "/github-theme",
+			compile_file_suffix = "_compiled", -- Compiled file suffix
 			hide_end_of_buffer = true, -- Hide the '~' character at the end of the buffer for a cleaner look
 			hide_nc_statusline = true, -- Override the underline style for non-active statuslines
 			transparent = false, -- Disable setting bg (make neovim's background transparent)
@@ -357,16 +388,16 @@ function M.setup_github_dark_default()
 			dim_inactive = false, -- Non focused panes set to alternative background
 			module_default = true, -- Default enable value for modules
 			styles = { -- Style to be applied to different syntax groups
-				comments = 'italic', -- Value is any valid attr-list value `:help attr-list`
-				functions = 'NONE',
-				keywords = 'NONE',
-				variables = 'NONE',
-				conditionals = 'NONE',
-				constants = 'NONE',
-				numbers = 'NONE',
-				operators = 'NONE',
-				strings = 'NONE',
-				types = 'NONE',
+				comments = "italic", -- Value is any valid attr-list value `:help attr-list`
+				functions = "NONE",
+				keywords = "NONE",
+				variables = "NONE",
+				conditionals = "NONE",
+				constants = "NONE",
+				numbers = "NONE",
+				operators = "NONE",
+				strings = "NONE",
+				types = "NONE",
 			},
 			darken = { -- Change the default background of these groups
 				floats = true,
@@ -395,8 +426,8 @@ function M.setup_github_light()
 	require("github-theme").setup({
 		options = {
 			-- Compiled file's destination location
-			compile_path = vim.fn.stdpath('cache') .. '/github-theme',
-			compile_file_suffix = '_compiled', -- Compiled file suffix
+			compile_path = vim.fn.stdpath("cache") .. "/github-theme",
+			compile_file_suffix = "_compiled", -- Compiled file suffix
 			hide_end_of_buffer = true, -- Hide the '~' character at the end of the buffer for a cleaner look
 			hide_nc_statusline = true, -- Override the underline style for non-active statuslines
 			transparent = false, -- Disable setting bg (make neovim's background transparent)
@@ -404,16 +435,16 @@ function M.setup_github_light()
 			dim_inactive = false, -- Non focused panes set to alternative background
 			module_default = true, -- Default enable value for modules
 			styles = { -- Style to be applied to different syntax groups
-				comments = 'italic', -- Value is any valid attr-list value `:help attr-list`
-				functions = 'NONE',
-				keywords = 'NONE',
-				variables = 'NONE',
-				conditionals = 'NONE',
-				constants = 'NONE',
-				numbers = 'NONE',
-				operators = 'NONE',
-				strings = 'NONE',
-				types = 'NONE',
+				comments = "italic", -- Value is any valid attr-list value `:help attr-list`
+				functions = "NONE",
+				keywords = "NONE",
+				variables = "NONE",
+				conditionals = "NONE",
+				constants = "NONE",
+				numbers = "NONE",
+				operators = "NONE",
+				strings = "NONE",
+				types = "NONE",
 			},
 			darken = { -- Change the default background of these groups
 				floats = true,

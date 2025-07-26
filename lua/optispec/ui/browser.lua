@@ -17,12 +17,23 @@ function M.show()
 		require("optispec").ensure_initialized()
 	end
 
-	-- Define highlight groups for colors
-	vim.api.nvim_set_hl(0, "OptiSpecInstalled", { fg = "#10B981" }) -- Green
-	vim.api.nvim_set_hl(0, "OptiSpecAvailable", { fg = "#F59E0B" }) -- Yellow
-	vim.api.nvim_set_hl(0, "OptiSpecBorder", { fg = "#626978" }) -- Custom border color
-	vim.api.nvim_set_hl(0, "OptiSpecSeparator", { fg = "#626978" }) -- Custom separator color
-	vim.api.nvim_set_hl(0, "OptiSpecTitle", { bg = "#181616", fg = "#626978" }) -- Custom title background and foreground
+	-- Get FloatBorder colors dynamically from current theme
+	local function get_float_border_colors()
+		local hl = vim.api.nvim_get_hl(0, { name = "FloatBorder" })
+		return {
+			fg = hl.fg and ("#%06x"):format(hl.fg),
+			bg = hl.bg and ("#%06x"):format(hl.bg) or nil, -- fallback if no bg
+		}
+	end
+
+	local border_colors = get_float_border_colors()
+
+	-- Define highlight groups using theme's FloatBorder colors
+	vim.api.nvim_set_hl(0, "OptiSpecInstalled", { fg = "#10B981" }) -- Keep green for installed
+	vim.api.nvim_set_hl(0, "OptiSpecAvailable", { fg = "#F59E0B" }) -- Keep yellow for available
+	vim.api.nvim_set_hl(0, "OptiSpecBorder", { fg = border_colors.fg, bg = border_colors.bg }) -- Use FloatBorder colors
+	vim.api.nvim_set_hl(0, "OptiSpecSeparator", { fg = border_colors.fg }) -- Use FloatBorder fg for separator
+	vim.api.nvim_set_hl(0, "OptiSpecTitle", { fg = border_colors.fg, bg = border_colors.bg }) -- Use FloatBorder colors for title
 
 	local languages = require("optispec.core.languages")
 	local all_languages = languages.get_all_languages()

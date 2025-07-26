@@ -64,8 +64,15 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrwSettings = 1
 vim.g.loaded_netrwFileHandlers = 1
 vim.g.loaded_matchit = 1
-vim.g.loaded_matchparen = 1
 vim.g.loaded_tutor_mode_plugin = 1
+
+-- Force enable matchparen after config loads
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		vim.g.loaded_matchparen = nil
+		vim.cmd("runtime plugin/matchparen.vim")
+	end,
+})
 vim.g.loaded_spellfile_plugin = 1
 
 vim.opt.clipboard = "unnamedplus"
@@ -79,6 +86,17 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
+
+vim.opt.list = true
+
+vim.opt.listchars = {
+	eol = "⬎",
+	tab = "  ",
+	trail = " ",
+	extends = " ",
+	precedes = " ",
+	nbsp = " ",
+}
 
 vim.opt.wrap = false
 
@@ -125,10 +143,6 @@ vim.opt.scroll = 0 -- Use default scroll amount (half screen)
 vim.opt.mouse = "a" -- Enable mouse support for better scrolling
 vim.opt.mousescroll = "ver:3,hor:0" -- Smooth mouse scrolling
 
--- Custom highlights
-vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#e6c384", bold = true })
-vim.api.nvim_set_hl(0, "LineNr", { fg = "#5e5c64" })
-
 -- Diagnostic configuration is now handled in LSP plugin
 
 -- Diagnostic configuration is now completely handled in LSP plugin with nuclear approach
@@ -161,5 +175,3 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 		end
 	end,
 })
-
-

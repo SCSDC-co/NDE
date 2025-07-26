@@ -103,11 +103,10 @@ return {
                     ]],
 				},
 				{
-					name = "Gruvbox Light -- coming soon!",
+					name = "Gruvbox Light",
 					colorscheme = "gruvbox",
 					before = [[
-                        vim.notify("Gruvbox Light theme is coming soon! 🚧", vim.log.levels.INFO)
-                        require("GUI.theme-init").setup_gruvbox_dark()
+                        require("GUI.theme-init").setup_gruvbox_light()
                     ]],
 				},
 			},

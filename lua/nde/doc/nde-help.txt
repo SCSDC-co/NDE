@@ -1,0 +1,182 @@
+*nde-help.txt*                          NDE Command Suite Documentation
+
+================================================================================
+CONTENTS                                                        *nde-contents*
+
+  1. Introduction ................................ |nde-introduction|
+  2. Commands .................................... |nde-commands|
+    2.1. Tips System ............................. |nde-tips|
+    2.2. Codeium ................................. |nde-codeium|
+    2.3. Hard Mode ............................... |nde-hardmode|
+    2.4. Snippets ................................ |nde-snippets|
+    2.5. Minty ................................... |nde-minty|
+    2.6. SnapIcon ................................ |nde-snapicon|
+    2.7. OptiSpec ................................ |nde-optispec|
+    2.8. Plugin Manager .......................... |nde-pluginmanager|
+    2.9. GitSigns ................................ |nde-gitsigns|
+    2.10. Dashboard .............................. |nde-dashboard|
+    2.11. General ................................ |nde-general|
+
+================================================================================
+INTRODUCTION                                                *nde-introduction*
+
+NDE (Neovim Development Environment) has a comprehensive command suite that
+provides various tools and features to enhance your Neovim experience.
+
+All NDE commands support tab completion and can be accessed through the
+`:NDE` command followed by specific subcommands.
+
+================================================================================
+COMMANDS                                                        *nde-commands*
+
+--------------------------------------------------------------------------------
+TIPS SYSTEM                                                         *nde-tips*
+
+The tips system provides helpful hints and suggestions to improve your Neovim
+workflow.
+
+`:NDE tips on`                  Enable tips system
+`:NDE tips off`                 Disable tips system
+`:NDE tip show`                 Show current tip
+`:NDE tip next`                 Show next tip
+`:NDE tip random`               Show random tip
+
+--------------------------------------------------------------------------------
+CODEIUM                                                         *nde-codeium*
+
+Codeium integration provides AI-powered code completion and assistance.
+
+`:NDE codeiumauth help`         Show Codeium authentication help
+
+The authentication help provides detailed instructions for setting up Codeium
+authentication, including browser options and manual key entry.
+
+--------------------------------------------------------------------------------
+HARD MODE                                                     *nde-hardmode*
+
+Hard Mode helps build better Vim habits by limiting excessive hjkl movements.
+
+`:NDE hardmode on`              Enable hard mode (discipline mode)
+`:NDE hardmode off`             Disable hard mode
+`:NDE hardmode`                 Show current status and help
+
+Hard Mode prevents excessive use of hjkl movements (max 6 repeats) and
+encourages the use of more efficient Vim motions like w, b, f, t, /, ?, etc.
+
+--------------------------------------------------------------------------------
+SNIPPETS                                                       *nde-snippets*
+
+Snippets functionality provides code templates for various programming
+languages.
+
+`:NDE snippetslist`             List available snippets for current file
+
+Displays available snippets for the detected filetype. Supports languages
+including Python, JavaScript/TypeScript, Rust, Go, C/C++, Lua, HTML, and SQL.
+
+The snippets are integrated in nvim-cmp.
+
+--------------------------------------------------------------------------------
+MINTY                                                             *nde-minty*
+
+Minty provides a color picker interface for selecting and working with colors.
+
+`:NDE minty help`               Show color picker usage guide
+`:NDE minty`                    Show Minty commands overview
+
+Keyboard mappings:
+- <Ctrl> + t : cycle through windows
+- <Tab> or <S-Tab> : cycle through clickables in current window
+- <CR> : click on the area
+- h/l : move cursor in slider
+
+--------------------------------------------------------------------------------
+SNAPICON                                                       *nde-snapicon*
+
+SnapIcon provides beautiful code screenshot functionality using Silicon.
+
+`:NDE snapicon config`          Show current configuration
+`:NDE snapicon help`            Show usage instructions
+`:NDE snapicon`                 Show SnapIcon commands overview
+
+Usage:
+1. Select code in visual mode (v or V)
+2. Press <leader>S or use :Silicon command
+3. Screenshots are saved to ~/Pictures
+
+Features include configurable themes, styling options, and automatic language
+detection.
+
+--------------------------------------------------------------------------------
+OPTISPEC                                                       *nde-optispec*
+
+OptiSpec provides smart language management with zero-bloat startup.
+
+`:NDE optispec`                 Show OptiSpec help menu
+`:NDE optispec status`          Show installed languages
+`:NDE optispec browse`          Browse available languages
+`:NDE optispec install <lang>`  Install language tools
+`:NDE optispec remove <lang>`   Remove language tools
+`:NDE optispec update`          Update all tools
+
+Features:
+- Zero-bloat start - install only what you need
+- Auto-detection for 50+ languages
+- Beautiful NUI-powered interfaces
+
+Examples:
+- `:NDE optispec install python`
+- `:NDE optispec install javascript`
+- `:NDE optispec install rust`
+
+--------------------------------------------------------------------------------
+PLUGIN MANAGER                                           *nde-pluginmanager*
+
+`:NDE pluginmanager`            Configure optional plugins
+
+Opens the plugin manager interface for configuring and managing optional
+plugins in your NDE setup.
+
+--------------------------------------------------------------------------------
+GITSIGNS                                                       *nde-gitsigns*
+
+GitSigns integration provides Git status indicators in the sign column.
+
+`:NDE gitsigns toggle`          Toggle sign style
+`:NDE gitsigns`                 Show GitSigns commands help
+
+Available styles:
+- Default (Clean lines) - Simple vertical bars
+- Modern (Icons) - Beautiful git status icons
+
+Style preferences are saved automatically between sessions.
+
+--------------------------------------------------------------------------------
+DASHBOARD                                                     *nde-dashboard*
+
+Dashboard provides a customizable startup screen for Neovim.
+
+`:NDE dashboard toggleheader`   Toggle header style
+`:NDE dashboard`                Show dashboard commands help
+
+Available header styles:
+- Classic-style (Clean) - Clean, readable block letters
+- NDE-style (Artistic) - Original artistic design
+
+Tip: Press 'h' on the dashboard for quick header style toggle.
+
+--------------------------------------------------------------------------------
+GENERAL                                                         *nde-general*
+
+General NDE commands for overall system management.
+
+`:NDE welcome`                  Show welcome message
+`:NDE welcome toggle`           Toggle welcome message on startup
+`:NDE status`                   Show NDE status
+`:NDE help`                     Show this help documentation
+
+All commands support tab completion for easy discovery and usage.
+
+================================================================================
+
+vim:tw=78:sw=4:ft=help:norl:

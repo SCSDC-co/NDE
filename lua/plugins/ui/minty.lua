@@ -28,6 +28,14 @@ return {
 
 			-- Apply our local plugin override for custom borders and theming
 			require("local_plugins.minty").setup()
+
+			-- Register which-key group
+			local wk = require("which-key")
+			wk.add({
+				{ "<leader>c", group = " Colorpicker" },
+				{ "<leader>cs", "<cmd>Shades<cr>", desc = "󱓻 Shades Picker" },
+				{ "<leader>ch", "<cmd>Huefy<cr>", desc = " Hue Picker" },
+			})
 		end,
 	},
 }
