@@ -553,6 +553,103 @@ local function handle_nde_command(opts)
 			-- Update all OptiSpec tools
 			local optispec = require("optispec")
 			optispec.update()
+		elseif subcmd == "dynamicloader" then
+			-- Dynamic loader management
+			local dynamic_loader = require("optispec.core.dynamic_loader")
+			if action == "status" then
+				-- Show dynamic loader status
+				local status = dynamic_loader.get_status()
+				local loaded_list = #status.loaded > 0 and table.concat(status.loaded, ", ") or "None"
+				local loading_list = #status.loading > 0 and table.concat(status.loading, ", ") or "None"
+				
+				vim.notify(
+					string.format(
+						"🚀 OptiSpec Dynamic Loader Status:\n\n"
+							.. "📦 Loaded Languages: %s\n"
+							.. "⏳ Loading Languages: %s\n"
+							.. "📊 Total Loaded: %d",
+						loaded_list,
+						loading_list,
+						status.total_loaded
+					),
+					vim.log.levels.INFO,
+					{ title = "🚀 OptiSpec Dynamic Loader", timeout = 8000 }
+				)
+			elseif action == "clear" then
+				-- Clear loaded languages from memory
+				dynamic_loader.reset()
+				vim.notify(
+					"🧹 All loaded languages cleared from memory!\n\n"
+						.. "💡 Languages will be automatically loaded again when you open files",
+					vim.log.levels.INFO,
+					{ title = "🚀 OptiSpec Dynamic Loader" }
+				)
+			elseif action == "debug" then
+				-- Toggle debug mode
+				local current_debug = vim.g.optispec_debug_loading or false
+				vim.g.optispec_debug_loading = not current_debug
+				local status = vim.g.optispec_debug_loading and "ENABLED" or "DISABLED"
+				vim.notify(
+					string.format(
+						"🔍 OptiSpec Debug Mode %s!\n\n"
+							.. "💡 %s",
+						status,
+						vim.g.optispec_debug_loading 
+							and "You'll now see detailed debug messages when loading languages"
+							or "Debug messages are now disabled"
+					),
+					vim.log.levels.INFO,
+					{ title = "🚀 OptiSpec Dynamic Loader" }
+				)
+			elseif action == "test" then
+				-- Test current filetype
+				local current_ft = vim.bo.filetype
+				if not current_ft or current_ft == "" then
+					vim.notify(
+						"⚠️ No filetype detected for current buffer",
+						vim.log.levels.WARN,
+						{ title = "🚀 OptiSpec Dynamic Loader" }
+					)
+					return
+				end
+				
+				-- Ensure OptiSpec is initialized first
+				local optispec = require("optispec")
+				optispec.ensure_initialized()
+				
+				vim.notify(
+					string.format("🧪 Testing dynamic loader for filetype: %s", current_ft),
+					vim.log.levels.INFO,
+					{ title = "🚀 OptiSpec Dynamic Loader" }
+				)
+				
+				-- Enable debug temporarily
+				local old_debug = vim.g.optispec_debug_loading
+				vim.g.optispec_debug_loading = true
+				
+				-- Test the loading
+				local dynamic_loader = require("optispec.core.dynamic_loader")
+				dynamic_loader.load_language_for_filetype(current_ft)
+				
+				-- Restore debug setting
+				vim.g.optispec_debug_loading = old_debug
+			else
+				-- Show help for dynamic loader commands
+				vim.notify(
+					"🚀 OptiSpec Dynamic Loader Commands:\n\n"
+						.. "📊 :NDE optispec dynamicloader status - Show current loading status\n"
+						.. "🧹 :NDE optispec dynamicloader clear - Clear all loaded languages\n"
+						.. "🔍 :NDE optispec dynamicloader debug - Toggle debug mode\n"
+						.. "🧪 :NDE optispec dynamicloader test - Test current filetype\n\n"
+						.. "💡 WHAT IT DOES:\n"
+						.. "• Automatically loads language tools when you open files\n"
+						.. "• Only loads tools for languages that are installed\n"
+						.. "• Avoids duplicate loading in the same session\n\n"
+						.. "🎯 TIP: Open any file and watch the magic happen!",
+					vim.log.levels.INFO,
+					{ title = "🚀 OptiSpec Dynamic Loader Help", timeout = 10000 }
+				)
+			end
 		else
 			-- OptiSpec help menu
 			vim.notify(
@@ -633,7 +730,7 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
 		elseif cmd == "snapicon" then
 			return { "config", "help" }
 		elseif cmd == "optispec" then
-			return { "status", "browse", "install", "remove", "update" }
+			return { "status", "browse", "install", "remove", "update", "dynamicloader" }
 		elseif cmd == "dashboard" then
 			return { "toggleheader" }
 		elseif cmd == "gitsigns" then
@@ -644,7 +741,9 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
 	elseif arg_count == 3 then
 		local cmd = args[2]
 		local subcmd = args[3]
-		if cmd == "optispec" and (subcmd == "install" or subcmd == "remove") then
+		if cmd == "optispec" and subcmd == "dynamicloader" then
+			return { "status", "clear", "debug", "test" }
+		elseif cmd == "optispec" and (subcmd == "install" or subcmd == "remove") then
 			-- Get available languages for completion
 			local languages = {
 				"python",

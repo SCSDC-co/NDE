@@ -35,6 +35,19 @@ function M.install_language(language_name)
   -- Mark language as installed
   languages.mark_language_installed(language_name)
   
+  -- Trigger dynamic loading for the current buffer if it matches this language
+  vim.schedule(function()
+    local current_filetype = vim.bo.filetype
+    if current_filetype and current_filetype ~= "" then
+      local language_for_ft = languages.get_language_for_filetype(current_filetype)
+      if language_for_ft == language_name then
+        -- Clear the dynamic loader state for this language so it can be loaded again
+        local dynamic_loader = require("optispec.core.dynamic_loader")
+        dynamic_loader.force_load_language(language_name)
+      end
+    end
+  end)
+  
   vim.notify("✓ " .. language_name .. " tools installed successfully!", vim.log.levels.INFO)
   return true
 end
@@ -61,6 +74,11 @@ function M.remove_language(language_name)
   -- Remove Mason tools
   if config.mason_tools then
     M.remove_mason_tools(config.mason_tools)
+  end
+  
+  -- Remove treesitter parsers
+  if config.treesitter then
+    M.remove_treesitter_parsers(config.treesitter)
   end
   
   -- Mark language as uninstalled
@@ -127,6 +145,20 @@ function M.install_treesitter_parsers(parsers)
     -- Fallback to direct treesitter call
     for _, parser in ipairs(parsers) do
       vim.cmd("TSInstall " .. parser)
+    end
+  end
+end
+
+-- Remove treesitter parsers
+function M.remove_treesitter_parsers(parsers)
+  local treesitter = _G.OptiSpec.treesitter
+  
+  if treesitter and treesitter.remove_parsers then
+    treesitter.remove_parsers(parsers)
+  else
+    -- Fallback to direct treesitter call
+    for _, parser in ipairs(parsers) do
+      vim.cmd("TSUninstall " .. parser)
     end
   end
 end

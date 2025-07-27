@@ -47,6 +47,9 @@ function M.setup(config)
   _G.OptiSpec = _G.OptiSpec or {}
   _G.OptiSpec.treesitter = {
     install_parser = M.install_parser,
+    install_parsers = M.install_parsers,
+    remove_parser = M.remove_parser,
+    remove_parsers = M.remove_parsers,
     is_parser_installed = M.is_parser_installed,
   }
 end
@@ -73,6 +76,25 @@ end
 function M.install_parsers(parsers)
   for _, parser in ipairs(parsers) do
     M.install_parser(parser)
+  end
+end
+
+-- Remove a treesitter parser
+function M.remove_parser(parser_name)
+  local parsers = require("nvim-treesitter.parsers")
+  
+  if parsers.has_parser(parser_name) then
+    vim.cmd("TSUninstall " .. parser_name)
+    return true
+  end
+  
+  return false -- Not installed
+end
+
+-- Remove multiple parsers
+function M.remove_parsers(parsers)
+  for _, parser in ipairs(parsers) do
+    M.remove_parser(parser)
   end
 end
 

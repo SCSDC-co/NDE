@@ -135,6 +135,7 @@ M.plugins = {
 	{
 		"williamboman/mason.nvim",
 		cmd = { "Mason", "MasonInstall", "MasonUninstall", "MasonUpdate" },
+		event = { "BufReadPre", "BufNewFile" }, -- Load when opening a buffer
 		config = function()
 			M.setup({
 				tools = {
@@ -146,7 +147,7 @@ M.plugins = {
 	{
 		"williamboman/mason-lspconfig.nvim",
 		dependencies = { "mason.nvim" },
-		lazy = true,
+		event = { "BufReadPre", "BufNewFile" }, -- Load when opening a buffer
 	},
 }
 

@@ -112,17 +112,28 @@ OPTISPEC                                                       *nde-optispec*
 
 OptiSpec provides smart language management with zero-bloat startup.
 
-`:NDE optispec`                 Show OptiSpec help menu
-`:NDE optispec status`          Show installed languages
-`:NDE optispec browse`          Browse available languages
-`:NDE optispec install <lang>`  Install language tools
-`:NDE optispec remove <lang>`   Remove language tools
-`:NDE optispec update`          Update all tools
+`:NDE optispec`                       Show OptiSpec help menu
+`:NDE optispec status`                Show installed languages
+`:NDE optispec browse`                Browse available languages
+`:NDE optispec install <lang>`        Install language tools
+`:NDE optispec remove <lang>`         Remove language tools
+`:NDE optispec update`                Update all tools
+`:NDE optispec dynamicloader`         Dynamic loader help menu
+`:NDE optispec dynamicloader status`  Show loading status
+`:NDE optispec dynamicloader clear`   Clear loaded languages 
+`:NDE optispec dynamicloader debug`   Toggle debug mode
+`:NDE optispec dynamicloader test`    Test current filetype
 
 Features:
 - Zero-bloat start - install only what you need
 - Auto-detection for 50+ languages
 - Beautiful NUI-powered interfaces
+- Dynamic loading - automatically loads language tools when opening files
+
+Dynamic Loader:
+The dynamic loader automatically detects file types and loads the appropriate
+language tools (LSP, formatters, debuggers) only when needed. This provides
+zero-bloat startup while ensuring tools are available when you work with files.
 
 Examples:
 - `:NDE optispec install python`

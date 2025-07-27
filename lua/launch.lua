@@ -3,7 +3,7 @@ local function migrate_nde_settings()
 	local nde_data_dir = vim.fn.stdpath("data") .. "/nde"
 	local old_settings_file = nde_data_dir .. "/tips_settings.json"
 	local new_settings_file = nde_data_dir .. "/general_settings.json"
-	
+
 	-- Only migrate if old file exists and new file doesn't exist
 	if vim.fn.filereadable(old_settings_file) == 1 and vim.fn.filereadable(new_settings_file) == 0 then
 		-- Try to rename using vim.fn.rename first (more reliable)
@@ -24,18 +24,18 @@ local function migrate_nde_settings()
 				vim.fn.writefile(old_content, new_settings_file)
 				if vim.fn.delete(old_settings_file) == 0 then -- delete returns 0 on success
 					vim.notify(
-						"📁 Settings file migrated (copied)!\n\n"
-							.. "Your preferences have been preserved! 🎉",
+						"📁 Settings file migrated (copied)!\n\n" .. "Your preferences have been preserved! 🎉",
 						vim.log.levels.INFO,
 						{ title = "🚀 NDE Settings Migration", timeout = 3000 }
 					)
 				else
 					vim.notify(
 						"⚠️ Migration completed but couldn't delete old file\n\n"
-							.. "Please manually delete: " .. old_settings_file,
-					vim.log.levels.WARN,
-					{ title = "🚀 NDE Settings Migration", timeout = 5000 }
-				)
+							.. "Please manually delete: "
+							.. old_settings_file,
+						vim.log.levels.WARN,
+						{ title = "🚀 NDE Settings Migration", timeout = 5000 }
+					)
 				end
 			else
 				vim.notify(

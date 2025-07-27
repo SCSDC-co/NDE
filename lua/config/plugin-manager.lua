@@ -71,6 +71,7 @@ local function load_user_config()
 
 			-- UI category
 			animate = false,
+			codewindow = false,
 			dropbar = false,
 			incline = false,
 			presence = false,
@@ -241,6 +242,7 @@ function M.create_default_config()
 
 				-- UI category
 				animate = false,
+				codewindow = false,
 				dropbar = false,
 				incline = false,
 				presence = false,
