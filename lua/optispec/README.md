@@ -11,6 +11,7 @@ OptiSpec is a **complete language management system** that revolutionizes develo
 - **⚡ Auto-Detection**: Automatically detects file types and prompts for tools
 - **🔄 Easy Management**: Install, remove, and update tools with simple commands
 - **🧠 Smart Diagnostics**: Merges LSP and linter diagnostics intelligently (NEW!)
+- **🚀 Dynamic Loading**: Automatically loads language tools when opening files (NEW!)
 - **🎨 Beautiful UI**: NUI-powered interface with modern design
 - **🎮 NDE Integration**: Fully integrated with the NDE command suite
 
@@ -45,12 +46,22 @@ OptiSpec is fully integrated with the NDE command suite for easy access:
 ### Main Commands
 
 ```vim
-:NDE optispec                 " Show OptiSpec help and features
-:NDE optispec status          " Show installed languages and tools
-:NDE optispec browse          " Open beautiful language browser GUI
-:NDE optispec install <lang>  " Install tools for a language
-:NDE optispec remove <lang>   " Remove language tools
-:NDE optispec update          " Update all installed tools
+:NDE optispec                       " Show OptiSpec help and features
+:NDE optispec status                " Show installed languages and tools
+:NDE optispec browse                " Open beautiful language browser GUI
+:NDE optispec install <lang>        " Install tools for a language
+:NDE optispec remove <lang>         " Remove language tools
+:NDE optispec update                " Update all installed tools
+```
+
+### Dynamic Loader Commands (NEW!)
+
+```vim
+:NDE optispec dynamicloader         " Dynamic loader help menu
+:NDE optispec dynamicloader status  " Show loading status
+:NDE optispec dynamicloader clear   " Clear loaded languages
+:NDE optispec dynamicloader debug   " Toggle debug mode
+:NDE optispec dynamicloader test    " Test current filetype
 ```
 
 ### Quick Access
@@ -189,6 +200,63 @@ OptiSpec features an advanced diagnostic merging system that eliminates duplicat
 - Prioritizes LSP diagnostics over linter diagnostics
 - Merges results into a single clean namespace
 - **No more seeing 3 of the same diagnostic!** 🎉
+
+### 🚀 Dynamic Loading System (NEW!)
+
+OptiSpec's **Dynamic Loader** is a revolutionary feature that automatically loads language tools when you open files, providing seamless zero-bloat performance:
+
+```bash
+# The Magic Workflow:
+1. nvim main.py          # Opens Python file
+2. 🔍 "Detecting Python..."  # Auto-detects filetype
+3. 🚀 "Loading Python tools..." # Loads LSP, formatters, debuggers
+4. ✅ "Python tools ready!"    # All tools available instantly
+```
+
+**How Dynamic Loading Works:**
+- **Auto-Detection**: Monitors `BufRead`, `BufNewFile`, and `FileType` events
+- **Smart Loading**: Only loads tools for languages that are already installed
+- **Duplicate Prevention**: Tracks loaded languages to avoid re-loading
+- **Performance Optimized**: Loads tools asynchronously without blocking
+- **Debug Mode**: Comprehensive logging for troubleshooting
+
+**What Gets Loaded:**
+- **LSP Servers**: Language intelligence and completion
+- **Formatters**: Code formatting via conform.nvim
+- **Debuggers**: DAP configurations for debugging
+- **Tool Configurations**: Language-specific settings
+
+**Smart Features:**
+- Skips special buffers (terminal, quickfix, etc.)
+- Ignores unnamed/empty buffers
+- Handles complex filetypes and multi-language files
+- Provides real-time loading status
+
+**Example Usage:**
+```vim
+" Check what's currently loaded
+:NDE optispec dynamicloader status
+
+" Enable debug mode to see loading process
+:NDE optispec dynamicloader debug
+
+" Test detection for current file
+:NDE optispec dynamicloader test
+
+" Clear all loaded languages (useful for testing)
+:NDE optispec dynamicloader clear
+```
+
+**Debug Output Example:**
+```
+🔍 Dynamic Loader: Checking filetype 'python'
+🎯 Found language 'python' for filetype 'python'
+🔧 Language 'python' installed: true
+🚀 Loading python tools for python...
+✅ OptiSpec: Successfully loaded python tools for python
+```
+
+This means **zero startup time impact** while having all your development tools ready the moment you start coding! 🎉
 
 ### 🎨 Beautiful UI & NDE Integration
 
