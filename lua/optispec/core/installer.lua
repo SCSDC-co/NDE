@@ -32,9 +32,10 @@ function M.install_language(language_name)
     M.setup_debugger(language_name, config.dap)
   end
   
-  -- Mark language as installed
-  languages.mark_language_installed(language_name)
-  
+  -- Update JSON tracking status
+  local json_tracker = require("optispec.core.json_tracker")
+  json_tracker.update_language_status(language_name)
+
   -- Trigger dynamic loading for the current buffer if it matches this language
   vim.schedule(function()
     local current_filetype = vim.bo.filetype
@@ -81,8 +82,9 @@ function M.remove_language(language_name)
     M.remove_treesitter_parsers(config.treesitter)
   end
   
-  -- Mark language as uninstalled
-  languages.mark_language_uninstalled(language_name)
+  -- Update JSON tracking status
+  local json_tracker = require("optispec.core.json_tracker")
+  json_tracker.update_language_status(language_name)
   
   vim.notify("✓ " .. language_name .. " tools removed successfully!", vim.log.levels.INFO)
   return true
@@ -199,6 +201,13 @@ function M.get_status()
     else
       table.insert(available, lang.name)
     end
+  end
+  
+  -- Update tracked status
+  for _, lang in ipairs(all_languages) do
+    local json_tracker = require("optispec.core.json_tracker")
+    local status = json_tracker.verify_language_status(lang.name)
+    json_tracker.set_language_status(lang.name, status)
   end
   
   return {

@@ -553,6 +553,68 @@ local function handle_nde_command(opts)
 			-- Update all OptiSpec tools
 			local optispec = require("optispec")
 			optispec.update()
+		elseif subcmd == "refresh" then
+			-- Refresh all language statuses
+			local json_tracker = require("optispec.core.json_tracker")
+			local updated = json_tracker.refresh_all_statuses()
+			vim.notify(
+				string.format("🔄 Refreshed installation status for %d languages!\n\n💡 Updated statuses are now accurate", updated),
+				vim.log.levels.INFO,
+				{ title = "🚀 OptiSpec Status Refresh" }
+			)
+		elseif subcmd == "stats" then
+			-- Show installation statistics
+			local json_tracker = require("optispec.core.json_tracker")
+			local stats = json_tracker.get_stats()
+			vim.notify(
+				string.format(
+					"📊 OptiSpec Installation Statistics:\n\n"
+						.. "✅ Full: %d languages\n"
+						.. "⚠️ Partial: %d languages\n"
+						.. "❌ None: %d languages\n"
+						.. "📦 Total: %d languages",
+					stats.full,
+					stats.partial,
+					stats.none,
+					stats.total
+				),
+				vim.log.levels.INFO,
+				{ title = "📊 OptiSpec Statistics", timeout = 8000 }
+			)
+		elseif subcmd == "verify" then
+			-- Verify specific language installation
+			if action then
+				local json_tracker = require("optispec.core.json_tracker")
+				local old_status = json_tracker.get_language_status(action)
+				local new_status = json_tracker.verify_language_status(action)
+				json_tracker.set_language_status(action, new_status)
+				
+				vim.notify(
+					string.format(
+						"🔍 Verification Results for %s:\n\n"
+							.. "📊 Previous Status: %s\n"
+							.. "✅ Actual Status: %s\n\n"
+							.. "%s",
+						action:gsub("^%l", string.upper),
+						old_status,
+						new_status,
+						old_status ~= new_status and "📝 Status updated!" or "💡 Status was already accurate"
+					),
+					vim.log.levels.INFO,
+					{ title = "🔍 OptiSpec Verify", timeout = 8000 }
+				)
+			else
+				vim.notify(
+					"🔍 OptiSpec Verify Command:\n\n"
+						.. "Usage: :NDE optispec verify <language>\n\n"
+						.. "Examples:\n"
+						.. "• :NDE optispec verify python\n"
+						.. "• :NDE optispec verify javascript\n\n"
+						.. "💡 This checks if the actual installed tools match the tracked status",
+					vim.log.levels.INFO,
+					{ title = "🔍 OptiSpec Verify" }
+				)
+			end
 		elseif subcmd == "dynamicloader" then
 			-- Dynamic loader management
 			local dynamic_loader = require("optispec.core.dynamic_loader")
@@ -730,7 +792,7 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
 		elseif cmd == "snapicon" then
 			return { "config", "help" }
 		elseif cmd == "optispec" then
-			return { "status", "browse", "install", "remove", "update", "dynamicloader" }
+			return { "status", "browse", "install", "remove", "update", "refresh", "stats", "verify", "dynamicloader" }
 		elseif cmd == "dashboard" then
 			return { "toggleheader" }
 		elseif cmd == "gitsigns" then
@@ -743,7 +805,7 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
 		local subcmd = args[3]
 		if cmd == "optispec" and subcmd == "dynamicloader" then
 			return { "status", "clear", "debug", "test" }
-		elseif cmd == "optispec" and (subcmd == "install" or subcmd == "remove") then
+		elseif cmd == "optispec" and (subcmd == "install" or subcmd == "remove" or subcmd == "verify") then
 			-- Get available languages for completion
 			local languages = {
 				"python",
