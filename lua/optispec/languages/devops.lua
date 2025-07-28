@@ -7,6 +7,7 @@ function M.setup()
     filetypes = { "dockerfile" },
     mason_tools = {
       lsp = { "dockerls" },
+      linter = { "hadolint" },
     },
     lsp = {
       name = "dockerls",
@@ -21,6 +22,7 @@ function M.setup()
     mason_tools = {
       lsp = { "terraform-ls" },
       formatters = { "terraform" },
+      linter = { "tfsec" },
     },
     lsp = {
       name = "terraformls",
@@ -34,6 +36,7 @@ function M.setup()
     filetypes = { "yaml.ansible", "yml.ansible" },
     mason_tools = {
       lsp = { "ansiblels" },
+      linter = { "ansible_lint" },
     },
     lsp = {
       name = "ansiblels",

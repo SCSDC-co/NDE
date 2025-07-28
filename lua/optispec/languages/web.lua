@@ -8,6 +8,7 @@ function M.setup()
     mason_tools = {
       lsp = { "typescript-language-server" },
       formatters = { "prettierd" },
+      linter = { "eslint_d" },
       dap = { "node-debug2-adapter" },
     },
     lsp = {
@@ -23,6 +24,7 @@ function M.setup()
     mason_tools = {
       lsp = { "typescript-language-server" },
       formatters = { "prettierd" },
+      linter = { "eslint_d" },
       dap = { "node-debug2-adapter" },
     },
     lsp = {
@@ -38,6 +40,7 @@ function M.setup()
     mason_tools = {
       lsp = { "vue-language-server" },
       formatters = { "prettierd" },
+      linter = { "eslint_d" },
     },
     lsp = {
       name = "vue_ls",
@@ -52,6 +55,7 @@ function M.setup()
     mason_tools = {
       lsp = { "angular-language-server" },
       formatters = { "prettierd" },
+      linter = { "eslint_d" },
     },
     lsp = {
       name = "angularls",
@@ -66,6 +70,7 @@ function M.setup()
     mason_tools = {
       lsp = { "svelte-language-server" },
       formatters = { "prettierd" },
+      linter = { "eslint_d" },
     },
     lsp = {
       name = "svelte",
@@ -186,12 +191,28 @@ function M.setup()
     treesitter = {},
   })
 
+  -- CSS
+  require("optispec.core.languages").register_language("css", {
+    filetypes = { "css", "scss", "sass", "less" },
+    mason_tools = {
+      lsp = { "css-lsp" },
+      formatters = { "prettierd" },
+      linter = { "stylelint" },
+    },
+    lsp = {
+      name = "cssls",
+      settings = {},
+    },
+    treesitter = { "css", "scss" },
+  })
+
   -- HTML
   require("optispec.core.languages").register_language("html", {
     filetypes = { "html" },
     mason_tools = {
       lsp = { "html-lsp" },
       formatters = { "prettierd" },
+      linter = { "htmlhint" },
     },
     lsp = {
       name = "html",

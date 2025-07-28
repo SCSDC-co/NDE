@@ -8,6 +8,7 @@ function M.setup()
     mason_tools = {
       lsp = { "pyright" },
       formatters = { "autopep8", "black" },
+      linter = { "flake8" },
       dap = { "debugpy" },
     },
     lsp = {
@@ -30,6 +31,7 @@ function M.setup()
     mason_tools = {
       lsp = { "bashls" },
       formatters = { "shfmt" },
+      linter = { "shellcheck" },
     },
     lsp = {
       name = "bashls",
@@ -44,6 +46,7 @@ function M.setup()
     mason_tools = {
       lsp = { "solargraph" },
       formatters = { "rubocop" },
+      linter = { "rubocop" },
     },
     lsp = {
       name = "solargraph",

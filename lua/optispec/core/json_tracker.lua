@@ -228,8 +228,6 @@ function M.verify_language_status(language_name)
 					mason_tools_installed = mason_tools_installed + 1
 					installed_tools = installed_tools + 1
 				end
-				-- Debug: print each mason tool check
-				print(string.format("[DEBUG] Mason tool %s.%s: %s -> %s", category, tool, tool, is_installed and "INSTALLED" or "NOT_INSTALLED"))
 			end
 		end
 	end
@@ -245,16 +243,9 @@ function M.verify_language_status(language_name)
 				ts_parsers_installed = ts_parsers_installed + 1
 				installed_tools = installed_tools + 1
 			end
-			-- Debug: print each treesitter parser check
-			print(string.format("[DEBUG] Treesitter parser %s: %s", parser, has_parser and "INSTALLED" or "NOT_INSTALLED"))
 		end
 	end
 	
-	-- Debug: print summary for this language
-	print(string.format("[DEBUG] Language %s summary:", language_name))
-	print(string.format("  Mason tools: %d/%d installed", mason_tools_installed, mason_tools_total))
-	print(string.format("  Treesitter parsers: %d/%d installed", ts_parsers_installed, ts_parsers_total))
-	print(string.format("  Total: %d/%d installed", installed_tools, total_tools))
 	
 	-- Determine status
 	local status
@@ -268,7 +259,6 @@ function M.verify_language_status(language_name)
 		status = "partial"
 	end
 	
-	print(string.format("[DEBUG] Final status for %s: %s", language_name, status))
 	return status
 end
 

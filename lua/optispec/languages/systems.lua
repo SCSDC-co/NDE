@@ -8,6 +8,7 @@ function M.setup()
     mason_tools = {
       lsp = { "rust_analyzer" },
       formatters = { "rustfmt" },
+      linter = { "clippy" },
     },
     lsp = {
       name = "rust_analyzer",
@@ -27,6 +28,7 @@ function M.setup()
     mason_tools = {
       lsp = { "gopls" },
       formatters = { "gofmt" },
+      linter = { "golangci_lint" },
       dap = { "delve" },
     },
     lsp = {
@@ -42,6 +44,7 @@ function M.setup()
     mason_tools = {
       lsp = { "clangd" },
       formatters = { "clang-format" },
+      linter = { "cppcheck" },
       dap = { "codelldb" },
     },
     lsp = {

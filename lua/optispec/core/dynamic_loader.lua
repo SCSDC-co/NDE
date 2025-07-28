@@ -185,6 +185,13 @@ function M.load_language_tools(language, filetype)
 			table.insert(errors, "Formatters: " .. tostring(fmt_err))
 		end
 
+		-- Load linters for this language
+		local linter_ok, linter_err = pcall(M.load_linters, language, config, filetype)
+		if not linter_ok then
+			success = false
+			table.insert(errors, "Linters: " .. tostring(linter_err))
+		end
+
 		-- Load debuggers for this language
 		local dap_ok, dap_err = pcall(M.load_debuggers, language, config, filetype)
 		if not dap_ok then
@@ -267,6 +274,22 @@ function M.load_formatters(language, config, filetype)
 		formatters_by_ft[filetype] = config.formatters
 		conform.setup({ formatters_by_ft = formatters_by_ft })
 	end
+end
+
+-- Load linters for language 
+function M.load_linters(language, config, filetype)
+	if not config.mason_tools or not config.mason_tools.linter then
+		return
+	end
+
+	-- Check if none-ls module is available and has the required function
+	local ok_nonels, nonels_module = pcall(require, "optispec.core.none-ls")
+	if not ok_nonels then
+		return -- none-ls module not available
+	end
+
+	-- Load linters for this language through none-ls
+	nonels_module.load_language_linters(language)
 end
 
 -- Load debuggers for language
