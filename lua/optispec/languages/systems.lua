@@ -9,6 +9,7 @@ function M.setup()
       lsp = { "rust_analyzer" },
       formatters = { "rustfmt" },
       linter = { "clippy" },
+      dap = { "codelldb" },
     },
     lsp = {
       name = "rust_analyzer",
@@ -59,6 +60,7 @@ function M.setup()
     filetypes = { "zig" },
     mason_tools = {
       lsp = { "zls" },
+      dap = { "codelldb" },
     },
     lsp = {
       name = "zls",
@@ -87,6 +89,7 @@ function M.setup()
     filetypes = { "kotlin" },
     mason_tools = {
       lsp = { "kotlin-language-server" },
+      dap = { "kotlin-debug-adapter" },
     },
     lsp = {
       name = "kotlin_language_server",
@@ -114,6 +117,7 @@ function M.setup()
     mason_tools = {
       lsp = { "omnisharp" },
       formatters = { "csharpier" },
+      dap = { "netcoredbg" },
     },
     lsp = {
       name = "omnisharp",

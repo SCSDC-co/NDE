@@ -32,6 +32,7 @@ function M.setup()
       lsp = { "bashls" },
       formatters = { "shfmt" },
       linter = { "shellcheck" },
+      dap = { "bash-debug-adapter" },
     },
     lsp = {
       name = "bashls",
@@ -60,6 +61,7 @@ function M.setup()
     filetypes = { "elixir", "eelixir" },
     mason_tools = {
       lsp = { "elixirls" },
+      dap = { "elixir-ls" },
     },
     lsp = {
       name = "elixirls",
@@ -73,6 +75,7 @@ function M.setup()
     filetypes = { "perl" },
     mason_tools = {
       lsp = { "perlpls" },
+      dap = { "perl-debug-adapter" },
     },
     lsp = {
       name = "perlpls",

@@ -115,6 +115,7 @@ function M.setup()
 			lsp = { "lua-language-server" },
 			formatters = { "stylua" },
 			linter = { "luacheck" },
+			dap = { "local-lua-debugger-vscode" },
 		},
 		lsp = {
 			name = "lua_ls",

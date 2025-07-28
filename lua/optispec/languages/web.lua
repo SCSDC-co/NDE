@@ -9,7 +9,7 @@ function M.setup()
       lsp = { "typescript-language-server" },
       formatters = { "prettierd" },
       linter = { "eslint_d" },
-      dap = { "node-debug2-adapter" },
+      dap = { "js-debug-adapter" },
     },
     lsp = {
       name = "ts_ls",
@@ -25,7 +25,7 @@ function M.setup()
       lsp = { "typescript-language-server" },
       formatters = { "prettierd" },
       linter = { "eslint_d" },
-      dap = { "node-debug2-adapter" },
+      dap = { "js-debug-adapter" },
     },
     lsp = {
       name = "ts_ls",
@@ -41,6 +41,7 @@ function M.setup()
       lsp = { "vue-language-server" },
       formatters = { "prettierd" },
       linter = { "eslint_d" },
+      dap = { "js-debug-adapter" },
     },
     lsp = {
       name = "vue_ls",
@@ -56,6 +57,7 @@ function M.setup()
       lsp = { "angular-language-server" },
       formatters = { "prettierd" },
       linter = { "eslint_d" },
+      dap = { "js-debug-adapter" },
     },
     lsp = {
       name = "angularls",
@@ -71,6 +73,7 @@ function M.setup()
       lsp = { "svelte-language-server" },
       formatters = { "prettierd" },
       linter = { "eslint_d" },
+      dap = { "js-debug-adapter" },
     },
     lsp = {
       name = "svelte",
@@ -227,6 +230,7 @@ function M.setup()
     mason_tools = {
       lsp = { "astro-language-server" },
       formatters = { "prettierd" },
+      dap = { "js-debug-adapter" },
     },
     lsp = {
       name = "astro-language-server",

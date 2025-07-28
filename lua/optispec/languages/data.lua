@@ -51,6 +51,7 @@ function M.setup()
 			lsp = { "phpactor" },
 			formatters = { "php-cs-fixer" },
 			linter = { "phpcs" },
+			dap = { "php-debug-adapter" },
 		},
 		lsp = {
 			name = "phpactor",
