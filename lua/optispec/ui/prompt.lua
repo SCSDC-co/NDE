@@ -10,7 +10,7 @@ function M.setup(user_config)
 end
 
 -- Show installation prompt for a language
-function M.show_install_prompt(language_name, filetype)
+function M.show_install_prompt(language_name, filetype, decline_callback)
 	local languages = require("optispec.core.languages")
 	local lang_config = languages.get_language_config(language_name)
 
@@ -97,19 +97,35 @@ function M.show_install_prompt(language_name, filetype)
 			submit = { "<CR>", "<Space>" },
 		},
 		on_close = function()
-			print("Prompt closed.")
+			-- Mark as declined when closed without selection
+			if decline_callback then
+				decline_callback(true)
+			end
 		end,
 		on_submit = function(item)
 			if item.text:match("Yes") then
 				require("optispec.core.installer").install_language(language_name)
+				-- Not declined if installing
+				if decline_callback then
+					decline_callback(false)
+				end
 			elseif item.text:match("Disable prompts for this language") then
 				vim.notify("Prompts disabled for " .. language_name, vim.log.levels.INFO)
-			-- TODO: Add to disabled languages list
+				-- TODO: Add to disabled languages list
+				if decline_callback then
+					decline_callback(true)
+				end
 			elseif item.text:match("Disable all prompts") then
 				_G.OptiSpec.config.prompt.enabled = false
 				vim.notify("All prompts disabled", vim.log.levels.INFO)
+				if decline_callback then
+					decline_callback(true)
+				end
 			elseif item.text:match("Skip") then
 				vim.notify("Skipped " .. language_name .. " installation", vim.log.levels.INFO)
+				if decline_callback then
+					decline_callback(true)
+				end
 			end
 		end,
 	})
