@@ -70,6 +70,17 @@ function M.get_language_config(language)
   return languages[language]
 end
 
+-- Get all language names (without installation status to avoid circular dependency)
+function M.get_all_language_names()
+  local result = {}
+  for name, _ in pairs(languages) do
+    table.insert(result, name)
+  end
+  -- Sort alphabetically
+  table.sort(result)
+  return result
+end
+
 -- Get all available languages
 function M.get_all_languages()
   local result = {}

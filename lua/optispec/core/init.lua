@@ -29,6 +29,9 @@ function M.setup(config)
 	-- Setup language configurations (tools load on-demand when filetypes are opened)
 	require("optispec.core.languages").setup()
 
+	-- Initialize JSON tracking system
+	require("optispec.core.json_tracker").init()
+
 	-- Setup dynamic loader for file-type based tool loading
 	require("optispec.core.dynamic_loader").setup(config)
 end

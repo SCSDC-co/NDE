@@ -712,6 +712,40 @@ local function handle_nde_command(opts)
 					{ title = "🚀 OptiSpec Dynamic Loader Help", timeout = 10000 }
 				)
 			end
+		elseif subcmd == "linters" then
+			-- Linters toggle command
+			local json_tracker = require("optispec.core.json_tracker")
+			if action == "on" then
+				json_tracker.set_linters_status(true)
+				vim.notify(
+					"✅ Linters diagnostics ENABLED!\n\n"
+						.. "💡 Both LSP and linter diagnostics will now be displayed",
+					vim.log.levels.INFO,
+					{ title = "🔧 OptiSpec Linters" }
+				)
+			elseif action == "off" then
+				json_tracker.set_linters_status(false)
+				vim.notify(
+					"❌ Linters diagnostics DISABLED!\n\n"
+						.. "💡 Only LSP diagnostics will be displayed",
+					vim.log.levels.INFO,
+					{ title = "🔧 OptiSpec Linters" }
+				)
+			else
+				-- Show current status and help
+				local current_status = json_tracker.get_linters_status()
+				local status_text = current_status and "ENABLED" or "DISABLED"
+				vim.notify(
+					"🔧 OptiSpec Linters Control:\n\n"
+						.. string.format("📊 Current Status: %s\n\n", status_text)
+						.. "Commands:\n"
+						.. "• :NDE optispec linters on - Enable linter diagnostics\n"
+						.. "• :NDE optispec linters off - Disable linter diagnostics\n\n"
+						.. "💡 This controls whether linter diagnostics are merged with LSP diagnostics",
+					vim.log.levels.INFO,
+					{ title = "🔧 OptiSpec Linters", timeout = 8000 }
+				)
+			end
 		else
 			-- OptiSpec help menu
 			vim.notify(
@@ -792,7 +826,7 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
 		elseif cmd == "snapicon" then
 			return { "config", "help" }
 		elseif cmd == "optispec" then
-			return { "status", "browse", "install", "remove", "update", "refresh", "stats", "verify", "dynamicloader" }
+			return { "status", "browse", "install", "remove", "update", "refresh", "stats", "verify", "dynamicloader", "linters" }
 		elseif cmd == "dashboard" then
 			return { "toggleheader" }
 		elseif cmd == "gitsigns" then
@@ -805,6 +839,8 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
 		local subcmd = args[3]
 		if cmd == "optispec" and subcmd == "dynamicloader" then
 			return { "status", "clear", "debug", "test" }
+		elseif cmd == "optispec" and subcmd == "linters" then
+			return { "on", "off" }
 		elseif cmd == "optispec" and (subcmd == "install" or subcmd == "remove" or subcmd == "verify") then
 			-- Get available languages for completion
 			local languages = {

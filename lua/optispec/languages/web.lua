@@ -15,6 +15,54 @@ function M.setup()
       name = "ts_ls",
       settings = {},
     },
+    -- none-ls source configurations for linters
+    none_ls_sources = {
+      eslint_d = function()
+        local null_ls = require("null-ls")
+        return {
+          method = null_ls.methods.DIAGNOSTICS,
+          filetypes = { "javascript", "javascriptreact" },
+          generator = {
+            fn = function(params, done)
+              local content = table.concat(params.content, "\n")
+              
+              -- Run eslint_d asynchronously
+              vim.system(
+                { "eslint_d", "--format", "json", "--stdin", "--stdin-filename", params.bufname },
+                {
+                  stdin = content,
+                  text = true,
+                },
+                function(result)
+                  local diagnostics = {}
+                  if result.stdout then
+                    local ok, json_data = pcall(vim.json.decode, result.stdout)
+                    if ok and json_data and #json_data > 0 then
+                      for _, file in ipairs(json_data) do
+                        for _, message in ipairs(file.messages or {}) do
+                          table.insert(diagnostics, {
+                            row = message.line,
+                            col = message.column,
+                            message = message.message,
+                            code = message.ruleId,
+                            source = "eslint_d",
+                            severity = message.severity == 2 and vim.diagnostic.severity.ERROR
+                                      or message.severity == 1 and vim.diagnostic.severity.WARN
+                                      or vim.diagnostic.severity.INFO,
+                          })
+                        end
+                      end
+                    end
+                  end
+                  done(diagnostics)
+                end
+              )
+            end,
+            async = true,
+          },
+        }
+      end,
+    },
     treesitter = { "javascript", "tsx" },
   })
   
@@ -31,6 +79,54 @@ function M.setup()
       name = "ts_ls",
       settings = {},
     },
+    -- none-ls source configurations for linters
+    none_ls_sources = {
+      eslint_d = function()
+        local null_ls = require("null-ls")
+        return {
+          method = null_ls.methods.DIAGNOSTICS,
+          filetypes = { "typescript", "typescriptreact" },
+          generator = {
+            fn = function(params, done)
+              local content = table.concat(params.content, "\n")
+              
+              -- Run eslint_d asynchronously
+              vim.system(
+                { "eslint_d", "--format", "json", "--stdin", "--stdin-filename", params.bufname },
+                {
+                  stdin = content,
+                  text = true,
+                },
+                function(result)
+                  local diagnostics = {}
+                  if result.stdout then
+                    local ok, json_data = pcall(vim.json.decode, result.stdout)
+                    if ok and json_data and #json_data > 0 then
+                      for _, file in ipairs(json_data) do
+                        for _, message in ipairs(file.messages or {}) do
+                          table.insert(diagnostics, {
+                            row = message.line,
+                            col = message.column,
+                            message = message.message,
+                            code = message.ruleId,
+                            source = "eslint_d",
+                            severity = message.severity == 2 and vim.diagnostic.severity.ERROR
+                                      or message.severity == 1 and vim.diagnostic.severity.WARN
+                                      or vim.diagnostic.severity.INFO,
+                          })
+                        end
+                      end
+                    end
+                  end
+                  done(diagnostics)
+                end
+              )
+            end,
+            async = true,
+          },
+        }
+      end,
+    },
     treesitter = { "typescript", "tsx" },
   })
 
@@ -46,6 +142,54 @@ function M.setup()
     lsp = {
       name = "vue_ls",
       settings = {},
+    },
+    -- none-ls source configurations for linters
+    none_ls_sources = {
+      eslint_d = function()
+        local null_ls = require("null-ls")
+        return {
+          method = null_ls.methods.DIAGNOSTICS,
+          filetypes = { "vue" },
+          generator = {
+            fn = function(params, done)
+              local content = table.concat(params.content, "\n")
+              
+              -- Run eslint_d asynchronously
+              vim.system(
+                { "eslint_d", "--format", "json", "--stdin", "--stdin-filename", params.bufname },
+                {
+                  stdin = content,
+                  text = true,
+                },
+                function(result)
+                  local diagnostics = {}
+                  if result.stdout then
+                    local ok, json_data = pcall(vim.json.decode, result.stdout)
+                    if ok and json_data and #json_data > 0 then
+                      for _, file in ipairs(json_data) do
+                        for _, message in ipairs(file.messages or {}) do
+                          table.insert(diagnostics, {
+                            row = message.line,
+                            col = message.column,
+                            message = message.message,
+                            code = message.ruleId,
+                            source = "eslint_d",
+                            severity = message.severity == 2 and vim.diagnostic.severity.ERROR
+                                      or message.severity == 1 and vim.diagnostic.severity.WARN
+                                      or vim.diagnostic.severity.INFO,
+                          })
+                        end
+                      end
+                    end
+                  end
+                  done(diagnostics)
+                end
+              )
+            end,
+            async = true,
+          },
+        }
+      end,
     },
     treesitter = { "vue" },
   })
@@ -206,6 +350,54 @@ function M.setup()
       name = "cssls",
       settings = {},
     },
+    -- none-ls source configurations for linters
+    none_ls_sources = {
+      stylelint = function()
+        local null_ls = require("null-ls")
+        return {
+          method = null_ls.methods.DIAGNOSTICS,
+          filetypes = { "css", "scss", "sass", "less" },
+          generator = {
+            fn = function(params, done)
+              local content = table.concat(params.content, "\n")
+              
+              -- Run stylelint asynchronously
+              vim.system(
+                { "stylelint", "--formatter", "json", "--stdin", "--stdin-filename", params.bufname },
+                {
+                  stdin = content,
+                  text = true,
+                },
+                function(result)
+                  local diagnostics = {}
+                  if result.stdout then
+                    local ok, json_data = pcall(vim.json.decode, result.stdout)
+                    if ok and json_data and #json_data > 0 then
+                      for _, file in ipairs(json_data) do
+                        for _, warning in ipairs(file.warnings or {}) do
+                          table.insert(diagnostics, {
+                            row = warning.line,
+                            col = warning.column,
+                            message = warning.text,
+                            code = warning.rule,
+                            source = "stylelint",
+                            severity = warning.severity == "error" and vim.diagnostic.severity.ERROR
+                                      or warning.severity == "warning" and vim.diagnostic.severity.WARN
+                                      or vim.diagnostic.severity.INFO,
+                          })
+                        end
+                      end
+                    end
+                  end
+                  done(diagnostics)
+                end
+              )
+            end,
+            async = true,
+          },
+        }
+      end,
+    },
     treesitter = { "css", "scss" },
   })
 
@@ -220,6 +412,52 @@ function M.setup()
     lsp = {
       name = "html",
       settings = {},
+    },
+    -- none-ls source configurations for linters
+    none_ls_sources = {
+      htmlhint = function()
+        local null_ls = require("null-ls")
+        return {
+          method = null_ls.methods.DIAGNOSTICS,
+          filetypes = { "html" },
+          generator = {
+            fn = function(params, done)
+              local content = table.concat(params.content, "\n")
+              
+              -- Run htmlhint asynchronously
+              vim.system(
+                { "htmlhint", "--format", "json", "--stdin" },
+                {
+                  stdin = content,
+                  text = true,
+                },
+                function(result)
+                  local diagnostics = {}
+                  if result.stdout then
+                    local ok, json_data = pcall(vim.json.decode, result.stdout)
+                    if ok and json_data then
+                      for _, message in ipairs(json_data.messages or {}) do
+                        table.insert(diagnostics, {
+                          row = message.line,
+                          col = message.col,
+                          message = message.message,
+                          code = message.rule.id,
+                          source = "htmlhint",
+                          severity = message.type == "error" and vim.diagnostic.severity.ERROR
+                                    or message.type == "warning" and vim.diagnostic.severity.WARN
+                                    or vim.diagnostic.severity.INFO,
+                        })
+                      end
+                    end
+                  end
+                  done(diagnostics)
+                end
+              )
+            end,
+            async = true,
+          },
+        }
+      end,
     },
     treesitter = { "html" },
   })

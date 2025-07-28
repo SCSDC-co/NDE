@@ -14,6 +14,50 @@ function M.setup()
 			name = "sqlls",
 			settings = {},
 		},
+		-- none-ls source configurations for linters
+		none_ls_sources = {
+			sqlfluff = function()
+				local null_ls = require("null-ls")
+				return {
+					method = null_ls.methods.DIAGNOSTICS,
+					filetypes = { "sql", "mysql", "plsql" },
+					generator = {
+						fn = function(params, done)
+							local content = table.concat(params.content, "\n")
+							
+							-- Run sqlfluff asynchronously
+							vim.system(
+								{ "sqlfluff", "lint", "--format", "json", "-" },
+								{
+									stdin = content,
+									text = true,
+								},
+								function(result)
+									local diagnostics = {}
+									if result.stdout then
+										local ok, json_data = pcall(vim.json.decode, result.stdout)
+										if ok and json_data then
+											for _, violation in ipairs(json_data.violations or {}) do
+												table.insert(diagnostics, {
+													row = violation.line_no,
+													col = violation.line_pos,
+													message = violation.description,
+													code = violation.code,
+													source = "sqlfluff",
+													severity = vim.diagnostic.severity.WARN,
+												})
+											end
+										end
+									end
+									done(diagnostics)
+								end
+							)
+						end,
+						async = true,
+					},
+				}
+			end,
+		},
 		treesitter = { "sql" },
 	})
 
@@ -56,6 +100,54 @@ function M.setup()
 		lsp = {
 			name = "phpactor",
 			settings = {},
+		},
+		-- none-ls source configurations for linters
+		none_ls_sources = {
+			phpcs = function()
+				local null_ls = require("null-ls")
+				return {
+					method = null_ls.methods.DIAGNOSTICS,
+					filetypes = { "php" },
+					generator = {
+						fn = function(params, done)
+							local content = table.concat(params.content, "\n")
+							
+							-- Run phpcs asynchronously
+							vim.system(
+								{ "phpcs", "--report=json", "--stdin-path=" .. params.bufname, "-" },
+								{
+									stdin = content,
+									text = true,
+								},
+								function(result)
+									local diagnostics = {}
+									if result.stdout then
+										local ok, json_data = pcall(vim.json.decode, result.stdout)
+										if ok and json_data and json_data.files then
+											for filename, file in pairs(json_data.files) do
+												for _, message in ipairs(file.messages or {}) do
+													table.insert(diagnostics, {
+														row = message.line,
+														col = message.column,
+														message = message.message,
+														code = message.source,
+														source = "phpcs",
+														severity = message.type == "ERROR" and vim.diagnostic.severity.ERROR
+																  or message.type == "WARNING" and vim.diagnostic.severity.WARN
+																  or vim.diagnostic.severity.INFO,
+													})
+												end
+											end
+										end
+									end
+									done(diagnostics)
+								end
+							)
+						end,
+						async = true,
+					},
+				}
+			end,
 		},
 		treesitter = { "php" },
 	})
