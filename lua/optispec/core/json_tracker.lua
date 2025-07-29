@@ -326,8 +326,16 @@ function M.verify_language_status(language_name)
 		return "none"
 	end
 	
-	-- Check Mason tools
-	local mason = require("mason-registry")
+	-- Use OptiSpec's mason utilities for consistent checking
+	local mason_utils = _G.OptiSpec and _G.OptiSpec.mason
+	if not mason_utils then
+		-- Fallback to direct mason-registry access
+		local ok, mason_registry = pcall(require, "mason-registry")
+		if not ok then
+			return "none"
+		end
+		mason_utils = { is_tool_installed = function(tool) return mason_registry.is_installed(tool) end }
+	end
 	local total_tools = 0
 	local installed_tools = 0
 	local mason_tools_installed = 0
@@ -335,12 +343,13 @@ function M.verify_language_status(language_name)
 	local ts_parsers_installed = 0
 	local ts_parsers_total = 0
 	
+	-- Check Mason tools
 	if config.mason_tools then
 		for category, tools in pairs(config.mason_tools) do
 			for _, tool in ipairs(tools) do
 				mason_tools_total = mason_tools_total + 1
 				total_tools = total_tools + 1
-				local is_installed = mason.is_installed(tool)
+				local is_installed = mason_utils.is_tool_installed(tool)
 				if is_installed then
 					mason_tools_installed = mason_tools_installed + 1
 					installed_tools = installed_tools + 1
@@ -450,6 +459,23 @@ end
 function M.init()
 	-- This will ensure the JSON file is created if it doesn't exist
 	ensure_cache()
+	
+	-- Auto-refresh all language statuses on startup to ensure JSON reflects actual state
+	vim.defer_fn(function()
+		-- Only refresh if OptiSpec is fully initialized to avoid circular dependencies
+		if _G.OptiSpec and _G.OptiSpec.initialized then
+			vim.notify("OptiSpec: Refreshing language statuses on startup...", vim.log.levels.INFO)
+			M.refresh_all_statuses()
+		else
+			-- Schedule refresh after OptiSpec is fully initialized
+			vim.defer_fn(function()
+				if _G.OptiSpec and _G.OptiSpec.initialized then
+					vim.notify("OptiSpec: Refreshing language statuses...", vim.log.levels.INFO)
+					M.refresh_all_statuses()
+				end
+			end, 2000) -- Try again after 2 seconds
+		end
+	end, 1000) -- Initial delay to allow other systems to initialize
 end
 
 return M

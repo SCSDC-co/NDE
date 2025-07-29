@@ -96,7 +96,6 @@ function M.load_language_linters(language_name)
         local source = get_linter_source(linter_name, config)
         if source then
             table.insert(sources_to_add, source)
-            vim.notify(string.format("[OptiSpec] Added %s linter for %s", linter_name, language_name), vim.log.levels.INFO)
         else
             vim.notify(string.format("[OptiSpec] Linter %s not supported or not available for %s", linter_name, language_name), vim.log.levels.WARN)
         end

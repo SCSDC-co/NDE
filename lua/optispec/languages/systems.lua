@@ -143,7 +143,7 @@ function M.setup()
     mason_tools = {
       lsp = { "clangd" },
       formatters = { "clang-format" },
-      linter = { "cppcheck" },
+      linter = { "cpplint" },
       dap = { "codelldb" },
     },
     lsp = {
@@ -152,7 +152,7 @@ function M.setup()
     },
     -- none-ls source configurations for linters
     none_ls_sources = {
-      cppcheck = function()
+      cpplint = function()
         local null_ls = require("null-ls")
         return {
           method = null_ls.methods.DIAGNOSTICS,
@@ -161,35 +161,33 @@ function M.setup()
             fn = function(params, done)
               local content = table.concat(params.content, "\n")
               
-              -- Run cppcheck asynchronously
+              -- Run cpplint asynchronously
               vim.system(
-                { "cppcheck", "--enable=all", "--xml", "--xml-version=2", params.bufname },
+                { "cpplint", "--output=emacs", params.bufname },
                 {
                   text = true,
                 },
                 function(result)
                   local diagnostics = {}
                   if result.stderr then
-                    -- Parse XML output from stderr
+                    -- Parse cpplint output from stderr
                     for line in result.stderr:gmatch("[^\n]+") do
-                      local location_match = line:match('<location file="[^"]*" line="(%d+)" column="(%d+)"')
-                      local message_start = line:find('<error id="')
-                      if location_match and message_start then
-                        local row, col = line:match('<location file="[^"]*" line="(%d+)" column="(%d+)"')
-                        local severity, id, msg = line:match('<error id="([^"]+)" severity="([^"]+)" msg="([^"]+)"')
-                        if row and col and msg then
-                          table.insert(diagnostics, {
-                            row = tonumber(row),
-                            col = tonumber(col),
-                            message = msg,
-                            code = id,
-                            source = "cppcheck",
-                            severity = severity == "error" and vim.diagnostic.severity.ERROR
-                                      or severity == "warning" and vim.diagnostic.severity.WARN
-                                      or severity == "style" and vim.diagnostic.severity.INFO
-                                      or vim.diagnostic.severity.HINT,
-                          })
-                        end
+                      local file, row, message = line:match("([^:]+):(%d+):%s*(.+)")
+                      if row and message then
+                        -- Extract category from message if present
+                        local category = message:match("%[([^%]]+)%]$") or "style"
+                        local clean_message = message:gsub("%s*%[([^%]]+)%]$", "")
+                        
+                        table.insert(diagnostics, {
+                          row = tonumber(row),
+                          col = 1,
+                          message = clean_message,
+                          code = category,
+                          source = "cpplint",
+                          severity = category:match("error") and vim.diagnostic.severity.ERROR
+                                    or category:match("warning") and vim.diagnostic.severity.WARN
+                                    or vim.diagnostic.severity.INFO,
+                        })
                       end
                     end
                   end
