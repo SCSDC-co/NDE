@@ -1,0 +1,130 @@
+*optispec.txt*                          OptiSpec 2.0 Documentation
+
+================================================================================
+CONTENTS                                                        *optispec-contents*
+
+  1. Introduction ..................................... |optispec-introduction|
+  2. Features ......................................... |optispec-features|
+  3. Commands ......................................... |optispec-commands|
+    3.1 Installation Management ....................... |optispec-installation|
+    3.2 Dynamic Loader ................................ |optispec-dynamicloader|
+
+================================================================================
+INTRODUCTION                                               *optispec-introduction*
+
+OptiSpec 2.0 introduces smart language management with zero-bloat startup,
+ensuring efficient use of resources while providing seamless integration of
+language tools as needed.
+
+OptiSpec supports 51 programming languages, providing toolchains that include
+LSP servers, formatters, linters, and debuggers.
+
+================================================================================
+FEATURES                                                     *optispec-features*
+
+OptiSpec leverages several powerful Neovim plugins to provide comprehensive
+language management:
+
+- **mason.nvim**: For installing and managing LSP servers, formatters, linters, 
+  and debug adapters.
+- **nvim-lspconfig**: Neovim's built-in language server client configuration.
+- **conform.nvim**: For code formatting integration with Mason-installed formatters.
+- **none-ls.nvim**: For integrating external linter tools via LSP.
+- **nvim-treesitter**: Provides syntax highlighting and other features based on tree-sitter.
+- **nui.nvim**: For creating rich and interactive user interfaces.
+
+With these integrations, OptiSpec ensures that tools are loaded on-demand, improving 
+greatly Neovim's startup performance while maintaining full language support.
+
+================================================================================
+COMMANDS                                                      *optispec-commands*
+
+-------------------------------------------------------------------------------
+INSTALLATION MANAGEMENT                                    *optispec-installation*
+
+Manage language tools with simple commands:
+
+`:NDE optispec status`
+Show the status of installed languages and tools.
+
+`:NDE optispec browse`
+Browse all available languages in an interactive interface.
+
+`:NDE optispec install <language>`
+Install complete toolchain for a specified language.
+
+`:NDE optispec remove <language>`
+Remove all tools for a specified language.
+
+`:NDE optispec update`
+Update all installed tools to their latest versions.
+
+`:NDE optispec verify <language>`
+Verify the installation status of a language.
+
+`:NDE optispec stats`
+Display statistics of language installations.
+
+`:NDE optispec refresh`
+Update language status visibility and cache.
+
+Examples:
+  `:NDE optispec install python`     - Install Python toolchain
+  `:NDE optispec install rust`       - Install Rust toolchain
+  `:NDE optispec install javascript` - Install JavaScript toolchain
+
+-------------------------------------------------------------------------------
+DYNAMIC LOADER                                             *optispec-dynamicloader*
+
+Dynamic loading ensures tools are only loaded when needed:
+
+`:NDE optispec dynamicloader status`
+Show the current loading status of all languages.
+
+`:NDE optispec dynamicloader clear`
+Clear all loaded languages from memory.
+
+`:NDE optispec dynamicloader debug`
+Toggle debug mode for dynamic loading.
+
+`:NDE optispec dynamicloader test`
+Test the dynamic loader for the current filetype.
+
+The dynamic loader automatically detects file types and loads appropriate language
+tools (LSP, formatters, linters, treesitter parsers) only when needed, ensuring
+startup remains fast and efficient.
+
+SUPPORTED LANGUAGES:
+
+Web Development:
+  JavaScript, TypeScript, Vue, Angular, Svelte, Astro, HTML, CSS, TailwindCSS, Emmet
+
+Systems Programming:
+  Rust, Go, C/C++ (Clang), Zig, Java, Kotlin, Scala, C#
+
+Scripting Languages:
+  Python, Ruby, PHP, Shell/Bash, Elixir, Perl
+
+Functional Languages:
+  Haskell, OCaml, Clojure, Erlang, Elm, Gleam, Lean
+
+Configuration & Markup:
+  JSON, YAML, TOML, Markdown, Nix, CMake, Git, LaTeX, Lua, Nushell, Thrift
+
+Data & Database:
+  SQL, Prisma, R
+
+DevOps & Infrastructure:
+  Docker, Terraform, Ansible, Helm, Rego
+
+Key Features:
+- Zero-bloat startup
+- Automatic language detection
+- Dynamic management of 51 languages
+- Complete toolchain per language (LSP + formatters + linters + debuggers)
+- Beautiful NUI-powered interfaces
+- Mason integration for tool installation and management
+
+--------------------------------------------------------------------------------
+
+vim:tw=78:sw=4:ft=help:norl:

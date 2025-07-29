@@ -59,82 +59,6 @@ local function list_snippets()
 	)
 end
 
--- Function to open help buffer
-local function open_help_buffer()
-	-- Path to the help file
-	local help_file = vim.fn.stdpath("config") .. "/lua/nde/doc/nde-help.txt"
-	
-	-- Check if help file exists
-	if vim.fn.filereadable(help_file) == 0 then
-		vim.notify(
-			"❌ Help file not found: " .. help_file,
-			vim.log.levels.ERROR,
-			{ title = "🚀 NDE Help" }
-		)
-		return
-	end
-	
-	-- Create a new buffer
-	local buf = vim.api.nvim_create_buf(false, true)
-	if buf == 0 then
-		vim.notify(
-			"❌ Failed to create help buffer",
-			vim.log.levels.ERROR,
-			{ title = "🚀 NDE Help" }
-		)
-		return
-	end
-	
-	-- Read the help file content
-	local lines = vim.fn.readfile(help_file)
-	if not lines then
-		vim.notify(
-			"❌ Failed to read help file",
-			vim.log.levels.ERROR,
-			{ title = "🚀 NDE Help" }
-		)
-		return
-	end
-	
-	-- Set buffer content
-	vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
-	
-	-- Set buffer options
-	vim.api.nvim_buf_set_option(buf, "buftype", "nofile")
-	vim.api.nvim_buf_set_option(buf, "bufhidden", "wipe")
-	vim.api.nvim_buf_set_option(buf, "buflisted", false)
-	vim.api.nvim_buf_set_option(buf, "swapfile", false)
-	vim.api.nvim_buf_set_option(buf, "readonly", true)
-	vim.api.nvim_buf_set_option(buf, "modifiable", false)
-	vim.api.nvim_buf_set_option(buf, "filetype", "help")
-	
-	-- Open buffer in a new window (split)
-	vim.cmd("split")
-	local win = vim.api.nvim_get_current_win()
-	vim.api.nvim_win_set_buf(win, buf)
-	
-	-- Set window options
-	vim.api.nvim_win_set_option(win, "wrap", false)
-	vim.api.nvim_win_set_option(win, "number", false)
-	vim.api.nvim_win_set_option(win, "relativenumber", false)
-	vim.api.nvim_win_set_option(win, "cursorline", true)
-	
-	-- Set buffer name
-	vim.api.nvim_buf_set_name(buf, "NDE Help")
-	
-	-- Add keymaps for navigation and closing
-	local opts = { buffer = buf, silent = true }
-	vim.keymap.set("n", "q", "<cmd>close<cr>", opts)
-	vim.keymap.set("n", "<ESC>", "<cmd>close<cr>", opts)
-	
-	vim.notify(
-		"📚 NDE Help opened!\n\n" ..
-		"Press 'q' or <ESC> to close",
-		vim.log.levels.INFO,
-		{ title = "🚀 NDE Help", timeout = 3000 }
-	)
-end
-
 -- Main NDE command handler
 local function handle_nde_command(opts)
 	local args = vim.split(opts.args, " ", { trimempty = true })
@@ -558,7 +482,10 @@ local function handle_nde_command(opts)
 			local json_tracker = require("optispec.core.json_tracker")
 			local updated = json_tracker.refresh_all_statuses()
 			vim.notify(
-				string.format("🔄 Refreshed installation status for %d languages!\n\n💡 Updated statuses are now accurate", updated),
+				string.format(
+					"🔄 Refreshed installation status for %d languages!\n\n💡 Updated statuses are now accurate",
+					updated
+				),
 				vim.log.levels.INFO,
 				{ title = "🚀 OptiSpec Status Refresh" }
 			)
@@ -588,7 +515,7 @@ local function handle_nde_command(opts)
 				local old_status = json_tracker.get_language_status(action)
 				local new_status = json_tracker.verify_language_status(action)
 				json_tracker.set_language_status(action, new_status)
-				
+
 				vim.notify(
 					string.format(
 						"🔍 Verification Results for %s:\n\n"
@@ -623,7 +550,7 @@ local function handle_nde_command(opts)
 				local status = dynamic_loader.get_status()
 				local loaded_list = #status.loaded > 0 and table.concat(status.loaded, ", ") or "None"
 				local loading_list = #status.loading > 0 and table.concat(status.loading, ", ") or "None"
-				
+
 				vim.notify(
 					string.format(
 						"🚀 OptiSpec Dynamic Loader Status:\n\n"
@@ -653,11 +580,9 @@ local function handle_nde_command(opts)
 				local status = vim.g.optispec_debug_loading and "ENABLED" or "DISABLED"
 				vim.notify(
 					string.format(
-						"🔍 OptiSpec Debug Mode %s!\n\n"
-							.. "💡 %s",
+						"🔍 OptiSpec Debug Mode %s!\n\n" .. "💡 %s",
 						status,
-						vim.g.optispec_debug_loading 
-							and "You'll now see detailed debug messages when loading languages"
+						vim.g.optispec_debug_loading and "You'll now see detailed debug messages when loading languages"
 							or "Debug messages are now disabled"
 					),
 					vim.log.levels.INFO,
@@ -674,25 +599,25 @@ local function handle_nde_command(opts)
 					)
 					return
 				end
-				
+
 				-- Ensure OptiSpec is initialized first
 				local optispec = require("optispec")
 				optispec.ensure_initialized()
-				
+
 				vim.notify(
 					string.format("🧪 Testing dynamic loader for filetype: %s", current_ft),
 					vim.log.levels.INFO,
 					{ title = "🚀 OptiSpec Dynamic Loader" }
 				)
-				
+
 				-- Enable debug temporarily
 				local old_debug = vim.g.optispec_debug_loading
 				vim.g.optispec_debug_loading = true
-				
+
 				-- Test the loading
 				local dynamic_loader = require("optispec.core.dynamic_loader")
 				dynamic_loader.load_language_for_filetype(current_ft)
-				
+
 				-- Restore debug setting
 				vim.g.optispec_debug_loading = old_debug
 			else
@@ -712,6 +637,21 @@ local function handle_nde_command(opts)
 					{ title = "🚀 OptiSpec Dynamic Loader Help", timeout = 10000 }
 				)
 			end
+		elseif subcmd == "help" then
+			-- Show OptiSpec help documentation
+			local help_file = vim.fn.stdpath("config") .. "/lua/optispec/doc/optispec.txt"
+			if vim.fn.filereadable(help_file) == 1 then
+				vim.cmd("split " .. help_file)
+				vim.bo.filetype = "help"
+				vim.bo.readonly = true
+				vim.bo.modifiable = false
+			else
+				vim.notify(
+					"❌ OptiSpec help file not found: " .. help_file,
+					vim.log.levels.ERROR,
+					{ title = "🚀 OptiSpec Help" }
+				)
+			end
 		elseif subcmd == "linters" then
 			-- Linters toggle command
 			local json_tracker = require("optispec.core.json_tracker")
@@ -726,8 +666,7 @@ local function handle_nde_command(opts)
 			elseif action == "off" then
 				json_tracker.set_linters_status(false)
 				vim.notify(
-					"❌ Linters diagnostics DISABLED!\n\n"
-						.. "💡 Only LSP diagnostics will be displayed",
+					"❌ Linters diagnostics DISABLED!\n\n" .. "💡 Only LSP diagnostics will be displayed",
 					vim.log.levels.INFO,
 					{ title = "🔧 OptiSpec Linters" }
 				)
@@ -767,7 +706,19 @@ local function handle_nde_command(opts)
 		end
 	elseif cmd == "help" or cmd == "" then
 		-- Open NDE help documentation in a proper buffer
-		open_help_buffer()
+		local help_file = vim.fn.stdpath("config") .. "/lua/nde/doc/nde-help.txt"
+		if vim.fn.filereadable(help_file) == 1 then
+			vim.cmd("split " .. help_file)
+			vim.bo.filetype = "help"
+			vim.bo.readonly = true
+			vim.bo.modifiable = false
+		else
+			vim.notify(
+				"❌ OptiSpec help file not found: " .. help_file,
+				vim.log.levels.ERROR,
+				{ title = "🚀 OptiSpec Help" }
+			)
+		end
 	else
 		-- Unknown command
 		vim.notify(
@@ -826,7 +777,19 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
 		elseif cmd == "snapicon" then
 			return { "config", "help" }
 		elseif cmd == "optispec" then
-			return { "status", "browse", "install", "remove", "update", "refresh", "stats", "verify", "dynamicloader", "linters" }
+			return {
+				"status",
+				"browse",
+				"install",
+				"remove",
+				"update",
+				"refresh",
+				"stats",
+				"verify",
+				"dynamicloader",
+				"linters",
+				"help",
+			}
 		elseif cmd == "dashboard" then
 			return { "toggleheader" }
 		elseif cmd == "gitsigns" then
