@@ -119,6 +119,7 @@ function M.get_plugins()
 		"mason",
 		"lsp",
 		"formatters",
+		"none-ls",
 		"debugger",
 		"treesitter",
 		"diagnostics",

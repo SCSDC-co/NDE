@@ -32,9 +32,25 @@ function M.install_language(language_name)
     M.setup_debugger(language_name, config.dap)
   end
   
-  -- Mark language as installed
-  languages.mark_language_installed(language_name)
+  -- Update JSON tracking status immediately and then schedule periodic updates
+  local json_tracker = require("optispec.core.json_tracker")
   
+  -- Initial status update
+  json_tracker.update_language_status(language_name)
+  
+  -- Schedule periodic status checks to catch async installations
+  vim.defer_fn(function()
+    json_tracker.update_language_status(language_name)
+  end, 1000) -- Check after 1 second
+  
+  vim.defer_fn(function()
+    json_tracker.update_language_status(language_name)
+  end, 3000) -- Check after 3 seconds
+  
+  vim.defer_fn(function()
+    json_tracker.update_language_status(language_name)
+  end, 5000) -- Final check after 5 seconds
+
   -- Trigger dynamic loading for the current buffer if it matches this language
   vim.schedule(function()
     local current_filetype = vim.bo.filetype
@@ -49,6 +65,15 @@ function M.install_language(language_name)
   end)
   
   vim.notify("✓ " .. language_name .. " tools installed successfully!", vim.log.levels.INFO)
+  
+  -- Notify user to restart Neovim for changes to take effect
+  vim.notify(
+    "Language \"" .. language_name .. "\" installed successfully!\n" ..
+    "To ensure all LSP servers, formatters, and tools work properly,\n" ..
+    "check that Mason installed every tool before restarting! Then restart Neovim.",
+    vim.log.levels.INFO
+  )
+  
   return true
 end
 
@@ -81,10 +106,25 @@ function M.remove_language(language_name)
     M.remove_treesitter_parsers(config.treesitter)
   end
   
-  -- Mark language as uninstalled
-  languages.mark_language_uninstalled(language_name)
+  -- Update JSON tracking status
+  local json_tracker = require("optispec.core.json_tracker")
+  json_tracker.update_language_status(language_name)
+  
+  -- Schedule a final status check to ensure removal is complete
+  vim.defer_fn(function()
+    json_tracker.update_language_status(language_name)
+  end, 1000)
   
   vim.notify("✓ " .. language_name .. " tools removed successfully!", vim.log.levels.INFO)
+  
+  -- Notify user to restart Neovim for changes to take effect
+  vim.notify(
+    "Language \"" .. language_name .. "\" removed successfully!\n" ..
+    "To ensure all settings are properly updated,\n" ..
+    "check that Mason installed every tool before restarting! Then restart Neovim.",
+    vim.log.levels.INFO
+  )
+
   return true
 end
 
@@ -199,6 +239,13 @@ function M.get_status()
     else
       table.insert(available, lang.name)
     end
+  end
+  
+  -- Update tracked status
+  for _, lang in ipairs(all_languages) do
+    local json_tracker = require("optispec.core.json_tracker")
+    local status = json_tracker.verify_language_status(lang.name)
+    json_tracker.set_language_status(lang.name, status)
   end
   
   return {

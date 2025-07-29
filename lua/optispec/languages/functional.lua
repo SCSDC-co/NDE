@@ -8,6 +8,7 @@ function M.setup()
     mason_tools = {
       lsp = { "haskell-language-server" },
       formatters = { "fourmolu" },
+      dap = { "haskell-debug-adapter" },
     },
     lsp = {
       name = "hls",
@@ -22,6 +23,7 @@ function M.setup()
     mason_tools = {
       lsp = { "ocaml-lsp" },
       formatters = { "ocamlformat" },
+      dap = { "ocamlearlybird" },
     },
     lsp = {
       name = "ocamllsp",
@@ -48,6 +50,7 @@ function M.setup()
     filetypes = { "erlang" },
     mason_tools = {
       lsp = { "erlangls" },
+      dap = { "erlang-debugger" },
     },
     lsp = {
       name = "erlangls",

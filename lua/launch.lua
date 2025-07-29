@@ -87,7 +87,6 @@ require("optispec").setup({
 	tools = {
 		mason = { auto_update = true },
 		lsp = { auto_attach = true },
-		diagnostics = { merge_sources = false }, -- Disabled to improve scrolling performance
 	},
 })
 

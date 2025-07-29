@@ -51,44 +51,8 @@ end
 
 -- Check if language is installed
 function M.is_language_installed(language)
-  -- First check our internal tracking
-  if installed_languages[language] == true then
-    return true
-  end
-  
-  -- If not tracked internally, check if the language's tools are actually installed
-  local config = languages[language]
-  if not config or not config.mason_tools then
-    return false
-  end
-  
-  -- Check if Mason tools exist and at least one tool from each category is installed
-  local mason = _G.OptiSpec and _G.OptiSpec.mason
-  if not mason then
-    return false
-  end
-  
-  local has_any_tools = false
-  
-  for category, tools in pairs(config.mason_tools) do
-    if #tools > 0 then
-      -- Check if at least one tool from this category is installed
-      for _, tool in ipairs(tools) do
-        if mason.is_tool_installed(tool) then
-          has_any_tools = true
-          break
-        end
-      end
-    end
-  end
-  
-  -- If we found any required tools, mark as installed and return true
-  if has_any_tools then
-    installed_languages[language] = true
-    return true
-  end
-  
-  return false
+  local json_tracker = require("optispec.core.json_tracker")
+  return json_tracker.is_language_installed(language)
 end
 
 -- Mark language as installed
@@ -104,6 +68,17 @@ end
 -- Get language configuration
 function M.get_language_config(language)
   return languages[language]
+end
+
+-- Get all language names (without installation status to avoid circular dependency)
+function M.get_all_language_names()
+  local result = {}
+  for name, _ in pairs(languages) do
+    table.insert(result, name)
+  end
+  -- Sort alphabetically
+  table.sort(result)
+  return result
 end
 
 -- Get all available languages
