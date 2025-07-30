@@ -704,6 +704,113 @@ local function handle_nde_command(opts)
 				{ title = "🚀 OptiSpec Language Manager", timeout = 12000 }
 			)
 		end
+	-- Opus commands
+	elseif cmd == "opus" then
+		local opus = require("opus")
+		if subcmd == "list" then
+			-- Show task list in floating window
+			opus.ui.show_tasks()
+		elseif subcmd == "add" then
+			-- Add a new task
+			if action then
+				local task = {
+					name = action,
+					completed = false,
+					tags = {},
+					created = os.date("%Y-%m-%d %H:%M:%S")
+				}
+				opus.core.add_task(task)
+				vim.notify("📝 Task added: " .. action, vim.log.levels.INFO, { title = "Opus" })
+			else
+				vim.notify(
+					"📝 Opus Add Command:\n\n"
+						.. "Usage: :NDE opus add <task_name>\n\n"
+						.. "Example: :NDE opus add 'Fix the bug in parser'",
+					vim.log.levels.INFO,
+					{ title = "📝 Opus Help" }
+				)
+			end
+		elseif subcmd == "remove" then
+			-- Remove a task by index
+			if action then
+				local index = tonumber(action)
+				if index and index > 0 and index <= #opus.core.tasks then
+					local task_name = opus.core.tasks[index].name
+					opus.core.remove_task(index)
+					vim.notify("🗑️ Task removed: " .. task_name, vim.log.levels.INFO, { title = "Opus" })
+				else
+					vim.notify("❌ Invalid task index: " .. action, vim.log.levels.ERROR, { title = "Opus" })
+				end
+			else
+				vim.notify(
+					"🗑️ Opus Remove Command:\n\n"
+						.. "Usage: :NDE opus remove <task_index>\n\n"
+						.. "Example: :NDE opus remove 1",
+					vim.log.levels.INFO,
+					{ title = "📝 Opus Help" }
+				)
+			end
+		elseif subcmd == "complete" then
+			-- Complete a task by index
+			if action then
+				local index = tonumber(action)
+				if index and index > 0 and index <= #opus.core.tasks then
+					opus.core.complete_task(index)
+					local task = opus.core.tasks[index]
+					vim.notify("✅ Task completed: " .. task.name, vim.log.levels.INFO, { title = "Opus" })
+				else
+					vim.notify("❌ Invalid task index: " .. action, vim.log.levels.ERROR, { title = "Opus" })
+				end
+			else
+				vim.notify(
+					"✅ Opus Complete Command:\n\n"
+						.. "Usage: :NDE opus complete <task_index>\n\n"
+						.. "Example: :NDE opus complete 1",
+					vim.log.levels.INFO,
+					{ title = "📝 Opus Help" }
+				)
+			end
+		elseif subcmd == "rename" then
+			-- Rename a task
+			local args = vim.split(opts.args, " ", { plain = true, trimempty = true })
+			if #args >= 3 then
+				local index = tonumber(args[3])
+				local new_name = table.concat(args, " ", 4)
+				if index and index > 0 and index <= #opus.core.tasks and new_name and #new_name > 0 then
+					opus.core.rename_task(index, new_name)
+					vim.notify("✏️ Task renamed to: " .. new_name, vim.log.levels.INFO, { title = "Opus" })
+				else
+					vim.notify("❌ Invalid task index or name", vim.log.levels.ERROR, { title = "Opus" })
+				end
+			else
+				vim.notify(
+					"✏️ Opus Rename Command:\n\n"
+						.. "Usage: :NDE opus rename <task_index> <new_name>\n\n"
+						.. "Example: :NDE opus rename 1 'Updated task name'",
+					vim.log.levels.INFO,
+					{ title = "📝 Opus Help" }
+				)
+			end
+		else
+			-- Opus help menu
+			vim.notify(
+				"📝 Opus TODO Manager Commands:\n\n"
+					.. "📋 :NDE opus list - Show task manager\n"
+					.. "➕ :NDE opus add <task> - Add new task\n"
+					.. "✅ :NDE opus complete <index> - Complete task\n"
+					.. "🗑️ :NDE opus remove <index> - Remove task\n"
+					.. "✏️ :NDE opus rename <index> <name> - Rename task\n\n"
+					.. "💡 FEATURES:\n"
+					.. "• 🎯 Beautiful NUI interface\n"
+					.. "• 🏷️ Tag support for organization\n"
+					.. "• 💾 JSON storage in ~/.local/share/nvim/nde/opus.json\n"
+					.. "• ⌨️ Full keyboard navigation\n\n"
+					.. "🎮 TIP: Use :NDE opus list for the full interactive experience!",
+				vim.log.levels.INFO,
+				{ title = "📝 Opus TODO Manager", timeout = 12000 }
+			)
+		end
+	
 	elseif cmd == "help" or cmd == "" then
 		-- Open NDE help documentation in a proper buffer
 		local help_file = vim.fn.stdpath("config") .. "/lua/nde/doc/nde-help.txt"
@@ -754,8 +861,9 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
 			"snapicon",
 			"gitsigns",
 			"dashboard",
-			"optispec",
-			"pluginmanager",
+		    "optispec",
+			"opus",
+    		"pluginmanager",
 		}
 		return vim.tbl_filter(function(cmd)
 			return cmd:match("^" .. vim.pesc(ArgLead))
