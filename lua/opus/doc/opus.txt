@@ -1,0 +1,219 @@
+*opus.txt*                              Opus TODO Manager Documentation
+
+================================================================================
+CONTENTS                                                          *opus-contents*
+
+  1. Introduction ....................................... |opus-introduction|
+  2. Features ........................................... |opus-features|
+  3. Commands ........................................... |opus-commands|
+    3.1 Interactive Interface ........................... |opus-interface|
+    3.2 Command Line Usage .............................. |opus-cli|
+  4. Keybindings ........................................ |opus-keybindings|
+  5. Configuration ...................................... |opus-configuration|
+  6. Storage Format ..................................... |opus-storage|
+
+================================================================================
+INTRODUCTION                                                 *opus-introduction*
+
+Opus is a powerful and intuitive TODO task manager built for the NDE (Neovim
+Development Environment). It provides a beautiful and efficient way to manage
+your tasks without ever leaving your editor.
+
+Opus is seamlessly integrated into the NDE command suite and provides both an
+interactive UI and command-line interface for task management.
+
+================================================================================
+FEATURES                                                         *opus-features*
+
+Opus leverages several powerful components to provide comprehensive task
+management:
+
+- **NUI-Powered Interface**: Clean and interactive UI built with modern NUI
+  components for a beautiful user experience.
+- **Complete Task Management**: Add, remove, rename, and complete tasks with
+  intuitive commands and keyboard shortcuts.
+- **Advanced Tagging System**: Organize your tasks with custom tags for better
+  categorization and filtering.
+- **Smart Filtering & Sorting**: Quickly find the tasks you need with powerful
+  filtering by tags, completion status, and search functionality.
+- **JSON Storage**: Tasks are stored in a simple, human-readable JSON format
+  at `~/.local/share/nvim/nde/opus.json` for easy backup and integration.
+- **Full Keyboard Navigation**: Designed for keyboard-driven workflows with
+  intuitive shortcuts that follow Vim conventions.
+- **Statistics & Insights**: Track your productivity with built-in task
+  statistics including completion rates and tag usage.
+- **NDE Integration**: Seamlessly integrated with the NDE command suite and
+  theme system for consistent experience.
+
+================================================================================
+COMMANDS                                                         *opus-commands*
+
+--------------------------------------------------------------------------------
+INTERACTIVE INTERFACE                                           *opus-interface*
+
+The primary way to interact with Opus is through its interactive UI:
+
+`:NDE opus list`
+Open the main Opus task manager interface in a floating window.
+
+This launches a beautiful NUI-powered interface where you can:
+- View all your tasks with completion status
+- Navigate with keyboard shortcuts
+- Perform all task operations interactively
+- See real-time help panel with available commands
+
+-------------------------------------------------------------------------------
+COMMAND LINE USAGE                                                   *opus-cli*
+
+For quick actions, use the NDE command suite directly:
+
+`:NDE opus add "<task_description>"`
+Add a new task with the specified description.
+
+`:NDE opus remove <task_index>`
+Remove the task at the specified index (1-based).
+
+`:NDE opus complete <task_index>`
+Mark the task at the specified index as completed.
+
+`:NDE opus rename <task_index> "<new_name>"`
+Rename the task at the specified index to the new name.
+
+`:NDE opus help`
+Open this comprehensive documentation.
+
+Examples:
+  `:NDE opus add "Fix the parser bug"`        - Add a new task
+  `:NDE opus complete 1`                      - Complete task #1
+  `:NDE opus remove 2`                        - Remove task #2
+  `:NDE opus rename 1 "Updated task name"`    - Rename task #1
+
+================================================================================
+KEYBINDINGS                                                   *opus-keybindings*
+
+Opus is designed to be fully controlled with your keyboard. Here are the
+default keybindings available in the main interface:
+
+Navigation:
+  `j`, `<Down>`     Navigate down the task list
+  `k`, `<Up>`       Navigate up the task list
+
+Task Operations:
+  `<Enter>`         Toggle the completion status of the selected task
+  `<Space>`         Toggle the completion status of the selected task
+  `a`               Add a new task
+  `r`               Rename the selected task
+  `d`               Delete the selected task (with confirmation)
+
+Tag Management:
+  `t`               Add a tag to the selected task
+  `T`               Remove a tag from the selected task
+
+Organization:
+  `f`               Filter tasks by tag (empty input clears filter)
+  `n`               Sort tasks by name alphabetically
+  `c`               Sort tasks by completion status
+
+Utilities:
+  `s`               Show task statistics
+  `/`               Search for a task by name
+  `q`, `<Esc>`      Close the Opus window
+
+All operations provide visual feedback and confirmations where appropriate.
+
+================================================================================
+CONFIGURATION                                               *opus-configuration*
+
+Opus is highly configurable through its configuration system located at:
+`~/.config/nvim-nde/lua/opus/config.lua`
+
+You can customize:
+
+UI Appearance:
+- Window dimensions and positioning
+- Border styles and colors
+- Icons and symbols
+- Highlight groups and theme integration
+
+Keybindings:
+- All keyboard shortcuts can be remapped
+- Support for alternative key combinations
+- Custom action mappings
+
+Task Defaults:
+- Default task properties
+- Automatic tag assignment
+- Date/time formatting
+
+Storage Settings:
+- JSON formatting options
+- Backup configuration
+- Auto-save behavior
+
+Notifications:
+- Enable/disable notifications
+- Timeout settings
+- Notification levels
+
+Example configuration snippet:
+>lua
+  require("opus").setup({
+    ui = {
+      width = 100,
+      height = 30,
+      border_style = "double",
+    },
+    keymaps = {
+      quit = { "q", "<C-c>" },
+      add_task = "<C-a>",
+    },
+    notifications = {
+      enabled = true,
+      timeout = 5000,
+    }
+  })
+<
+
+================================================================================
+STORAGE FORMAT                                                   *opus-storage*
+
+Tasks are stored in JSON format at `~/.local/share/nvim/nde/opus.json`:
+
+>json
+  [
+    {
+      "name": "Fix the parser bug",
+      "completed": false,
+      "tags": [
+          "bug", 
+          "parser"
+      ]
+    },
+    {
+      "name": "Write documentation",
+      "completed": true,
+      "tags": [
+          "docs"
+      ]
+    }
+  ]
+<
+
+This format makes it easy to:
+- Backup and sync your tasks
+- Integrate with other tools
+- Manual editing if needed
+- Version control your task lists
+
+The JSON file is automatically created in the NDE data directory and follows
+pretty-printing format for human readability.
+
+Key Properties:
+- `name`: Task description (string)
+- `completed`: Completion status (boolean)
+- `tags`: Array of tag strings (optional)
+- `created_at`: Creation timestamp (optional)
+
+--------------------------------------------------------------------------------
+
+vim:tw=78:sw=4:ft=help:norl:

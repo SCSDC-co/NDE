@@ -717,7 +717,7 @@ local function handle_nde_command(opts)
 					name = action,
 					completed = false,
 					tags = {},
-					created = os.date("%Y-%m-%d %H:%M:%S")
+					created = os.date("%Y-%m-%d %H:%M:%S"),
 				}
 				opus.core.add_task(task)
 				vim.notify("📝 Task added: " .. action, vim.log.levels.INFO, { title = "Opus" })
@@ -792,25 +792,21 @@ local function handle_nde_command(opts)
 				)
 			end
 		else
-			-- Opus help menu
-			vim.notify(
-				"📝 Opus TODO Manager Commands:\n\n"
-					.. "📋 :NDE opus list - Show task manager\n"
-					.. "➕ :NDE opus add <task> - Add new task\n"
-					.. "✅ :NDE opus complete <index> - Complete task\n"
-					.. "🗑️ :NDE opus remove <index> - Remove task\n"
-					.. "✏️ :NDE opus rename <index> <name> - Rename task\n\n"
-					.. "💡 FEATURES:\n"
-					.. "• 🎯 Beautiful NUI interface\n"
-					.. "• 🏷️ Tag support for organization\n"
-					.. "• 💾 JSON storage in ~/.local/share/nvim/nde/opus.json\n"
-					.. "• ⌨️ Full keyboard navigation\n\n"
-					.. "🎮 TIP: Use :NDE opus list for the full interactive experience!",
-				vim.log.levels.INFO,
-				{ title = "📝 Opus TODO Manager", timeout = 12000 }
-			)
+			-- Opus help documentation
+			local help_file = vim.fn.stdpath("config") .. "/lua/opus/doc/opus.txt"
+			if vim.fn.filereadable(help_file) == 1 then
+				vim.cmd("split " .. help_file)
+				vim.bo.filetype = "help"
+				vim.bo.readonly = true
+				vim.bo.modifiable = false
+			else
+				vim.notify(
+					"❌ Opus help file not found: " .. help_file,
+					vim.log.levels.ERROR,
+					{ title = "📝 Opus Help" }
+				)
+			end
 		end
-	
 	elseif cmd == "help" or cmd == "" then
 		-- Open NDE help documentation in a proper buffer
 		local help_file = vim.fn.stdpath("config") .. "/lua/nde/doc/nde-help.txt"
@@ -861,9 +857,9 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
 			"snapicon",
 			"gitsigns",
 			"dashboard",
-		    "optispec",
+			"optispec",
 			"opus",
-    		"pluginmanager",
+			"pluginmanager",
 		}
 		return vim.tbl_filter(function(cmd)
 			return cmd:match("^" .. vim.pesc(ArgLead))
@@ -903,7 +899,7 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
 		elseif cmd == "gitsigns" then
 			return { "toggle" }
 		elseif cmd == "opus" then
-			return { "list", "add", "remove", "complete", "rename" }
+			return { "list", "add", "remove", "complete", "rename", "help" }
 		end
 	elseif arg_count == 3 then
 		local cmd = args[2]
