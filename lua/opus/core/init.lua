@@ -37,6 +37,8 @@ end
 
 -- Functionality to add, remove, complete, rename tasks and add tags
 function core.add_task(task)
+    local task_defaults = config.get("task_defaults")
+    task = vim.tbl_deep_extend("force", vim.deepcopy(task_defaults), task)
     table.insert(core.tasks, task)
     core.save_tasks()
 end

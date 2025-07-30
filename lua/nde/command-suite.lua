@@ -715,9 +715,6 @@ local function handle_nde_command(opts)
 			if action then
 				local task = {
 					name = action,
-					completed = false,
-					tags = {},
-					created = os.date("%Y-%m-%d %H:%M:%S"),
 				}
 				opus.core.add_task(task)
 				vim.notify("📝 Task added: " .. action, vim.log.levels.INFO, { title = "Opus" })

@@ -35,8 +35,9 @@ local function refresh_tasks()
 		end
 	else
 		for idx, task in ipairs(tasks_to_display) do
-			local status_icon = task.completed and "✓" or "✗"
-			local selection_prefix = idx == selected_task and "▶" or " "
+			local icons = config.get("ui.icons")
+			local status_icon = task.completed and icons.completed or icons.incomplete
+			local selection_prefix = idx == selected_task and icons.selected or icons.unselected
 
 			local task_text = string.format("%s %s", selection_prefix, task.name)
 			if task.tags and #task.tags > 0 then
@@ -63,7 +64,8 @@ local function refresh_tasks()
 			local line_num = idx - 1 -- 0-indexed for nvim_buf_add_highlight
 			local line_content = lines[idx]
 			if line_content then
-				local status_icon = task.completed and "✓" or "✗"
+				local icons = config.get("ui.icons")
+				local status_icon = task.completed and icons.completed or icons.incomplete
 				local icon_pos = line_content:find(status_icon)
 				if icon_pos then
 					local hl_group = task.completed and "GitSignsAdd" or "GitSignsDelete"
@@ -119,7 +121,7 @@ local function create_help_pane()
 	vim.api.nvim_buf_set_lines(help_popup.bufnr, 0, -1, false, centered_lines)
 
 	-- Highlight the separators to match the border
-	local border_hl = config.get("ui.highlights.border")
+	local border_hl = config.get("ui.highlights.border") or "FloatBorder"
 	for i, line in ipairs(centered_lines) do
 		local start_col = 1
 		while true do
@@ -148,7 +150,9 @@ local function show_input(title, default_text, callback)
 		enter = true,
 		focusable = true,
 		border = { style = "rounded", text = { top = " " .. title .. " " } },
-		win_options = { winhighlight = "Normal:Normal,FloatBorder:" .. config.get("ui.highlights.border") },
+		win_options = {
+			winhighlight = "Normal:Normal,FloatBorder:" .. (config.get("ui.highlights.border") or "FloatBorder"),
+		},
 	}, {
 		prompt = " > ",
 		default_value = default_text or "",
@@ -200,8 +204,8 @@ local function show_confirmation_menu(title, on_confirm)
 			style = "rounded",
 			text = { top = " " .. title .. " " },
 		},
-		win_options = { 
-			winhighlight = "Normal:Normal,FloatBorder:" .. config.get("ui.highlights.border"),
+		win_options = {
+			winhighlight = "Normal:Normal,FloatBorder:" .. (config.get("ui.highlights.border") or "FloatBorder"),
 			cursorline = false,
 		},
 	}, {
@@ -229,7 +233,7 @@ local function show_confirmation_menu(title, on_confirm)
 		if menu.bufnr and vim.api.nvim_buf_is_valid(menu.bufnr) then
 			-- Get buffer lines to find icon positions
 			local lines = vim.api.nvim_buf_get_lines(menu.bufnr, 0, -1, false)
-			
+
 			for i, line in ipairs(lines) do
 				-- Find checkmark and highlight it with GitSignsAdd
 				local checkmark_pos = line:find("✓")
@@ -243,18 +247,11 @@ local function show_confirmation_menu(title, on_confirm)
 						checkmark_pos
 					)
 				end
-				
+
 				-- Find X mark and highlight it with GitSignsDelete
 				local x_pos = line:find("✗")
 				if x_pos then
-					vim.api.nvim_buf_add_highlight(
-						menu.bufnr,
-						-1,
-						"GitSignsDelete",
-						i - 1,
-						x_pos - 1,
-						x_pos
-					)
+					vim.api.nvim_buf_add_highlight(menu.bufnr, -1, "GitSignsDelete", i - 1, x_pos - 1, x_pos)
 				end
 			end
 		end
@@ -276,25 +273,27 @@ function ui.show_tasks()
 	tasks_popup = Popup({
 		enter = true,
 		focusable = true,
-		border = { style = "rounded", text = { top = " 📝 Opus Tasks " } },
+		border = { style = config.get("ui.border_style"), text = { top = " 📝 Opus Tasks " } },
 		size = { height = 15 },
 		buf_options = { modifiable = false, readonly = true, filetype = "opus-tasks" },
 	})
 
 	help_popup = create_help_pane()
 
+	local ui_config = config.get("ui")
 	local layout = Layout(
 		{
 			position = "50%",
-			size = { width = 80, height = 26 },
+			size = { width = ui_config.width, height = ui_config.height },
 		},
 		Layout.Box({
-			Layout.Box(tasks_popup, { size = "70%" }),
-			Layout.Box(help_popup, { size = "30%" }),
+			Layout.Box(tasks_popup, { size = ui_config.task_panel_size }),
+			Layout.Box(help_popup, { size = ui_config.help_panel_size }),
 		}, { dir = "col" })
 	)
 
 	local keymap_opts = { noremap = true, silent = true }
+	local keymaps = config.get("keymaps")
 
 	local function update_scroll()
 		local cursor_line = selected_task
@@ -323,7 +322,7 @@ function ui.show_tasks()
 		end
 	end
 
-	tasks_popup:map("n", { "j", "<Down>" }, function()
+	tasks_popup:map("n", keymaps.navigate_down, function()
 		local tasks_to_display = filtered_tasks or core.get_all_tasks()
 		if #tasks_to_display > 0 then
 			selected_task = math.min(selected_task + 1, #tasks_to_display)
@@ -334,7 +333,7 @@ function ui.show_tasks()
 		end
 	end, keymap_opts)
 
-	tasks_popup:map("n", { "k", "<Up>" }, function()
+	tasks_popup:map("n", keymaps.navigate_up, function()
 		local tasks_to_display = filtered_tasks or core.get_all_tasks()
 		if #tasks_to_display > 0 then
 			selected_task = math.max(selected_task - 1, 1)
@@ -345,13 +344,13 @@ function ui.show_tasks()
 		end
 	end, keymap_opts)
 
-	tasks_popup:map("n", "a", function()
+	tasks_popup:map("n", keymaps.add_task, function()
 		show_input("Add New Task", "", function(name)
-			core.add_task({ name = name, completed = false, tags = {} })
+			core.add_task({ name = name })
 		end)
 	end, keymap_opts)
 
-	tasks_popup:map("n", "r", function()
+	tasks_popup:map("n", keymaps.rename_task, function()
 		if #core.tasks > 0 then
 			show_input("Rename Task", core.tasks[selected_task].name, function(name)
 				core.rename_task(selected_task, name)
@@ -359,7 +358,7 @@ function ui.show_tasks()
 		end
 	end, keymap_opts)
 
-	tasks_popup:map("n", "d", function()
+	tasks_popup:map("n", keymaps.delete_task, function()
 		if #core.tasks > 0 then
 			local task = core.tasks[selected_task]
 			local task_name = task.name
@@ -374,7 +373,7 @@ function ui.show_tasks()
 		end
 	end, keymap_opts)
 
-	tasks_popup:map("n", "t", function()
+	tasks_popup:map("n", keymaps.add_tag, function()
 		if #core.tasks > 0 then
 			show_input("Add Tag", "", function(tag)
 				core.add_tag(selected_task, tag)
@@ -382,7 +381,7 @@ function ui.show_tasks()
 		end
 	end, keymap_opts)
 
-	tasks_popup:map("n", { "<Enter>", "<Space>" }, function()
+	tasks_popup:map("n", keymaps.toggle_complete, function()
 		if #core.tasks > 0 then
 			local task = core.tasks[selected_task]
 			task.completed = not task.completed
@@ -391,8 +390,7 @@ function ui.show_tasks()
 		end
 	end, keymap_opts)
 
-	-- Remove tag from task
-	tasks_popup:map("n", "T", function()
+	tasks_popup:map("n", keymaps.remove_tag, function()
 		if #core.tasks > 0 and core.tasks[selected_task].tags and #core.tasks[selected_task].tags > 0 then
 			local tags = core.tasks[selected_task].tags
 			if #tags == 1 then
@@ -408,7 +406,7 @@ function ui.show_tasks()
 	end, keymap_opts)
 
 	-- Filter by tag
-	tasks_popup:map("n", "f", function()
+	tasks_popup:map("n", keymaps.filter_by_tag, function()
 		local all_tags = filters.get_all_tags(core.get_all_tasks())
 		if #all_tags == 0 then
 			vim.notify("No tags found", vim.log.levels.WARN)
@@ -436,7 +434,7 @@ function ui.show_tasks()
 	end, keymap_opts)
 
 	-- Sort by name
-	tasks_popup:map("n", "n", function()
+	tasks_popup:map("n", keymaps.sort_by_name, function()
 		core.tasks = filters.sort_by_name(core.tasks)
 		core.save_tasks()
 		refresh_tasks()
@@ -444,7 +442,7 @@ function ui.show_tasks()
 	end, keymap_opts)
 
 	-- Sort by completion status
-	tasks_popup:map("n", "c", function()
+	tasks_popup:map("n", keymaps.sort_by_completion, function()
 		core.tasks = filters.sort_by_completion(core.tasks)
 		core.save_tasks()
 		refresh_tasks()
@@ -452,7 +450,7 @@ function ui.show_tasks()
 	end, keymap_opts)
 
 	-- Search tasks
-	tasks_popup:map("n", "/", function()
+	tasks_popup:map("n", keymaps.search, function()
 		show_input("Search Tasks", "", function(search_term)
 			local all_tasks = core.get_all_tasks()
 			local found_task, index = nil, -1
@@ -477,7 +475,7 @@ function ui.show_tasks()
 	end, keymap_opts)
 
 	-- Show statistics
-	tasks_popup:map("n", "s", function()
+	tasks_popup:map("n", keymaps.show_stats, function()
 		local stats = filters.get_stats(core.tasks)
 		local message = string.format(
 			"📊 Task Statistics:\n\n"
@@ -496,7 +494,7 @@ function ui.show_tasks()
 		vim.notify(message, vim.log.levels.INFO, { title = "Opus Statistics", timeout = 8000 })
 	end, keymap_opts)
 
-	tasks_popup:map("n", { "q", "<Esc>" }, function()
+	tasks_popup:map("n", keymaps.quit, function()
 		layout:unmount()
 		active_layout = nil
 	end, keymap_opts)
