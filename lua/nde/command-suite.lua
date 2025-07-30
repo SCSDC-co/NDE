@@ -902,8 +902,8 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
 			return { "toggleheader" }
 		elseif cmd == "gitsigns" then
 			return { "toggle" }
-		elseif cmd == "gitsigns" then
-			return { "toggle" }
+		elseif cmd == "opus" then
+			return { "list", "add", "remove", "complete", "rename" }
 		end
 	elseif arg_count == 3 then
 		local cmd = args[2]
