@@ -7,11 +7,13 @@ opus.core = require("opus.core")
 -- UI components
 opus.ui = require("opus.ui")
 
+-- Configuration
+opus.config = require("opus.config")
+
 -- Setup function
-function opus.setup()
-    -- Ensure storage directory exists
-    local data_dir = vim.fn.stdpath("data") .. "/nde"
-    vim.fn.mkdir(data_dir, "p")
+function opus.setup(user_config)
+    -- Setup configuration
+    opus.config.setup(user_config)
 
     -- Load or initialize tasks
     opus.core.load_tasks()
