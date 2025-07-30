@@ -90,6 +90,12 @@ require("optispec").setup({
 	},
 })
 
+-- 📝 Initialize Opus TODO Manager
+require("opus").setup({
+	-- Configuration can be customized here
+	-- Uses sensible defaults if not specified
+})
+
 -- 📸 Initialize SnapIcon screenshot tool
 vim.api.nvim_create_autocmd("BufReadPost", {
 	callback = function()
