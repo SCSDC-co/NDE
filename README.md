@@ -2,9 +2,9 @@
 
 ![NDE Banner](.github/assets/banner_ui_readme.png)
 
-**The Ultimate Neovim Development Environment - v7.2.0**
+**The Ultimate Neovim Development Environment - v8.0.0**
 
-A meticulously crafted, enterprise-grade Neovim configuration featuring **Dynamic Loading Revolution & Minimap Enhancement** with intelligent on-demand module loading and professional code overview. Built on the **Complete Plugin System Revolution & Management Overhaul** foundation - revolutionary plugin management with minimal core approach (~32 essential plugins) and optional plugin system (~60+ user-configurable) for enhanced usability and performance. Powered by triple AI integration, revolutionary OptiSpec Dynamic Loader, advanced minimap integration, and comprehensive development tools ecosystem.
+A meticulously crafted, enterprise-grade Neovim configuration featuring **Task Management Revolution & OptiSpec 2.0 Overhaul** with a powerful NDE-native TODO system and a complete language management overhaul. Built on the **Complete Plugin System Revolution & Management Overhaul** foundation - revolutionary plugin management with minimal core approach (~32 essential plugins) and optional plugin system (~60+ user-configurable) for enhanced usability and performance. Powered by triple AI integration, revolutionary OptiSpec Dynamic Loader, advanced minimap integration, and comprehensive development tools ecosystem.
 
 <p>
     <a href="https://github.com/SCSDC-co/NDE/stargazers">
@@ -42,6 +42,28 @@ A meticulously crafted, enterprise-grade Neovim configuration featuring **Dynami
 </div>
 
 ## ✨ Revolutionary Features
+
+### ⭐ **TASK MANAGEMENT REVOLUTION & OPTISPEC 2.0 OVERHAUL** 🚀 *New in v8.0.0*
+
+_A powerful NDE-native TODO system and a complete language management overhaul - the ultimate productivity and development workflow enhancement_
+
+#### **✨ Opus Task Manager: The Ultimate NDE-Native TODO System**
+- **NUI-Powered Interface**: Clean and interactive UI built with modern NUI components for a seamless user experience.
+- **Complete Task Management**: Add, remove, rename, and complete tasks with ease, all from within Neovim.
+- **Advanced Tagging System**: Organize your tasks with custom tags for better organization and filtering.
+- **Smart Filtering & Sorting**: Quickly find the tasks you need with powerful filters and sorting options.
+- **JSON Storage**: Tasks are stored in a simple, human-readable JSON format at `~/.local/share/nvim/nde/opus.json`.
+- **Full Keyboard Navigation**: Designed for keyboard-driven workflows with intuitive shortcuts for all major operations.
+- **Statistics & Insights**: Track your productivity with built-in task statistics, including completion rate, total tasks, and more.
+- **NDE Integration**: Seamlessly integrated with the NDE command suite, providing a unified and consistent workflow.
+
+#### **🚀 OptiSpec 2.0: Complete Language Management Overhaul**
+- **Browser Overhaul**: A complete browser overhaul with a three-panel layout, dynamic tool status, a comprehensive preview system, and enhanced theming.
+- **JSON Tracker System**: A more robust JSON tracker system with three statuses per language (full, partial, and none) and added commands for refreshing OptiSpec and verifying languages.
+- **DAP Configurations**: Fixed and added DAP configurations for all supported languages.
+- **None-LS Integration**: Added none-ls integration with linter support for all languages.
+- **Duplicate Installation Prompts**: Prevented duplicate installation prompts with buffer-level tracking.
+- **Help Docs**: Added OptiSpec 2.0 help docs.
 
 ### 🚀 **DYNAMIC LOADING REVOLUTION & MINIMAP ENHANCEMENT** ⭐ *New in v7.2.0*
 
@@ -717,6 +739,7 @@ When you first launch Neovim after installation:
 - **File Operations**: `<leader>ff` (find files), `<leader>fg` (grep), `<leader>e` (explorer)
 - **OptiSpec Browser**: `:NDE optispec browse` - beautiful language discovery interface
 - **OptiSpec Quick Install**: `:NDE optispec install <language>` - one-click toolchain setup
+- **Opus Task Manager**: `:NDE opus` - open the comprehensive TODO management system
 - **Debugging**: `<F1-F4>` for breakpoints and stepping
 - **Terminal**: `<F11>` (Lazygit), `<F12>` (Terminal)
 
@@ -733,6 +756,13 @@ Comprehensive command system with revolutionary language management:
 :NDE optispec install <lang>  " Install complete toolchain for specified language
 :NDE optispec remove <lang>   " Remove all tools for specified language
 :NDE optispec update          " Update all installed language tools
+
+# Opus Task Manager
+:NDE opus                     " Open the Opus Task Manager interface
+:NDE opus add <task>          " Add a new task from command line
+:NDE opus stats               " Show task statistics and productivity insights
+:NDE opus import <file>       " Import tasks from JSON file
+:NDE opus export <file>       " Export tasks to JSON file
 
 # Learning System
 :NDE tips on/off              " Toggle the automatic tips system

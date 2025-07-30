@@ -117,14 +117,12 @@ function M.show()
 	vim.api.nvim_set_hl(0, "OptiSpecInstalled", { fg = git_colors.installed }) -- Git add color for installed
 	vim.api.nvim_set_hl(0, "OptiSpecPartial", { fg = git_colors.partial }) -- Git change color for partial
 	vim.api.nvim_set_hl(0, "OptiSpecAvailable", { fg = git_colors.available }) -- Git delete color for available
-	vim.api.nvim_set_hl(0, "OptiSpecBorder", { fg = border_colors.fg, bg = border_colors.bg }) -- Use FloatBorder colors
 	vim.api.nvim_set_hl(0, "OptiSpecSeparator", { fg = border_colors.fg }) -- Use FloatBorder fg for separator
-	vim.api.nvim_set_hl(0, "OptiSpecTitle", { fg = border_colors.fg, bg = border_colors.bg }) -- Use FloatBorder colors for title
-	
+
 	-- Create invisible cursor using multiple approaches
 	local normal_hl = vim.api.nvim_get_hl(0, { name = "Normal" })
 	local cursorline_hl = vim.api.nvim_get_hl(0, { name = "CursorLine" })
-	
+
 	-- Try to get the appropriate background color
 	local bg_color = "NONE"
 	if cursorline_hl.bg then
@@ -132,14 +130,14 @@ function M.show()
 	elseif normal_hl.bg then
 		bg_color = ("#%06x"):format(normal_hl.bg)
 	end
-	
+
 	-- Create invisible cursor with no foreground and matching background
-	vim.api.nvim_set_hl(0, "OptiSpecInvisibleCursor", { 
+	vim.api.nvim_set_hl(0, "OptiSpecInvisibleCursor", {
 		bg = bg_color,
 		fg = bg_color,
 		reverse = false,
 		underline = false,
-		bold = false
+		bold = false,
 	})
 
 	local languages = require("optispec.core.languages")
@@ -346,7 +344,7 @@ function M.show()
 			},
 		},
 		win_options = {
-			winhighlight = "Normal:Normal,FloatBorder:OptiSpecBorder,FloatTitle:OptiSpecTitle,Cursor:OptiSpecInvisibleCursor,lCursor:OptiSpecInvisibleCursor",
+			winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
 			cursorline = true,
 		},
 	}, {
@@ -399,7 +397,7 @@ function M.show()
 			},
 		},
 		win_options = {
-			winhighlight = "Normal:Normal,FloatBorder:OptiSpecBorder,FloatTitle:OptiSpecTitle,Cursor:OptiSpecInvisibleCursor,lCursor:OptiSpecInvisibleCursor",
+			winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
 			cursorline = false,
 		},
 	})
@@ -416,7 +414,7 @@ function M.show()
 			},
 		},
 		win_options = {
-			winhighlight = "Normal:Normal,FloatBorder:OptiSpecBorder,FloatTitle:OptiSpecTitle,Cursor:OptiSpecInvisibleCursor,lCursor:NONE",
+			winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
 			cursorline = false,
 		},
 	})
@@ -499,7 +497,7 @@ function M.show_remove_confirmation(language_name)
 			},
 		},
 		win_options = {
-			winhighlight = "Normal:Normal,FloatBorder:OptiSpecBorder",
+			winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
 		},
 	}, {
 		lines = menu_items,

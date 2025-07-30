@@ -19,21 +19,6 @@ function M.show_install_prompt(language_name, filetype, decline_callback)
 		return
 	end
 
-	-- Get FloatBorder colors dynamically from current theme (same as browser)
-	local function get_float_border_colors()
-		local hl = vim.api.nvim_get_hl(0, { name = "FloatBorder" })
-		return {
-			fg = hl.fg and ("#%06x"):format(hl.fg),
-			bg = hl.bg and ("#%06x"):format(hl.bg) or nil, -- fallback if no bg
-		}
-	end
-
-	local border_colors = get_float_border_colors()
-
-	-- Define highlight groups using theme's FloatBorder colors (same as browser)
-	vim.api.nvim_set_hl(0, "OptiSpecBorder", { fg = border_colors.fg, bg = border_colors.bg })
-	vim.api.nvim_set_hl(0, "OptiSpecTitle", { fg = border_colors.fg, bg = border_colors.bg })
-	vim.api.nvim_set_hl(0, "OptiSpecSeparator", { fg = border_colors.fg }) -- Use FloatBorder fg for separator
 
 	-- Create menu items
 	local menu_items = {}
@@ -84,9 +69,9 @@ function M.show_install_prompt(language_name, filetype, decline_callback)
 				top_align = "center",
 			},
 		},
-		win_options = {
-			winhighlight = "Normal:Normal,FloatBorder:OptiSpecBorder,FloatTitle:OptiSpecTitle",
-		},
+        win_options = {
+          winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+        },
 	}, {
 		lines = menu_items,
 		max_width = 50,
@@ -133,18 +118,6 @@ function M.show_install_prompt(language_name, filetype, decline_callback)
 	-- Mount the menu
 	menu:mount()
 
-	-- Apply syntax highlighting after mounting (same as browser)
-	vim.schedule(function()
-		local bufnr = menu.bufnr
-		if bufnr and vim.api.nvim_buf_is_valid(bufnr) then
-			-- Set up syntax highlighting for separator to match border color
-			vim.api.nvim_buf_call(bufnr, function()
-				vim.cmd([[syntax match OptiSpecSeparator "Options" contained]])
-				vim.cmd([[syntax match OptiSpecSeparator "-\{2,}" contained]])
-				vim.cmd([[syntax region OptiSpecLine start="^" end="$" contains=OptiSpecSeparator]])
-			end)
-		end
-	end)
 end
 
 -- Get emoji for language

@@ -5,6 +5,68 @@ All notable changes to the NDE (Neovim Development Environment) project will be 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.0.0] - 2025-07-30
+
+### ⭐ **TASK MANAGEMENT REVOLUTION & OPTISPEC 2.0 OVERHAUL** 🚀
+
+#### **✨ Opus Task Manager: The Ultimate NDE-Native TODO System**
+
+- **Added `lua/opus`**: A powerful and intuitive TODO task manager built for the NDE (Neovim Development Environment).
+  - **NUI-Powered Interface**: Clean and interactive UI built with modern NUI components for a seamless user experience.
+  - **Complete Task Management**: Add, remove, rename, and complete tasks with ease, all from within Neovim.
+  - **Advanced Tagging System**: Organize your tasks with custom tags for better organization and filtering.
+  - **Smart Filtering & Sorting**: Quickly find the tasks you need with powerful filters and sorting options.
+  - **JSON Storage**: Tasks are stored in a simple, human-readable JSON format at `~/.local/share/nvim/nde/opus.json`, making it easy to backup, sync, or integrate with other tools.
+  - **Full Keyboard Navigation**: Designed for keyboard-driven workflows with intuitive shortcuts for all major operations.
+  - **Statistics & Insights**: Track your productivity with built-in task statistics, including completion rate, total tasks, and more.
+  - **NDE Integration**: Seamlessly integrated with the NDE command suite, providing a unified and consistent workflow.
+
+#### **🚀 OptiSpec 2.0: Complete Language Management Overhaul**
+
+- **Browser Overhaul**: A complete browser overhaul with a three-panel layout, dynamic tool status, a comprehensive preview system, and enhanced theming.
+  - **Three-Panel Layout**: A new, intuitive layout that provides a clear overview of available languages, tools, and code previews.
+  - **Dynamic Tool Status**: Real-time status of all tools (LSP, formatters, linters, etc.) for each language.
+  - **Comprehensive Preview System**: A new preview system that shows you a little "Hello, World!" program for each language showing off the syntax and syntax highlighting.
+  - **Enhanced Theming**: A more robust and consistent theming system across all UI components, ensuring a beautiful and unified experience.
+- **JSON Tracker System**: A more robust JSON tracker system with three statuses per language (full, partial, and none) and added commands for refreshing OptiSpec and verifying languages.
+- **DAP Configurations**: Fixed and added DAP configurations for all supported languages, providing a more consistent and reliable debugging experience.
+- **None-LS Integration**: Added none-ls integration with linter support for all languages, expanding the range of available tools.
+- **Duplicate Installation Prompts**: Prevented duplicate installation prompts with buffer-level tracking, ensuring a smoother and less intrusive user experience.
+- **Help Docs**: Added OptiSpec 2.0 help docs, providing comprehensive documentation for all features.
+
+### 🎯 **Technical Achievement Summary**
+
+#### **🔧 Opus Task Manager**
+- **UI Excellence**: A beautiful and intuitive UI built with NUI, providing a seamless user experience that is both powerful and easy to use.
+- **Powerful Core**: A robust core for task management with advanced filtering, sorting, and tagging capabilities, all built from the ground up for NDE.
+- **NDE Integration**: Seamlessly integrated with the NDE command suite for a unified workflow, making it the perfect companion for any developer.
+
+#### **🚀 OptiSpec 2.0**
+- **Browser Overhaul**: A completely redesigned browser for a more intuitive and powerful user experience, making it easier than ever to manage your development tools.
+- **Enhanced Theming**: A more robust and consistent theming system across all UI components, providing a beautiful and unified experience that adapts to your chosen theme.
+- **Improved Stability**: A more reliable and robust language management system, ensuring that your tools are always ready when you need them.
+
+### 🏆 **Updated Configuration Statistics**
+
+- **Total Configuration Size**: **20,000+ lines** of carefully crafted Lua code (↑ from 19,000+)
+- **Plugin Count**: **110+ professionally selected** and configured plugins (↑ from 105+)
+- **Task Management**: **NEW** - Opus, a powerful NDE-native TODO system.
+- **OptiSpec 2.0**: **NEW** - A complete overhaul of the language management system.
+- **Configuration Files**: **230+ modular files** for maximum maintainability (↑ from 225+)
+
+### 🎉 **Impact Summary**
+
+#### **For Task Management Excellence:**
+- **✨ Seamless Workflow**: Manage your tasks without ever leaving your editor, keeping you in the flow and focused on what matters most.
+- **🚀 Enhanced Productivity**: A powerful and intuitive UI for efficient task management, helping you stay organized and on track.
+- **🎯 Better Organization**: Advanced tagging and filtering for better task organization, making it easy to find what you need, when you need it.
+
+#### **For Language Management Excellence:**
+- **🚀 A More Powerful OptiSpec**: A complete overhaul of the language management system for a more powerful and intuitive experience, giving you more control over your development environment.
+- **✨ A More Consistent UI**: A more consistent and beautiful UI across all OptiSpec components, providing a more enjoyable and productive user experience.
+
+---
+
 ## [7.2.0] - 2025-07-27
 
 ### 🚀 **DYNAMIC LOADING REVOLUTION & MINIMAP ENHANCEMENT** ⭐ *Next-Generation Development Experience*

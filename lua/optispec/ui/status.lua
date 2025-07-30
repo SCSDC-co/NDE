@@ -29,6 +29,9 @@ function M.show()
         top_align = "center",
       },
     },
+    win_options = {
+      winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+    },
     position = "50%",
     size = {
       width = 60,
