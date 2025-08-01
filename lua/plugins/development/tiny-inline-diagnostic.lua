@@ -4,7 +4,7 @@ return {
 	config = function()
 		-- Default configuration
 		require("tiny-inline-diagnostic").setup({
-			preset = "modern",
+			preset = "powerline",
 
 			transparent_bg = false,
 			transparent_cursorline = false,
@@ -98,9 +98,9 @@ return {
 				-- end
 				format = nil,
 
-			virt_texts = {
+				virt_texts = {
 					-- Priority for virtual text display
-					priority = 2048,
+					priority = 2,
 				},
 
 				severity = {
@@ -113,16 +113,6 @@ return {
 				-- Events to attach diagnostics to buffers
 				-- You should not change this unless the plugin does not work with your configuration
 				overwrite_events = nil,
-
-				signs = {
-					left = "",
-					right = "",
-					diag = "●",
-					arrow = "      ",
-					up_arrow = "     ",
-					vertical = " │",
-					vertical_end = " └",
-				},
 			},
 			disabled_ft = {}, -- List of filetypes to disable the plugin
 		})

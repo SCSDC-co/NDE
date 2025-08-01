@@ -58,6 +58,20 @@ return {
                         require("GUI.theme-init").setup_github_dark_default()
                     ]],
 				},
+				{
+					name = "Nord",
+					colorscheme = "nord",
+					before = [[
+                        require("GUI.theme-init").setup_nord()
+                    ]],
+				},
+				{
+					name = "Terafox",
+					colorscheme = "terafox",
+					before = [[
+                        require("GUI.theme-init").setup_terafox()
+                    ]],
+				},
 
 				-- ────── LIGHT THEMES ─────
 				{

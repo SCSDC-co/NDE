@@ -14,6 +14,7 @@ return {
 		"ellisonleao/gruvbox.nvim",
 		"Mofiqul/vscode.nvim",
 		"projekt0n/github-nvim-theme",
+		"nordtheme/vim",
 	},
 	config = function()
 		require("lualine").setup({

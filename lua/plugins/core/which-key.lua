@@ -235,7 +235,8 @@ return {
 				end,
 			},
 			{ "<leader>Gd", "<cmd>NDE dashboard toggleheader<cr>", desc = " Change Dashboard Header Style" },
-			{ "<leader>Gg", "<cmd>NDE gitsigns toggle<cr>", desc = " Toggle Git Signs" },
+			{ "<leader>Gg", "<cmd>NDE gitsigns signs toggle<cr>", desc = " Toggle Git Signs" },
+			{ "<leader>GG", "<cmd>NDE gitsigns blame toggle<cr>", desc = " Toggle Git Blame" },
 		},
 	},
 

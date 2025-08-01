@@ -145,6 +145,7 @@ local highlights = {
 	SnacksDashboardKey = { fg = "#83a598" },
 	SnacksDashboardDesc = { fg = "#ebdbb2" },
 	SnacksDashboardFooter = { fg = "#a89984" },
+	FoldColumn = { bg = "#282828", fg = "#3c3836" },
 }
 
 return highlights

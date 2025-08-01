@@ -128,6 +128,7 @@ local highlights = {
 	NeoTreeCursorLine = { bg = "#F2ECBC" },
 	ColorColumn = { bg = "#C1BC96" },
 	VirtColumn = { fg = "#C1BC96" },
+	FoldColumn = { bg = "#F2ECBC", fg = "#C1BC96" },
 }
 
 return highlights

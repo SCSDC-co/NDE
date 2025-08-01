@@ -68,3 +68,9 @@ vim.keymap.set('n', '<leader>bo', ':BufferLineCloseOthers<CR>', { noremap = true
 vim.keymap.set('n', '<F9>', 'ysiw)', { desc = "Add parentheses around word", remap = true })
 vim.keymap.set('n', '<F10>', 'ysiw"', { desc = "Add quotes around word", remap = true })
 
+-- Insert mode navigation with Ctrl+h/j/k/l
+vim.keymap.set('i', '<C-h>', '<Left>', { desc = "Move left in insert mode", noremap = true, silent = true })
+vim.keymap.set('i', '<C-j>', '<Down>', { desc = "Move down in insert mode", noremap = true, silent = true })
+vim.keymap.set('i', '<C-k>', '<Up>', { desc = "Move up in insert mode", noremap = true, silent = true })
+vim.keymap.set('i', '<C-l>', '<Right>', { desc = "Move right in insert mode", noremap = true, silent = true })
+

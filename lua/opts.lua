@@ -1,3 +1,5 @@
+---@diagnostic disable: undefined-global
+
 -- ===== PERFORMANCE OPTIMIZATIONS ===== --
 
 -- Reduce logging noise
@@ -115,8 +117,9 @@ vim.opt.confirm = true
 
 -- Folding optimization - defer expensive operations
 vim.opt.foldmethod = "manual" -- Start with manual, switch to expr later
-vim.opt.foldenable = false -- Disable folding initially for speed
+vim.opt.foldenable = true -- Enable folding for statuscolumn
 vim.opt.foldlevel = 99
+vim.opt.foldcolumn = "1" -- Enable fold column for statuscolumn
 
 -- Defer treesitter folding setup until after buffer load
 vim.api.nvim_create_autocmd("BufReadPost", {
@@ -173,5 +176,13 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 			vim.opt_local.foldmethod = "manual"
 			vim.b.large_file = true
 		end
+	end,
+})
+
+-- Disable fold column for Neo-tree specifically
+vim.api.nvim_create_autocmd({ "FileType", "BufEnter" }, {
+	pattern = { "neo-tree" },
+	callback = function()
+		vim.opt_local.foldcolumn = "0"
 	end,
 })

@@ -1,6 +1,7 @@
 return {
 	"nvimtools/hydra.nvim",
-	event = "VeryLazy",
+	cmd = "Hydra",
+	keys = { "<leader>hw", "<leader>hb" },
 	dependencies = { "folke/which-key.nvim" },
 	config = function()
 		local Hydra = require("hydra")

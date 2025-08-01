@@ -90,10 +90,12 @@ return {
 				{
 					event = "neo_tree_buffer_enter",
 					handler = function()
+						vim.opt_local.foldcolumn = "0"
+
 						vim.opt_local.signcolumn = "auto"
 						-- Set up window focus events for cursor line
 						local group = vim.api.nvim_create_augroup("NeoTreeCursorLine", { clear = true })
-						
+
 						-- Enable cursor line when entering Neo-tree window
 						vim.api.nvim_create_autocmd("WinEnter", {
 							group = group,
@@ -104,7 +106,7 @@ return {
 								end
 							end,
 						})
-						
+
 						-- Disable cursor line when leaving Neo-tree window
 						vim.api.nvim_create_autocmd("WinLeave", {
 							group = group,

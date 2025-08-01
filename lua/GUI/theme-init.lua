@@ -23,6 +23,28 @@ function M.setup_dragon()
 	end)
 end
 
+function M.setup_terafox()
+    local highlights = require("GUI.highlights-terafox")
+    require("nightfox").setup({
+        options = {
+            transparent = false,
+            terminal_colors = false,
+            dim_inactive = false,
+            module_default = true,
+
+            styles = {
+                comments = "italic"
+            }
+        },
+    })
+    -- Force apply highlights after colorscheme loads
+    vim.schedule(function()
+        for name, opts in pairs(highlights) do
+            vim.api.nvim_set_hl(0, name, opts)
+        end
+    end)
+end
+
 function M.setup_lotus()
 	local highlights = require("GUI.highlights-kanagawa-lotus")
 	require("kanagawa").setup({
@@ -461,6 +483,16 @@ function M.setup_github_light()
 		},
 	})
 	-- Force apply highlights after colorscheme loads
+	vim.schedule(function()
+		for name, opts in pairs(highlights) do
+			vim.api.nvim_set_hl(0, name, opts)
+		end
+	end)
+end
+
+function M.setup_nord()
+	local highlights = require("GUI.highlights-nord")
+	-- Nord theme works out of the box, just apply custom highlights
 	vim.schedule(function()
 		for name, opts in pairs(highlights) do
 			vim.api.nvim_set_hl(0, name, opts)

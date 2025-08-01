@@ -19,6 +19,8 @@ require("lazy").setup({
 	{ "ellisonleao/gruvbox.nvim", priority = 1000 },
 	{ "Mofiqul/vscode.nvim", priority = 1000 },
 	{ "projekt0n/github-nvim-theme", priority = 1000 },
+	{ "nordtheme/vim", priority = 1000 },
+	{ "EdenEast/nightfox.nvim", priority = 1000 },
 
 	-- Import all organized plugins
 	{ import = "plugins" },

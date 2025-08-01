@@ -319,26 +319,60 @@ local function handle_nde_command(opts)
 
 	-- GitSigns commands
 	elseif cmd == "gitsigns" then
-		if subcmd == "toggle" then
-			-- Toggle gitsigns style
-			if _G.toggle_gitsigns_style then
-				_G.toggle_gitsigns_style()
+		if subcmd == "signs" then
+			if action == "toggle" then
+				-- Toggle gitsigns style
+				if _G.toggle_gitsigns_style then
+					_G.toggle_gitsigns_style()
+				else
+					vim.notify(
+						"❌ GitSigns toggle function not available\n\n" .. "Make sure GitSigns plugin is loaded!",
+						vim.log.levels.ERROR,
+						{ title = "🔧 GitSigns Toggle" }
+					)
+				end
 			else
 				vim.notify(
-					"❌ GitSigns toggle function not available\n\n" .. "Make sure GitSigns plugin is loaded!",
-					vim.log.levels.ERROR,
-					{ title = "🔧 GitSigns Toggle" }
+					"🔧 GitSigns Signs Commands:\n\n"
+						.. "🔄 :NDE gitsigns signs toggle - Toggle sign style\n\n"
+						.. "📊 AVAILABLE STYLES:\n"
+						.. "• Default (Clean lines) - Simple vertical bars\n"
+						.. "• Modern (Icons) - Beautiful git status icons\n\n"
+						.. "💡 TIP: Style preference is saved automatically!",
+						vim.log.levels.INFO,
+						{ title = "🔧 NDE GitSigns Signs Help", timeout = 8000 }
+				)
+			end
+		elseif subcmd == "blame" then
+			if action == "toggle" then
+				-- Toggle inline git blame
+				if _G.toggle_gitsigns_inline_blame then
+					_G.toggle_gitsigns_inline_blame()
+				else
+					vim.notify(
+						"❌ GitSigns inline blame toggle function not available\n\n" .. "Make sure GitSigns plugin is loaded!",
+						vim.log.levels.ERROR,
+						{ title = "🔧 GitSigns Blame Toggle" }
+					)
+				end
+			else
+				vim.notify(
+					"🔧 GitSigns Blame Commands:\n\n"
+						.. "🔄 :NDE gitsigns blame toggle - Toggle inline blame\n\n"
+						.. "💡 Shows git blame info inline next to each line\n"
+						.. "📊 Includes author, date, and commit message\n"
+						.. "⚙️  Preference is saved automatically!",
+						vim.log.levels.INFO,
+						{ title = "🔧 NDE GitSigns Blame Help", timeout = 8000 }
 				)
 			end
 		else
 			-- GitSigns commands help
 			vim.notify(
 				"🔧 NDE GitSigns Commands:\n\n"
-					.. "🔄 :NDE gitsigns toggle - Toggle sign style\n\n"
-					.. "📊 AVAILABLE STYLES:\n"
-					.. "• Default (Clean lines) - Simple vertical bars\n"
-					.. "• Modern (Icons) - Beautiful git status icons\n\n"
-					.. "💡 TIP: Style preference is saved automatically!",
+					.. "🔄 :NDE gitsigns signs toggle - Toggle sign style\n"
+					.. "📊 :NDE gitsigns blame toggle - Toggle inline blame\n\n"
+					.. "💡 TIP: All preferences are saved automatically!",
 				vim.log.levels.INFO,
 				{ title = "🔧 NDE GitSigns Help", timeout = 8000 }
 			)
@@ -894,7 +928,7 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
 		elseif cmd == "dashboard" then
 			return { "toggleheader" }
 		elseif cmd == "gitsigns" then
-			return { "toggle" }
+			return { "signs", "blame" }
 		elseif cmd == "opus" then
 			return { "list", "add", "remove", "complete", "rename", "help" }
 		end
@@ -905,6 +939,8 @@ local function complete_nde_command(ArgLead, CmdLine, CursorPos)
 			return { "status", "clear", "debug", "test" }
 		elseif cmd == "optispec" and subcmd == "linters" then
 			return { "on", "off" }
+		elseif cmd == "gitsigns" and (subcmd == "signs" or subcmd == "blame") then
+			return { "toggle" }
 		elseif cmd == "optispec" and (subcmd == "install" or subcmd == "remove" or subcmd == "verify") then
 			-- Get available languages for completion
 			local languages = {

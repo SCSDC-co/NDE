@@ -2,9 +2,9 @@
 
 ![NDE Banner](.github/assets/banner_ui_readme.png)
 
-**The Ultimate Neovim Development Environment - v8.0.0**
+**The Ultimate Neovim Development Environment - v8.1.0**
 
-A meticulously crafted, enterprise-grade Neovim configuration featuring **Task Management Revolution & OptiSpec 2.0 Overhaul** with a powerful NDE-native TODO system and a complete language management overhaul. Built on the **Complete Plugin System Revolution & Management Overhaul** foundation - revolutionary plugin management with minimal core approach (~32 essential plugins) and optional plugin system (~60+ user-configurable) for enhanced usability and performance. Powered by triple AI integration, revolutionary OptiSpec Dynamic Loader, advanced minimap integration, and comprehensive development tools ecosystem.
+A meticulously crafted, enterprise-grade Neovim configuration featuring **Enhanced Theme Collection & Advanced Plugin Ecosystem** with revolutionary theme expansion (Nord, TeraFox), advanced code folding (nvim-ufo), visual code action indicators (nvim-lightbulb), and modern status column enhancements (statuscol.nvim). Built on the **Task Management Revolution & OptiSpec 2.0 Overhaul** foundation with a powerful NDE-native TODO system and complete language management overhaul. Features triple AI integration, revolutionary OptiSpec Dynamic Loader, advanced minimap integration, and comprehensive development tools ecosystem.
 
 <p>
     <a href="https://github.com/SCSDC-co/NDE/stargazers">
@@ -42,6 +42,53 @@ A meticulously crafted, enterprise-grade Neovim configuration featuring **Task M
 </div>
 
 ## ✨ Revolutionary Features
+
+### ⭐ **ENHANCED THEME COLLECTION & ADVANCED PLUGIN ECOSYSTEM** 🎨 *New in v8.1.0*
+
+_Revolutionary theme expansion and advanced plugin ecosystem with professional status column enhancements - the ultimate visual excellence and development tool enhancement_
+
+#### **🌈 Revolutionary Theme Expansion: Arctic Beauty & Vibrant Colors**
+- **❄️ Complete Nord Theme Integration**: Cool-toned, polar-inspired color scheme with excellent contrast ratios
+  - Professional polish with 150+ specialized highlight definitions
+  - Complete integration with completion menus, diagnostics, and Git signs
+  - Optimized for extended coding sessions with comfortable color temperatures
+  - Beautiful styling across NeoTree, Which-key, Noice, and all floating windows
+- **🦊 TeraFox Theme Integration**: Rich, saturated colors providing energetic coding environment
+  - Vibrant design with smart configuration and proper highlight coordination
+  - Dynamic integration with automatic color extraction and theme-aware adaptation
+  - Performance optimized with lazy-loaded initialization
+  - Unified styling across all interface elements
+- **📊 Modern Status Column Enhancement**: Sophisticated statuscol.nvim integration
+  - Clear visual structure with modernized status column
+  - Dynamic updates with immediate functionality
+  - Click interactions for seamless mouse interaction
+  - Enhanced fold indicators with optimized display
+  - Theme awareness for cohesive UI/UX experience
+
+#### **📁 Advanced Code Folding System: nvim-ufo Integration**
+- **🧠 Smart Provider Selection**: Automatically chooses between LSP, TreeSitter, and indent-based folding
+- **📊 Custom Fold Text**: Enhanced fold display showing line count and contextual information
+- **🔍 Peek Functionality**: Preview folded content without opening folds using `zp`
+- **⌨️ Intuitive Keybindings**: `zR/zM` for all folds, `zr/zm` for selective folding
+- **🪟 Beautiful Preview**: Rounded borders with proper window highlighting
+- **⚡ Performance**: Lazy loading on BufReadPost for optimal startup
+- **🎨 Theme Integration**: Automatic adaptation to current colorscheme
+
+#### **💡 LSP Code Action Enhancement: nvim-lightbulb Integration**
+- **💡 Visual Indicators**: Lightbulb icon showing available LSP code actions at cursor position
+- **⚡ Smart Updates**: 50ms update time for responsive feedback without performance impact
+- **🎯 Context Aware**: Only shows when code actions are actually available
+- **🚫 Smart Filtering**: Disabled in dashboard, neo-tree, and aerial buffers
+- **🎨 Clean Display**: End-of-line virtual text with customizable icon and styling
+- **📊 High Priority**: 9999 priority ensures lightbulb appears above other virtual text
+
+#### **🎨 Enhanced Theme Architecture: Comprehensive Highlight System**
+- **🌈 Expanded Theme Collection**: Now featuring 13+ professional themes including new Nord and TeraFox
+- **🌳 Enhanced NeoTree Integration**: Added `NeoTreeCursorLine` highlights for all themes
+- **📊 Better Consistency**: Improved highlight coordination across all themes
+- **🔧 Code Formatting**: Standardized indentation using tabs for better maintainability
+- **✨ Visual Polish**: Refined color choices for enhanced readability
+- **🎯 Component Coverage**: Complete highlighting for Snacks Dashboard elements
 
 ### ⭐ **TASK MANAGEMENT REVOLUTION & OPTISPEC 2.0 OVERHAUL** 🚀 *New in v8.0.0*
 

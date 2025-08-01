@@ -141,6 +141,7 @@ local highlights = {
 	EndOfBuffer = { fg = "#1f1f1f" },
 	ColorColumn = { bg = "#2d2d30" },
 	VirtColumn = { fg = "#2d2d30" },
+	FoldColumn = { bg = "#1f1f1f", fg = "#2d2d30" },
 }
 
 return highlights

@@ -17,6 +17,8 @@ M.core_plugins = {
 	"ui/bufferline",
 	"ui/lualine",
 	"ui/noice",
+	"ui/statuscolumn",
+	"ui/ufo", -- Advanced folding with line count display
 	"ui/themery",
 	"ui/virt-column",
 	"ui/zen",
@@ -45,6 +47,7 @@ M.core_plugins = {
 	"development/supermaven", -- CMP source integration
 	"development/tiny-inline-diagnostic", -- Inline diagnostic display
 	"development/tiny-code-actions", -- Code actions with snacks.nvim picker
+	"development/nvim-lightbulb", -- Code action indicators in sign column
 
 	-- Git essentials
 	"git/vim-fugitive",

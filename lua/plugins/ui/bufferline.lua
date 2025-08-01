@@ -12,9 +12,14 @@ return {
 			callback = function()
 				local linenr_fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("LineNr")), "fg#")
 				local gitsigns_delete_fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("GitSignsDelete")), "fg#")
+
+				-- Provide fallback colors if extraction fails
+				local fg_color = (gitsigns_delete_fg ~= "" and gitsigns_delete_fg) or "#ff5555"
+				local bg_color = (linenr_fg ~= "" and linenr_fg) or "NONE"
+
 				vim.api.nvim_set_hl(0, "BufferLineCloseButtonCustom", {
-					fg = gitsigns_delete_fg ~= "" and gitsigns_delete_fg,
-					bg = linenr_fg ~= "" and linenr_fg,
+					fg = fg_color,
+					bg = bg_color,
 				})
 			end,
 		})
